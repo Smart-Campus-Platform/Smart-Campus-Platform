@@ -3,22 +3,60 @@
 <head>
     <meta charset="UTF-8" />
     <title>Menu Aluno</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div class="pagina">
         <header class="barracima">
-        <nav class = "icons">
-        <div class = "horas">
-            <span id="data"></span>&nbsp&nbsp&nbsp
-            <span id="hora"></span>
-        </div>
-            <span>🔔</span>
-            <span>⚙️</span>
-            <span>👤</span>
-            <span>⌄</span>
-        </nav>
-        </header>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                <div class="navbar-header">
+                <a class="navbar-brand" href="#">Menu Aluno</a>
+                </div>
+<ul class="nav navbar-nav" id="dropmenu">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Reservar <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="#">Reservar Sala/Laboratório</a></li>
+            <li><a href="#">Reservar Equipamento</a></li>
+            <li><a href="#">Reservar Trotinete</a></li>
+            <li><a href="#">Reservar Bicicleta</a></li>
+        </ul>
+    </li>
+
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Consultar <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="#">Consultar disponibilidade do parque de estacionamento</a></li>
+            <li><a href="#">Consultar disponibilidade dos postos de carregamento</a></li>
+        </ul>
+    </li>
+
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Reservas <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="#">Gerir Reservas</a></li>
+        </ul>
+    </li>
+
+</ul>
+                <nav class = "icons">
+                    <span>🔔</span>
+                    <span>⚙️</span>
+                    <span>👤</span>
+                    <span>⌄</span>
+                </nav>
+            </nav>
+    </header>
 
         <main class="content">
         <section class="card">
