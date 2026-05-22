@@ -98,17 +98,3 @@
 
     })();
 
-            function toggleDropdown() {
-            const menu = document.getElementById('dropdown-menu');
-            menu.classList.toggle('hidden');
-        }
-
-        document.addEventListener('click', function(e) {
-            const wrapper = document.querySelector('.dropdown-wrapper');
-            if (!wrapper.contains(e.target)) {
-                document.getElementById('dropdown-menu').classList.add('hidden');
-            }
-        });
-        function logout() {
-            window.location.href = 'login.html';
-        }
