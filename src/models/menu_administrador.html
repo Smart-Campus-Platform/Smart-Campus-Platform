@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8" />
+    <title>Menu Administrador</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+        <svg xmlns="http://www.w3.org/2000/svg"
+         style="position:absolute;width:0;height:0;overflow:hidden"
+         aria-hidden="true" focusable="false">
+        <defs>
+            <filter id="filtro-protanopia">
+                <feColorMatrix type="matrix"
+                    values="0.567 0.433 0     0 0
+                            0.558 0.442 0     0 0
+                            0     0.242 0.758 0 0
+                            0     0     0     1 0"/>
+            </filter>
+            <filter id="filtro-deuteranopia">
+                <feColorMatrix type="matrix"
+                    values="0.625 0.375 0     0 0
+                            0.7   0.3   0     0 0
+                            0     0.3   0.7   0 0
+                            0     0     0     1 0"/>
+            </filter>
+            <filter id="filtro-tritanopia">
+                <feColorMatrix type="matrix"
+                    values="0.95  0.05  0     0 0
+                            0     0.433 0.567 0 0
+                            0     0.475 0.525 0 0
+                            0     0     0     1 0"/>
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="pagina">
+        <header class="barracima">
+        <nav class="icons">
+            <span>🔔</span>
+            <span>⚙️</span>
+            <span>👤</span>
+            <span class="dropdown-wrapper">
+                <span id="dropdown-toggle" onclick="toggleDropdown()">⌄</span>
+                <div id="dropdown-menu" class="dropdown-menu hidden">
+                    <button onclick="logout()">Logout</button>
+                </div>
+            </span>
+        </nav>
+        </header>
+
+        <main class="content">
+        <section class="card">
+            <img src="salas.png" alt="Salas">
+            <div class="card-info">
+                <h2>Gestão de Salas</h2>
+                <p>Adicionar e remover salas e alterar os seus detalhes</p>
+                <button>Gerir</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <img src="equipamentos.png" alt="Equipamentos">
+            <div class="card-info">
+                <h2>Gestão de Equipamentos</h2>
+                <p>Adicionar e remover equipamentos e alterar os seus detalhes</p>
+                <button>Gerir</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <img src="trotinetes.png" alt="Trotinetes">
+            <div class="card-info">
+                <h2>Gestão de Trotinetes</h2>
+                <p>Adicionar e remover trotinetes e alterar os seus detalhes</p>
+                <button>Gerir</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <img src="bicicletas.png" alt="Bicicletas">
+            <div class="card-info">
+                <h2>Gestão de Bicicletas</h2>
+                <p>Adicionar e remover bicicletas e alterar os seus detalhes</p>
+                <button>Gerir</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <img src="estacionamento.png" alt="Estacionamento">
+            <div class="card-info">
+                <h2>Gestão de Parques de Estacionamento</h2>
+                <p>Adicionar e remover lugares de estacionamento e alterar os seus detalhes</p>
+                <button>Gerir</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <img src="carregamentoletrico.png" alt="Postos de carregamento">
+            <div class="card-info">
+                <h2>Gestão de Postos de Carregamento</h2>
+                <p>Adicionar e remover postos de carregamento de automóveis e alterar os seus detalhes</p>
+                <button>Gerir</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <img src="sensores.png" alt="Gerir sensores">
+            <div class="card-info">
+                <h2>Gestão de Sensores</h2>
+                <p>Adicionar, remover, ativar, desativar e configurar sensores</p>
+                <button>Gerir</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <img src="relatorios.jpg" alt="Gerir relatórios">
+            <div class="card-info">
+                <h2>Relatórios</h2>
+                <p>Consultar e gerar relatórios</p>
+                <button>Consultar</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <img src="gestaoUtilizadores.png" alt="Gerir utilizadores">
+            <div class="card-info">
+                <h2>Gestão de Utilizadores</h2>
+                <p>Alterar permissões e gerir utilizadores</p>
+                <button>Gerir</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <img src="registar.png" alt="Registar Utilizadores">
+            <div class="card-info">
+                <h2>Registar Utilizadores</h2>
+                <p>Configurar Utilizadores</p>
+                <button>Registar</button>
+            </div>
+        </section>
+        </main>I
+
+        <footer class="footer">
+            <div>
+                <h3>HelpDesk</h3>
+                <p>📞 +351 225 123 987</p>
+                <p>📞 800 123 789</p>
+                <p>✉ &nbsp;secretaria@abc.pt</p>
+                <p>✉ &nbsp;helpdesk@gmail.com</p>
+            </div>
+            <div>
+                <h3>CONTACTOS</h3>
+                <p>📍 Rua Dr. João Carlitos de Sousa,</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;541, 4200-072 Porto</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;Portugal</p>
+                <p>📞 +351 225 123 456</p>
+                <p>✉ &nbsp;geral@abc.pt</p>
+            </div>
+        </footer>
+    </div>
+
+    <button id="botao-acessibilidade"
+            aria-label="Opções de acessibilidade"
+            title="Acessibilidade"
+            aria-expanded="false"
+            aria-controls="painel-acessibilidade">
+
+    </button>
+    <div id="painel-acessibilidade" role="dialog" aria-label="Painel de acessibilidade" aria-modal="false">
+        <h4> Acessibilidade</h4>
+
+        <div class="grupo-opcoes">
+            <span class="titulo-grupo">Lupa / Tamanho (<span id="valor-zoom">50</span>)</span>
+            <div class="linha-botoes">
+                <input type="range" id="controlo-zoom"
+                       min="0" max="100" value="50"
+                       aria-label="Tamanho do texto"
+                       aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"
+                       style="width:100%">
+            </div>
+        </div>
+
+        <div class="grupo-opcoes">
+            <span class="titulo-grupo">Daltonismo</span>
+            <div class="linha-botoes">
+                <button class="botao-opcao botao-filtro selecionado" data-filtro=""
+                        aria-pressed="true"  title="Sem filtro">Normal</button>
+                <button class="botao-opcao botao-filtro" data-filtro="filtro-protanopia"
+                        aria-pressed="false" title="Protanopia — dificuldade com vermelho">Prot.</button>
+                <button class="botao-opcao botao-filtro" data-filtro="filtro-deuteranopia"
+                        aria-pressed="false" title="Deuteranopia — dificuldade com verde">Deut.</button>
+                <button class="botao-opcao botao-filtro" data-filtro="filtro-tritanopia"
+                        aria-pressed="false" title="Tritanopia — dificuldade com azul">Trit.</button>
+            </div>
+        </div>
+
+        <div class="grupo-opcoes">
+            <span class="titulo-grupo">Contraste</span>
+            <div class="linha-botoes">
+                <button class="botao-opcao" id="botao-contraste"
+                        aria-pressed="false" title="Ativar / desativar alto contraste">
+                    Alto Contraste
+                </button>
+                <button class="botao-opcao" id="botao-rosa"
+                        aria-pressed="false" title="Ativar / desativar modo rosa">
+                    Modo Rosa
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="acessiblidade.js"></script>
+</body>
+</html>
