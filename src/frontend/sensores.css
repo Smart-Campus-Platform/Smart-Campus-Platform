@@ -1,0 +1,370 @@
+.gestor-wrapper {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+.sensores-container {
+    flex: 1;
+}
+
+.sensores-container h1 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1e4c5c;
+    text-align: center;
+    margin-bottom: 18px;
+    line-height: 1.4;
+}
+
+/* ===== Lista de sensores ===== */
+.sensor-lista {
+    list-style: none;
+    padding: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.sensor-item {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.sensor-item:last-child {
+    border-bottom: none;
+}
+
+.sensor-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+    line-height: 1.4;
+}
+
+.sensor-row:hover {
+    background: #eaf5fa;
+}
+
+.sensor-row:focus {
+    outline: 2px solid #33add6;
+    outline-offset: -2px;
+}
+
+.sensor-nome {
+    flex: 1;
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+}
+
+.sensor-local {
+    font-size: 13px;
+    color: #555;
+    min-width: 60px;
+}
+
+.sensor-tipo {
+    font-size: 12px;
+    color: #fff;
+    background: #2a92b5;
+    border-radius: 12px;
+    padding: 2px 10px;
+    white-space: nowrap;
+}
+
+.sensor-chevron {
+    font-size: 11px;
+    color: #777;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.sensor-item.aberto .sensor-chevron {
+    transform: rotate(180deg);
+}
+
+/* ===== Painel de detalhe (accordion) ===== */
+.sensor-detalhe {
+    display: none;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px 20px;
+    background: #d0dde0;
+    border-top: 1px solid #c0ced2;
+}
+
+.sensor-item.aberto .sensor-detalhe {
+    display: flex;
+}
+
+/* Caixa de descrição */
+.sensor-campo label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e4c5c;
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+.sensor-campo textarea {
+    width: 100%;
+    border: 1px solid #b0c4cc;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 13px;
+    color: #333;
+    resize: vertical;
+    background: #fff;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    box-sizing: border-box;
+    transition: border-color 0.15s;
+}
+
+.sensor-campo textarea:focus {
+    outline: none;
+    border-color: #33add6;
+    box-shadow: 0 0 0 2px rgba(51, 173, 214, 0.2);
+}
+
+/* ===== Toggle switch ===== */
+.sensor-estado-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sensor-estado-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e4c5c;
+    min-width: 48px;
+}
+
+.toggle-switch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    margin: 0;
+    user-select: none;
+}
+
+.toggle-switch input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-track {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    background: #b0b0b0;
+    border-radius: 12px;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.toggle-switch input:checked + .toggle-track {
+    background: #33add6;
+}
+
+.toggle-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+}
+
+.toggle-switch input:checked + .toggle-track .toggle-thumb {
+    transform: translateX(20px);
+}
+
+.toggle-switch input:focus + .toggle-track {
+    outline: 2px solid #33add6;
+    outline-offset: 2px;
+}
+
+.toggle-text {
+    font-size: 13px;
+    color: #555;
+}
+
+.toggle-switch input:checked ~ .toggle-text::before {
+    content: "Ativo";
+    color: #1a6e8a;
+    font-weight: 600;
+}
+
+.toggle-text::before {
+    content: "Inativo";
+}
+
+/* ===== Botões de ação ===== */
+.sensor-botoes {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-configurar,
+.btn-remover {
+    border-radius: 20px !important;
+    font-size: 13px !important;
+    padding: 7px 20px !important;
+    font-weight: 600;
+    border: none !important;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+}
+
+.btn-configurar {
+    background: #33add6 !important;
+    color: #fff !important;
+}
+
+.btn-configurar:hover {
+    background: #2a92b5 !important;
+    transform: translateY(-1px);
+}
+
+.btn-remover {
+    background: #c0392b !important;
+    color: #fff !important;
+}
+
+.btn-remover:hover {
+    background: #a93226 !important;
+    transform: translateY(-1px);
+}
+
+/* ===== Painel de filtros ===== */
+.filtros-panel {
+    width: 150px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.filtros-titulo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+.filtros-titulo h2 {
+    flex: 1;
+    font-size: 17px;
+    color: #333;
+    line-height: 1.4;
+}
+
+.filtros-toggle {
+    background: none !important;
+    border: 1px solid #bbb !important;
+    color: #333 !important;
+    font-size: 11px !important;
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 4px !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+
+.filtros-toggle:hover {
+    background: #e0eef3 !important;
+}
+
+.filtros-toggle .seta {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.filtros-toggle[aria-expanded="true"] .seta {
+    transform: rotate(180deg);
+}
+
+.filtros-lista {
+    display: none;
+    background: #5a7080;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+.filtros-lista.aberto {
+    display: block;
+}
+
+.filtro-opcao {
+    padding: 9px 14px;
+    font-size: 13px;
+    color: #fff;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    line-height: 1.4;
+}
+
+.filtro-opcao:last-child {
+    border-bottom: none;
+}
+
+.filtro-opcao:hover,
+.filtro-opcao:focus {
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
+}
+
+.filtro-opcao.ativo {
+    background: rgba(255, 255, 255, 0.28);
+    font-weight: bold;
+}
+
+/* ===== Alto Contraste ===== */
+body.contraste-alto .sensor-lista { background: #111 !important; border-color: #fff !important; }
+body.contraste-alto .sensor-item { border-color: #555 !important; }
+body.contraste-alto .sensor-row:hover { background: #1a1a1a !important; }
+body.contraste-alto .sensor-nome,
+body.contraste-alto .sensor-local { color: #fff !important; }
+body.contraste-alto .sensor-tipo { background: #444 !important; color: #fff !important; }
+body.contraste-alto .sensor-detalhe { background: #222 !important; border-color: #fff !important; }
+body.contraste-alto .sensor-campo label { color: #fff !important; }
+body.contraste-alto .sensor-campo textarea { background: #111 !important; color: #fff !important; border-color: #fff !important; }
+body.contraste-alto .sensor-estado-label { color: #fff !important; }
+body.contraste-alto .filtros-lista { background: #222 !important; border: 1px solid #fff !important; }
+body.contraste-alto .filtros-titulo h2 { color: #fff !important; }
+body.contraste-alto .filtros-toggle { background: #000 !important; border-color: #fff !important; color: #fff !important; }
+
+/* ===== Tema Rosa ===== */
+body.tema-rosa .sensor-lista { background: #fff0f4 !important; border-color: #f48fb1 !important; }
+body.tema-rosa .sensor-row:hover { background: #fce4ec !important; }
+body.tema-rosa .sensor-nome,
+body.tema-rosa .sensor-local { color: #7b1045 !important; }
+body.tema-rosa .sensor-tipo { background: #c2185b !important; }
+body.tema-rosa .sensor-detalhe { background: #fce4ec !important; border-color: #f48fb1 !important; }
+body.tema-rosa .sensor-campo label { color: #7b1045 !important; }
+body.tema-rosa .sensor-estado-label { color: #7b1045 !important; }
+body.tema-rosa .btn-configurar { background: #e91e8c !important; }
+body.tema-rosa .btn-configurar:hover { background: #c2185b !important; }
+body.tema-rosa .filtros-lista { background: #c2185b !important; }
+body.tema-rosa .filtros-titulo h2 { color: #7b1045 !important; }
+body.tema-rosa .filtros-toggle { border-color: #c2185b !important; color: #7b1045 !important; }

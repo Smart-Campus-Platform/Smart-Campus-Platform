@@ -2,85 +2,159 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu Funcionário</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <svg xmlns="http://www.w3.org/2000/svg"
+         style="position:absolute;width:0;height:0;overflow:hidden"
+         aria-hidden="true" focusable="false">
+        <defs>
+            <filter id="filtro-protanopia">
+                <feColorMatrix type="matrix"
+                    values="0.567 0.433 0     0 0
+                            0.558 0.442 0     0 0
+                            0     0.242 0.758 0 0
+                            0     0     0     1 0"/>
+            </filter>
+            <filter id="filtro-deuteranopia">
+                <feColorMatrix type="matrix"
+                    values="0.625 0.375 0     0 0
+                            0.7   0.3   0     0 0
+                            0     0.3   0.7   0 0
+                            0     0     0     1 0"/>
+            </filter>
+            <filter id="filtro-tritanopia">
+                <feColorMatrix type="matrix"
+                    values="0.95  0.05  0     0 0
+                            0     0.433 0.567 0 0
+                            0     0.475 0.525 0 0
+                            0     0     0     1 0"/>
+            </filter>
+        </defs>
+    </svg>
+
     <div class="pagina">
         <header class="barracima">
-        <nav class = "icons">
-        <div class = "horas">
-            <span id="data"></span>&nbsp&nbsp&nbsp
-            <span id="hora"></span>
-        </div>
-            <span>🔔</span>
-            <span>⚙️</span>
-            <span>👤</span>
-            <span>⌄</span>
-        </nav>
+            <nav class="navbar navbar-default" aria-label="Navegação principal">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Gerir <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="GestorFuncionario.html">Reservas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Reservar <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Trotinetes</a></li>
+                                <li><a href="#">Bicicletas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Consultar <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Estacionamento</a></li>
+                                <li><a href="#">Postos de carregamento</a></li>
+                                <li><a href="Sensores.html">Sensores</a></li>
+                                <li><a href="#">Disponibilidade de salas</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <nav class="icons" aria-label="Ícones de navegação">
+                        <span role="img" aria-label="Notificações">🔔</span>
+                        <span role="img" aria-label="Definições">⚙️</span>
+                        <span role="img" aria-label="Perfil de utilizador">👤</span>
+                        <span class="dropdown-wrapper">
+                            <span id="dropdown-toggle"
+                                  tabindex="0"
+                                  role="button"
+                                  aria-label="Abrir menu do utilizador"
+                                  aria-expanded="false"
+                                  aria-haspopup="true"
+                                  onclick="toggleDropdown()"
+                                  onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleDropdown();}">⌄</span>
+                            <div id="dropdown-menu" class="dropdown-menu hidden" role="menu">
+                                <button role="menuitem" onclick="logout()">Logout</button>
+                            </div>
+                        </span>
+                    </nav>
+                </div>
+            </nav>
         </header>
 
         <main class="content">
-        <section class="card">
-            <img src="salas.png" alt="Salas">
+        <section class="card" aria-label="Gerir Reservas">
+            <img src="salas.png" alt="Ícone de salas">
             <div class="card-info">
                 <h2>Gerir Reservas</h2>
                 <p>Gerir reservas de salas, laboratórios e equipamentos.</p>
-                <button>Gerir</button>
+                <button aria-label="Gerir reservas de salas, laboratórios e equipamentos">Gerir</button>
         </div>
         </section>
 
-        <section class="card">
-            <img src="trotinetes.png" alt="Trotinetes">
+        <section class="card" aria-label="Reservar Trotinetes">
+            <img src="trotinetes.png" alt="Ícone de trotinetes">
             <div class="card-info">
                 <h2>Reservar Trotinetes</h2>
                 <p>Reservar uma trotinete numa certa zona</p>
-                <button>Reservar</button>
+                <button aria-label="Reservar uma trotinete">Reservar</button>
             </div>
         </section>
 
-        <section class="card">
-            <img src="bicicletas.png" alt="Bicicletas">
+        <section class="card" aria-label="Reservar Bicicletas">
+            <img src="bicicletas.png" alt="Ícone de bicicletas">
             <div class="card-info">
                 <h2>Reservar Bicicletas</h2>
                 <p>Reservar uma bicicleta numa certa zona</p>
-                <button>Reservar</button>
+                <button aria-label="Reservar uma bicicleta">Reservar</button>
             </div>
         </section>
 
-        <section class="card">
-            <img src="parqueestacionamento.png" alt="Estacionamento">
+        <section class="card" aria-label="Consultar parque de estacionamento">
+            <img src="parqueestacionamento.png" alt="Ícone de parque de estacionamento">
             <div class="card-info">
                 <h2>Consultar disponibilidade do parque de estacionamento</h2>
                 <p>Consulte a disponibilidade em tempo real dos lugares de estacionamento livres.</p>
-                <button>Consultar</button>
+                <button aria-label="Consultar disponibilidade do parque de estacionamento">Consultar</button>
             </div>
         </section>
 
-        <section class="card">
-            <img src="postocarregamento.png" alt="Postos de carregamento">
+        <section class="card" aria-label="Consultar postos de carregamento">
+            <img src="postocarregamento.png" alt="Ícone de postos de carregamento elétrico">
             <div class="card-info">
                 <h2>Consultar disponibilidade dos postos de carregamento</h2>
                 <p>Consulte em tempo real a disponibilidade dos postos de carregamento e carregue o seu automóvel elétrico.</p>
-                <button>Consultar</button>
+                <button aria-label="Consultar disponibilidade dos postos de carregamento">Consultar</button>
             </div>
         </section>
 
-        <section class="card">
-            <img src="consultarsensores.png" alt="Consultar sensores">
+        <section class="card" aria-label="Consultar Sensores">
+            <img src="consultarsensores.png" alt="Ícone de sensores">
             <div class="card-info">
                 <h2>Consultar Sensores</h2>
                 <p>Consultar sensores de temperatura de cada sala.</p>
-                <button>Consultar</button>
+                <button aria-label="Consultar sensores de temperatura">Consultar</button>
             </div>
         </section>
 
-        <section class="card">
-            <img src="consultarsalas.png" alt="Consultar disponibilidade salas">
+        <section class="card" aria-label="Consultar Disponibilidade de Salas">
+            <img src="consultarsalas.png" alt="Ícone de disponibilidade de salas">
             <div class="card-info">
                 <h2>Consultar Disponibilidade de Salas</h2>
                 <p>Consultar salas disponíveis e indisponíveis.</p>
-                <button>Consultar</button>
+                <button aria-label="Consultar disponibilidade de salas">Consultar</button>
             </div>
         </section>
 
@@ -106,6 +180,72 @@
         </div>
         </footer>
     </div>
+
+    <button id="botao-acessibilidade"
+            aria-label="Opções de acessibilidade"
+            title="Acessibilidade"
+            aria-expanded="false"
+            aria-controls="painel-acessibilidade"></button>
+    <div id="painel-acessibilidade" role="dialog" aria-label="Painel de acessibilidade" aria-modal="false">
+        <h4>Acessibilidade</h4>
+
+        <div class="grupo-opcoes">
+            <span class="titulo-grupo">Lupa / Tamanho (<span id="valor-zoom">50</span>)</span>
+            <div class="linha-botoes">
+                <input type="range" id="controlo-zoom"
+                       min="0" max="100" value="50"
+                       aria-label="Tamanho do texto"
+                       aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"
+                       style="width:100%">
+            </div>
+        </div>
+
+        <div class="grupo-opcoes">
+            <span class="titulo-grupo">Daltonismo</span>
+            <div class="linha-botoes">
+                <button class="botao-opcao botao-filtro selecionado" data-filtro=""
+                        aria-pressed="true" title="Sem filtro">Normal</button>
+                <button class="botao-opcao botao-filtro" data-filtro="filtro-protanopia"
+                        aria-pressed="false" title="Protanopia — dificuldade com vermelho">Prot.</button>
+                <button class="botao-opcao botao-filtro" data-filtro="filtro-deuteranopia"
+                        aria-pressed="false" title="Deuteranopia — dificuldade com verde">Deut.</button>
+                <button class="botao-opcao botao-filtro" data-filtro="filtro-tritanopia"
+                        aria-pressed="false" title="Tritanopia — dificuldade com azul">Trit.</button>
+            </div>
+        </div>
+
+        <div class="grupo-opcoes">
+            <span class="titulo-grupo">Contraste</span>
+            <div class="linha-botoes">
+                <button class="botao-opcao" id="botao-contraste"
+                        aria-pressed="false" title="Ativar / desativar alto contraste">
+                    Alto Contraste
+                </button>
+                <button class="botao-opcao" id="botao-rosa"
+                        aria-pressed="false" title="Ativar / desativar modo rosa">
+                    Modo Rosa
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            var menu = document.getElementById('dropdown-menu');
+            var toggle = document.getElementById('dropdown-toggle');
+            var isHidden = menu.classList.toggle('hidden');
+            toggle.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
+        }
+        function logout() { window.location.href = 'login.html'; }
+        document.addEventListener('click', function (e) {
+            var wrapper = document.querySelector('.dropdown-wrapper');
+            if (wrapper && !wrapper.contains(e.target)) {
+                document.getElementById('dropdown-menu').classList.add('hidden');
+                document.getElementById('dropdown-toggle').setAttribute('aria-expanded', 'false');
+            }
+        });
+    </script>
+    <script src="horas.js"></script>
+    <script src="acessiblidade.js"></script>
 </body>
-<script src="horas.js"></script>
 </html>
