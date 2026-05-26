@@ -1,0 +1,209 @@
+.gestor-wrapper {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+.reservas-container {
+    flex: 1;
+}
+
+.reservas-container h1 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1e4c5c;
+    text-align: center;
+    margin-bottom: 18px;
+    line-height: 1.4;
+}
+
+/* ===== Lista de reservas ===== */
+.reserva-lista {
+    list-style: none;
+    padding: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.reserva-item {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.reserva-item:last-child {
+    border-bottom: none;
+}
+
+/* Linha clicável de cada reserva */
+.reserva-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+    line-height: 1.4;
+}
+
+.reserva-row:hover {
+    background: #eaf5fa;
+}
+
+.reserva-row:focus {
+    outline: 2px solid #33add6;
+    outline-offset: -2px;
+}
+
+.reserva-nome {
+    flex: 1;
+    font-size: 14px;
+    color: #333;
+}
+
+.reserva-sala {
+    font-size: 14px;
+    color: #555;
+    min-width: 55px;
+}
+
+.reserva-chevron {
+    font-size: 11px;
+    color: #777;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.reserva-item.aberto .reserva-chevron {
+    transform: rotate(180deg);
+}
+
+/* Área de ações (accordion) */
+.reserva-acoes {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    background: #d0dde0;
+    border-top: 1px solid #c0ced2;
+}
+
+.reserva-item.aberto .reserva-acoes {
+    display: flex;
+}
+
+.reserva-acoes-row {
+    display: flex;
+    gap: 14px;
+}
+
+/* ===== Painel de filtros ===== */
+.filtros-panel {
+    width: 130px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.filtros-titulo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+.filtros-titulo h2 {
+    flex: 1;
+    font-size: 17px;
+    color: #333;
+    line-height: 1.4;
+}
+
+.filtros-toggle {
+    background: none !important;
+    border: 1px solid #bbb !important;
+    color: #333 !important;
+    font-size: 11px !important;
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 4px !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+
+.filtros-toggle:hover {
+    background: #e0eef3 !important;
+}
+
+.filtros-toggle .seta {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.filtros-toggle[aria-expanded="true"] .seta {
+    transform: rotate(180deg);
+}
+
+.filtros-lista {
+    display: none;
+    background: #5a7080;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+.filtros-lista.aberto {
+    display: block;
+}
+
+.filtro-opcao {
+    padding: 9px 14px;
+    font-size: 13px;
+    color: #fff;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    line-height: 1.4;
+}
+
+.filtro-opcao:last-child {
+    border-bottom: none;
+}
+
+.filtro-opcao:hover,
+.filtro-opcao:focus {
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
+}
+
+.filtro-opcao.ativo {
+    background: rgba(255, 255, 255, 0.28);
+    font-weight: bold;
+}
+
+/* ===== Alto Contraste ===== */
+body.contraste-alto .reserva-lista { background: #111 !important; border-color: #fff !important; }
+body.contraste-alto .reserva-item { border-color: #555 !important; }
+body.contraste-alto .reserva-row:hover { background: #1a1a1a !important; }
+body.contraste-alto .reserva-nome,
+body.contraste-alto .reserva-sala { color: #fff !important; }
+body.contraste-alto .reserva-acoes { background: #222 !important; border-color: #fff !important; }
+body.contraste-alto .filtros-lista { background: #222 !important; border: 1px solid #fff !important; }
+body.contraste-alto .filtros-titulo h2 { color: #fff !important; }
+body.contraste-alto .filtros-toggle { background: #000 !important; border-color: #fff !important; color: #fff !important; }
+
+/* ===== Tema Rosa ===== */
+body.tema-rosa .reserva-lista { background: #fff0f4 !important; border-color: #f48fb1 !important; }
+body.tema-rosa .reserva-row:hover { background: #fce4ec !important; }
+body.tema-rosa .reserva-nome,
+body.tema-rosa .reserva-sala { color: #7b1045 !important; }
+body.tema-rosa .reserva-acoes { background: #fce4ec !important; border-color: #f48fb1 !important; }
+body.tema-rosa .filtros-lista { background: #c2185b !important; }
+body.tema-rosa .filtros-titulo h2 { color: #7b1045 !important; }
+body.tema-rosa .filtros-toggle { border-color: #c2185b !important; color: #7b1045 !important; }

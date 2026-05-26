@@ -2,8 +2,12 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu Administrador</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
         <svg xmlns="http://www.w3.org/2000/svg"
@@ -36,17 +40,61 @@
 
     <div class="pagina">
         <header class="barracima">
-        <nav class="icons">
-            <span>🔔</span>
-            <span>⚙️</span>
-            <span>👤</span>
-            <span class="dropdown-wrapper">
-                <span id="dropdown-toggle" onclick="toggleDropdown()">⌄</span>
-                <div id="dropdown-menu" class="dropdown-menu hidden">
-                    <button onclick="logout()">Logout</button>
+            <nav class="navbar navbar-default" aria-label="Navegação principal">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Gerir <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Salas</a></li>
+                                <li><a href="#">Equipamentos</a></li>
+                                <li><a href="#">Trotinetes</a></li>
+                                <li><a href="#">Bicicletas</a></li>
+                                <li><a href="#">Estacionamento</a></li>
+                                <li><a href="#">Postos de Carregamento</a></li>
+                                <li><a href="Sensores.html">Sensores</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Relatórios <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Consultar Relatórios</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Utilizadores <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Gestão de Utilizadores</a></li>
+                                <li><a href="#">Registar Utilizador</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <nav class="icons" aria-label="Ícones de navegação">
+                        <span role="img" aria-label="Notificações">🔔</span>
+                        <span role="img" aria-label="Definições">⚙️</span>
+                        <span role="img" aria-label="Perfil de utilizador">👤</span>
+                        <span class="dropdown-wrapper">
+                            <span id="dropdown-toggle"
+                                  tabindex="0"
+                                  role="button"
+                                  aria-label="Abrir menu do utilizador"
+                                  aria-expanded="false"
+                                  aria-haspopup="true"
+                                  onclick="toggleDropdown()"
+                                  onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleDropdown();}">⌄</span>
+                            <div id="dropdown-menu" class="dropdown-menu hidden" role="menu">
+                                <button role="menuitem" onclick="logout()">Logout</button>
+                            </div>
+                        </span>
+                    </nav>
                 </div>
-            </span>
-        </nav>
+            </nav>
         </header>
 
         <main class="content">
@@ -209,6 +257,23 @@
             </div>
         </div>
     </div>
+    <script>
+        function toggleDropdown() {
+            var menu = document.getElementById('dropdown-menu');
+            var toggle = document.getElementById('dropdown-toggle');
+            var isHidden = menu.classList.toggle('hidden');
+            toggle.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
+        }
+        function logout() { window.location.href = 'login.html'; }
+        document.addEventListener('click', function (e) {
+            var wrapper = document.querySelector('.dropdown-wrapper');
+            if (wrapper && !wrapper.contains(e.target)) {
+                document.getElementById('dropdown-menu').classList.add('hidden');
+                document.getElementById('dropdown-toggle').setAttribute('aria-expanded', 'false');
+            }
+        });
+    </script>
+    <script src="horas.js"></script>
     <script src="acessiblidade.js"></script>
 </body>
 </html>

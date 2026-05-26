@@ -1,25 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt">
     <head>
         <meta charset="utf-8">
-        <title>Página de teste</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login — Smart Campus</title>
         <link rel="stylesheet" href="login.css">
     </head>
     <body>
-        <form action="" method="post">
-            <div id="login">
-                <h1>Login</h1>
-                <div class="inputs">
-                    <label>Email:</label><br/>
-                    <input name="email" type="email" placeholder="Introduza email"><br/>
+        <main>
+            <form action="" method="post" aria-label="Formulário de autenticação">
+                <div id="login">
+                    <h1>Login</h1>
+                    <div class="inputs">
+                        <label for="email">Email:</label><br/>
+                        <input id="email" name="email" type="email"
+                               placeholder="Introduza email"
+                               autocomplete="email"
+                               aria-required="true"
+                               aria-label="Endereço de email"><br/>
+                    </div>
+                    <div class="inputs">
+                        <label for="password">Password:</label><br/>
+                        <input id="password" name="password" type="password"
+                               placeholder="Introduza password"
+                               autocomplete="current-password"
+                               aria-required="true"
+                               aria-label="Palavra-passe"><br/>
+                    </div>
+                    <button type="submit" aria-label="Entrar na plataforma">Entrar</button>
                 </div>
-                <div class="inputs">
-                    <label>Password:</label><br/>
-                    <input name="password" type="password" placeholder="Introduza password"><br/>
-                </div>
-                <button type="submit">Entrar</button>
-            </div>  
-        </form>
+            </form>
+        </main>
     </body>
 
 </html>
