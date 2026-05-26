@@ -51,6 +51,13 @@ app.get('/alterar-informacao', (req, res) => {
     sendFrontendFile(res, 'alterar_informacao.html');
 });
 
+app.get('/alterar-password', (req, res) => {
+    sendFrontendFile(res, 'alterar_password.html');
+});
+
+app.get('/menu_utilizador', (req, res) => {
+    sendFrontendFile(res, 'menu_utilizador.html');
+});
 
 app.listen(PORT, () => {
     console.log(`Servidor na porta ${PORT}`);
