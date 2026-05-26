@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Registar Utilizador</title>
+        <link rel="stylesheet" href="style2.css" />
+    </head>
+    <body>
+        <div class="pagina">
+            <header class="barracima">
+                <button class="previous" type="button">⭠ Previous</button>
+                <nav class = "icons">
+                    <span>🔔</span>
+                    <span>⚙️</span>
+                    <span>👤</span>
+                    <span>⌄</span>
+                </nav>
+            </header>
+        
+        <form method="post">
+            <div class="registar">
+                <h1>Registar Utilizador</h1>
+                <div class="info">
+                    <label>Email:</label><br/>
+                    <input name="email" type="email" placeholder="Introduza email"><br/>
+                </div>
+                <div class="info">
+                    <label>Contacto:</label><br/>
+                    <input name="contacto" type="text" placeholder="Introduza contacto"><br/>
+                </div>
+                <div class="info">
+                    <label>Password:</label><br/>
+                    <input name="password" type="password" placeholder="Introduza password"><br/>
+                </div>
+                <div class="info">
+                    <label>Data de Nascimento:</label><br/>
+                    <input name="dataNascimento" type="text" placeholder="Introduza data de nascimento"><br/>
+                </div>
+                <div class="info">
+                    <label>Tipo:</label><br/>
+                    <select>
+                        <option value="admin">Administrador</option>
+                        <option value="funcionario">Funcionário</option>
+                        <option value="docente">Docente</option>
+                        <option value="estudante">Estudante</option>
+                    </select>
+                </div>
+                <br/>
+                <button class="registo" type="submit">Registar</button>
+            </div>
+        </form> 
+        </div>
+    </body>
+</html>
