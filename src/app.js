@@ -1,12 +1,14 @@
 const express = require('express');
 const path = require('path');
-require('dotenv').config();
+
+const db = require("./config/db");
 
 const app = express();
+const PORT = 3000;
+
 const frontendPath = path.join(__dirname, 'frontend');
 
 app.use(express.json());
-
 app.use(express.static(frontendPath));
 
 const sendFrontendFile = (res, fileName) => {
@@ -37,8 +39,6 @@ app.get('/menu-administrador', (req, res) => {
     sendFrontendFile(res, 'menu_administrador.html');
 });
 
-const PORT = process.env.PORT || 3000;
-
 app.listen(PORT, () => {
-    console.log(`Server in port ${PORT}`);
+    console.log(`Servidor na porta ${PORT}`);
 });
