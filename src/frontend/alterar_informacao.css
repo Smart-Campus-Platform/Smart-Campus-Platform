@@ -1,0 +1,94 @@
+.perfil-wrapper {
+    max-width: 560px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    padding: 36px 40px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+}
+
+.perfil-titulo {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e4c5c;
+    margin-bottom: 28px;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.perfil-campo {
+    margin-bottom: 20px;
+}
+
+.perfil-campo label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.perfil-campo input,
+.perfil-campo textarea {
+    width: 100%;
+    padding: 10px 13px;
+    border: 1px solid #c0ced2;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    background: #f9fafa;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    line-height: 1.5;
+}
+
+.perfil-campo input:focus,
+.perfil-campo textarea:focus {
+    outline: none;
+    border-color: #33add6;
+    box-shadow: 0 0 0 3px rgba(51,173,214,0.18);
+    background: #fff;
+}
+
+.perfil-campo textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.perfil-acoes {
+    margin-top: 28px;
+    text-align: right;
+}
+
+.btn-guardar {
+    background: #33add6 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 20px !important;
+    padding: 10px 32px !important;
+    font-size: 14px !important;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+    letter-spacing: 0.2px;
+}
+
+.btn-guardar:hover {
+    background: #2a92b5 !important;
+}
+
+/* Alto Contraste */
+body.contraste-alto .perfil-wrapper { background: #111 !important; border: 1px solid #fff !important; }
+body.contraste-alto .perfil-titulo { color: #fff !important; }
+body.contraste-alto .perfil-campo label { color: #fff !important; }
+body.contraste-alto .perfil-campo input,
+body.contraste-alto .perfil-campo textarea { background: #000 !important; color: #fff !important; border-color: #fff !important; }
+
+/* Tema Rosa */
+body.tema-rosa .perfil-wrapper { background: #fff0f4 !important; border: 1px solid #f48fb1 !important; }
+body.tema-rosa .perfil-titulo { color: #7b1045 !important; }
+body.tema-rosa .perfil-campo label { color: #7b1045 !important; }
+body.tema-rosa .btn-guardar { background: #e91e8c !important; }
+body.tema-rosa .btn-guardar:hover { background: #c2185b !important; }

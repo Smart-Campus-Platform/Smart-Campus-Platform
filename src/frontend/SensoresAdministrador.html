@@ -106,7 +106,14 @@
             <div class="gestor-wrapper">
 
                 <section class="sensores-container" aria-labelledby="titulo-sensores">
-                    <h1 id="titulo-sensores">Sensores</h1>
+                    <div class="sensores-header">
+                        <h1 id="titulo-sensores">Sensores</h1>
+                        <button type="button" class="btn-adicionar-sensor"
+                                onclick="abrirModalSensor()"
+                                aria-label="Adicionar novo sensor">
+                            + Adicionar Sensor
+                        </button>
+                    </div>
 
                     <ul class="sensor-lista" role="list" aria-label="Lista de sensores">
 
@@ -345,6 +352,29 @@
         </footer>
     </div>
 
+    <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+        <div class="modal-caixa" id="modal-caixa">
+            <h3 id="modal-titulo">Adicionar Sensor</h3>
+            <div class="modal-campo">
+                <label for="novo-tipo">Tipo</label>
+                <select id="novo-tipo">
+                    <option value="">Selecionar tipo...</option>
+                    <option value="Ocupação">Ocupação</option>
+                    <option value="Temperatura">Temperatura</option>
+                    <option value="Qualidade do Ar">Qualidade do Ar</option>
+                    <option value="Consumo Energético">Consumo Energético</option>
+                </select>
+            </div>
+            <div class="modal-campo">
+                <label for="nova-sala">Sala</label>
+                <input type="text" id="nova-sala" placeholder="Ex: Sala 101">
+            </div>
+            <div class="modal-botoes">
+                <button type="button" onclick="confirmarNovoSensor()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
     <button id="botao-acessibilidade"
             aria-label="Opções de acessibilidade"
             title="Acessibilidade"
@@ -393,61 +423,8 @@
         </div>
     </div>
 
-    <script>
-        function toggleSensor(row) {
-            var item = row.closest('.sensor-item');
-            var wasAberto = item.classList.contains('aberto');
-
-            document.querySelectorAll('.sensor-item.aberto').forEach(function (other) {
-                other.classList.remove('aberto');
-                var otherRow = other.querySelector('.sensor-row');
-                var otherDetalhe = other.querySelector('.sensor-detalhe');
-                otherRow.setAttribute('aria-expanded', 'false');
-                otherDetalhe.setAttribute('aria-hidden', 'true');
-            });
-
-            if (!wasAberto) {
-                item.classList.add('aberto');
-                row.setAttribute('aria-expanded', 'true');
-                item.querySelector('.sensor-detalhe').setAttribute('aria-hidden', 'false');
-            }
-        }
-
-        function toggleFiltros(btn) {
-            var lista = document.getElementById('filtros-lista');
-            var isAberto = lista.classList.toggle('aberto');
-            btn.setAttribute('aria-expanded', isAberto ? 'true' : 'false');
-            btn.setAttribute('aria-label', isAberto ? 'Esconder filtros' : 'Mostrar filtros');
-        }
-
-        function selecionarFiltro(el) {
-            document.querySelectorAll('.filtro-opcao').forEach(function (item) {
-                item.classList.remove('ativo');
-                item.setAttribute('aria-pressed', 'false');
-            });
-            el.classList.add('ativo');
-            el.setAttribute('aria-pressed', 'true');
-        }
-
-        function toggleDropdown() {
-            var menu = document.getElementById('dropdown-menu');
-            var toggle = document.getElementById('dropdown-toggle');
-            var isHidden = menu.classList.toggle('hidden');
-            toggle.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
-        }
-
-        function logout() {
-            window.location.href = 'login.html';
-        }
-
-        document.addEventListener('click', function (e) {
-            var wrapper = document.querySelector('.dropdown-wrapper');
-            if (wrapper && !wrapper.contains(e.target)) {
-                document.getElementById('dropdown-menu').classList.add('hidden');
-                document.getElementById('dropdown-toggle').setAttribute('aria-expanded', 'false');
-            }
-        });
-    </script>
+    <script src="sensores-administrador.js"></script>
+    <script src="navbar.js"></script>
     <script src="acessiblidade.js"></script>
 </body>
 </html>
