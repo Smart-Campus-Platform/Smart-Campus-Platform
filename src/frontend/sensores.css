@@ -8,6 +8,125 @@
     flex: 1;
 }
 
+.sensores-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.sensores-header h1 {
+    margin-bottom: 0;
+}
+
+.btn-adicionar-sensor {
+    background: #33add6 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 20px !important;
+    padding: 8px 20px !important;
+    font-size: 13px !important;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s;
+    flex-shrink: 0;
+}
+
+.btn-adicionar-sensor:hover {
+    background: #2a92b5 !important;
+}
+
+/* ===== Modal ===== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.48);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay.aberto {
+    display: flex;
+}
+
+.modal-caixa {
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px 34px;
+    min-width: 320px;
+    max-width: 420px;
+    width: 90%;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.28);
+}
+
+.modal-caixa h3 {
+    font-size: 18px;
+    color: #1e4c5c;
+    font-weight: 700;
+    margin-bottom: 22px;
+    line-height: 1.4;
+}
+
+.modal-campo {
+    margin-bottom: 16px;
+}
+
+.modal-campo label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.modal-campo input,
+.modal-campo select {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid #c0ced2;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #333;
+    background: #f9fafa;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.modal-campo input:focus,
+.modal-campo select:focus {
+    outline: none;
+    border-color: #33add6;
+    box-shadow: 0 0 0 3px rgba(51,173,214,0.18);
+    background: #fff;
+}
+
+.modal-botoes {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 22px;
+}
+
+.modal-botoes button {
+    background: #33add6 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 20px !important;
+    padding: 9px 30px !important;
+    font-size: 14px !important;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.modal-botoes button:hover {
+    background: #2a92b5 !important;
+}
+
 .sensores-container h1 {
     font-size: 22px;
     font-weight: bold;

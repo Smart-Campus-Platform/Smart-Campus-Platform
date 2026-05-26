@@ -120,9 +120,9 @@
                             </div>
                             <div class="reserva-acoes" id="acoes-r1" aria-hidden="true">
                                 <div class="reserva-acoes-row">
-                                    <button type="button">Cancelar</button>
-                                    <button type="button">Alterar</button>
                                     <button type="button">Confirmar</button>
+                                    <button type="button">Alterar</button>
+                                    <button type="button">Cancelar</button>
                                 </div>
                             </div>
                         </li>
@@ -140,9 +140,9 @@
                             </div>
                             <div class="reserva-acoes" id="acoes-r2" aria-hidden="true">
                                 <div class="reserva-acoes-row">
-                                    <button type="button">Cancelar</button>
-                                    <button type="button">Alterar</button>
                                     <button type="button">Confirmar</button>
+                                    <button type="button">Alterar</button>
+                                    <button type="button">Cancelar</button>
                                 </div>
                             </div>
                         </li>
@@ -160,9 +160,9 @@
                             </div>
                             <div class="reserva-acoes" id="acoes-r3" aria-hidden="true">
                                 <div class="reserva-acoes-row">
-                                    <button type="button">Cancelar</button>
-                                    <button type="button">Alterar</button>
                                     <button type="button">Confirmar</button>
+                                    <button type="button">Alterar</button>
+                                    <button type="button">Cancelar</button>
                                 </div>
                             </div>
                         </li>
@@ -180,9 +180,9 @@
                             </div>
                             <div class="reserva-acoes" id="acoes-r4" aria-hidden="true">
                                 <div class="reserva-acoes-row">
-                                    <button type="button">Cancelar</button>
-                                    <button type="button">Alterar</button>
                                     <button type="button">Confirmar</button>
+                                    <button type="button">Alterar</button>
+                                    <button type="button">Cancelar</button>
                                 </div>
                             </div>
                         </li>
@@ -200,9 +200,9 @@
                             </div>
                             <div class="reserva-acoes" id="acoes-r5" aria-hidden="true">
                                 <div class="reserva-acoes-row">
-                                    <button type="button">Cancelar</button>
-                                    <button type="button">Alterar</button>
                                     <button type="button">Confirmar</button>
+                                    <button type="button">Alterar</button>
+                                    <button type="button">Cancelar</button>
                                 </div>
                             </div>
                         </li>
@@ -220,9 +220,9 @@
                             </div>
                             <div class="reserva-acoes" id="acoes-r6" aria-hidden="true">
                                 <div class="reserva-acoes-row">
-                                    <button type="button">Cancelar</button>
-                                    <button type="button">Alterar</button>
                                     <button type="button">Confirmar</button>
+                                    <button type="button">Alterar</button>
+                                    <button type="button">Cancelar</button>
                                 </div>
                             </div>
                         </li>
@@ -340,67 +340,8 @@
         </div>
     </div>
 
-    <script>
-        /* Accordion de reservas — abre/fecha inline, uma de cada vez */
-        function toggleReserva(row) {
-            var item = row.closest('.reserva-item');
-            var wasAberto = item.classList.contains('aberto');
-
-            // Fechar todas
-            document.querySelectorAll('.reserva-item.aberto').forEach(function (other) {
-                other.classList.remove('aberto');
-                var otherRow = other.querySelector('.reserva-row');
-                var otherAcoes = other.querySelector('.reserva-acoes');
-                otherRow.setAttribute('aria-expanded', 'false');
-                otherAcoes.setAttribute('aria-hidden', 'true');
-            });
-
-            // Se estava fechado, abrir
-            if (!wasAberto) {
-                item.classList.add('aberto');
-                row.setAttribute('aria-expanded', 'true');
-                item.querySelector('.reserva-acoes').setAttribute('aria-hidden', 'false');
-            }
-        }
-
-        /* Toggle do dropdown de filtros */
-        function toggleFiltros(btn) {
-            var lista = document.getElementById('filtros-lista');
-            var isAberto = lista.classList.toggle('aberto');
-            btn.setAttribute('aria-expanded', isAberto ? 'true' : 'false');
-            btn.setAttribute('aria-label', isAberto ? 'Esconder filtros' : 'Mostrar filtros');
-        }
-
-        /* Seleção de filtro ativo */
-        function selecionarFiltro(el) {
-            document.querySelectorAll('.filtro-opcao').forEach(function (item) {
-                item.classList.remove('ativo');
-                item.setAttribute('aria-pressed', 'false');
-            });
-            el.classList.add('ativo');
-            el.setAttribute('aria-pressed', 'true');
-        }
-
-        /* Dropdown de logout */
-        function toggleDropdown() {
-            var menu = document.getElementById('dropdown-menu');
-            var toggle = document.getElementById('dropdown-toggle');
-            var isHidden = menu.classList.toggle('hidden');
-            toggle.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
-        }
-
-        function logout() {
-            window.location.href = 'login.html';
-        }
-
-        document.addEventListener('click', function (e) {
-            var wrapper = document.querySelector('.dropdown-wrapper');
-            if (wrapper && !wrapper.contains(e.target)) {
-                document.getElementById('dropdown-menu').classList.add('hidden');
-                document.getElementById('dropdown-toggle').setAttribute('aria-expanded', 'false');
-            }
-        });
-    </script>
+    <script src="gestor-reservas.js"></script>
+    <script src="navbar.js"></script>
     <script src="horas.js"></script>
     <script src="acessiblidade.js"></script>
 </body>

@@ -39,13 +39,18 @@ app.get('/menu-administrador', (req, res) => {
     sendFrontendFile(res, 'menu_administrador.html');
 });
 
-app.get('/gestor-funcionario', (req, res) => {
-    sendFrontendFile(res, 'GestorFuncionario.html');
+app.get('/gestor-reservas', (req, res) => {
+    sendFrontendFile(res, 'GestorReservas.html');
 });
 
 app.get('/sensores', (req, res) => {
-    sendFrontendFile(res, 'Sensores.html');
+    sendFrontendFile(res, 'SensoresAdministrador.html');
 });
+
+app.get('/alterar-informacao', (req, res) => {
+    sendFrontendFile(res, 'alterar_informacao.html');
+});
+
 
 app.listen(PORT, () => {
     console.log(`Servidor na porta ${PORT}`);
