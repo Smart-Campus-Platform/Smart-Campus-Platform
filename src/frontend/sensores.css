@@ -458,6 +458,32 @@
     font-weight: bold;
 }
 
+/* ===== Campos editáveis no detalhe ===== */
+.sensor-campo input,
+.sensor-campo select {
+    width: 100%;
+    border: 1px solid #b0c4cc;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 13px;
+    color: #333;
+    background: #fff;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    transition: border-color 0.15s;
+}
+
+.sensor-campo input:focus,
+.sensor-campo select:focus {
+    outline: none;
+    border-color: #33add6;
+    box-shadow: 0 0 0 2px rgba(51, 173, 214, 0.2);
+}
+
+.item-acoes {
+    margin-top: 4px;
+}
+
 /* ===== Alto Contraste ===== */
 body.contraste-alto .sensor-lista { background: #111 !important; border-color: #fff !important; }
 body.contraste-alto .sensor-item { border-color: #555 !important; }

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* ── layout ── */
+        .dash-main {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .dash-titulo {
+            color: #1e4c5c;
+            font-size: 36px;
+            font-weight: 300;
+            margin-bottom: 8px;
+        }
+
+        .dash-subtitulo {
+            color: #4a7a8a;
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        /* ── resumo (topo) ── */
+        .resumo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 36px;
+        }
+
+        .resumo-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px 22px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .resumo-card .rc-valor {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e4c5c;
+            line-height: 1.1;
+        }
+
+        .resumo-card .rc-label {
+            font-size: 13px;
+            color: #6a9aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .resumo-card .rc-icone {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .resumo-card.alerta { border-left: 4px solid #e05252; }
+        .resumo-card.ok     { border-left: 4px solid #28a745; }
+        .resumo-card.info   { border-left: 4px solid #2aa8d2; }
+
+        /* ── secções de sensores ── */
+        .secao-sensores {
+            margin-bottom: 30px;
+        }
+
+        .secao-sensores h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e4c5c;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .secao-sensores h2 .secao-icone {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            background: #d6f0f8;
+            color: #1e4c5c;
+        }
+
+        .sensores-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .sensor-card {
+            background: white;
+            border-radius: 12px;
+            padding: 18px 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .sc-nome {
+            font-weight: 600;
+            color: #1e4c5c;
+            font-size: 15px;
+        }
+
+        .sc-local {
+            font-size: 12px;
+            color: #6a9aaa;
+        }
+
+        .sc-badge {
+            font-size: 11px;
+            padding: 3px 9px;
+            border-radius: 20px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .badge-normal    { background: #d4edda; color: #155724; }
+        .badge-alerta    { background: #f8d7da; color: #721c24; }
+        .badge-atencao   { background: #fff3cd; color: #856404; }
+        .badge-inativo   { background: #e2e3e5; color: #383d41; }
+
+        .sc-valor-principal {
+            font-size: 30px;
+            font-weight: 700;
+            color: #1e4c5c;
+            line-height: 1;
+        }
+
+        .sc-valor-principal span {
+            font-size: 15px;
+            font-weight: 400;
+            color: #6a9aaa;
+        }
+
+        .sc-minmax {
+            display: flex;
+            gap: 14px;
+            font-size: 12px;
+            color: #7a9eae;
+        }
+
+        .sc-minmax strong { color: #3a6a7a; }
+
+        .sc-barra-wrap {
+            background: #e8f4f8;
+            border-radius: 6px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .sc-barra {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.4s;
+        }
+
+        .barra-normal  { background: #28a745; }
+        .barra-atencao { background: #ffc107; }
+        .barra-alerta  { background: #e05252; }
+
+        /* ── botão relatório ── */
+        .wrap-relatorio {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        .btn-relatorio {
+            background: #2aa8d2;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 13px 34px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 3px 10px rgba(42,168,210,0.35);
+            transition: background 0.2s;
+        }
+
+        .btn-relatorio:hover { background: #1e8ab0; }
+
+        /* ── impressão ── */
+        @media print {
+            .barracima, #botao-acessibilidade, #painel-acessibilidade,
+            .wrap-relatorio, .footer { display: none !important; }
+            .pagina { background: white !important; }
+            body { background: white; }
+            .sensor-card, .resumo-card { box-shadow: none; border: 1px solid #ccc; }
+            .dash-main { width: 100%; max-width: 100%; margin: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg"
+         style="position:absolute;width:0;height:0;overflow:hidden"
+         aria-hidden="true" focusable="false">
+        <defs>
+            <filter id="filtro-protanopia">
+                <feColorMatrix type="matrix"
+                    values="0.567 0.433 0     0 0
+                            0.558 0.442 0     0 0
+                            0     0.242 0.758 0 0
+                            0     0     0     1 0"/>
+            </filter>
+            <filter id="filtro-deuteranopia">
+                <feColorMatrix type="matrix"
+                    values="0.625 0.375 0     0 0
+                            0.7   0.3   0     0 0
+                            0     0.3   0.7   0 0
+                            0     0     0     1 0"/>
+            </filter>
+            <filter id="filtro-tritanopia">
+                <feColorMatrix type="matrix"
+                    values="0.95  0.05  0     0 0
+                            0     0.433 0.567 0 0
+                            0     0.475 0.525 0 0
+                            0     0     0     1 0"/>
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="pagina">
+        <header class="barracima">
+            <nav class="navbar navbar-default" aria-label="Navegação principal">
+                <div class="container-fluid">
+                    <a href="menu_administrador.html" class="btn-casa"
+                       aria-label="Voltar ao Menu Administrador" title="Voltar ao Menu Administrador">
+                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Menu
+                    </a>
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Gerir <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="SalasAdministrador.html">Salas</a></li>
+                                <li><a href="EquipamentosAdministrador.html">Equipamentos</a></li>
+                                <li><a href="TrotinetesAdministrador.html">Trotinetes</a></li>
+                                <li><a href="BicicletasAdministrador.html">Bicicletas</a></li>
+                                <li><a href="ParqueEstacionamentoAdministrador.html">Estacionamento</a></li>
+                                <li><a href="PostoCarregamentoAdministrador.html">Postos de Carregamento</a></li>
+                                <li><a href="SensoresAdministrador.html">Sensores</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Relatórios <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="dashboard.html">Dashboard</a></li>
+                                <li><a href="GerirRelatorios.html">Consultar Relatórios</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Utilizadores <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="gestao_utilizadores.html">Gestão de Utilizadores</a></li>
+                                <li><a href="registar_utilizador.html">Registar Utilizador</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <nav class="icons" aria-label="Ícones de navegação">
+                        <span role="img" aria-label="Notificações">🔔</span>
+                        <span role="img" aria-label="Definições">⚙️</span>
+                        <span role="img" aria-label="Perfil de utilizador">👤</span>
+                        <span class="dropdown-wrapper">
+                            <span class="seta-icon" onclick="abrirMenu(event)">⌄</span>
+                            <div class="menu-perfil" id="menuPerfil">
+                                <a href="alterar_password.html">Alterar Password</a>
+                                <a href="alterar_informacao.html">Alterar Informações</a>
+                                <a href="login.html">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </a>
+                            </div>
+                        </span>
+                    </nav>
+                </div>
+            </nav>
+        </header>
+
+        <main class="content dash-main" aria-label="Dashboard de sensores">
+
+            <h1 class="dash-titulo">Dashboard</h1>
+            <p class="dash-subtitulo" id="dash-timestamp">Última atualização: —</p>
+
+            <!-- resumo geral -->
+            <div class="resumo-grid" aria-label="Resumo geral dos sensores">
+                <div class="resumo-card info">
+                    <span class="rc-icone"><i class="fa-solid fa-satellite-dish"></i></span>
+                    <span class="rc-valor">5</span>
+                    <span class="rc-label">Total de Sensores</span>
+                </div>
+                <div class="resumo-card ok">
+                    <span class="rc-icone"><i class="fa-solid fa-circle-check"></i></span>
+                    <span class="rc-valor">4</span>
+                    <span class="rc-label">Sensores Ativos</span>
+                </div>
+                <div class="resumo-card alerta">
+                    <span class="rc-icone"><i class="fa-solid fa-triangle-exclamation"></i></span>
+                    <span class="rc-valor" id="total-alertas">1</span>
+                    <span class="rc-label">Alertas Ativos</span>
+                </div>
+                <div class="resumo-card alerta">
+                    <span class="rc-icone"><i class="fa-solid fa-power-off"></i></span>
+                    <span class="rc-valor">1</span>
+                    <span class="rc-label">Sensores Inativos</span>
+                </div>
+            </div>
+
+            <!-- temperatura -->
+            <section class="secao-sensores" aria-labelledby="titulo-temperatura">
+                <h2 id="titulo-temperatura">
+                    <span class="secao-icone"><i class="fa-solid fa-temperature-half"></i></span>
+                    Temperatura
+                </h2>
+                <div class="sensores-cards">
+
+                    <div class="sensor-card">
+                        <div class="sc-header">
+                            <div>
+                                <div class="sc-nome">Sensor 1</div>
+                                <div class="sc-local">Sala 101</div>
+                            </div>
+                            <span class="sc-badge badge-normal">Normal</span>
+                        </div>
+                        <div class="sc-valor-principal">22.3 <span>°C</span></div>
+                        <div class="sc-minmax">
+                            <span>Mín: <strong>18 °C</strong></span>
+                            <span>Máx: <strong>26 °C</strong></span>
+                        </div>
+                        <div class="sc-barra-wrap">
+                            <div class="sc-barra barra-normal" style="width:53%"></div>
+                        </div>
+                    </div>
+
+                    <div class="sensor-card">
+                        <div class="sc-header">
+                            <div>
+                                <div class="sc-nome">Sensor 5</div>
+                                <div class="sc-local">Sala 203</div>
+                            </div>
+                            <span class="sc-badge badge-alerta">Alerta</span>
+                        </div>
+                        <div class="sc-valor-principal">28.7 <span>°C</span></div>
+                        <div class="sc-minmax">
+                            <span>Mín: <strong>18 °C</strong></span>
+                            <span>Máx: <strong>26 °C</strong></span>
+                        </div>
+                        <div class="sc-barra-wrap">
+                            <div class="sc-barra barra-alerta" style="width:100%"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- qualidade do ar -->
+            <section class="secao-sensores" aria-labelledby="titulo-ar">
+                <h2 id="titulo-ar">
+                    <span class="secao-icone"><i class="fa-solid fa-wind"></i></span>
+                    Qualidade do Ar
+                </h2>
+                <div class="sensores-cards">
+
+                    <div class="sensor-card">
+                        <div class="sc-header">
+                            <div>
+                                <div class="sc-nome">Sensor 2</div>
+                                <div class="sc-local">Sala 102</div>
+                            </div>
+                            <span class="sc-badge badge-inativo">Inativo</span>
+                        </div>
+                        <div class="sc-valor-principal">— <span>AQI</span></div>
+                        <div class="sc-minmax">
+                            <span>Mín: <strong>0 AQI</strong></span>
+                            <span>Máx: <strong>150 AQI</strong></span>
+                        </div>
+                        <div class="sc-barra-wrap">
+                            <div class="sc-barra barra-normal" style="width:0%"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ocupação -->
+            <section class="secao-sensores" aria-labelledby="titulo-ocupacao">
+                <h2 id="titulo-ocupacao">
+                    <span class="secao-icone"><i class="fa-solid fa-users"></i></span>
+                    Ocupação
+                </h2>
+                <div class="sensores-cards">
+
+                    <div class="sensor-card">
+                        <div class="sc-header">
+                            <div>
+                                <div class="sc-nome">Sensor 3</div>
+                                <div class="sc-local">Lab 201</div>
+                            </div>
+                            <span class="sc-badge badge-normal">Normal</span>
+                        </div>
+                        <div class="sc-valor-principal">18 <span>/ 30 pessoas</span></div>
+                        <div class="sc-minmax">
+                            <span>Capacidade máxima: <strong>30</strong></span>
+                        </div>
+                        <div class="sc-barra-wrap">
+                            <div class="sc-barra barra-normal" style="width:60%"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- consumo energético -->
+            <section class="secao-sensores" aria-labelledby="titulo-energia">
+                <h2 id="titulo-energia">
+                    <span class="secao-icone"><i class="fa-solid fa-bolt"></i></span>
+                    Consumo Energético
+                </h2>
+                <div class="sensores-cards">
+
+                    <div class="sensor-card">
+                        <div class="sc-header">
+                            <div>
+                                <div class="sc-nome">Sensor 4</div>
+                                <div class="sc-local">Corredor A</div>
+                            </div>
+                            <span class="sc-badge badge-normal">Normal</span>
+                        </div>
+                        <div class="sc-valor-principal">3.2 <span>kW</span></div>
+                        <div class="sc-minmax">
+                            <span>Mín: <strong>0 kW</strong></span>
+                            <span>Máx: <strong>10 kW</strong></span>
+                        </div>
+                        <div class="sc-barra-wrap">
+                            <div class="sc-barra barra-normal" style="width:32%"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- botão relatório -->
+            <div class="wrap-relatorio">
+                <button class="btn-relatorio" onclick="gerarRelatorio()" aria-label="Gerar relatório PDF">
+                    <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+                    Gerar Relatório
+                </button>
+            </div>
+
+        </main>
+
+        <footer class="footer">
+            <div>
+                <h3>HelpDesk</h3>
+                <p>📞 +351 225 123 987</p>
+                <p>📞 800 123 789</p>
+                <p>✉ &nbsp;secretaria@abc.pt</p>
+                <p>✉ &nbsp;helpdesk@gmail.com</p>
+            </div>
+            <div>
+                <h3>CONTACTOS</h3>
+                <p>📍 Rua Dr. João Carlitos de Sousa,</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;541, 4200-072 Porto</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;Portugal</p>
+                <p>📞 +351 225 123 456</p>
+                <p>✉ &nbsp;geral@abc.pt</p>
+            </div>
+        </footer>
+    </div>
+
+    <button id="botao-acessibilidade"
+            aria-label="Opções de acessibilidade"
+            title="Acessibilidade"
+            aria-expanded="false"
+            aria-controls="painel-acessibilidade"></button>
+    <div id="painel-acessibilidade" role="dialog" aria-label="Painel de acessibilidade" aria-modal="false">
+        <h4>Acessibilidade</h4>
+
+        <div class="grupo-opcoes">
+            <span class="titulo-grupo">Lupa / Tamanho (<span id="valor-zoom">50</span>)</span>
+            <div class="linha-botoes">
+                <input type="range" id="controlo-zoom"
+                       min="0" max="100" value="50"
+                       aria-label="Tamanho do texto"
+                       aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"
+                       style="width:100%">
+            </div>
+        </div>
+
+        <div class="grupo-opcoes">
+            <span class="titulo-grupo">Daltonismo</span>
+            <div class="linha-botoes">
+                <button class="botao-opcao botao-filtro selecionado" data-filtro=""
+                        aria-pressed="true" title="Sem filtro">Normal</button>
+                <button class="botao-opcao botao-filtro" data-filtro="filtro-protanopia"
+                        aria-pressed="false" title="Protanopia — dificuldade com vermelho">Prot.</button>
+                <button class="botao-opcao botao-filtro" data-filtro="filtro-deuteranopia"
+                        aria-pressed="false" title="Deuteranopia — dificuldade com verde">Deut.</button>
+                <button class="botao-opcao botao-filtro" data-filtro="filtro-tritanopia"
+                        aria-pressed="false" title="Tritanopia — dificuldade com azul">Trit.</button>
+            </div>
+        </div>
+
+        <div class="grupo-opcoes">
+            <span class="titulo-grupo">Contraste</span>
+            <div class="linha-botoes">
+                <button class="botao-opcao" id="botao-contraste"
+                        aria-pressed="false" title="Ativar / desativar alto contraste">
+                    Alto Contraste
+                </button>
+                <button class="botao-opcao" id="botao-rosa"
+                        aria-pressed="false" title="Ativar / desativar modo rosa">
+                    Modo Rosa
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('dash-timestamp').textContent =
+            'Última atualização: ' + new Date().toLocaleString('pt-PT');
+
+        function gerarRelatorio() {
+            window.print();
+        }
+    </script>
+    <script src="navbar.js"></script>
+    <script src="acessiblidade.js"></script>
+    <script src="menu_perfil.js"></script>
+</body>
+</html>

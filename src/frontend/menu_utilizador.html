@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu Aluno</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -47,10 +48,10 @@
             Reservar <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-            <li><a href="#">Reservar Sala/Laboratório</a></li>
-            <li><a href="#">Reservar Equipamento</a></li>
-            <li><a href="#">Reservar Trotinete</a></li>
-            <li><a href="#">Reservar Bicicleta</a></li>
+            <li><a href="reservar_sala.html">Reservar Sala/Laboratório</a></li>
+            <li><a href="reservar_equipamento.html">Reservar Equipamento</a></li>
+            <li><a href="reservar_trotinetes.html">Reservar Trotinete</a></li>
+            <li><a href="reservar_bicicletas.html">Reservar Bicicleta</a></li>
         </ul>
     </li>
 
@@ -59,8 +60,8 @@
             Consultar <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-            <li><a href="#">Consultar disponibilidade do parque de estacionamento</a></li>
-            <li><a href="#">Consultar disponibilidade dos postos de carregamento</a></li>
+            <li><a href="consultar_estacionamentos.html">Consultar disponibilidade do parque de estacionamento</a></li>
+            <li><a href="consultar_postos_carregamento.html">Consultar disponibilidade dos postos de carregamento</a></li>
         </ul>
     </li>
 
@@ -69,7 +70,7 @@
             Reservas <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-            <li><a href="#">Gerir Reservas</a></li>
+            <li><a href="GestorReservasUtilizador.html">Gerir Reservas</a></li>
         </ul>
     </li>
 
@@ -78,7 +79,16 @@
                     <span role="img" aria-label="Notificações">🔔</span>
                     <span role="img" aria-label="Definições">⚙️</span>
                     <span role="img" aria-label="Perfil de utilizador">👤</span>
-                    <span>⌄</span>
+                    <span class="dropdown-wrapper">
+                        <span class="seta-icon" onclick="abrirMenu(event)">⌄</span>
+                        <div class="menu-perfil" id="menuPerfil">
+                            <a href="alterar_password.html">Alterar Password</a>
+                            <a href="alterar_informacao.html">Alterar Informações</a>
+                            <a href="login.html">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                            </a>
+                        </div>
+                    </span>
                 </nav>
             </nav>
     </header>
@@ -89,7 +99,7 @@
             <div class="card-info">
                 <h2>Reservar Salas</h2>
                 <p>Reservar salas e laboratórios</p>
-                <button aria-label="Reservar salas e laboratórios">Reservar</button>
+                <button aria-label="Reservar salas e laboratórios" onclick="window.location.href='reservar_sala.html'">Reservar</button>
         </div>
         </section>
 
@@ -98,7 +108,7 @@
             <div class="card-info">
                 <h2>Reservar Equipamentos</h2>
                 <p>Reservar um equipamento</p>
-                <button aria-label="Reservar um equipamento">Reservar</button>
+                <button aria-label="Reservar um equipamento" onclick="window.location.href='reservar_equipamento.html'">Reservar</button>
             </div>
         </section>
 
@@ -107,7 +117,7 @@
             <div class="card-info">
                 <h2>Reservar Trotinetes</h2>
                 <p>Reservar uma trotinete numa certa zona</p>
-                <button aria-label="Reservar uma trotinete">Reservar</button>
+                <button aria-label="Reservar uma trotinete" onclick="window.location.href='reservar_trotinetes.html'">Reservar</button>
             </div>
         </section>
 
@@ -116,7 +126,7 @@
             <div class="card-info">
                 <h2>Reservar Bicicletas</h2>
                 <p>Reservar uma bicicleta numa certa zona</p>
-                <button aria-label="Reservar uma bicicleta">Reservar</button>
+                <button aria-label="Reservar uma bicicleta" onclick="window.location.href='reservar_bicicletas.html'">Reservar</button>
             </div>
         </section>
 
@@ -125,7 +135,7 @@
             <div class="card-info">
                 <h2>Consultar disponibilidade do parque de estacionamento</h2>
                 <p>Consulte a disponibilidade em tempo real dos lugares de estacionamento livres.</p>
-                <button aria-label="Consultar disponibilidade do parque de estacionamento">Consultar</button>
+                <button aria-label="Consultar disponibilidade do parque de estacionamento" onclick="window.location.href='consultar_estacionamentos.html'">Consultar</button>
             </div>
         </section>
 
@@ -134,7 +144,7 @@
             <div class="card-info">
                 <h2>Consultar disponibilidade dos postos de carregamento</h2>
                 <p>Consulte em tempo real a disponibilidade dos postos de carregamento e carregue o seu automóvel elétrico.</p>
-                <button aria-label="Consultar disponibilidade dos postos de carregamento">Consultar</button>
+                <button aria-label="Consultar disponibilidade dos postos de carregamento" onclick="window.location.href='consultar_postos_carregamento.html'">Consultar</button>
             </div>
         </section>
 
@@ -143,7 +153,7 @@
             <div class="card-info">
                 <h2>Gerir Reservas</h2>
                 <p>Consultar e cancelar reservas</p>
-                <button aria-label="Gerir reservas existentes">Gerir</button>
+                <button aria-label="Gerir reservas existentes" onclick="window.location.href='GestorReservasUtilizador.html'">Gerir</button>
             </div>
         </section>
 
@@ -219,6 +229,8 @@
     </div>
 
     <script src="horas.js"></script>
+    <script src="navbar.js"></script>
     <script src="acessiblidade.js"></script>
+    <script src="menu_perfil.js"></script>
 </body>
 </html>

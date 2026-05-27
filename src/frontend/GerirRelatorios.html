@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relatórios Estatísticos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .rel-main {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .rel-titulo {
+            color: #1e4c5c;
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 6px;
+        }
+
+        .rel-subtitulo {
+            color: #4a7a8a;
+            font-size: 13px;
+            margin-bottom: 32px;
+        }
+
+        /* cards de resumo */
+        .resumo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 36px;
+        }
+
+        .resumo-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px 22px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .resumo-card .rc-valor {
+            font-size: 30px;
+            font-weight: 700;
+            color: #1e4c5c;
+            line-height: 1.1;
+        }
+
+        .resumo-card .rc-label {
+            font-size: 12px;
+            color: #6a9aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .resumo-card .rc-icone {
+            font-size: 20px;
+            color: #2aa8d2;
+            margin-bottom: 4px;
+        }
+
+        .resumo-card.alerta { border-left: 4px solid #e05252; }
+        .resumo-card.ok     { border-left: 4px solid #28a745; }
+        .resumo-card.info   { border-left: 4px solid #2aa8d2; }
+
+        /* secções */
+        .secao-rel {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            margin-bottom: 24px;
+        }
+
+        .secao-rel h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e4c5c;
+            margin: 0 0 18px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .secao-rel h2 i {
+            color: #2aa8d2;
+        }
+
+        /* tabelas */
+        .tabela-rel {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .tabela-rel thead th {
+            background: #f0f8fb;
+            color: #1e4c5c;
+            font-weight: 600;
+            padding: 10px 14px;
+            border-bottom: 2px solid #d0e8f0;
+            text-align: left;
+        }
+
+        .tabela-rel tbody td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #eef4f7;
+            color: #334;
+        }
+
+        .tabela-rel tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tabela-rel tbody tr:hover { background: #f7fbfd; }
+
+        .badge-alerta { background: #f8d7da; color: #721c24; border-radius: 12px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
+        .badge-normal { background: #d4edda; color: #155724; border-radius: 12px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
+        .badge-atencao { background: #fff3cd; color: #856404; border-radius: 12px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
+
+        /* botão gerar */
+        .wrap-relatorio {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        .btn-relatorio {
+            background: #2aa8d2;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 13px 34px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 3px 10px rgba(42,168,210,0.35);
+            transition: background 0.2s;
+        }
+
+        .btn-relatorio:hover { background: #1e8ab0; }
+
+        /* modal */
+        .modal-rel-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-rel-overlay.aberto { display: flex; }
+
+        .modal-rel-caixa {
+            background: white;
+            border-radius: 14px;
+            padding: 32px 36px;
+            width: 480px;
+            max-width: 95%;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        }
+
+        .modal-rel-caixa h3 {
+            color: #1e4c5c;
+            font-size: 20px;
+            margin: 0 0 22px 0;
+        }
+
+        .modal-campo-rel {
+            margin-bottom: 18px;
+        }
+
+        .modal-campo-rel label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e4c5c;
+            margin-bottom: 6px;
+        }
+
+        .modal-campo-rel input[type="text"] {
+            width: 100%;
+            border: 1px solid #c5dce6;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 14px;
+            color: #334;
+            outline: none;
+        }
+
+        .modal-campo-rel input[type="text"]:focus {
+            border-color: #2aa8d2;
+            box-shadow: 0 0 0 2px rgba(42,168,210,0.15);
+        }
+
+        .check-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #334;
+            cursor: pointer;
+        }
+
+        .check-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #2aa8d2;
+            cursor: pointer;
+        }
+
+        .modal-rel-botoes {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 26px;
+        }
+
+        .btn-cancelar-rel {
+            background: #e8f4f8;
+            color: #1e4c5c;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 22px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .btn-cancelar-rel:hover { background: #d0e8f0; }
+
+        .btn-confirmar-rel {
+            background: #2aa8d2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 22px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .btn-confirmar-rel:hover { background: #1e8ab0; }
+
+        /* cabeçalho visível só na impressão */
+        .print-header {
+            display: none;
+        }
+
+        /* impressão */
+        @media print {
+            .barracima, #botao-acessibilidade, #painel-acessibilidade,
+            .wrap-relatorio, .footer, .modal-rel-overlay { display: none !important; }
+            .pagina { background: white !important; }
+            body { background: white; }
+            .secao-rel { box-shadow: none; border: 1px solid #ccc; }
+            .rel-main { width: 100%; max-width: 100%; margin: 20px; }
+            .print-header { display: block; margin-bottom: 20px; }
+            .print-header h1 { font-size: 22px; color: #1e4c5c; margin: 0 0 4px 0; }
+            .print-header p { font-size: 12px; color: #6a9aaa; margin: 0; }
+            .resumo-card { box-shadow: none; border: 1px solid #ccc; }
+        }
+    </style>
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
+        <defs>
+            <filter id="filtro-protanopia"><feColorMatrix type="matrix" values="0.567 0.433 0 0 0 0.558 0.442 0 0 0 0 0.242 0.758 0 0 0 0 0 1 0"/></filter>
+            <filter id="filtro-deuteranopia"><feColorMatrix type="matrix" values="0.625 0.375 0 0 0 0.7 0.3 0 0 0 0 0.3 0.7 0 0 0 0 0 1 0"/></filter>
+            <filter id="filtro-tritanopia"><feColorMatrix type="matrix" values="0.95 0.05 0 0 0 0 0.433 0.567 0 0 0 0.475 0.525 0 0 0 0 0 1 0"/></filter>
+        </defs>
+    </svg>
+
+    <div class="pagina">
+        <header class="barracima">
+            <nav class="navbar navbar-default" aria-label="Navegação principal">
+                <div class="container-fluid">
+                    <a href="menu_administrador.html" class="btn-casa" aria-label="Voltar ao Menu Administrador" title="Menu">
+                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Menu
+                    </a>
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gerir <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="SalasAdministrador.html">Salas</a></li>
+                                <li><a href="EquipamentosAdministrador.html">Equipamentos</a></li>
+                                <li><a href="TrotinetesAdministrador.html">Trotinetes</a></li>
+                                <li><a href="BicicletasAdministrador.html">Bicicletas</a></li>
+                                <li><a href="ParqueEstacionamentoAdministrador.html">Estacionamento</a></li>
+                                <li><a href="PostoCarregamentoAdministrador.html">Postos de Carregamento</a></li>
+                                <li><a href="SensoresAdministrador.html">Sensores</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Relatórios <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="dashboard.html">Dashboard</a></li>
+                                <li><a href="GerirRelatorios.html">Consultar Relatórios</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Utilizadores <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="gestao_utilizadores.html">Gestão de Utilizadores</a></li>
+                                <li><a href="registar_utilizador.html">Registar Utilizador</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <nav class="icons" aria-label="Ícones de navegação">
+                        <span role="img" aria-label="Notificações">🔔</span>
+                        <span role="img" aria-label="Definições">⚙️</span>
+                        <span role="img" aria-label="Perfil de utilizador">👤</span>
+                        <span class="dropdown-wrapper">
+                            <span class="seta-icon" onclick="abrirMenu(event)">⌄</span>
+                            <div class="menu-perfil" id="menuPerfil">
+                                <a href="alterar_password.html">Alterar Password</a>
+                                <a href="alterar_informacao.html">Alterar Informações</a>
+                                <a href="login.html"><i class="fa-solid fa-right-from-bracket"></i></a>
+                            </div>
+                        </span>
+                    </nav>
+                </div>
+            </nav>
+        </header>
+
+        <main class="content rel-main" aria-label="Relatórios estatísticos">
+
+            <!-- cabeçalho que só aparece na impressão -->
+            <div class="print-header">
+                <h1 id="titulo-print">Relatório</h1>
+                <p id="data-print"></p>
+            </div>
+
+            <h1 class="rel-titulo">Relatórios Estatísticos</h1>
+            <p class="rel-subtitulo" id="rel-timestamp">Última atualização: —</p>
+
+            <!-- resumo -->
+            <div class="resumo-grid" id="secao-resumo" aria-label="Resumo estatístico">
+                <div class="resumo-card info">
+                    <span class="rc-icone"><i class="fa-solid fa-bolt"></i></span>
+                    <span class="rc-valor">1 247 kWh</span>
+                    <span class="rc-label">Consumo Total (30 dias)</span>
+                </div>
+                <div class="resumo-card info">
+                    <span class="rc-icone"><i class="fa-solid fa-chart-line"></i></span>
+                    <span class="rc-valor">41,6 kWh</span>
+                    <span class="rc-label">Média Diária</span>
+                </div>
+                <div class="resumo-card alerta">
+                    <span class="rc-icone"><i class="fa-solid fa-triangle-exclamation"></i></span>
+                    <span class="rc-valor">7</span>
+                    <span class="rc-label">Alertas (30 dias)</span>
+                </div>
+            </div>
+
+            <!-- consumo diário -->
+            <section class="secao-rel" id="secao-consumo" aria-labelledby="titulo-consumo">
+                <h2 id="titulo-consumo">
+                    <i class="fa-solid fa-bolt"></i>
+                    Consumo Diário — Últimos 30 dias
+                </h2>
+                <table class="tabela-rel" aria-label="Consumo energético diário">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Consumo (kWh)</th>
+                            <th>Variação</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-consumo-body">
+                        <!-- preenchido por JS -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- alertas -->
+            <section class="secao-rel" id="secao-alertas" aria-labelledby="titulo-alertas">
+                <h2 id="titulo-alertas">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    Registo de Alertas
+                </h2>
+                <table class="tabela-rel" aria-label="Registo de alertas dos sensores">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Sensor</th>
+                            <th>Tipo</th>
+                            <th>Valor</th>
+                            <th>Limite</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>27/05/2026</td>
+                            <td>Sensor 5 — Sala 203</td>
+                            <td>Temperatura</td>
+                            <td>28,7 °C</td>
+                            <td>26 °C</td>
+                            <td><span class="badge-alerta">Alerta</span></td>
+                        </tr>
+                        <tr>
+                            <td>25/05/2026</td>
+                            <td>Sensor 1 — Sala 101</td>
+                            <td>Temperatura</td>
+                            <td>27,1 °C</td>
+                            <td>26 °C</td>
+                            <td><span class="badge-atencao">Atenção</span></td>
+                        </tr>
+                        <tr>
+                            <td>22/05/2026</td>
+                            <td>Sensor 4 — Corredor A</td>
+                            <td>Consumo Energético</td>
+                            <td>9,8 kW</td>
+                            <td>10 kW</td>
+                            <td><span class="badge-atencao">Atenção</span></td>
+                        </tr>
+                        <tr>
+                            <td>20/05/2026</td>
+                            <td>Sensor 5 — Sala 203</td>
+                            <td>Temperatura</td>
+                            <td>29,2 °C</td>
+                            <td>26 °C</td>
+                            <td><span class="badge-alerta">Alerta</span></td>
+                        </tr>
+                        <tr>
+                            <td>17/05/2026</td>
+                            <td>Sensor 2 — Sala 102</td>
+                            <td>Qualidade do Ar</td>
+                            <td>138 AQI</td>
+                            <td>150 AQI</td>
+                            <td><span class="badge-atencao">Atenção</span></td>
+                        </tr>
+                        <tr>
+                            <td>14/05/2026</td>
+                            <td>Sensor 3 — Lab 201</td>
+                            <td>Ocupação</td>
+                            <td>30 / 30</td>
+                            <td>30</td>
+                            <td><span class="badge-atencao">Atenção</span></td>
+                        </tr>
+                        <tr>
+                            <td>10/05/2026</td>
+                            <td>Sensor 5 — Sala 203</td>
+                            <td>Temperatura</td>
+                            <td>30,0 °C</td>
+                            <td>26 °C</td>
+                            <td><span class="badge-alerta">Alerta</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- botão gerar relatório -->
+            <div class="wrap-relatorio">
+                <button class="btn-relatorio" onclick="abrirModalRelatorio()" aria-label="Gerar relatório PDF">
+                    <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+                    Gerar Relatório
+                </button>
+            </div>
+
+        </main>
+
+        <footer class="footer">
+            <div><h3>HelpDesk</h3><p>+351 225 123 987</p><p>800 123 789</p><p>secretaria@abc.pt</p><p>helpdesk@gmail.com</p></div>
+            <div><h3>CONTACTOS</h3><p>Rua Dr. João Carlitos de Sousa,</p><p>541, 4200-072 Porto</p><p>Portugal</p><p>+351 225 123 456</p><p>geral@abc.pt</p></div>
+        </footer>
+    </div>
+
+    <!-- modal gerar relatório -->
+    <div id="modal-relatorio" class="modal-rel-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-rel-titulo">
+        <div class="modal-rel-caixa">
+            <h3 id="modal-rel-titulo">Gerar Relatório</h3>
+
+            <div class="modal-campo-rel">
+                <label for="nome-relatorio">Nome do Relatório</label>
+                <input type="text" id="nome-relatorio" placeholder="Ex: Relatório Mensal Maio 2026">
+            </div>
+
+            <div class="modal-campo-rel">
+                <label>Dados a incluir</label>
+                <div class="check-lista">
+                    <label class="check-item">
+                        <input type="checkbox" id="check-resumo" checked>
+                        Resumo estatístico (consumo total, média, alertas)
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" id="check-consumo" checked>
+                        Consumo diário — últimos 30 dias
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" id="check-alertas" checked>
+                        Registo de alertas
+                    </label>
+                </div>
+            </div>
+
+            <div class="modal-rel-botoes">
+                <button type="button" class="btn-cancelar-rel" onclick="fecharModalRelatorio()">Cancelar</button>
+                <button type="button" class="btn-confirmar-rel" onclick="confirmarGerarRelatorio()">
+                    <i class="fa-solid fa-print"></i> Gerar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <button id="botao-acessibilidade" aria-label="Opções de acessibilidade" title="Acessibilidade" aria-expanded="false" aria-controls="painel-acessibilidade"></button>
+    <div id="painel-acessibilidade" role="dialog" aria-label="Painel de acessibilidade" aria-modal="false">
+        <h4>Acessibilidade</h4>
+        <div class="grupo-opcoes"><span class="titulo-grupo">Lupa / Tamanho (<span id="valor-zoom">50</span>)</span><div class="linha-botoes"><input type="range" id="controlo-zoom" min="0" max="100" value="50" aria-label="Tamanho do texto" style="width:100%"></div></div>
+        <div class="grupo-opcoes"><span class="titulo-grupo">Daltonismo</span><div class="linha-botoes">
+            <button class="botao-opcao botao-filtro selecionado" data-filtro="" aria-pressed="true">Normal</button>
+            <button class="botao-opcao botao-filtro" data-filtro="filtro-protanopia" aria-pressed="false">Prot.</button>
+            <button class="botao-opcao botao-filtro" data-filtro="filtro-deuteranopia" aria-pressed="false">Deut.</button>
+            <button class="botao-opcao botao-filtro" data-filtro="filtro-tritanopia" aria-pressed="false">Trit.</button>
+        </div></div>
+        <div class="grupo-opcoes"><span class="titulo-grupo">Contraste</span><div class="linha-botoes">
+            <button class="botao-opcao" id="botao-contraste" aria-pressed="false">Alto Contraste</button>
+            <button class="botao-opcao" id="botao-rosa" aria-pressed="false">Modo Rosa</button>
+        </div></div>
+    </div>
+
+    <script>
+        // timestamp
+        document.getElementById('rel-timestamp').textContent =
+            'Última atualização: ' + new Date().toLocaleString('pt-PT');
+
+        // gerar tabela consumo diário (últimos 30 dias, dados simulados)
+        (function() {
+            var dados = [
+                41.2, 38.9, 43.5, 40.1, 44.8, 37.6, 42.3,
+                45.1, 39.4, 41.8, 43.0, 38.2, 40.7, 42.9,
+                37.3, 44.6, 41.5, 39.8, 43.2, 40.4, 38.7,
+                42.1, 45.3, 39.0, 41.9, 43.7, 38.5, 40.2,
+                42.6, 44.1
+            ];
+            var tbody = document.getElementById('tabela-consumo-body');
+            var hoje = new Date();
+            var linhas = '';
+            for (var i = 29; i >= 0; i--) {
+                var d = new Date(hoje);
+                d.setDate(hoje.getDate() - i);
+                var data = d.toLocaleDateString('pt-PT');
+                var consumo = dados[29 - i];
+                var anterior = i < 29 ? dados[29 - i - 1] : consumo;
+                var variacao = ((consumo - anterior) / anterior * 100).toFixed(1);
+                var variacaoTxt = variacao > 0 ? '+' + variacao + '%' : variacao + '%';
+                var cor = variacao > 5 ? 'color:#e05252' : (variacao < -5 ? 'color:#28a745' : 'color:#6a9aaa');
+                var estado = consumo > 43 ? '<span class="badge-atencao">Atenção</span>' : '<span class="badge-normal">Normal</span>';
+                linhas += '<tr><td>' + data + '</td><td>' + consumo.toFixed(1) + ' kWh</td><td style="' + cor + '">' + variacaoTxt + '</td><td>' + estado + '</td></tr>';
+            }
+            tbody.innerHTML = linhas;
+        })();
+
+        // modal
+        function abrirModalRelatorio() {
+            document.getElementById('modal-relatorio').classList.add('aberto');
+            document.getElementById('nome-relatorio').focus();
+        }
+
+        function fecharModalRelatorio() {
+            document.getElementById('modal-relatorio').classList.remove('aberto');
+        }
+
+        function confirmarGerarRelatorio() {
+            var nome = document.getElementById('nome-relatorio').value.trim() || 'Relatório';
+            document.getElementById('titulo-print').textContent = nome;
+            document.getElementById('data-print').textContent =
+                'Gerado em: ' + new Date().toLocaleString('pt-PT');
+
+            var mapa = {
+                'check-resumo':  'secao-resumo',
+                'check-consumo': 'secao-consumo',
+                'check-alertas': 'secao-alertas'
+            };
+
+            // ocultar secções não selecionadas
+            for (var id in mapa) {
+                var secao = document.getElementById(mapa[id]);
+                if (secao) secao.style.display = document.getElementById(id).checked ? '' : 'none';
+            }
+
+            fecharModalRelatorio();
+            window.print();
+
+            // restaurar
+            for (var id in mapa) {
+                var secao = document.getElementById(mapa[id]);
+                if (secao) secao.style.display = '';
+            }
+        }
+
+        // fechar modal ao clicar fora
+        document.getElementById('modal-relatorio').addEventListener('click', function(e) {
+            if (e.target === this) fecharModalRelatorio();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') fecharModalRelatorio();
+        });
+    </script>
+    <script src="navbar.js"></script>
+    <script src="acessiblidade.js"></script>
+    <script src="menu_perfil.js"></script>
+</body>
+</html>

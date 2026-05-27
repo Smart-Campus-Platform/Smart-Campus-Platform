@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Informações de Perfil</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="alterar_informacao.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -82,16 +83,13 @@
                         <span role="img" aria-label="Definições">⚙️</span>
                         <span role="img" aria-label="Perfil de utilizador">👤</span>
                         <span class="dropdown-wrapper">
-                            <span id="dropdown-toggle"
-                                  tabindex="0"
-                                  role="button"
-                                  aria-label="Abrir menu do utilizador"
-                                  aria-expanded="false"
-                                  aria-haspopup="true"
-                                  onclick="toggleDropdown()"
-                                  onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleDropdown();}">⌄</span>
-                            <div id="dropdown-menu" class="dropdown-menu hidden" role="menu">
-                                <button role="menuitem" onclick="logout()">Logout</button>
+                            <span class="seta-icon" onclick="abrirMenu(event)">⌄</span>
+                            <div class="menu-perfil" id="menuPerfil">
+                                <a href="alterar_password.html">Alterar Password</a>
+                                <a href="alterar_informacao.html">Alterar Informações</a>
+                                <a href="login.html">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </a>
                             </div>
                         </span>
                     </nav>
@@ -204,5 +202,6 @@
 
     <script src="navbar.js"></script>
     <script src="acessiblidade.js"></script>
+    <script src="menu_perfil.js"></script>
 </body>
 </html>

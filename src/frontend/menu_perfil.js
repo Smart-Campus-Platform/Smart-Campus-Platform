@@ -1,5 +1,5 @@
 let menu = document.getElementById("menuPerfil");
-let seta = document.querySelector(".seta");
+let seta = document.querySelector(".seta-icon");
 
 function abrirMenu(){
     if(menu.style.display === "block"){

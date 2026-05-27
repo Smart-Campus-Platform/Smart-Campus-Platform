@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Gestão de Utilizadores</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg"
+         style="position:absolute;width:0;height:0;overflow:hidden"
+         aria-hidden="true" focusable="false">
+        <defs>
+            <filter id="filtro-protanopia">
+                <feColorMatrix type="matrix"
+                    values="0.567 0.433 0     0 0
+                            0.558 0.442 0     0 0
+                            0     0.242 0.758 0 0
+                            0     0     0     1 0"/>
+            </filter>
+
+            <filter id="filtro-deuteranopia">
+                <feColorMatrix type="matrix"
+                    values="0.625 0.375 0     0 0
+                            0.7   0.3   0     0 0
+                            0     0.3   0.7   0 0
+                            0     0     0     1 0"/>
+            </filter>
+
+            <filter id="filtro-tritanopia">
+                <feColorMatrix type="matrix"
+                    values="0.95  0.05  0     0 0
+                            0     0.433 0.567 0 0
+                            0     0.475 0.525 0 0
+                            0     0     0     1 0"/>
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="pagina">
+
+        <header class="barracima">
+            <nav class="navbar navbar-default" aria-label="Navegação principal">
+                <div class="container-fluid">
+
+                    <a href="menu_administrador.html" class="btn-casa"
+                       aria-label="Voltar ao Menu Administrador"
+                       title="Voltar ao Menu Administrador">
+                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Menu
+                    </a>
+
+                    <ul class="nav navbar-nav">
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Gerir <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Salas</a></li>
+                                <li><a href="#">Equipamentos</a></li>
+                                <li><a href="#">Trotinetes</a></li>
+                                <li><a href="#">Bicicletas</a></li>
+                                <li><a href="#">Estacionamento</a></li>
+                                <li><a href="#">Postos de Carregamento</a></li>
+                                <li><a href="#">Sensores</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Relatórios <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="GerirRelatorios.html">Consultar Relatórios</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Utilizadores <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Gestão de Utilizadores</a></li>
+                                <li><a href="#">Registar Utilizador</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                    <nav class="icons" aria-label="Ícones de navegação">
+                        <span role="img" aria-label="Notificações">🔔</span>
+                        <span role="img" aria-label="Definições">⚙️</span>
+                        <span role="img" aria-label="Perfil de utilizador">👤</span>
+
+                        <span class="dropdown-wrapper">
+                            <span class="seta-icon" onclick="abrirMenu(event)">⌄</span>
+                            <div class="menu-perfil" id="menuPerfil">
+                                <a href="alterar_password.html">Alterar Password</a>
+                                <a href="alterar_informacao.html">Alterar Informações</a>
+                                <a href="login.html">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </a>
+                            </div>
+                        </span>
+                    </nav>
+
+                </div>
+            </nav>
+        </header>
+
+        <main class="content" aria-label="Gestão de utilizadores">
+
+            <div class="card">
+                <div style="width:100%;">
+                    <h2>João Silva</h2>
+
+                    <table>
+                        <tr>
+                            <td style="width:120px;"><strong>Número:</strong></td>
+                            <td>2024001</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Tipo:</strong></td>
+                            <td>
+                                <select class="campo-editavel campo-tipo" disabled>
+                                    <option selected>Aluno</option>
+                                    <option>Docente</option>
+                                    <option>Funcionário</option>
+                                    <option>Admin</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Email:</strong></td>
+                            <td>
+                                <input class="campo-editavel"
+                                       type="email"
+                                       value="joao.silva@abc.pt"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Contacto:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-contacto"
+                                       type="text"
+                                       value="912345678"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Morada:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-morada"
+                                       type="text"
+                                       value="Rua das Flores, Porto"
+                                       readonly>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
+                    <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="width:100%;">
+                    <h2>Maria Costa</h2>
+
+                    <table>
+                        <tr>
+                            <td style="width:120px;"><strong>Número:</strong></td>
+                            <td>2024002</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Tipo:</strong></td>
+                            <td>
+                                <select class="campo-editavel campo-tipo" disabled>
+                                    <option selected>Aluno</option>
+                                    <option>Docente</option>
+                                    <option>Funcionário</option>
+                                    <option>Admin</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Email:</strong></td>
+                            <td>
+                                <input class="campo-editavel"
+                                       type="email"
+                                       value="maria.costa@abc.pt"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Contacto:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-contacto"
+                                       type="text"
+                                       value="923456789"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Morada:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-morada"
+                                       type="text"
+                                       value="Avenida da República, Gaia"
+                                       readonly>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
+                    <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="width:100%;">
+                    <h2>Pedro Santos</h2>
+
+                    <table>
+                        <tr>
+                            <td style="width:120px;"><strong>Número:</strong></td>
+                            <td>2024003</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Tipo:</strong></td>
+                            <td>
+                                <select class="campo-editavel campo-tipo" disabled>
+                                    <option selected>Aluno</option>
+                                    <option>Docente</option>
+                                    <option>Funcionário</option>
+                                    <option>Admin</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Email:</strong></td>
+                            <td>
+                                <input class="campo-editavel"
+                                       type="email"
+                                       value="pedro.santos@abc.pt"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Contacto:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-contacto"
+                                       type="text"
+                                       value="934567890"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Morada:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-morada"
+                                       type="text"
+                                       value="Rua de São João, Matosinhos"
+                                       readonly>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
+                    <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="width:100%;">
+                    <h2>Ana Ferreira</h2>
+
+                    <table>
+                        <tr>
+                            <td style="width:120px;"><strong>Número:</strong></td>
+                            <td>2024004</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Tipo:</strong></td>
+                            <td>
+                                <select class="campo-editavel campo-tipo" disabled>
+                                    <option selected>Aluno</option>
+                                    <option>Docente</option>
+                                    <option>Funcionário</option>
+                                    <option>Admin</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Email:</strong></td>
+                            <td>
+                                <input class="campo-editavel"
+                                       type="email"
+                                       value="ana.ferreira@abc.pt"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Contacto:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-contacto"
+                                       type="text"
+                                       value="945678901"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Morada:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-morada"
+                                       type="text"
+                                       value="Rua Central, Maia"
+                                       readonly>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
+                    <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="width:100%;">
+                    <h2>Miguel Oliveira</h2>
+
+                    <table>
+                        <tr>
+                            <td style="width:120px;"><strong>Número:</strong></td>
+                            <td>2024005</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Tipo:</strong></td>
+                            <td>
+                                <select class="campo-editavel campo-tipo" disabled>
+                                    <option selected>Aluno</option>
+                                    <option>Docente</option>
+                                    <option>Funcionário</option>
+                                    <option>Admin</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Email:</strong></td>
+                            <td>
+                                <input class="campo-editavel"
+                                       type="email"
+                                       value="miguel.oliveira@abc.pt"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Contacto:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-contacto"
+                                       type="text"
+                                       value="956789012"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Morada:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-morada"
+                                       type="text"
+                                       value="Rua Nova, Gondomar"
+                                       readonly>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
+                    <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="footer">
+            <div>
+                <h3>HelpDesk</h3>
+                <p>📞 +351 225 123 987</p>
+                <p>📞 800 123 789</p>
+                <p>✉ &nbsp;secretaria@abc.pt</p>
+                <p>✉ &nbsp;helpdesk@gmail.com</p>
+            </div>
+
+            <div>
+                <h3>CONTACTOS</h3>
+                <p>📍 Rua Dr. João Carlitos de Sousa,</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;541, 4200-072 Porto</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;Portugal</p>
+                <p>📞 +351 225 123 456</p>
+                <p>✉ &nbsp;geral@abc.pt</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <button id="botao-acessibilidade"
+            aria-label="Opções de acessibilidade"
+            title="Acessibilidade"
+            aria-expanded="false"
+            aria-controls="painel-acessibilidade">
+    </button>
+
+    <div id="painel-acessibilidade"
+         role="dialog"
+         aria-label="Painel de acessibilidade"
+         aria-modal="false">
+
+        <h4>Acessibilidade</h4>
+
+        <div class="grupo-opcoes">
+            <span class="titulo-grupo">
+                Lupa / Tamanho (<span id="valor-zoom">50</span>)
+            </span>
+
+            <div class="linha-botoes">
+                <input type="range"
+                       id="controlo-zoom"
+                       min="0"
+                       max="100"
+                       value="50"
+                       aria-label="Tamanho do texto"
+                       aria-valuemin="0"
+                       aria-valuemax="100"
+                       aria-valuenow="50"
+                       style="width:100%">
+            </div>
+        </div>
+
+        <div class="grupo-opcoes">
+            <span class="titulo-grupo">Daltonismo</span>
+
+            <div class="linha-botoes">
+                <button class="botao-opcao botao-filtro selecionado"
+                        data-filtro=""
+                        aria-pressed="true"
+                        title="Sem filtro">
+                    Normal
+                </button>
+
+                <button class="botao-opcao botao-filtro"
+                        data-filtro="filtro-protanopia"
+                        aria-pressed="false"
+                        title="Protanopia — dificuldade com vermelho">
+                    Prot.
+                </button>
+
+                <button class="botao-opcao botao-filtro"
+                        data-filtro="filtro-deuteranopia"
+                        aria-pressed="false"
+                        title="Deuteranopia — dificuldade com verde">
+                    Deut.
+                </button>
+
+                <button class="botao-opcao botao-filtro"
+                        data-filtro="filtro-tritanopia"
+                        aria-pressed="false"
+                        title="Tritanopia — dificuldade com azul">
+                    Trit.
+                </button>
+            </div>
+        </div>
+
+        <div class="grupo-opcoes">
+            <span class="titulo-grupo">Contraste</span>
+
+            <div class="linha-botoes">
+                <button class="botao-opcao"
+                        id="botao-contraste"
+                        aria-pressed="false"
+                        title="Ativar / desativar alto contraste">
+                    Alto Contraste
+                </button>
+
+                <button class="botao-opcao"
+                        id="botao-rosa"
+                        aria-pressed="false"
+                        title="Ativar / desativar modo rosa">
+                    Modo Rosa
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function prepararCampos() {
+            const campos = document.querySelectorAll(".campo-editavel");
+
+            campos.forEach(function(campo) {
+                campo.style.boxSizing = "border-box";
+                campo.style.backgroundColor = "transparent";
+                campo.style.border = "1px solid transparent";
+                campo.style.borderRadius = "5px";
+                campo.style.padding = "2px 5px";
+                campo.style.font = "inherit";
+                campo.style.color = "black";
+                campo.style.outline = "none";
+                campo.style.height = "26px";
+                campo.style.opacity = "1";
+            });
+
+            const tipos = document.querySelectorAll(".campo-tipo");
+
+            tipos.forEach(function(campo) {
+                campo.style.width = "130px";
+            });
+
+            const emails = document.querySelectorAll("input[type='email']");
+
+            emails.forEach(function(campo) {
+                campo.style.width = "230px";
+            });
+
+            const contactos = document.querySelectorAll(".campo-contacto");
+
+            contactos.forEach(function(campo) {
+                campo.style.width = "120px";
+            });
+
+            const moradas = document.querySelectorAll(".campo-morada");
+
+            moradas.forEach(function(campo) {
+                campo.style.width = "260px";
+            });
+        }
+
+        function alterarUtilizador(botao) {
+            const card = botao.closest(".card");
+            const campos = card.querySelectorAll(".campo-editavel");
+
+            if (botao.textContent === "Alterar") {
+                campos.forEach(function(campo) {
+                    if (campo.tagName === "SELECT") {
+                        campo.disabled = false;
+                    } else {
+                        campo.readOnly = false;
+                    }
+
+                    campo.style.backgroundColor = "white";
+                    campo.style.border = "1px solid black";
+                    campo.style.outline = "none";
+                });
+
+                botao.textContent = "Finalizar";
+
+                if (campos.length > 0) {
+                    campos[0].focus();
+                }
+            } else {
+                campos.forEach(function(campo) {
+                    if (campo.tagName === "SELECT") {
+                        campo.disabled = true;
+                    } else {
+                        campo.readOnly = true;
+                    }
+
+                    campo.style.backgroundColor = "transparent";
+                    campo.style.border = "1px solid transparent";
+                    campo.style.outline = "none";
+                });
+
+                botao.textContent = "Alterar";
+            }
+        }
+
+        function removerUtilizador(botao) {
+            const confirmar = confirm("Tem a certeza que pretende remover este utilizador?");
+
+            if (confirmar) {
+                const card = botao.closest(".card");
+                card.remove();
+            }
+        }
+
+        prepararCampos();
+    </script>
+
+    <script src="navbar.js"></script>
+    <script src="acessiblidade.js"></script>
+    <script src="menu_perfil.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Reservar Trotinetes</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" href="reservar.css" />
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <svg xmlns="http://www.w3.org/2000/svg"
+             style="position:absolute;width:0;height:0;overflow:hidden"
+             aria-hidden="true" focusable="false">
+            <defs>
+                <filter id="filtro-protanopia">
+                    <feColorMatrix type="matrix"
+                        values="0.567 0.433 0     0 0
+                                0.558 0.442 0     0 0
+                                0     0.242 0.758 0 0
+                                0     0     0     1 0"/>
+                </filter>
+                <filter id="filtro-deuteranopia">
+                    <feColorMatrix type="matrix"
+                        values="0.625 0.375 0     0 0
+                                0.7   0.3   0     0 0
+                                0     0.3   0.7   0 0
+                                0     0     0     1 0"/>
+                </filter>
+                <filter id="filtro-tritanopia">
+                    <feColorMatrix type="matrix"
+                        values="0.95  0.05  0     0 0
+                                0     0.433 0.567 0 0
+                                0     0.475 0.525 0 0
+                                0     0     0     1 0"/>
+                </filter>
+            </defs>
+        </svg>
+
+        <div class="pagina">
+            <header class="barracima" style="height:auto;">
+                <nav class="navbar navbar-default" aria-label="Navegação principal">
+                    <div class="container-fluid">
+                        <a href="menu_utilizador.html" class="btn-casa"
+                           aria-label="Ir para o Menu Principal" title="Menu">
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Menu
+                        </a>
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reservar <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="reservar_sala.html">Sala / Laboratório</a></li>
+                                    <li><a href="reservar_equipamento.html">Equipamento</a></li>
+                                    <li><a href="reservar_trotinetes.html">Trotinete</a></li>
+                                    <li><a href="reservar_bicicletas.html">Bicicleta</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Consultar <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="consultar_estacionamentos.html">Estacionamento</a></li>
+                                    <li><a href="#">Postos de carregamento</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reservas <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="GestorReservasUtilizador.html">Gerir Reservas</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <nav class="icons" aria-label="Ícones de navegação">
+                            <span role="img" aria-label="Notificações">🔔</span>
+                            <span role="img" aria-label="Definições">⚙️</span>
+                            <span role="img" aria-label="Perfil de utilizador">👤</span>
+                            <span class="dropdown-wrapper">
+                                <span class="seta-icon" onclick="abrirMenu(event)">⌄</span>
+                                <div class="menu-perfil" id="menuPerfil">
+                                    <a href="alterar_password.html">Alterar Password</a>
+                                    <a href="alterar_informacao.html">Alterar Informações</a>
+                                    <a href="login.html">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                    </a>
+                                </div>
+                            </span>
+                        </nav>
+                    </div>
+                </nav>
+            </header>
+
+            <div class="container">
+                <div class="imagem-container">
+                    <button class="seta esquerda">❮</button>
+                    <img src="trotinetes.png" alt="Trotinetes">
+                    <button class="seta direita">❯</button>
+                </div>
+
+                <div class="reservar">
+                    <h1>Reservar Trotinetes</h1>
+
+                    <div class="pisos">
+                        <div class="lista">
+                            <div class="piso">
+                                <div class="titulo-piso" onclick="toggleSalas('salas1', this)">
+                                    <span class="seta-piso">▸</span>
+                                    <span>Área 1</span>
+                                </div>
+                                <div class="salas" id="salas1">
+                                    <p class="sala sala-normal">Trotinete 1</p>
+                                    <p class="sala sala-normal">Trotinete 5</p>
+                                    <p class="sala sala-normal">Trotinete 7</p>
+                                </div>
+                            </div>
+
+                            <div class="piso">
+                                <div class="titulo-piso" onclick="toggleSalas('salas2', this)">
+                                    <span class="seta-piso">▸</span>
+                                    <span>Área 2</span>
+                                </div>
+                                <div class="salas" id="salas2">
+                                    <p class="sala sala-normal">Trotinete 2</p>
+                                    <p class="sala sala-normal">Trotinete 3</p>
+                                    <p class="sala sala-normal">Trotinete 8</p>
+                                </div>
+                            </div>
+
+                            <div class="piso">
+                                <div class="titulo-piso" onclick="toggleSalas('salas3', this)">
+                                    <span class="seta-piso">▸</span>
+                                    <span>Área 3</span>
+                                </div>
+                                <div class="salas" id="salas3">
+                                    <p class="sala sala-normal">Trotinete 4</p>
+                                    <p class="sala sala-normal">Trotinete 6</p>
+                                    <p class="sala sala-normal">Trotinete 9</p>
+                                    <p class="sala sala-normal">Trotinete 10</p>
+                                </div>
+                            </div>
+
+                            <div class="piso">
+                                <div class="titulo-piso" onclick="toggleSalas('salas4', this)">
+                                    <span class="seta-piso">▸</span>
+                                    <span>Área 4</span>
+                                </div>
+                                <div class="salas" id="salas4">
+                                    <p class="sala sala-normal">Trotinete 11</p>
+                                    <p class="sala sala-normal">Trotinete 12</p>
+                                    <p class="sala sala-normal">Trotinete 13</p>
+                                    <p class="sala sala-normal">Trotinete 14</p>
+                                </div>
+                            </div>
+
+                            <div class="piso">
+                                <div class="titulo-piso" onclick="toggleSalas('salas5', this)">
+                                    <span class="seta-piso">▸</span>
+                                    <span>Área 5</span>
+                                </div>
+                                <div class="salas" id="salas5">
+                                    <p class="sala sala-normal">Trotinete 15</p>
+                                    <p class="sala sala-normal">Trotinete 16</p>
+                                    <p class="sala sala-normal">Trotinete 17</p>
+                                    <p class="sala sala-normal">Trotinete 18</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn-reservar">Reservar</button>
+                </div>
+            </div>
+
+            <footer class="footer" style="height:auto;margin-top:0;">
+                <div>
+                    <h3>HelpDesk</h3>
+                    <p>📞 +351 225 123 987</p>
+                    <p>📞 800 123 789</p>
+                    <p>✉ &nbsp;secretaria@abc.pt</p>
+                    <p>✉ &nbsp;helpdesk@gmail.com</p>
+                </div>
+                <div>
+                    <h3>CONTACTOS</h3>
+                    <p>📍 Rua Dr. João Carlitos de Sousa,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;541, 4200-072 Porto</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;Portugal</p>
+                    <p>📞 +351 225 123 456</p>
+                    <p>✉ &nbsp;geral@abc.pt</p>
+                </div>
+            </footer>
+        </div>
+
+        <button id="botao-acessibilidade"
+                aria-label="Opções de acessibilidade"
+                title="Acessibilidade"
+                aria-expanded="false"
+                aria-controls="painel-acessibilidade"></button>
+        <div id="painel-acessibilidade" role="dialog" aria-label="Painel de acessibilidade" aria-modal="false">
+            <h4>Acessibilidade</h4>
+
+            <div class="grupo-opcoes">
+                <span class="titulo-grupo">Lupa / Tamanho (<span id="valor-zoom">50</span>)</span>
+                <div class="linha-botoes">
+                    <input type="range" id="controlo-zoom"
+                           min="0" max="100" value="50"
+                           aria-label="Tamanho do texto"
+                           aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"
+                           style="width:100%">
+                </div>
+            </div>
+
+            <div class="grupo-opcoes">
+                <span class="titulo-grupo">Daltonismo</span>
+                <div class="linha-botoes">
+                    <button class="botao-opcao botao-filtro selecionado" data-filtro=""
+                            aria-pressed="true" title="Sem filtro">Normal</button>
+                    <button class="botao-opcao botao-filtro" data-filtro="filtro-protanopia"
+                            aria-pressed="false" title="Protanopia — dificuldade com vermelho">Prot.</button>
+                    <button class="botao-opcao botao-filtro" data-filtro="filtro-deuteranopia"
+                            aria-pressed="false" title="Deuteranopia — dificuldade com verde">Deut.</button>
+                    <button class="botao-opcao botao-filtro" data-filtro="filtro-tritanopia"
+                            aria-pressed="false" title="Tritanopia — dificuldade com azul">Trit.</button>
+                </div>
+            </div>
+
+            <div class="grupo-opcoes">
+                <span class="titulo-grupo">Contraste</span>
+                <div class="linha-botoes">
+                    <button class="botao-opcao" id="botao-contraste"
+                            aria-pressed="false" title="Ativar / desativar alto contraste">
+                        Alto Contraste
+                    </button>
+                    <button class="botao-opcao" id="botao-rosa"
+                            aria-pressed="false" title="Ativar / desativar modo rosa">
+                        Modo Rosa
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script src="reservas.js"></script>
+        <script src="navbar.js"></script>
+        <script src="acessiblidade.js"></script>
+        <script src="menu_perfil.js"></script>
+    </body>
+</html>

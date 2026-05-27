@@ -224,8 +224,8 @@ body.contraste-alto .barracima      { background: #000 !important; border-bottom
 body.contraste-alto .card           { background: #111 !important; border: 2px solid #fff !important; }
 body.contraste-alto .card h2,
 body.contraste-alto .card p         { color: #fff !important; }
-body.contraste-alto main button     { background: #000 !important; color: #fff !important; border: 2px solid #fff !important; }
-body.contraste-alto main button:hover { background: #222 !important; }
+body.contraste-alto .pagina button  { background: #000 !important; color: #fff !important; border: 2px solid #fff !important; }
+body.contraste-alto .pagina button:hover { background: #222 !important; }
 body.contraste-alto .footer         { background: #000 !important; border-top: 2px solid #fff !important; }
 body.contraste-alto .footer h3,
 body.contraste-alto .footer p       { color: #fff !important; }
@@ -244,8 +244,8 @@ body.tema-rosa .barracima      { background: #ff69b4 !important; }
 body.tema-rosa .card           { background: #ffd6e0 !important; border: 1px solid #f48fb1 !important; }
 body.tema-rosa .card h2,
 body.tema-rosa .card p         { color: #7b1045 !important; }
-body.tema-rosa main button     { background: #e91e8c !important; color: #fff !important; border: 1px solid #c2185b !important; }
-body.tema-rosa main button:hover { background: #c2185b !important; }
+body.tema-rosa .pagina button  { background: #e91e8c !important; color: #fff !important; border: 1px solid #c2185b !important; }
+body.tema-rosa .pagina button:hover { background: #c2185b !important; }
 body.tema-rosa .footer         { background: #ff69b4 !important; }
 body.tema-rosa .footer h3,
 body.tema-rosa .footer p       { color: #fff !important; }
@@ -437,7 +437,7 @@ body.tema-rosa .botao-opcao:not(.selecionado) { background: #f4f4f4 !important; 
     color: #4ca3c7;
 }
 
-.seta{
+.seta-icon{
     cursor: pointer;
     font-size: 20px;
 }

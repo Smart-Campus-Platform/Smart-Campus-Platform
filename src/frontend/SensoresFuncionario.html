@@ -44,8 +44,8 @@
         <header class="barracima">
             <nav class="navbar navbar-default" aria-label="Navegação principal">
                 <div class="container-fluid">
-                    <a href="menu_administrador.html" class="btn-casa"
-                       aria-label="Voltar ao Menu Administrador" title="Voltar ao Menu Administrador">
+                    <a href="menu_funcionario.html" class="btn-casa"
+                       aria-label="Voltar ao Menu Funcionário" title="Voltar ao Menu Funcionário">
                         <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Menu
                     </a>
                     <ul class="nav navbar-nav">
@@ -54,13 +54,13 @@
                                 Gerir <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="SalasAdministrador.html">Salas</a></li>
-                                <li><a href="EquipamentosAdministrador.html">Equipamentos</a></li>
-                                <li><a href="TrotinetesAdministrador.html">Trotinetes</a></li>
-                                <li><a href="BicicletasAdministrador.html">Bicicletas</a></li>
-                                <li><a href="ParqueEstacionamentoAdministrador.html">Estacionamento</a></li>
-                                <li><a href="PostoCarregamentoAdministrador.html">Postos de Carregamento</a></li>
-                                <li><a href="SensoresAdministrador.html">Sensores</a></li>
+                                <li><a href="#">Salas</a></li>
+                                <li><a href="#">Equipamentos</a></li>
+                                <li><a href="#">Trotinetes</a></li>
+                                <li><a href="#">Bicicletas</a></li>
+                                <li><a href="#">Estacionamento</a></li>
+                                <li><a href="#">Postos de Carregamento</a></li>
+                                <li><a href="Sensores.html">Sensores</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -68,8 +68,7 @@
                                 Relatórios <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="dashboard.html">Dashboard</a></li>
-                                <li><a href="dashboard.html">Consultar Relatórios</a></li>
+                                <li><a href="GerirRelatorios.html">Consultar Relatórios</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -77,8 +76,8 @@
                                 Utilizadores <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="gestao_utilizadores.html">Gestão de Utilizadores</a></li>
-                                <li><a href="registar_utilizador.html">Registar Utilizador</a></li>
+                                <li><a href="#">Gestão de Utilizadores</a></li>
+                                <li><a href="#">Registar Utilizador</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -107,11 +106,6 @@
                 <section class="sensores-container" aria-labelledby="titulo-sensores">
                     <div class="sensores-header">
                         <h1 id="titulo-sensores">Sensores</h1>
-                        <button type="button" class="btn-adicionar-sensor"
-                                onclick="abrirModalSensor()"
-                                aria-label="Adicionar novo sensor">
-                            + Adicionar Sensor
-                        </button>
                     </div>
 
                     <ul class="sensor-lista" role="list" aria-label="Lista de sensores">
@@ -129,10 +123,6 @@
                                 <span class="sensor-chevron" aria-hidden="true">▼</span>
                             </div>
                             <div class="sensor-detalhe" id="detalhe-s1" aria-hidden="true">
-                                <div class="sensor-campo">
-                                    <label for="desc-s1">Descrição</label>
-                                    <textarea id="desc-s1" rows="3" placeholder="Insira uma descrição para este sensor..."></textarea>
-                                </div>
                                 <div class="sensor-estado-wrap">
                                     <span class="sensor-estado-label">Estado</span>
                                     <label class="toggle-switch" aria-label="Ativar ou desativar sensor">
@@ -142,10 +132,6 @@
                                         </span>
                                         <span class="toggle-text"></span>
                                     </label>
-                                </div>
-                                <div class="sensor-botoes">
-                                    <button type="button" class="btn-configurar">Configurar</button>
-                                    <button type="button" class="btn-remover" onclick="removerSensor(this)">Remover</button>
                                 </div>
                             </div>
                         </li>
@@ -179,7 +165,7 @@
                                 </div>
                                 <div class="sensor-botoes">
                                     <button type="button" class="btn-configurar">Configurar</button>
-                                    <button type="button" class="btn-remover" onclick="removerSensor(this)">Remover</button>
+                                    <button type="button" class="btn-remover">Remover</button>
                                 </div>
                             </div>
                         </li>
@@ -213,7 +199,7 @@
                                 </div>
                                 <div class="sensor-botoes">
                                     <button type="button" class="btn-configurar">Configurar</button>
-                                    <button type="button" class="btn-remover" onclick="removerSensor(this)">Remover</button>
+                                    <button type="button" class="btn-remover">Remover</button>
                                 </div>
                             </div>
                         </li>
@@ -247,7 +233,7 @@
                                 </div>
                                 <div class="sensor-botoes">
                                     <button type="button" class="btn-configurar">Configurar</button>
-                                    <button type="button" class="btn-remover" onclick="removerSensor(this)">Remover</button>
+                                    <button type="button" class="btn-remover">Remover</button>
                                 </div>
                             </div>
                         </li>
@@ -281,7 +267,7 @@
                                 </div>
                                 <div class="sensor-botoes">
                                     <button type="button" class="btn-configurar">Configurar</button>
-                                    <button type="button" class="btn-remover" onclick="removerSensor(this)">Remover</button>
+                                    <button type="button" class="btn-remover">Remover</button>
                                 </div>
                             </div>
                         </li>
@@ -366,7 +352,7 @@
             <h3 id="modal-titulo">Adicionar Sensor</h3>
             <div class="modal-campo">
                 <label for="novo-tipo">Tipo</label>
-                <select id="novo-tipo" onchange="atualizarCamposSensor()">
+                <select id="novo-tipo">
                     <option value="">Selecionar tipo...</option>
                     <option value="Ocupação">Ocupação</option>
                     <option value="Temperatura">Temperatura</option>
@@ -377,22 +363,6 @@
             <div class="modal-campo">
                 <label for="nova-sala">Sala</label>
                 <input type="text" id="nova-sala" placeholder="Ex: Sala 101">
-            </div>
-            <div id="campo-max-ocupacao" class="modal-campo" style="display:none">
-                <label for="novo-max-pessoas">Número Máximo (pessoas)</label>
-                <input type="number" id="novo-max-pessoas" min="1" placeholder="Mínimo: 1"
-                       aria-describedby="hint-max-pessoas">
-                <small id="hint-max-pessoas">Obrigatório. Deve ser no mínimo 1.</small>
-            </div>
-            <div id="campos-min-max" style="display:none">
-                <div class="modal-campo">
-                    <label id="label-min-sensor" for="novo-min-sensor">Mínimo</label>
-                    <input type="number" id="novo-min-sensor" step="any">
-                </div>
-                <div class="modal-campo">
-                    <label id="label-max-sensor" for="novo-max-sensor">Máximo</label>
-                    <input type="number" id="novo-max-sensor" step="any">
-                </div>
             </div>
             <div class="modal-botoes">
                 <button type="button" onclick="confirmarNovoSensor()">Confirmar</button>
