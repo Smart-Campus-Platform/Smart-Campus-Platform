@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Reservar sala</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" href="reservar.css" />
+    </head>
+    <body>
+        <div class="pagina">
+            <header class="barracima">
+                <nav class = "icons">
+                    <span>🔔</span>
+                    <span>⚙️</span>
+                    <span>👤</span>
+                    <span class="seta-icon" onclick="abrirMenu(event)">⌄</span>
+                        <div class="menu-perfil" id="menuPerfil">
+                            <a href="alterar_password.html">Alterar Password</a>
+                            <a href="informacoes_perfil.html">Alterar Informações</a>
+                            <a href="login.html">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                            </a>
+                        </div>
+                </nav>
+            </header>
+        
+            <div class="container">
+                <div class="imagem-container">
+                    <button class="seta esquerda">❮</button>
+                    <img src="salas.png" alt="Salas">
+                    <button class="seta direita">❯</button>
+
+                </div>
+
+                <div class="reservar">
+                    <h1>Reservar Salas</h1>
+                    <div class="filtros-topo">
+                        <div class="campo">
+                            <label>Data</label>
+                            <input type="date" name="data">
+                        </div>
+                        <div class="campo">
+                            <label>Hora</label>
+                            <input type="time" name="hora">
+                        </div>
+                        <div class="campo">
+                            <label>Hora</label>
+                            <input type="time" name="hora">
+                        </div>
+                    </div>
+                    <button class="btn-filtrar">Filtrar</button>
+
+                    <div class="pisos">
+                        <div class="lista">
+                            <div class="piso">
+                                <div class="titulo-piso" onclick="toggleSalas('salas1', this)">
+                                    <span class="seta-piso">▸</span> 
+                                    <span>Piso 1</span>
+                                </div>
+                                <div class="salas" id="salas1">
+                                    <p class="sala sala-normal">Sala 101</p>
+                                    <p class="sala sala-normal">Sala 102</p>
+                                    <p class="sala sala-normal">Sala 103</p>
+                                    <p class="sala sala-normal">Sala 104</p>
+                                    <p class="sala sala-normal">Sala 105</p>
+                                    <p class="sala sala-normal">Sala 106</p>
+                                    <p class="sala sala-normal">Sala 107</p>
+                                    <p class="sala sala-normal">Sala 108</p>
+                                    <p class="sala laboratorio">Laboratório 109</p>
+                                    <p class="sala laboratorio">Laboratório 110</p>
+                                </div>
+                            </div>
+
+                            <div class="piso">
+                                <div class="titulo-piso" onclick="toggleSalas('salas2', this)">
+                                    <span class="seta-piso">▸</span> 
+                                    <span>Piso 2</span>
+                                </div>
+                                <div class="salas" id="salas2">
+                                    <p class="sala sala-normal">Sala 201</p>
+                                    <p class="sala sala-normal">Sala 202</p>
+                                    <p class="sala sala-normal">Sala 203</p>
+                                    <p class="sala sala-normal">Sala 204</p>
+                                    <p class="sala sala-normal">Sala 205</p>
+                                    <p class="sala sala-normal">Sala 206</p>
+                                    <p class="sala sala-normal">Sala 207</p>
+                                    <p class="sala sala-normal">Sala 208</p>
+                                    <p class="sala laboratorio">Laboratório 209</p>
+                                    <p class="sala laboratorio">Laboratório 210</p>
+                                </div>
+                            </div>
+
+                            <div class="piso">
+                                <div class="titulo-piso" onclick="toggleSalas('salas3', this)">
+                                    <span class="seta-piso">▸</span> 
+                                    <span>Piso 3</span>
+                                </div>
+                                <div class="salas" id="salas3">
+                                    <p class="sala sala-normal">Sala 301</p>
+                                    <p class="sala sala-normal">Sala 302</p>
+                                    <p class="sala sala-normal">Sala 303</p>
+                                    <p class="sala sala-normal">Sala 304</p>
+                                    <p class="sala sala-normal">Sala 305</p>
+                                    <p class="sala sala-normal">Sala 306</p>
+                                    <p class="sala sala-normal">Sala 307</p>
+                                    <p class="sala sala-normal">Sala 308</p>
+                                    <p class="sala sala-normal">Sala 309</p>
+                                    <p class="sala sala-normal">Sala 310</p>
+                                </div>
+                            </div>
+
+                            <div class="piso">
+                                <div class="titulo-piso" onclick="toggleSalas('salas4', this)">
+                                    <span class="seta-piso">▸</span> 
+                                    <span>Piso 4</span>
+                                </div>
+                                <div class="salas" id="salas4">
+                                    <p class="sala sala-normal">Sala 401</p>
+                                    <p class="sala sala-normal">Sala 402</p>
+                                    <p class="sala sala-normal">Sala 403</p>
+                                    <p class="sala sala-normal">Sala 404</p>
+                                    <p class="sala sala-normal">Sala 405</p>
+                                    <p class="sala sala-normal">Sala 406</p>
+                                    <p class="sala sala-normal">Sala 407</p>
+                                    <p class="sala sala-normal">Sala 408</p>
+                                    <p class="sala sala-normal">Sala 409</p>
+                                    <p class="sala sala-normal">Sala 410</p>
+                                </div>
+                            </div>
+
+                            <div class="piso">
+                                <div class="titulo-piso" onclick="toggleSalas('salas5', this)">
+                                    <span class="seta-piso">▸</span> 
+                                    <span>Piso 5</span>
+                                </div>
+                                <div class="salas" id="salas5">
+                                    <p class="sala sala-normal">Sala 501</p>
+                                    <p class="sala sala-normal">Sala 502</p>
+                                    <p class="sala sala-normal">Sala 503</p>
+                                    <p class="sala sala-normal">Sala 504</p>
+                                    <p class="sala sala-normal">Sala 505</p>
+                                    <p class="sala sala-normal">Sala 506</p>
+                                    <p class="sala sala-normal">Sala 507</p>
+                                    <p class="sala sala-normal">Sala 508</p>
+                                    <p class="sala sala-normal">Sala 509</p>
+                                    <p class="sala sala-normal">Sala 510</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filtro-lateral">
+                            <i class="fa-solid fa-filter icone-filtro"></i>
+                            <select class="filtro" onchange="filtrarSalas(this.value)">
+                                <option>Todos</option>
+                                <option>Salas</option>
+                                <option>Laboratórios</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="btn-reservar">Reservar</button>
+                </div>
+            </div>
+            <footer class="footer"></footer>
+        </div>
+        <script src="reservas.js"></script>
+        <script src="menu_perfil.js"></script>
+    </body>
+</html>
