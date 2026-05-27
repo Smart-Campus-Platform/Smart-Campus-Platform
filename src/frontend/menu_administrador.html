@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu Administrador</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -54,7 +55,7 @@
                                 <li><a href="#">Bicicletas</a></li>
                                 <li><a href="#">Estacionamento</a></li>
                                 <li><a href="#">Postos de Carregamento</a></li>
-                                <li><a href="Sensores.html">Sensores</a></li>
+                                <li><a href="SensoresAdministrador.html">Sensores</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -71,7 +72,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Gestão de Utilizadores</a></li>
-                                <li><a href="#">Registar Utilizador</a></li>
+                                <li><a href="registar_utilizador.html">Registar Utilizador</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -80,16 +81,13 @@
                         <span role="img" aria-label="Definições">⚙️</span>
                         <span role="img" aria-label="Perfil de utilizador">👤</span>
                         <span class="dropdown-wrapper">
-                            <span id="dropdown-toggle"
-                                  tabindex="0"
-                                  role="button"
-                                  aria-label="Abrir menu do utilizador"
-                                  aria-expanded="false"
-                                  aria-haspopup="true"
-                                  onclick="toggleDropdown()"
-                                  onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleDropdown();}">⌄</span>
-                            <div id="dropdown-menu" class="dropdown-menu hidden" role="menu">
-                                <button role="menuitem" onclick="logout()">Logout</button>
+                            <span class="seta-icon" onclick="abrirMenu(event)">⌄</span>
+                            <div class="menu-perfil" id="menuPerfil">
+                                <a href="alterar_password.html">Alterar Password</a>
+                                <a href="informacoes_perfil.html">Alterar Informações</a>
+                                <a href="login.html">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </a>
                             </div>
                         </span>
                     </nav>
@@ -157,7 +155,7 @@
             <div class="card-info">
                 <h2>Gestão de Sensores</h2>
                 <p>Adicionar, remover, ativar, desativar e configurar sensores</p>
-                <button>Gerir</button>
+                <button onclick="window.location.href='SensoresAdministrador.html'">Gerir</button>
             </div>
         </section>
 
@@ -184,7 +182,7 @@
             <div class="card-info">
                 <h2>Registar Utilizadores</h2>
                 <p>Configurar Utilizadores</p>
-                <button>Registar</button>
+                <button onclick="window.location.href='registar_utilizador.html'">Registar</button>
             </div>
         </section>
         </main>I
@@ -260,5 +258,6 @@
     <script src="horas.js"></script>
     <script src="navbar.js"></script>
     <script src="acessiblidade.js"></script>
+    <script src="menu_perfil.js"></script>
 </body>
 </html>

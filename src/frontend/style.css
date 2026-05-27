@@ -16,7 +16,8 @@
 .barracima {
     background: linear-gradient(180deg, #3bbde8 0%, #2aa8d2 100%);
     padding: 0;
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 1100;
     box-shadow: 0 3px 14px rgba(0,0,0,0.22);
     border-bottom: 1px solid rgba(0,0,0,0.08);
@@ -221,6 +222,9 @@ button:hover {
 /* ===== ALTO CONTRASTE ===== */
 body.contraste-alto .pagina         { background: #000 !important; }
 body.contraste-alto .barracima      { background: #000 !important; border-bottom: 2px solid #fff; }
+body.contraste-alto .barracima .dropdown-menu { background: #111 !important; border: 1px solid #fff !important; }
+body.contraste-alto .barracima .dropdown-menu > li > a { color: #fff !important; border-bottom-color: rgba(255,255,255,0.15) !important; }
+body.contraste-alto .barracima .dropdown-menu > li > a:hover { background: #333 !important; }
 body.contraste-alto .card           { background: #111 !important; border: 2px solid #fff !important; }
 body.contraste-alto .card h2,
 body.contraste-alto .card p         { color: #fff !important; }
@@ -241,6 +245,9 @@ body.contraste-alto #botao-acessibilidade       { background: #33add6 !important
 /* ===== TEMA ROSA ===== */
 body.tema-rosa .pagina         { background: #ffb6c1 !important; }
 body.tema-rosa .barracima      { background: #ff69b4 !important; }
+body.tema-rosa .barracima .dropdown-menu { background: #e91e8c !important; border: 1px solid #c2185b !important; }
+body.tema-rosa .barracima .dropdown-menu > li > a { color: #fff !important; border-bottom-color: rgba(255,255,255,0.15) !important; }
+body.tema-rosa .barracima .dropdown-menu > li > a:hover { background: rgba(255,255,255,0.2) !important; }
 body.tema-rosa .card           { background: #ffd6e0 !important; border: 1px solid #f48fb1 !important; }
 body.tema-rosa .card h2,
 body.tema-rosa .card p         { color: #7b1045 !important; }

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestão de Sensores</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="sensores.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -53,30 +54,27 @@
                                 Gerir <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Salas</a></li>
-                                <li><a href="#">Equipamentos</a></li>
+                                <li><a href="GestorReservas.html">Reservas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Reservar <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
                                 <li><a href="#">Trotinetes</a></li>
                                 <li><a href="#">Bicicletas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Consultar <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
                                 <li><a href="#">Estacionamento</a></li>
-                                <li><a href="#">Postos de Carregamento</a></li>
-                                <li><a href="Sensores.html">Sensores</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Relatórios <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Consultar Relatórios</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Utilizadores <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Gestão de Utilizadores</a></li>
-                                <li><a href="#">Registar Utilizador</a></li>
+                                <li><a href="#">Postos de carregamento</a></li>
+                                <li><a href="SensoresFuncionario.html">Sensores</a></li>
+                                <li><a href="#">Disponibilidade de salas</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -85,16 +83,13 @@
                         <span role="img" aria-label="Definições">⚙️</span>
                         <span role="img" aria-label="Perfil de utilizador">👤</span>
                         <span class="dropdown-wrapper">
-                            <span id="dropdown-toggle"
-                                  tabindex="0"
-                                  role="button"
-                                  aria-label="Abrir menu do utilizador"
-                                  aria-expanded="false"
-                                  aria-haspopup="true"
-                                  onclick="toggleDropdown()"
-                                  onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleDropdown();}">⌄</span>
-                            <div id="dropdown-menu" class="dropdown-menu hidden" role="menu">
-                                <button role="menuitem" onclick="logout()">Logout</button>
+                            <span class="seta-icon" onclick="abrirMenu(event)">⌄</span>
+                            <div class="menu-perfil" id="menuPerfil">
+                                <a href="alterar_password.html">Alterar Password</a>
+                                <a href="informacoes_perfil.html">Alterar Informações</a>
+                                <a href="login.html">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </a>
                             </div>
                         </span>
                     </nav>
@@ -151,10 +146,6 @@
                                 <span class="sensor-chevron" aria-hidden="true">▼</span>
                             </div>
                             <div class="sensor-detalhe" id="detalhe-s2" aria-hidden="true">
-                                <div class="sensor-campo">
-                                    <label for="desc-s2">Descrição</label>
-                                    <textarea id="desc-s2" rows="3" placeholder="Insira uma descrição para este sensor..."></textarea>
-                                </div>
                                 <div class="sensor-estado-wrap">
                                     <span class="sensor-estado-label">Estado</span>
                                     <label class="toggle-switch" aria-label="Ativar ou desativar sensor">
@@ -164,10 +155,6 @@
                                         </span>
                                         <span class="toggle-text"></span>
                                     </label>
-                                </div>
-                                <div class="sensor-botoes">
-                                    <button type="button" class="btn-configurar">Configurar</button>
-                                    <button type="button" class="btn-remover">Remover</button>
                                 </div>
                             </div>
                         </li>
@@ -185,10 +172,6 @@
                                 <span class="sensor-chevron" aria-hidden="true">▼</span>
                             </div>
                             <div class="sensor-detalhe" id="detalhe-s3" aria-hidden="true">
-                                <div class="sensor-campo">
-                                    <label for="desc-s3">Descrição</label>
-                                    <textarea id="desc-s3" rows="3" placeholder="Insira uma descrição para este sensor..."></textarea>
-                                </div>
                                 <div class="sensor-estado-wrap">
                                     <span class="sensor-estado-label">Estado</span>
                                     <label class="toggle-switch" aria-label="Ativar ou desativar sensor">
@@ -198,10 +181,6 @@
                                         </span>
                                         <span class="toggle-text"></span>
                                     </label>
-                                </div>
-                                <div class="sensor-botoes">
-                                    <button type="button" class="btn-configurar">Configurar</button>
-                                    <button type="button" class="btn-remover">Remover</button>
                                 </div>
                             </div>
                         </li>
@@ -219,10 +198,6 @@
                                 <span class="sensor-chevron" aria-hidden="true">▼</span>
                             </div>
                             <div class="sensor-detalhe" id="detalhe-s4" aria-hidden="true">
-                                <div class="sensor-campo">
-                                    <label for="desc-s4">Descrição</label>
-                                    <textarea id="desc-s4" rows="3" placeholder="Insira uma descrição para este sensor..."></textarea>
-                                </div>
                                 <div class="sensor-estado-wrap">
                                     <span class="sensor-estado-label">Estado</span>
                                     <label class="toggle-switch" aria-label="Ativar ou desativar sensor">
@@ -232,10 +207,6 @@
                                         </span>
                                         <span class="toggle-text"></span>
                                     </label>
-                                </div>
-                                <div class="sensor-botoes">
-                                    <button type="button" class="btn-configurar">Configurar</button>
-                                    <button type="button" class="btn-remover">Remover</button>
                                 </div>
                             </div>
                         </li>
@@ -253,10 +224,6 @@
                                 <span class="sensor-chevron" aria-hidden="true">▼</span>
                             </div>
                             <div class="sensor-detalhe" id="detalhe-s5" aria-hidden="true">
-                                <div class="sensor-campo">
-                                    <label for="desc-s5">Descrição</label>
-                                    <textarea id="desc-s5" rows="3" placeholder="Insira uma descrição para este sensor..."></textarea>
-                                </div>
                                 <div class="sensor-estado-wrap">
                                     <span class="sensor-estado-label">Estado</span>
                                     <label class="toggle-switch" aria-label="Ativar ou desativar sensor">
@@ -266,10 +233,6 @@
                                         </span>
                                         <span class="toggle-text"></span>
                                     </label>
-                                </div>
-                                <div class="sensor-botoes">
-                                    <button type="button" class="btn-configurar">Configurar</button>
-                                    <button type="button" class="btn-remover">Remover</button>
                                 </div>
                             </div>
                         </li>
@@ -413,5 +376,6 @@
     <script src="sensores-administrador.js"></script>
     <script src="navbar.js"></script>
     <script src="acessiblidade.js"></script>
+    <script src="menu_perfil.js"></script>
 </body>
 </html>

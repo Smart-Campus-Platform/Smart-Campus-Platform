@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu Aluno</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -78,8 +79,18 @@
                     <span role="img" aria-label="Notificações">🔔</span>
                     <span role="img" aria-label="Definições">⚙️</span>
                     <span role="img" aria-label="Perfil de utilizador">👤</span>
-                    <span>⌄</span>
+                    <span class="dropdown-wrapper">
+                        <span class="seta-icon" onclick="abrirMenu(event)">⌄</span>
+                        <div class="menu-perfil" id="menuPerfil">
+                            <a href="alterar_password.html">Alterar Password</a>
+                            <a href="informacoes_perfil.html">Alterar Informações</a>
+                            <a href="login.html">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                            </a>
+                        </div>
+                    </span>
                 </nav>
+                </div>
             </nav>
     </header>
 
@@ -89,7 +100,7 @@
             <div class="card-info">
                 <h2>Reservar Salas</h2>
                 <p>Reservar salas e laboratórios</p>
-                <button aria-label="Reservar salas e laboratórios">Reservar</button>
+                <button aria-label="Reservar salas e laboratórios" onclick="window.location.href='reservar_sala.html'">Reservar</button>
         </div>
         </section>
 
@@ -219,6 +230,8 @@
     </div>
 
     <script src="horas.js"></script>
+    <script src="navbar.js"></script>
     <script src="acessiblidade.js"></script>
+    <script src="menu_perfil.js"></script>
 </body>
 </html>
