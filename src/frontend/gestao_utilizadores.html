@@ -126,7 +126,28 @@
 
         <main class="content" aria-label="Gestão de utilizadores">
 
-            <div class="card">
+            <div class="card pesquisa-card">
+                <div style="width:100%;">
+                    <h2>Pesquisar Utilizador</h2>
+
+                    <label for="pesquisa-numero">
+                        <strong>Número:</strong>
+                    </label>
+
+                    <input id="pesquisa-numero"
+                           type="text"
+                           placeholder="Ex: 2024001"
+                           oninput="pesquisarPorNumero()">
+
+                    <button type="button" onclick="limparPesquisa()">Limpar</button>
+
+                    <p id="mensagem-pesquisa" style="display:none;">
+                        Nenhum utilizador encontrado.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card utilizador-card" data-numero="2024001">
                 <div style="width:100%;">
                     <h2>João Silva</h2>
 
@@ -180,11 +201,11 @@
                     </table>
 
                     <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
-                    <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                    <button type="button" onclick="removerUtilizador(this)">Desativar</button>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card utilizador-card" data-numero="2024002">
                 <div style="width:100%;">
                     <h2>Maria Costa</h2>
 
@@ -238,11 +259,11 @@
                     </table>
 
                     <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
-                    <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                    <button type="button" onclick="removerUtilizador(this)">Desativar</button>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card utilizador-card" data-numero="2024003">
                 <div style="width:100%;">
                     <h2>Pedro Santos</h2>
 
@@ -296,11 +317,11 @@
                     </table>
 
                     <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
-                    <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                    <button type="button" onclick="removerUtilizador(this)">Desativar</button>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card utilizador-card" data-numero="2024004">
                 <div style="width:100%;">
                     <h2>Ana Ferreira</h2>
 
@@ -354,11 +375,11 @@
                     </table>
 
                     <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
-                    <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                    <button type="button" onclick="removerUtilizador(this)">Desativar</button>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card utilizador-card" data-numero="2024005">
                 <div style="width:100%;">
                     <h2>Miguel Oliveira</h2>
 
@@ -412,7 +433,7 @@
                     </table>
 
                     <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
-                    <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                    <button type="button" onclick="removerUtilizador(this)">Desativar</button>
                 </div>
             </div>
 
@@ -568,6 +589,54 @@
             moradas.forEach(function(campo) {
                 campo.style.width = "260px";
             });
+
+            const pesquisa = document.getElementById("pesquisa-numero");
+
+            pesquisa.style.width = "160px";
+            pesquisa.style.boxSizing = "border-box";
+            pesquisa.style.backgroundColor = "white";
+            pesquisa.style.border = "1px solid black";
+            pesquisa.style.borderRadius = "5px";
+            pesquisa.style.padding = "2px 5px";
+            pesquisa.style.font = "inherit";
+            pesquisa.style.color = "black";
+            pesquisa.style.outline = "none";
+            pesquisa.style.height = "26px";
+            pesquisa.style.marginLeft = "8px";
+            pesquisa.style.marginRight = "8px";
+        }
+
+        function pesquisarPorNumero() {
+            const pesquisa = document.getElementById("pesquisa-numero").value.trim();
+            const cards = document.querySelectorAll(".utilizador-card");
+            const mensagem = document.getElementById("mensagem-pesquisa");
+
+            let encontrados = 0;
+
+            cards.forEach(function(card) {
+                const numero = card.getAttribute("data-numero");
+
+                if (pesquisa === "" || numero.includes(pesquisa)) {
+                    card.style.display = "flex";
+                    encontrados++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            if (encontrados === 0) {
+                mensagem.style.display = "block";
+            } else {
+                mensagem.style.display = "none";
+            }
+        }
+
+        function limparPesquisa() {
+            const pesquisa = document.getElementById("pesquisa-numero");
+
+            pesquisa.value = "";
+            pesquisarPorNumero();
+            pesquisa.focus();
         }
 
         function alterarUtilizador(botao) {
@@ -610,11 +679,12 @@
         }
 
         function removerUtilizador(botao) {
-            const confirmar = confirm("Tem a certeza que pretende remover este utilizador?");
+            const confirmar = confirm("Tem a certeza que pretende desativar este utilizador?");
 
             if (confirmar) {
                 const card = botao.closest(".card");
                 card.remove();
+                pesquisarPorNumero();
             }
         }
 
