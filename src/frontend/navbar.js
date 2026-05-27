@@ -1,8 +1,9 @@
 function toggleDropdown() {
     var menu = document.getElementById('dropdown-menu');
     var toggle = document.getElementById('dropdown-toggle');
+    if (!menu) return;
     var isHidden = menu.classList.toggle('hidden');
-    toggle.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
+    if (toggle) toggle.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
 }
 
 function logout() {
@@ -12,7 +13,9 @@ function logout() {
 document.addEventListener('click', function (e) {
     var wrapper = document.querySelector('.dropdown-wrapper');
     if (wrapper && !wrapper.contains(e.target)) {
-        document.getElementById('dropdown-menu').classList.add('hidden');
-        document.getElementById('dropdown-toggle').setAttribute('aria-expanded', 'false');
+        var menu = document.getElementById('dropdown-menu');
+        var toggle = document.getElementById('dropdown-toggle');
+        if (menu) menu.classList.add('hidden');
+        if (toggle) toggle.setAttribute('aria-expanded', 'false');
     }
 });

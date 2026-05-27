@@ -252,6 +252,18 @@
     box-shadow: 0 0 0 2px rgba(51, 173, 214, 0.2);
 }
 
+/* ===== Valor de ocupação (inteiro) ===== */
+.sensor-ocup-valor {
+    font-size: 28px;
+    font-weight: bold;
+    color: #1e7ea6;
+    line-height: 1.2;
+    padding: 4px 0 4px;
+}
+
+body.contraste-alto .sensor-ocup-valor { color: #fff !important; }
+body.tema-rosa .sensor-ocup-valor { color: #c2185b !important; }
+
 /* ===== Toggle switch ===== */
 .sensor-estado-wrap {
     display: flex;
