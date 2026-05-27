@@ -35,9 +35,18 @@ function selecionarFiltro(el) {
 
 var sensorCounter = 5;
 
+function mostrarCampoCapacidade(tipo) {
+    var campo = document.getElementById('campo-capacidade');
+    if (campo) campo.style.display = (tipo === 'Ocupação') ? 'block' : 'none';
+}
+
 function abrirModalSensor() {
     document.getElementById('novo-tipo').value = '';
     document.getElementById('nova-sala').value = '';
+    var campoCap = document.getElementById('campo-capacidade');
+    if (campoCap) { campoCap.style.display = 'none'; }
+    var novaCap = document.getElementById('nova-capacidade');
+    if (novaCap) novaCap.value = '';
     document.getElementById('modal-overlay').classList.add('aberto');
     document.getElementById('novo-tipo').focus();
 }
@@ -52,6 +61,21 @@ function confirmarNovoSensor() {
     if (!tipo || !sala) {
         alert('Por favor preencha o tipo e a sala.');
         return;
+    }
+    var campoPrincipal;
+    if (tipo === 'Ocupação') {
+        var capacidade = document.getElementById('nova-capacidade').value.trim() || '0';
+        campoPrincipal =
+            '<div class="sensor-campo">' +
+            '    <label>Ocupação</label>' +
+            '    <div class="sensor-ocup-valor" aria-label="Valor de ocupação">' + parseInt(capacidade, 10) + '</div>' +
+            '</div>';
+    } else {
+        campoPrincipal =
+            '<div class="sensor-campo">' +
+            '    <label for="desc-s' + (sensorCounter + 1) + '">Descrição</label>' +
+            '    <textarea id="desc-s' + (sensorCounter + 1) + '" rows="3" placeholder="Insira uma descrição para este sensor..."></textarea>' +
+            '</div>';
     }
     sensorCounter++;
     var id = 'detalhe-s' + sensorCounter;
@@ -68,10 +92,7 @@ function confirmarNovoSensor() {
         '    <span class="sensor-chevron" aria-hidden="true">▼</span>' +
         '</div>' +
         '<div class="sensor-detalhe" id="' + id + '" aria-hidden="true">' +
-        '    <div class="sensor-campo">' +
-        '        <label for="desc-s' + sensorCounter + '">Descrição</label>' +
-        '        <textarea id="desc-s' + sensorCounter + '" rows="3" placeholder="Insira uma descrição para este sensor..."></textarea>' +
-        '    </div>' +
+        campoPrincipal +
         '    <div class="sensor-estado-wrap">' +
         '        <span class="sensor-estado-label">Estado</span>' +
         '        <label class="toggle-switch" aria-label="Ativar ou desativar sensor">' +
@@ -92,6 +113,13 @@ function confirmarNovoSensor() {
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('modal-overlay').addEventListener('click', function (e) {
         if (e.target === this) fecharModalSensor();
+    });
+
+    document.querySelector('.sensor-lista').addEventListener('click', function (e) {
+        if (e.target.classList.contains('btn-remover')) {
+            var item = e.target.closest('.sensor-item');
+            if (item) item.remove();
+        }
     });
 });
 

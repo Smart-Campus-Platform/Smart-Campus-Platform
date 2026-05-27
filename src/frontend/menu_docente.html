@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu Docente</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -61,7 +62,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="#">Estacionamento</a></li>
                                 <li><a href="#">Postos de carregamento</a></li>
-                                <li><a href="Sensores.html">Sensores</a></li>
+                                <li><a href="SensoresFuncionario.html">Sensores</a></li>
                                 <li><a href="#">Disponibilidade de salas</a></li>
                             </ul>
                         </li>
@@ -79,16 +80,13 @@
                         <span role="img" aria-label="Definições">⚙️</span>
                         <span role="img" aria-label="Perfil de utilizador">👤</span>
                         <span class="dropdown-wrapper">
-                            <span id="dropdown-toggle"
-                                  tabindex="0"
-                                  role="button"
-                                  aria-label="Abrir menu do utilizador"
-                                  aria-expanded="false"
-                                  aria-haspopup="true"
-                                  onclick="toggleDropdown()"
-                                  onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleDropdown();}">⌄</span>
-                            <div id="dropdown-menu" class="dropdown-menu hidden" role="menu">
-                                <button role="menuitem" onclick="logout()">Logout</button>
+                            <span class="seta-icon" onclick="abrirMenu(event)">⌄</span>
+                            <div class="menu-perfil" id="menuPerfil">
+                                <a href="alterar_password.html">Alterar Password</a>
+                                <a href="informacoes_perfil.html">Alterar Informações</a>
+                                <a href="login.html">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </a>
                             </div>
                         </span>
                     </nav>
@@ -102,7 +100,7 @@
             <div class="card-info">
                 <h2>Reservar Salas</h2>
                 <p>Reservar salas e laboratórios</p>
-                <button aria-label="Reservar salas e laboratórios">Reservar</button>
+                <button aria-label="Reservar salas e laboratórios" onclick="window.location.href='reservar_sala.html'">Reservar</button>
         </div>
         </section>
 
@@ -156,7 +154,7 @@
             <div class="card-info">
                 <h2>Gerir Reservas</h2>
                 <p>Consultar e cancelar reservas</p>
-                <button aria-label="Gerir reservas existentes">Gerir</button>
+                <button aria-label="Gerir reservas existentes" onclick="window.location.href='GestorReservas.html'">Gerir</button>
             </div>
         </section>
 
@@ -165,7 +163,7 @@
             <div class="card-info">
                 <h2>Consultar Sensores</h2>
                 <p>Consultar sensores de temperatura de cada sala</p>
-                <button aria-label="Consultar sensores de temperatura">Consultar</button>
+                <button aria-label="Consultar sensores de temperatura" onclick="window.location.href='SensoresFuncionario.html'">Consultar</button>
             </div>
         </section>
 
@@ -252,5 +250,6 @@
     <script src="horas.js"></script>
     <script src="navbar.js"></script>
     <script src="acessiblidade.js"></script>
+    <script src="menu_perfil.js"></script>
 </body>
 </html>
