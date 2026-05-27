@@ -437,7 +437,7 @@ body.tema-rosa .botao-opcao:not(.selecionado) { background: #f4f4f4 !important; 
     color: #4ca3c7;
 }
 
-.seta{
+.seta-icon{
     cursor: pointer;
     font-size: 20px;
 }
