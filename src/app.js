@@ -11,6 +11,38 @@ const frontendPath = path.join(__dirname, 'frontend');
 app.use(express.json());
 app.use(express.static(frontendPath));
 
+const {spawn} = require("child_process"); //aqui estou a importar um modulo do node para permitir criar e controlar outros processos do sistema operativo
+
+function callPythonLSS(comando) { // esta é a função que vai permitir receber um comando do LSS, executar em python, com o ply, espera pela resposta e devolve o resultado
+    return new Promise((resolve, reject) => { //permite que seja assíncrono, ou seja com o promise libertamos o node para continuar a responder a pedidos enquanto espera obrigatoriamente pela resposta do python para poder fechar este processo
+        const python = spawn("py", ["compiladores/main.py", comando]); // envia o comando para ser executado no main.py
+
+        let output = ""; //o que for enviado para stdout
+        let error = "";  //para stderr
+
+        python.stdout.on("data", (data) => {
+            output += data.toString();
+        });
+
+        python.stderr.on("data", (data) => {
+            error += data.toString();
+        });
+
+        python.on("close", (code) => {
+            if (code !== 0) {
+                reject(new Error(error || "Erro ao executar comando"));
+                return;
+            }
+
+            try {
+                resolve(JSON.parse(output));
+            } catch {
+                reject(new Error("Python não devolveu um JSON válido"));
+            }
+        });
+    });
+}
+
 const sendFrontendFile = (res, fileName) => {
     res.sendFile(path.join(frontendPath, fileName));
 };
@@ -140,19 +172,32 @@ app.get('/gerir-relatorios', (req, res) => {
 });
 
 
-app.post('/api/lss', (req, res) =>{
-    const {comando} = req.body;
+app.post('/api/lss', async (req, res) => { //é para aqui que são enviados os comandos do frontend
+    const { comando } = req.body;
 
-    if(!comando || comando.trim() === ""){
+    if (!comando || comando.trim() === "") {
         return res.status(400).json({
             erro: "Comando vazio"
         });
     }
 
-    res.json({
-        mensagem: "Comando recebido pelo backend",
-        comando: comando
-    });
+    try {
+        console.log("Comando recebido:", comando); 
+        const resultado = await callPythonLSS(comando); //Node chama o python, espera e recebe o resultado
+        console.log("Resultado Python:", resultado);
+
+        res.json({ 
+            mensagem: "Comando interpretado pelo Python",
+            comando: comando,
+            resultado: resultado
+        });
+
+    } catch (erro) {
+        res.status(400).json({
+            erro: erro.message
+        });
+    }
+
 });
 
 

@@ -511,8 +511,9 @@ body.tema-rosa .botao-opcao:not(.selecionado) { background: #f4f4f4 !important; 
 
 #comandoLSS {
     width: 100%;
-    margin: 8px 0 16px;
+    height: 100px;
     resize: vertical;
+    overflow-y: auto;
 }
 
 #resultadoLSS {

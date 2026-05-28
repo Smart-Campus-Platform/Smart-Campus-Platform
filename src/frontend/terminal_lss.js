@@ -40,7 +40,10 @@ executarComandoLSS.addEventListener("click", async() => {
             return;
         }
 
-        resultadoLSS.textContent = `${dados.mensagem}\n\n${dados.comando}`;
+        resultadoLSS.textContent =
+            `Comando: ${dados.comando}\n\n` +
+            `${dados.mensagem}\n\n` +
+            JSON.stringify(dados.resultado, null, 2);
   
     } catch (erro) {
         resultadoLSS.textContent = "Erro de ligação ao servidor.";
