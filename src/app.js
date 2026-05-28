@@ -52,6 +52,23 @@ app.get('/alterar-informacao', (req, res) => {
 });
 
 
+
+app.post('/api/lss', (req, res) =>{
+    const {comando} = req.body;
+
+    if(!comando || comando.trim() === ""){
+        return res.status(400).json({
+            erro: "Comando vazio"
+        });
+    }
+
+    res.json({
+        mensagem: "Comando recebido pelo backend",
+        comando: comando
+    });
+});
+
+
 app.listen(PORT, () => {
     console.log(`Servidor na porta ${PORT}`);
 });

@@ -1,0 +1,48 @@
+const abrirTerminalLSS = document.getElementById("abrirTerminalLSS");
+const fecharTerminalLSS = document.getElementById("fecharTerminalLSS");
+const terminalLSS = document.getElementById("terminalLSS");
+const executarComandoLSS = document.getElementById("executarComandoLSS");
+const comandoLSS = document.getElementById("comandoLSS");
+const resultadoLSS = document.getElementById("resultadoLSS");
+
+abrirTerminalLSS.addEventListener("click", () => {
+    terminalLSS.hidden = false;
+    comandoLSS.focus();
+});
+
+fecharTerminalLSS.addEventListener("click", () => {
+    terminalLSS.hidden = true;
+});
+
+executarComandoLSS.addEventListener("click", async() => {
+    const comando = comandoLSS.value.trim();
+
+    if(!comando){
+        resultadoLSS.textContent = "Escreve um comando primeiro.";
+        return;
+    }
+
+    resultadoLSS.textContent = "A enviar comando ...";
+
+    try{
+        const resposta = await fetch("/api/lss", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({comando})
+        });
+
+        const dados = await resposta.json();
+
+        if(!resposta.ok){
+            resultadoLSS.textContent = dados.erro || "Erro ao executar comando.";
+            return;
+        }
+
+        resultadoLSS.textContent = `${dados.mensagem}\n\n${dados.comando}`;
+  
+    } catch (erro) {
+        resultadoLSS.textContent = "Erro de ligação ao servidor.";
+    }
+});

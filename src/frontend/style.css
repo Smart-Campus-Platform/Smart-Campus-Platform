@@ -448,3 +448,78 @@ body.tema-rosa .botao-opcao:not(.selecionado) { background: #f4f4f4 !important; 
     cursor: pointer;
     font-size: 20px;
 }
+
+.botao-terminal-lss {
+    position: fixed;
+    left: 24px;
+    bottom: 24px;
+    width: 56px;
+    height: 56px;
+    border: none;
+    border-radius: 50%;
+    background: #111827;
+    color: #ffffff;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.botao-terminal-lss:hover {
+    background: #1f2937;
+}
+
+.botao-terminal-lss:focus {
+    outline: 3px solid #60a5fa;
+    outline-offset: 3px;
+}
+
+.terminal-lss {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+}
+
+.terminal-lss[hidden] {
+    display: none;
+}
+
+.terminal-lss-conteudo {
+    width: min(720px, 92vw);
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.terminal-lss-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.terminal-lss code {
+    display: block;
+    padding: 12px;
+    background: #f4f4f4;
+    border-radius: 6px;
+    margin: 12px 0;
+}
+
+#comandoLSS {
+    width: 100%;
+    margin: 8px 0 16px;
+    resize: vertical;
+}
+
+#resultadoLSS {
+    margin-top: 16px;
+    background: #111827;
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
+    min-height: 48px;
+}
