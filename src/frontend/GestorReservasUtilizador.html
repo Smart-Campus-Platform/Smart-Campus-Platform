@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gestor Funcionário</title>
+    <title>Gerir Reservas</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
@@ -44,26 +44,20 @@
         <header class="barracima">
             <nav class="navbar navbar-default" aria-label="Navegação principal">
                 <div class="container-fluid">
-                    <a href="menu_funcionario.html" class="btn-casa"
-                       aria-label="Voltar ao Menu Funcionário" title="Voltar ao Menu Funcionário">
+                    <a href="menu_utilizador.html" class="btn-casa"
+                       aria-label="Voltar ao Menu" title="Voltar ao Menu">
                         <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Menu
                     </a>
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Gerir <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="GestorReservas.html">Reservas</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 Reservar <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Trotinetes</a></li>
-                                <li><a href="#">Bicicletas</a></li>
+                                <li><a href="reservar_sala.html">Sala / Laboratório</a></li>
+                                <li><a href="reservar_equipamento.html">Equipamento</a></li>
+                                <li><a href="reservar_trotinetes.html">Trotinete</a></li>
+                                <li><a href="reservar_bicicletas.html">Bicicleta</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -71,10 +65,16 @@
                                 Consultar <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Estacionamento</a></li>
-                                <li><a href="#">Postos de carregamento</a></li>
-                                <li><a href="SensoresFuncionario.html">Sensores</a></li>
-                                <li><a href="#">Disponibilidade de salas</a></li>
+                                <li><a href="consultar_estacionamentos.html">Estacionamento</a></li>
+                                <li><a href="consultar_postos_carregamento.html">Postos de carregamento</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Reservas <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="GestorReservasUtilizador.html">Gerir Reservas</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -86,7 +86,7 @@
                             <span class="seta-icon" onclick="abrirMenu(event)">⌄</span>
                             <div class="menu-perfil" id="menuPerfil">
                                 <a href="alterar_password.html">Alterar Password</a>
-                                <a href="informacoes_perfil.html">Alterar Informações</a>
+                                <a href="alterar_informacao.html">Alterar Informações</a>
                                 <a href="login.html">
                                     <i class="fa-solid fa-right-from-bracket"></i>
                                 </a>
@@ -97,11 +97,11 @@
             </nav>
         </header>
 
-        <main class="content" aria-label="Gestor de reservas de funcionário">
+        <main class="content" aria-label="Gestor de reservas do utilizador">
             <div class="gestor-wrapper">
 
                 <section class="reservas-container" aria-labelledby="titulo-reservas">
-                    <h1 id="titulo-reservas">Reservas</h1>
+                    <h1 id="titulo-reservas">As Minhas Reservas</h1>
 
                     <ul class="reserva-lista" role="list" aria-label="Lista de reservas">
 
@@ -118,8 +118,6 @@
                             </div>
                             <div class="reserva-acoes" id="acoes-r1" aria-hidden="true">
                                 <div class="reserva-acoes-row">
-                                    <button type="button">Confirmar</button>
-                                    <button type="button">Alterar</button>
                                     <button type="button">Cancelar</button>
                                 </div>
                             </div>
@@ -138,8 +136,6 @@
                             </div>
                             <div class="reserva-acoes" id="acoes-r2" aria-hidden="true">
                                 <div class="reserva-acoes-row">
-                                    <button type="button">Confirmar</button>
-                                    <button type="button">Alterar</button>
                                     <button type="button">Cancelar</button>
                                 </div>
                             </div>
@@ -158,8 +154,6 @@
                             </div>
                             <div class="reserva-acoes" id="acoes-r3" aria-hidden="true">
                                 <div class="reserva-acoes-row">
-                                    <button type="button">Confirmar</button>
-                                    <button type="button">Alterar</button>
                                     <button type="button">Cancelar</button>
                                 </div>
                             </div>
@@ -178,8 +172,6 @@
                             </div>
                             <div class="reserva-acoes" id="acoes-r4" aria-hidden="true">
                                 <div class="reserva-acoes-row">
-                                    <button type="button">Confirmar</button>
-                                    <button type="button">Alterar</button>
                                     <button type="button">Cancelar</button>
                                 </div>
                             </div>
@@ -198,8 +190,6 @@
                             </div>
                             <div class="reserva-acoes" id="acoes-r5" aria-hidden="true">
                                 <div class="reserva-acoes-row">
-                                    <button type="button">Confirmar</button>
-                                    <button type="button">Alterar</button>
                                     <button type="button">Cancelar</button>
                                 </div>
                             </div>
@@ -218,8 +208,6 @@
                             </div>
                             <div class="reserva-acoes" id="acoes-r6" aria-hidden="true">
                                 <div class="reserva-acoes-row">
-                                    <button type="button">Confirmar</button>
-                                    <button type="button">Alterar</button>
                                     <button type="button">Cancelar</button>
                                 </div>
                             </div>
@@ -340,7 +328,6 @@
 
     <script src="gestor-reservas.js"></script>
     <script src="navbar.js"></script>
-    <script src="horas.js"></script>
     <script src="acessiblidade.js"></script>
     <script src="menu_perfil.js"></script>
 </body>

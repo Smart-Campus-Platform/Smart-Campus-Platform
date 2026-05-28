@@ -7,6 +7,7 @@
     <title>Gestão de Utilizadores</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -80,7 +81,7 @@
                             </a>
 
                             <ul class="dropdown-menu">
-                                <li><a href="#">Consultar Relatórios</a></li>
+                                <li><a href="GerirRelatorios.html">Consultar Relatórios</a></li>
                             </ul>
                         </li>
 
@@ -103,19 +104,13 @@
                         <span role="img" aria-label="Perfil de utilizador">👤</span>
 
                         <span class="dropdown-wrapper">
-                            <span id="dropdown-toggle"
-                                  tabindex="0"
-                                  role="button"
-                                  aria-label="Abrir menu do utilizador"
-                                  aria-expanded="false"
-                                  aria-haspopup="true"
-                                  onclick="toggleDropdown()"
-                                  onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleDropdown();}">
-                                ⌄
-                            </span>
-
-                            <div id="dropdown-menu" class="dropdown-menu hidden" role="menu">
-                                <button role="menuitem" onclick="logout()">Logout</button>
+                            <span class="seta-icon" onclick="abrirMenu(event)">⌄</span>
+                            <div class="menu-perfil" id="menuPerfil">
+                                <a href="alterar_password.html">Alterar Password</a>
+                                <a href="alterar_informacao.html">Alterar Informações</a>
+                                <a href="login.html">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </a>
                             </div>
                         </span>
                     </nav>
@@ -126,28 +121,8 @@
 
         <main class="content" aria-label="Gestão de utilizadores">
 
-            <div class="card pesquisa-card">
-                <div style="width:100%;">
-                    <h2>Pesquisar Utilizador</h2>
 
-                    <label for="pesquisa-numero">
-                        <strong>Número:</strong>
-                    </label>
-
-                    <input id="pesquisa-numero"
-                           type="text"
-                           placeholder="Ex: 2024001"
-                           oninput="pesquisarPorNumero()">
-
-                    <button type="button" onclick="limparPesquisa()">Limpar</button>
-
-                    <p id="mensagem-pesquisa" style="display:none;">
-                        Nenhum utilizador encontrado.
-                    </p>
-                </div>
-            </div>
-
-            <div class="card utilizador-card" data-numero="2024001">
+            <div class="card">
                 <div style="width:100%;">
                     <h2>João Silva</h2>
 
@@ -201,11 +176,12 @@
                     </table>
 
                     <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
-                    <button type="button" onclick="removerUtilizador(this)">Desativar</button>
+
+                    <button type="button" onclick="removerUtilizador(this)">Remover</button>
                 </div>
             </div>
 
-            <div class="card utilizador-card" data-numero="2024002">
+            <div class="card">
                 <div style="width:100%;">
                     <h2>Maria Costa</h2>
 
@@ -259,11 +235,11 @@
                     </table>
 
                     <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
-                    <button type="button" onclick="removerUtilizador(this)">Desativar</button>
+                    <button type="button" onclick="removerUtilizador(this)">Remover</button>
                 </div>
             </div>
 
-            <div class="card utilizador-card" data-numero="2024003">
+            <div class="card">
                 <div style="width:100%;">
                     <h2>Pedro Santos</h2>
 
@@ -317,11 +293,11 @@
                     </table>
 
                     <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
-                    <button type="button" onclick="removerUtilizador(this)">Desativar</button>
+                    <button type="button" onclick="removerUtilizador(this)">Remover</button>
                 </div>
             </div>
 
-            <div class="card utilizador-card" data-numero="2024004">
+            <div class="card">
                 <div style="width:100%;">
                     <h2>Ana Ferreira</h2>
 
@@ -375,11 +351,11 @@
                     </table>
 
                     <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
-                    <button type="button" onclick="removerUtilizador(this)">Desativar</button>
+                    <button type="button" onclick="removerUtilizador(this)">Remover</button>
                 </div>
             </div>
 
-            <div class="card utilizador-card" data-numero="2024005">
+            <div class="card">
                 <div style="width:100%;">
                     <h2>Miguel Oliveira</h2>
 
@@ -590,6 +566,7 @@
                 campo.style.width = "260px";
             });
 
+
             const pesquisa = document.getElementById("pesquisa-numero");
 
             pesquisa.style.width = "160px";
@@ -693,6 +670,7 @@
 
     <script src="navbar.js"></script>
     <script src="acessiblidade.js"></script>
+    <script src="menu_perfil.js"></script>
 
 </body>
 </html>

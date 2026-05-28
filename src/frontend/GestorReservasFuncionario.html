@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestor Funcionário</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="gestorFuncionario.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg"
+         style="position:absolute;width:0;height:0;overflow:hidden"
+         aria-hidden="true" focusable="false">
+        <defs>
+            <filter id="filtro-protanopia">
+                <feColorMatrix type="matrix"
+                    values="0.567 0.433 0     0 0
+                            0.558 0.442 0     0 0
+                            0     0.242 0.758 0 0
+                            0     0     0     1 0"/>
+            </filter>
+            <filter id="filtro-deuteranopia">
+                <feColorMatrix type="matrix"
+                    values="0.625 0.375 0     0 0
+                            0.7   0.3   0     0 0
+                            0     0.3   0.7   0 0
+                            0     0     0     1 0"/>
+            </filter>
+            <filter id="filtro-tritanopia">
+                <feColorMatrix type="matrix"
+                    values="0.95  0.05  0     0 0
+                            0     0.433 0.567 0 0
+                            0     0.475 0.525 0 0
+                            0     0     0     1 0"/>
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="pagina">
+        <header class="barracima">
+            <nav class="navbar navbar-default" aria-label="Navegação principal">
+                <div class="container-fluid">
+                    <a href="menu_funcionario.html" class="btn-casa"
+                       aria-label="Voltar ao Menu Funcionário" title="Voltar ao Menu Funcionário">
+                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Menu
+                    </a>
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Gerir <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="GestorReservasFuncionario.html">Reservas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Reservar <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="reservar_trotinetes.html">Trotinetes</a></li>
+                                <li><a href="reservar_bicicletas.html">Bicicletas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Consultar <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="consultar_estacionamentos.html">Estacionamento</a></li>
+                                <li><a href="consultar_postos_carregamento.html">Postos de carregamento</a></li>
+                                <li><a href="SensoresFuncionario.html">Sensores</a></li>
+                                <li><a href="GestorSalaDocente.html">Disponibilidade de salas</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <nav class="icons" aria-label="Ícones de navegação">
+                        <span role="img" aria-label="Notificações">🔔</span>
+                        <span role="img" aria-label="Definições">⚙️</span>
+                        <span role="img" aria-label="Perfil de utilizador">👤</span>
+                        <span class="dropdown-wrapper">
+                            <span class="seta-icon" onclick="abrirMenu(event)">⌄</span>
+                            <div class="menu-perfil" id="menuPerfil">
+                                <a href="alterar_password.html">Alterar Password</a>
+                                <a href="alterar_informacao.html">Alterar Informações</a>
+                                <a href="login.html">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </a>
+                            </div>
+                        </span>
+                    </nav>
+                </div>
+            </nav>
+        </header>
+
+        <main class="content" aria-label="Gestor de reservas de funcionário">
+            <div class="gestor-wrapper">
+
+                <section class="reservas-container" aria-labelledby="titulo-reservas">
+                    <h1 id="titulo-reservas">Reservas</h1>
+
+                    <ul class="reserva-lista" role="list" aria-label="Lista de reservas">
+
+                        <li class="reserva-item">
+                            <div class="reserva-row"
+                                 role="button" tabindex="0"
+                                 aria-expanded="false"
+                                 aria-controls="acoes-r1"
+                                 onclick="toggleReserva(this)"
+                                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleReserva(this);}">
+                                <span class="reserva-nome">Reserva1</span>
+                                <span class="reserva-sala">Sala10</span>
+                                <span class="reserva-chevron" aria-hidden="true">▼</span>
+                            </div>
+                            <div class="reserva-acoes" id="acoes-r1" aria-hidden="true">
+                                <div class="reserva-acoes-row">
+                                    <button type="button">Confirmar</button>
+                                    <button type="button">Alterar</button>
+                                    <button type="button">Cancelar</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="reserva-item">
+                            <div class="reserva-row"
+                                 role="button" tabindex="0"
+                                 aria-expanded="false"
+                                 aria-controls="acoes-r2"
+                                 onclick="toggleReserva(this)"
+                                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleReserva(this);}">
+                                <span class="reserva-nome">Reserva2</span>
+                                <span class="reserva-sala">Sala12</span>
+                                <span class="reserva-chevron" aria-hidden="true">▼</span>
+                            </div>
+                            <div class="reserva-acoes" id="acoes-r2" aria-hidden="true">
+                                <div class="reserva-acoes-row">
+                                    <button type="button">Confirmar</button>
+                                    <button type="button">Alterar</button>
+                                    <button type="button">Cancelar</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="reserva-item">
+                            <div class="reserva-row"
+                                 role="button" tabindex="0"
+                                 aria-expanded="false"
+                                 aria-controls="acoes-r3"
+                                 onclick="toggleReserva(this)"
+                                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleReserva(this);}">
+                                <span class="reserva-nome">Reserva3</span>
+                                <span class="reserva-sala">Sala14</span>
+                                <span class="reserva-chevron" aria-hidden="true">▼</span>
+                            </div>
+                            <div class="reserva-acoes" id="acoes-r3" aria-hidden="true">
+                                <div class="reserva-acoes-row">
+                                    <button type="button">Confirmar</button>
+                                    <button type="button">Alterar</button>
+                                    <button type="button">Cancelar</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="reserva-item">
+                            <div class="reserva-row"
+                                 role="button" tabindex="0"
+                                 aria-expanded="false"
+                                 aria-controls="acoes-r4"
+                                 onclick="toggleReserva(this)"
+                                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleReserva(this);}">
+                                <span class="reserva-nome">Reserva4</span>
+                                <span class="reserva-sala">Sala23</span>
+                                <span class="reserva-chevron" aria-hidden="true">▼</span>
+                            </div>
+                            <div class="reserva-acoes" id="acoes-r4" aria-hidden="true">
+                                <div class="reserva-acoes-row">
+                                    <button type="button">Confirmar</button>
+                                    <button type="button">Alterar</button>
+                                    <button type="button">Cancelar</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="reserva-item">
+                            <div class="reserva-row"
+                                 role="button" tabindex="0"
+                                 aria-expanded="false"
+                                 aria-controls="acoes-r5"
+                                 onclick="toggleReserva(this)"
+                                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleReserva(this);}">
+                                <span class="reserva-nome">Reserva5</span>
+                                <span class="reserva-sala">Sala33</span>
+                                <span class="reserva-chevron" aria-hidden="true">▼</span>
+                            </div>
+                            <div class="reserva-acoes" id="acoes-r5" aria-hidden="true">
+                                <div class="reserva-acoes-row">
+                                    <button type="button">Confirmar</button>
+                                    <button type="button">Alterar</button>
+                                    <button type="button">Cancelar</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="reserva-item">
+                            <div class="reserva-row"
+                                 role="button" tabindex="0"
+                                 aria-expanded="false"
+                                 aria-controls="acoes-r6"
+                                 onclick="toggleReserva(this)"
+                                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleReserva(this);}">
+                                <span class="reserva-nome">Reserva6</span>
+                                <span class="reserva-sala">Sala34</span>
+                                <span class="reserva-chevron" aria-hidden="true">▼</span>
+                            </div>
+                            <div class="reserva-acoes" id="acoes-r6" aria-hidden="true">
+                                <div class="reserva-acoes-row">
+                                    <button type="button">Confirmar</button>
+                                    <button type="button">Alterar</button>
+                                    <button type="button">Cancelar</button>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </section>
+
+                <aside class="filtros-panel" aria-label="Painel de filtros de reservas">
+                    <div class="filtros-titulo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                             viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"
+                             aria-hidden="true" focusable="false">
+                            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+                        </svg>
+                        <h2>Filtros</h2>
+                        <button class="filtros-toggle"
+                                aria-label="Mostrar filtros"
+                                aria-expanded="false"
+                                aria-controls="filtros-lista"
+                                onclick="toggleFiltros(this)">
+                            <span class="seta" aria-hidden="true">▼</span>
+                        </button>
+                    </div>
+                    <div class="filtros-lista" id="filtros-lista" role="group" aria-label="Filtrar por tipo">
+                        <div class="filtro-opcao ativo"
+                             role="button" tabindex="0"
+                             aria-pressed="true"
+                             onclick="selecionarFiltro(this)"
+                             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selecionarFiltro(this);}">Salas</div>
+                        <div class="filtro-opcao"
+                             role="button" tabindex="0"
+                             aria-pressed="false"
+                             onclick="selecionarFiltro(this)"
+                             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selecionarFiltro(this);}">Equipamento</div>
+                        <div class="filtro-opcao"
+                             role="button" tabindex="0"
+                             aria-pressed="false"
+                             onclick="selecionarFiltro(this)"
+                             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selecionarFiltro(this);}">Trotinetes</div>
+                        <div class="filtro-opcao"
+                             role="button" tabindex="0"
+                             aria-pressed="false"
+                             onclick="selecionarFiltro(this)"
+                             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selecionarFiltro(this);}">Bicicletas</div>
+                    </div>
+                </aside>
+
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div>
+                <h3>HelpDesk</h3>
+                <p>📞 +351 225 123 987</p>
+                <p>📞 800 123 789</p>
+                <p>✉ &nbsp;secretaria@abc.pt</p>
+                <p>✉ &nbsp;helpdesk@gmail.com</p>
+            </div>
+            <div>
+                <h3>CONTACTOS</h3>
+                <p>📍 Rua Dr. João Carlitos de Sousa,</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;541, 4200-072 Porto</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;Portugal</p>
+                <p>📞 +351 225 123 456</p>
+                <p>✉ &nbsp;geral@abc.pt</p>
+            </div>
+        </footer>
+    </div>
+
+    <button id="botao-acessibilidade"
+            aria-label="Opções de acessibilidade"
+            title="Acessibilidade"
+            aria-expanded="false"
+            aria-controls="painel-acessibilidade"></button>
+    <div id="painel-acessibilidade" role="dialog" aria-label="Painel de acessibilidade" aria-modal="false">
+        <h4>Acessibilidade</h4>
+
+        <div class="grupo-opcoes">
+            <span class="titulo-grupo">Lupa / Tamanho (<span id="valor-zoom">50</span>)</span>
+            <div class="linha-botoes">
+                <input type="range" id="controlo-zoom"
+                       min="0" max="100" value="50"
+                       aria-label="Tamanho do texto"
+                       aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"
+                       style="width:100%">
+            </div>
+        </div>
+
+        <div class="grupo-opcoes">
+            <span class="titulo-grupo">Daltonismo</span>
+            <div class="linha-botoes">
+                <button class="botao-opcao botao-filtro selecionado" data-filtro=""
+                        aria-pressed="true" title="Sem filtro">Normal</button>
+                <button class="botao-opcao botao-filtro" data-filtro="filtro-protanopia"
+                        aria-pressed="false" title="Protanopia — dificuldade com vermelho">Prot.</button>
+                <button class="botao-opcao botao-filtro" data-filtro="filtro-deuteranopia"
+                        aria-pressed="false" title="Deuteranopia — dificuldade com verde">Deut.</button>
+                <button class="botao-opcao botao-filtro" data-filtro="filtro-tritanopia"
+                        aria-pressed="false" title="Tritanopia — dificuldade com azul">Trit.</button>
+            </div>
+        </div>
+
+        <div class="grupo-opcoes">
+            <span class="titulo-grupo">Contraste</span>
+            <div class="linha-botoes">
+                <button class="botao-opcao" id="botao-contraste"
+                        aria-pressed="false" title="Ativar / desativar alto contraste">
+                    Alto Contraste
+                </button>
+                <button class="botao-opcao" id="botao-rosa"
+                        aria-pressed="false" title="Ativar / desativar modo rosa">
+                    Modo Rosa
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="gestor-reservas.js"></script>
+    <script src="navbar.js"></script>
+    <script src="horas.js"></script>
+    <script src="acessiblidade.js"></script>
+    <script src="menu_perfil.js"></script>
+</body>
+</html>
