@@ -3,13 +3,38 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Reservar Trotinetes</title>
+        <title>Consultar Postos de Carregamento</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="stylesheet" href="reservar.css" />
         <link rel="stylesheet" href="style.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+            .lugar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 5px 8px;
+                border-radius: 8px;
+                margin: 5px;
+            }
+            .lugar:hover {
+                background: #dff3fa;
+            }
+            .indicador {
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+                flex-shrink: 0;
+            }
+            .disponivel {
+                background: #28a745;
+            }
+            .indisponivel {
+                background: #dc3545;
+            }
+        </style>
     </head>
     <body>
         <svg xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +91,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="consultar_estacionamentos.html">Estacionamento</a></li>
-                                    <li><a href="#">Postos de carregamento</a></li>
+                                    <li><a href="consultar_postos_carregamento.html">Postos de carregamento</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -96,86 +121,125 @@
                     </div>
                 </nav>
             </header>
+
             <div class="container">
                 <div class="imagem-container">
                     <button class="seta esquerda">❮</button>
-                    <img src="trotinetes.png" alt="Trotinetes">
+                    <img src="postocarregamento.png" alt="posto de carregamento elétrico">
                     <button class="seta direita">❯</button>
                 </div>
 
                 <div class="reservar">
-                    <h1>Reservar Trotinetes</h1>
+                    <h1>Postos de Carregamento</h1>
 
                     <div class="pisos">
                         <div class="lista">
+
                             <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('salas1', this)">
+                                <div class="titulo-piso" onclick="toggleSalas('area1', this)">
                                     <span class="seta-piso">▸</span>
-                                    <span>Área 1</span>
+                                    <span>Área A</span>
                                 </div>
-                                <div class="salas" id="salas1">
-                                    <p class="sala sala-normal">Trotinete 1</p>
-                                    <p class="sala sala-normal">Trotinete 5</p>
-                                    <p class="sala sala-normal">Trotinete 7</p>
+                                <div class="salas" id="area1">
+                                    <div class="lugar">
+                                        <span>Lugar 1</span>
+                                        <span class="indicador disponivel" title="Disponível"></span>
+                                    </div>
+                                    <div class="lugar">
+                                        <span>Lugar 2</span>
+                                        <span class="indicador indisponivel" title="Indisponível"></span>
+                                    </div>
+                                    <div class="lugar">
+                                        <span>Lugar 3</span>
+                                        <span class="indicador disponivel" title="Disponível"></span>
+                                    </div>
+                                    <div class="lugar">
+                                        <span>Lugar 4</span>
+                                        <span class="indicador disponivel" title="Disponível"></span>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('salas2', this)">
+                                <div class="titulo-piso" onclick="toggleSalas('area2', this)">
                                     <span class="seta-piso">▸</span>
-                                    <span>Área 2</span>
+                                    <span>Área B</span>
                                 </div>
-                                <div class="salas" id="salas2">
-                                    <p class="sala sala-normal">Trotinete 2</p>
-                                    <p class="sala sala-normal">Trotinete 3</p>
-                                    <p class="sala sala-normal">Trotinete 8</p>
+                                <div class="salas" id="area2">
+                                    <div class="lugar">
+                                        <span>Lugar 1</span>
+                                        <span class="indicador indisponivel" title="Indisponível"></span>
+                                    </div>
+                                    <div class="lugar">
+                                        <span>Lugar 2</span>
+                                        <span class="indicador disponivel" title="Disponível"></span>
+                                    </div>
+                                    <div class="lugar">
+                                        <span>Lugar 3</span>
+                                        <span class="indicador indisponivel" title="Indisponível"></span>
+                                    </div>
+                                    <div class="lugar">
+                                        <span>Lugar 4</span>
+                                        <span class="indicador disponivel" title="Disponível"></span>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('salas3', this)">
+                                <div class="titulo-piso" onclick="toggleSalas('area3', this)">
                                     <span class="seta-piso">▸</span>
-                                    <span>Área 3</span>
+                                    <span>Área C</span>
                                 </div>
-                                <div class="salas" id="salas3">
-                                    <p class="sala sala-normal">Trotinete 4</p>
-                                    <p class="sala sala-normal">Trotinete 6</p>
-                                    <p class="sala sala-normal">Trotinete 9</p>
-                                    <p class="sala sala-normal">Trotinete 10</p>
+                                <div class="salas" id="area3">
+                                    <div class="lugar">
+                                        <span>Lugar 1</span>
+                                        <span class="indicador disponivel" title="Disponível"></span>
+                                    </div>
+                                    <div class="lugar">
+                                        <span>Lugar 2</span>
+                                        <span class="indicador disponivel" title="Disponível"></span>
+                                    </div>
+                                    <div class="lugar">
+                                        <span>Lugar 3</span>
+                                        <span class="indicador indisponivel" title="Indisponível"></span>
+                                    </div>
+                                    <div class="lugar">
+                                        <span>Lugar 4</span>
+                                        <span class="indicador indisponivel" title="Indisponível"></span>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('salas4', this)">
+                                <div class="titulo-piso" onclick="toggleSalas('area4', this)">
                                     <span class="seta-piso">▸</span>
-                                    <span>Área 4</span>
+                                    <span>Área D</span>
                                 </div>
-                                <div class="salas" id="salas4">
-                                    <p class="sala sala-normal">Trotinete 11</p>
-                                    <p class="sala sala-normal">Trotinete 12</p>
-                                    <p class="sala sala-normal">Trotinete 13</p>
-                                    <p class="sala sala-normal">Trotinete 14</p>
+                                <div class="salas" id="area4">
+                                    <div class="lugar">
+                                        <span>Lugar 1</span>
+                                        <span class="indicador disponivel" title="Disponível"></span>
+                                    </div>
+                                    <div class="lugar">
+                                        <span>Lugar 2</span>
+                                        <span class="indicador disponivel" title="Disponível"></span>
+                                    </div>
+                                    <div class="lugar">
+                                        <span>Lugar 3</span>
+                                        <span class="indicador disponivel" title="Disponível"></span>
+                                    </div>
+                                    <div class="lugar">
+                                        <span>Lugar 4</span>
+                                        <span class="indicador indisponivel" title="Indisponível"></span>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('salas5', this)">
-                                    <span class="seta-piso">▸</span>
-                                    <span>Área 5</span>
-                                </div>
-                                <div class="salas" id="salas5">
-                                    <p class="sala sala-normal">Trotinete 15</p>
-                                    <p class="sala sala-normal">Trotinete 16</p>
-                                    <p class="sala sala-normal">Trotinete 17</p>
-                                    <p class="sala sala-normal">Trotinete 18</p>
-                                </div>
-                            </div>
                         </div>
                     </div>
-
-                    <button class="btn-reservar">Reservar</button>
                 </div>
             </div>
+
             <footer class="footer" style="height:auto;margin-top:0;">
                 <div>
                     <h3>HelpDesk</h3>

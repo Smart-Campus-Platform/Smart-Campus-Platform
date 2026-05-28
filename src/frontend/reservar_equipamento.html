@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Reservar Trotinetes</title>
+        <title>Reservar Equipamento</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="stylesheet" href="reservar.css" />
@@ -66,7 +66,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="consultar_estacionamentos.html">Estacionamento</a></li>
-                                    <li><a href="#">Postos de carregamento</a></li>
+                                    <li><a href="consultar_postos_carregamento.html">Postos de carregamento</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -96,86 +96,107 @@
                     </div>
                 </nav>
             </header>
+
             <div class="container">
                 <div class="imagem-container">
                     <button class="seta esquerda">❮</button>
-                    <img src="trotinetes.png" alt="Trotinetes">
+                    <img src="equipamentos.png" alt="Equipamentos">
                     <button class="seta direita">❯</button>
                 </div>
 
                 <div class="reservar">
-                    <h1>Reservar Trotinetes</h1>
+                    <h1>Reservar Equipamento</h1>
+                    <div class="filtros-topo">
+                        <div class="campo">
+                            <label>Data</label>
+                            <input type="date" name="data">
+                        </div>
+                        <div class="campo">
+                            <label>Hora início</label>
+                            <input type="time" name="hora-inicio">
+                        </div>
+                        <div class="campo">
+                            <label>Hora fim</label>
+                            <input type="time" name="hora-fim">
+                        </div>
+                    </div>
+                    <button class="btn-filtrar">Filtrar</button>
 
                     <div class="pisos">
                         <div class="lista">
+
                             <div class="piso">
                                 <div class="titulo-piso" onclick="toggleSalas('salas1', this)">
                                     <span class="seta-piso">▸</span>
-                                    <span>Área 1</span>
+                                    <span>Informática</span>
                                 </div>
                                 <div class="salas" id="salas1">
-                                    <p class="sala sala-normal">Trotinete 1</p>
-                                    <p class="sala sala-normal">Trotinete 5</p>
-                                    <p class="sala sala-normal">Trotinete 7</p>
+                                    <p class="sala sala-normal">Laptop 01</p>
+                                    <p class="sala sala-normal">Laptop 02</p>
+                                    <p class="sala sala-normal">Laptop 03</p>
+                                    <p class="sala sala-normal">Laptop 04</p>
+                                    <p class="sala sala-normal">Laptop 05</p>
+                                    <p class="sala sala-normal">Tablet 01</p>
+                                    <p class="sala sala-normal">Tablet 02</p>
+                                    <p class="sala sala-normal">Tablet 03</p>
                                 </div>
                             </div>
 
                             <div class="piso">
                                 <div class="titulo-piso" onclick="toggleSalas('salas2', this)">
                                     <span class="seta-piso">▸</span>
-                                    <span>Área 2</span>
+                                    <span>Audiovisual</span>
                                 </div>
                                 <div class="salas" id="salas2">
-                                    <p class="sala sala-normal">Trotinete 2</p>
-                                    <p class="sala sala-normal">Trotinete 3</p>
-                                    <p class="sala sala-normal">Trotinete 8</p>
+                                    <p class="sala sala-normal">Projetor 01</p>
+                                    <p class="sala sala-normal">Projetor 02</p>
+                                    <p class="sala sala-normal">Projetor 03</p>
+                                    <p class="sala sala-normal">Câmara 01</p>
+                                    <p class="sala sala-normal">Câmara 02</p>
+                                    <p class="sala sala-normal">Microfone 01</p>
+                                    <p class="sala sala-normal">Microfone 02</p>
                                 </div>
                             </div>
 
                             <div class="piso">
                                 <div class="titulo-piso" onclick="toggleSalas('salas3', this)">
                                     <span class="seta-piso">▸</span>
-                                    <span>Área 3</span>
+                                    <span>Laboratório</span>
                                 </div>
                                 <div class="salas" id="salas3">
-                                    <p class="sala sala-normal">Trotinete 4</p>
-                                    <p class="sala sala-normal">Trotinete 6</p>
-                                    <p class="sala sala-normal">Trotinete 9</p>
-                                    <p class="sala sala-normal">Trotinete 10</p>
+                                    <p class="sala sala-normal">Microscópio 01</p>
+                                    <p class="sala sala-normal">Microscópio 02</p>
+                                    <p class="sala sala-normal">Microscópio 03</p>
+                                    <p class="sala sala-normal">Osciloscópio 01</p>
+                                    <p class="sala sala-normal">Osciloscópio 02</p>
+                                    <p class="sala sala-normal">Multímetro 01</p>
+                                    <p class="sala sala-normal">Multímetro 02</p>
+                                    <p class="sala sala-normal">Multímetro 03</p>
                                 </div>
                             </div>
 
                             <div class="piso">
                                 <div class="titulo-piso" onclick="toggleSalas('salas4', this)">
                                     <span class="seta-piso">▸</span>
-                                    <span>Área 4</span>
+                                    <span>Desporto</span>
                                 </div>
                                 <div class="salas" id="salas4">
-                                    <p class="sala sala-normal">Trotinete 11</p>
-                                    <p class="sala sala-normal">Trotinete 12</p>
-                                    <p class="sala sala-normal">Trotinete 13</p>
-                                    <p class="sala sala-normal">Trotinete 14</p>
+                                    <p class="sala sala-normal">Bola de Basquetebol 01</p>
+                                    <p class="sala sala-normal">Bola de Basquetebol 02</p>
+                                    <p class="sala sala-normal">Raquete de Ténis 01</p>
+                                    <p class="sala sala-normal">Raquete de Ténis 02</p>
+                                    <p class="sala sala-normal">Colchão de Ginástica 01</p>
+                                    <p class="sala sala-normal">Colchão de Ginástica 02</p>
                                 </div>
                             </div>
 
-                            <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('salas5', this)">
-                                    <span class="seta-piso">▸</span>
-                                    <span>Área 5</span>
-                                </div>
-                                <div class="salas" id="salas5">
-                                    <p class="sala sala-normal">Trotinete 15</p>
-                                    <p class="sala sala-normal">Trotinete 16</p>
-                                    <p class="sala sala-normal">Trotinete 17</p>
-                                    <p class="sala sala-normal">Trotinete 18</p>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
                     <button class="btn-reservar">Reservar</button>
                 </div>
             </div>
+
             <footer class="footer" style="height:auto;margin-top:0;">
                 <div>
                     <h3>HelpDesk</h3>

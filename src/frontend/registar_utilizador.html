@@ -6,8 +6,8 @@
     <title>Registar Utilizador</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style2.css" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="alterar_informacao.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
@@ -60,7 +60,7 @@
                                 <li><a href="#">Bicicletas</a></li>
                                 <li><a href="#">Estacionamento</a></li>
                                 <li><a href="#">Postos de Carregamento</a></li>
-                                <li><a href="Sensores.html">Sensores</a></li>
+                                <li><a href="SensoresAdministrador.html">Sensores</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -68,7 +68,7 @@
                                 Relatórios <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Consultar Relatórios</a></li>
+                                <li><a href="GerirRelatorios.html">Consultar Relatórios</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -76,7 +76,7 @@
                                 Utilizadores <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Gestão de Utilizadores</a></li>
+                                <li><a href="gestao_utilizadores.html">Gestão de Utilizadores</a></li>
                                 <li><a href="registar_utilizador.html">Registar Utilizador</a></li>
                             </ul>
                         </li>
@@ -89,7 +89,7 @@
                             <span class="seta-icon" onclick="abrirMenu(event)">⌄</span>
                             <div class="menu-perfil" id="menuPerfil">
                                 <a href="alterar_password.html">Alterar Password</a>
-                                <a href="informacoes_perfil.html">Alterar Informações</a>
+                                <a href="alterar_informacao.html">Alterar Informações</a>
                                 <a href="login.html">
                                     <i class="fa-solid fa-right-from-bracket"></i>
                                 </a>
@@ -100,32 +100,37 @@
             </nav>
         </header>
 
-        <main class="content" aria-labelledby="titulo-registar">
-            <form method="post" aria-label="Formulário de registo de utilizador">
-                <div class="registar">
-                    <h1 id="titulo-registar">Registar Utilizador</h1>
-                    <div class="info">
-                        <label for="email">Email:</label><br/>
-                        <input id="email" name="email" type="email" placeholder="Introduza email"
-                               aria-required="true" autocomplete="email"><br/>
+        <main class="content" aria-label="Registar utilizador">
+            <div class="perfil-wrapper">
+                <h1 class="perfil-titulo">Registar Utilizador</h1>
+                <form class="perfil-form" method="post" aria-label="Formulário de registo de utilizador">
+                    <div class="perfil-campo">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email"
+                               placeholder="Introduza email"
+                               aria-required="true"
+                               autocomplete="email">
                     </div>
-                    <div class="info">
-                        <label for="contacto">Contacto:</label><br/>
-                        <input id="contacto" name="contacto" type="tel" placeholder="Introduza contacto"
-                               aria-required="true" autocomplete="tel"><br/>
+                    <div class="perfil-campo">
+                        <label for="contacto">Contacto</label>
+                        <input id="contacto" name="contacto" type="text"
+                               placeholder="Introduza contacto"
+                               aria-required="false">
                     </div>
-                    <div class="info">
-                        <label for="password">Password:</label><br/>
-                        <input id="password" name="password" type="password" placeholder="Introduza password"
-                               aria-required="true" autocomplete="new-password"><br/>
+                    <div class="perfil-campo">
+                        <label for="password">Password</label>
+                        <input id="password" name="password" type="password"
+                               placeholder="Introduza password"
+                               aria-required="true"
+                               autocomplete="new-password">
                     </div>
-                    <div class="info">
-                        <label for="dataNascimento">Data de Nascimento:</label><br/>
+                    <div class="perfil-campo">
+                        <label for="dataNascimento">Data de Nascimento</label>
                         <input id="dataNascimento" name="dataNascimento" type="date"
-                               aria-required="true" autocomplete="bday"><br/>
+                               aria-required="true">
                     </div>
-                    <div class="info">
-                        <label for="tipo">Tipo:</label><br/>
+                    <div class="perfil-campo">
+                        <label for="tipo">Tipo</label>
                         <select id="tipo" name="tipo" aria-required="true">
                             <option value="admin">Administrador</option>
                             <option value="funcionario">Funcionário</option>
@@ -133,10 +138,11 @@
                             <option value="estudante">Estudante</option>
                         </select>
                     </div>
-                    <br/>
-                    <button class="registo" type="submit">Registar</button>
-                </div>
-            </form>
+                    <div class="perfil-acoes">
+                        <button type="submit" class="btn-guardar">Registar</button>
+                    </div>
+                </form>
+            </div>
         </main>
 
         <footer class="footer">

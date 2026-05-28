@@ -40,7 +40,7 @@ app.get('/menu-administrador', (req, res) => {
 });
 
 app.get('/gestor-reservas', (req, res) => {
-    sendFrontendFile(res, 'GestorReservas.html');
+    sendFrontendFile(res, 'GestorReservasFuncionario.html');
 });
 
 app.get('/sensores', (req, res) => {
@@ -51,6 +51,93 @@ app.get('/alterar-informacao', (req, res) => {
     sendFrontendFile(res, 'alterar_informacao.html');
 });
 
+app.get('/alterar-password', (req, res) => {
+    sendFrontendFile(res, 'alterar_password.html');
+});
+
+app.get('/menu_utilizador', (req, res) => {
+    sendFrontendFile(res, 'menu_utilizador.html');
+});
+
+app.get('/acessibilidade', (req, res) => {
+    sendFrontendFile(res, 'acessibildade.html');
+});
+
+app.get('/sensores-funcionario', (req, res) => {
+    sendFrontendFile(res, 'SensoresFuncionario.html');
+});
+
+app.get('/gestao-utilizadores', (req, res) => {
+    sendFrontendFile(res, 'gestao_utilizadores.html');
+});
+
+app.get('/registar-utilizador', (req, res) => {
+    sendFrontendFile(res, 'registar_utilizador.html');
+});
+
+app.get('/reservar-trotinetes', (req, res) => {
+    sendFrontendFile(res, 'reservar_trotinetes.html');
+});
+
+app.get('/reservar-sala', (req, res) => {
+    sendFrontendFile(res, 'reservar_sala.html');
+});
+
+app.get('/reservar-bicicletas', (req, res) => {
+    sendFrontendFile(res, 'reservar_bicicletas.html');
+});
+
+app.get('/consultar-estacionamentos', (req, res) => {
+    sendFrontendFile(res, 'consultar_estacionamentos.html');
+});
+
+app.get('/consultar-postos-carregamento', (req, res) => {
+    sendFrontendFile(res, 'consultar_postos_carregamento.html');
+});
+
+app.get('/dashboard', (req, res) => {
+    sendFrontendFile(res, 'dashboard.html');
+});
+
+app.get('/reservar-equipamento', (req, res) => {
+    sendFrontendFile(res, 'reservar_equipamento.html');
+});
+
+app.get('/gestor-reservas-utilizador', (req, res) => {
+    sendFrontendFile(res, 'GestorReservasUtilizador.html');
+});
+
+app.get('/gestor-sala-docente', (req, res) => {
+    sendFrontendFile(res, 'GestorSalaDocente.html');
+});
+
+app.get('/salas-administrador', (req, res) => {
+    sendFrontendFile(res, 'SalasAdministrador.html');
+});
+
+app.get('/equipamentos-administrador', (req, res) => {
+    sendFrontendFile(res, 'EquipamentosAdministrador.html');
+});
+
+app.get('/trotinetes-administrador', (req, res) => {
+    sendFrontendFile(res, 'TrotinetesAdministrador.html');
+});
+
+app.get('/bicicletas-administrador', (req, res) => {
+    sendFrontendFile(res, 'BicicletasAdministrador.html');
+});
+
+app.get('/parque-estacionamento-administrador', (req, res) => {
+    sendFrontendFile(res, 'ParqueEstacionamentoAdministrador.html');
+});
+
+app.get('/posto-carregamento-administrador', (req, res) => {
+    sendFrontendFile(res, 'PostoCarregamentoAdministrador.html');
+});
+
+app.get('/gerir-relatorios', (req, res) => {
+    sendFrontendFile(res, 'GerirRelatorios.html');
+});
 
 
 app.post('/api/lss', (req, res) =>{
