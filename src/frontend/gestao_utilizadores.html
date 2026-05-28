@@ -120,9 +120,28 @@
         </header>
 
         <main class="content" aria-label="Gestão de utilizadores">
+             <div class="card pesquisa-card">
+                <div style="width:100%;">
+                    <h2>Pesquisar Utilizador</h2>
 
+                    <label for="pesquisa-numero">
+                        <strong>Número:</strong>
+                    </label>
 
-            <div class="card">
+                    <input id="pesquisa-numero"
+                           type="text"
+                           placeholder="Ex: 2024001"
+                           oninput="pesquisarPorNumero()">
+
+                    <button type="button" onclick="limparPesquisa()">Limpar</button>
+
+                    <p id="mensagem-pesquisa" style="display:none;">
+                        Nenhum utilizador encontrado.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card utilizador-card" data-numero="2024001">
                 <div style="width:100%;">
                     <h2>João Silva</h2>
 
@@ -181,7 +200,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card utilizador-card" data-numero="2024002">
                 <div style="width:100%;">
                     <h2>Maria Costa</h2>
 
@@ -239,7 +258,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card utilizador-card" data-numero="2024003">
                 <div style="width:100%;">
                     <h2>Pedro Santos</h2>
 
@@ -297,7 +316,7 @@
                 </div>
             </div>
 
-            <div class="card">
+           <div class="card utilizador-card" data-numero="2024004">
                 <div style="width:100%;">
                     <h2>Ana Ferreira</h2>
 
@@ -355,7 +374,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card utilizador-card" data-numero="2024005">
                 <div style="width:100%;">
                     <h2>Miguel Oliveira</h2>
 
