@@ -92,18 +92,11 @@ function mostrarCampoCapacidade(tipo) {
 function abrirModalSensor() {
     document.getElementById('novo-tipo').value = '';
     document.getElementById('nova-sala').value = '';
-<<<<<<< HEAD
     document.getElementById('novo-max-pessoas').value = '';
     document.getElementById('novo-min-sensor').value = '';
     document.getElementById('novo-max-sensor').value = '';
     document.getElementById('campo-max-ocupacao').style.display = 'none';
     document.getElementById('campos-min-max').style.display = 'none';
-=======
-    var campoCap = document.getElementById('campo-capacidade');
-    if (campoCap) { campoCap.style.display = 'none'; }
-    var novaCap = document.getElementById('nova-capacidade');
-    if (novaCap) novaCap.value = '';
->>>>>>> ac9d7cbc371729eb546355c84f23c79692d57afc
     document.getElementById('modal-overlay').classList.add('aberto');
     document.getElementById('novo-tipo').focus();
 }
@@ -119,8 +112,6 @@ function confirmarNovoSensor() {
         alert('Por favor preencha o tipo e a sala.');
         return;
     }
-<<<<<<< HEAD
-
     if (tipo === 'Ocupação') {
         var maxPessoasVal = document.getElementById('novo-max-pessoas').value.trim();
         if (!maxPessoasVal) {
@@ -153,24 +144,6 @@ function confirmarNovoSensor() {
             return;
         }
     }
-
-=======
-    var campoPrincipal;
-    if (tipo === 'Ocupação') {
-        var capacidade = document.getElementById('nova-capacidade').value.trim() || '0';
-        campoPrincipal =
-            '<div class="sensor-campo">' +
-            '    <label>Ocupação</label>' +
-            '    <div class="sensor-ocup-valor" aria-label="Valor de ocupação">' + parseInt(capacidade, 10) + '</div>' +
-            '</div>';
-    } else {
-        campoPrincipal =
-            '<div class="sensor-campo">' +
-            '    <label for="desc-s' + (sensorCounter + 1) + '">Descrição</label>' +
-            '    <textarea id="desc-s' + (sensorCounter + 1) + '" rows="3" placeholder="Insira uma descrição para este sensor..."></textarea>' +
-            '</div>';
-    }
->>>>>>> ac9d7cbc371729eb546355c84f23c79692d57afc
     sensorCounter++;
     var id = 'detalhe-s' + sensorCounter;
     var li = document.createElement('li');
