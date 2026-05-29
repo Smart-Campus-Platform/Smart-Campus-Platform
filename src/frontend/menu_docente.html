@@ -256,9 +256,41 @@
         </div>
     </div>
 
+    <button
+        type="button"
+        class="botao-terminal-lss"
+        id="abrirTerminalLSS"
+        aria-label="Abrir terminal LSS"
+        title="Terminal LSS"
+>
+        <i class="fa-solid fa-terminal"></i>
+    </button>
+
+    <div class="terminal-lss" id="terminalLSS" hidden>
+        <div class="terminal-lss-conteudo">
+            <div class="terminal-lss-topo">
+                <h2>Terminal LSS</h2>
+                <button type="button" id="fecharTerminalLSS">Fechar</button>
+            </div>
+
+            <div class="terminal-lss-instrucoes">
+                <p>Exemplo:</p>
+                <code>reservar sala "Sala A101" data 2026-04-15 hora_inicio 10:00 hora_fim 12:00</code>
+            </div>
+
+            <label for="comandoLSS">Comando</label>
+            <textarea id="comandoLSS" rows="3"></textarea>
+
+            <button type="button" id="executarComandoLSS">Executar</button>
+
+            <pre id="resultadoLSS"></pre>
+        </div>
+    </div>
+
     <script src="horas.js"></script>
     <script src="navbar.js"></script>
     <script src="acessiblidade.js"></script>
     <script src="menu_perfil.js"></script>
+    <script src="terminal_lss.js"></script>
 </body>
 </html>
