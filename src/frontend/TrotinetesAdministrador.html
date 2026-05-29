@@ -87,13 +87,13 @@
                         <li class="sensor-item">
                             <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-t1"
                                  onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-                                <span class="sensor-nome">Trotinete 01</span>
+                                <span class="sensor-nome">TRT01</span>
                                 <span class="sensor-local">Área A</span>
                                 <span class="sensor-chevron" aria-hidden="true">▼</span>
                             </div>
                             <div class="sensor-detalhe" id="detalhe-t1" aria-hidden="true">
                                 <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo"><label>Nome</label><input class="input-nome" type="text"></div>
+                                    <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text"></div>
                                     <div class="sensor-campo"><label>Área</label><input class="input-local" type="text"></div>
                                     <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
                                 </div>
@@ -107,13 +107,13 @@
                         <li class="sensor-item">
                             <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-t2"
                                  onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-                                <span class="sensor-nome">Trotinete 02</span>
+                                <span class="sensor-nome">TRT02</span>
                                 <span class="sensor-local">Área B</span>
                                 <span class="sensor-chevron" aria-hidden="true">▼</span>
                             </div>
                             <div class="sensor-detalhe" id="detalhe-t2" aria-hidden="true">
                                 <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo"><label>Nome</label><input class="input-nome" type="text"></div>
+                                    <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text"></div>
                                     <div class="sensor-campo"><label>Área</label><input class="input-local" type="text"></div>
                                     <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
                                 </div>
@@ -152,7 +152,7 @@
     <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
         <div class="modal-caixa">
             <h3 id="modal-titulo">Adicionar Trotinete</h3>
-            <div class="modal-campo"><label for="novo-nome">Nome</label><input type="text" id="novo-nome" placeholder="Ex: Trotinete 03"></div>
+            <div class="modal-campo"><label for="novo-codigo">Código</label><input type="text" id="novo-codigo" placeholder="Ex: TRT03"></div>
             <div class="modal-campo"><label for="nova-area">Área</label><input type="text" id="nova-area" placeholder="Ex: Área A"></div>
             <div class="modal-botoes"><button type="button" onclick="confirmarNovo()">Confirmar</button></div>
         </div>

@@ -87,13 +87,13 @@
                         <li class="sensor-item">
                             <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-p1"
                                  onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-                                <span class="sensor-nome">Lugar A1</span>
+                                <span class="sensor-nome">LUG-A1</span>
                                 <span class="sensor-local">Piso 1</span>
                                 <span class="sensor-chevron" aria-hidden="true">▼</span>
                             </div>
                             <div class="sensor-detalhe" id="detalhe-p1" aria-hidden="true">
                                 <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo"><label>Nome</label><input class="input-nome" type="text"></div>
+                                    <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text"></div>
                                     <div class="sensor-campo"><label>Piso</label><input class="input-local" type="text"></div>
                                     <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
                                 </div>
@@ -107,13 +107,13 @@
                         <li class="sensor-item">
                             <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-p2"
                                  onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-                                <span class="sensor-nome">Lugar A2</span>
+                                <span class="sensor-nome">LUG-A2</span>
                                 <span class="sensor-local">Piso 1</span>
                                 <span class="sensor-chevron" aria-hidden="true">▼</span>
                             </div>
                             <div class="sensor-detalhe" id="detalhe-p2" aria-hidden="true">
                                 <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo"><label>Nome</label><input class="input-nome" type="text"></div>
+                                    <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text"></div>
                                     <div class="sensor-campo"><label>Piso</label><input class="input-local" type="text"></div>
                                     <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
                                 </div>
@@ -127,13 +127,13 @@
                         <li class="sensor-item">
                             <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-p3"
                                  onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-                                <span class="sensor-nome">Lugar B1</span>
+                                <span class="sensor-nome">LUG-B1</span>
                                 <span class="sensor-local">Piso 2</span>
                                 <span class="sensor-chevron" aria-hidden="true">▼</span>
                             </div>
                             <div class="sensor-detalhe" id="detalhe-p3" aria-hidden="true">
                                 <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo"><label>Nome</label><input class="input-nome" type="text"></div>
+                                    <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text"></div>
                                     <div class="sensor-campo"><label>Piso</label><input class="input-local" type="text"></div>
                                     <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
                                 </div>
@@ -172,7 +172,7 @@
     <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
         <div class="modal-caixa">
             <h3 id="modal-titulo">Adicionar Lugar</h3>
-            <div class="modal-campo"><label for="novo-nome">Nome</label><input type="text" id="novo-nome" placeholder="Ex: Lugar C1"></div>
+            <div class="modal-campo"><label for="novo-codigo">Código</label><input type="text" id="novo-codigo" placeholder="Ex: LUG-C1"></div>
             <div class="modal-campo"><label for="novo-piso">Piso</label><input type="text" id="novo-piso" placeholder="Ex: Piso 1"></div>
             <div class="modal-botoes"><button type="button" onclick="confirmarNovo()">Confirmar</button></div>
         </div>

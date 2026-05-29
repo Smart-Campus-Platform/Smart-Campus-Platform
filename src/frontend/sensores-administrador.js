@@ -64,19 +64,22 @@ function atualizarCamposSensor() {
     inputMin.removeAttribute('required');
     inputMaxSensor.removeAttribute('required');
 
+    var campoMinValor = document.getElementById('campo-min-valor');
     if (tipo === 'Ocupação') {
         campoOcupacao.style.display = '';
         inputMaxPessoas.setAttribute('required', '');
     } else if (tipo === 'Temperatura') {
         camposMinMax.style.display = '';
+        campoMinValor.style.display = '';
         labelMin.textContent = 'Mínimo (°C)';
         labelMax.textContent = 'Máximo (°C)';
     } else if (tipo === 'Consumo Energético') {
         camposMinMax.style.display = '';
-        labelMin.textContent = 'Mínimo (kW)';
+        campoMinValor.style.display = 'none';
         labelMax.textContent = 'Máximo (kW)';
     } else if (tipo === 'Qualidade do Ar') {
         camposMinMax.style.display = '';
+        campoMinValor.style.display = '';
         labelMin.textContent = 'Mínimo (AQI)';
         labelMax.textContent = 'Máximo (AQI)';
     }
@@ -97,6 +100,7 @@ function abrirModalSensor() {
     document.getElementById('novo-max-sensor').value = '';
     document.getElementById('campo-max-ocupacao').style.display = 'none';
     document.getElementById('campos-min-max').style.display = 'none';
+    document.getElementById('campo-min-valor').style.display = '';
     document.getElementById('modal-overlay').classList.add('aberto');
     document.getElementById('novo-tipo').focus();
 }
@@ -128,7 +132,7 @@ function confirmarNovoSensor() {
     } else {
         var minVal = document.getElementById('novo-min-sensor').value.trim();
         var maxVal = document.getElementById('novo-max-sensor').value.trim();
-        if (minVal === '') {
+        if (tipo !== 'Consumo Energético' && minVal === '') {
             alert('O campo mínimo é obrigatório.');
             document.getElementById('novo-min-sensor').focus();
             return;
@@ -138,7 +142,7 @@ function confirmarNovoSensor() {
             document.getElementById('novo-max-sensor').focus();
             return;
         }
-        if (parseFloat(minVal) >= parseFloat(maxVal)) {
+        if (tipo !== 'Consumo Energético' && minVal !== '' && parseFloat(minVal) >= parseFloat(maxVal)) {
             alert('O valor mínimo deve ser inferior ao valor máximo.');
             document.getElementById('novo-min-sensor').focus();
             return;
