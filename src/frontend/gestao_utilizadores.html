@@ -12,6 +12,77 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .acoes-card {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .toggle-estado {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc;
+            border-radius: 26px;
+            transition: 0.3s;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+            background-color: #33add6;
+        }
+
+        .toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+
+        .toggle-estado-label {
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        .toggle-estado-label.ativo  { color: #1a8a0a; }
+        .toggle-estado-label.inativo { color: #c0392b; }
+
+    </style>
 </head>
 
 <body>
@@ -147,7 +218,7 @@
 
                     <table>
                         <tr>
-                            <td style="width:120px;"><strong>Número:</strong></td>
+                            <td style="width:160px;"><strong>Número:</strong></td>
                             <td>2024001</td>
                         </tr>
 
@@ -184,6 +255,26 @@
                         </tr>
 
                         <tr>
+                            <td><strong>NIF:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-nif"
+                                       type="text"
+                                       value="123456789"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Data de Nasc.:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-data"
+                                       type="date"
+                                       value="1995-03-15"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
                             <td><strong>Morada:</strong></td>
                             <td>
                                 <input class="campo-editavel campo-morada"
@@ -194,9 +285,17 @@
                         </tr>
                     </table>
 
-                    <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
-
-                    <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                    <div class="acoes-card">
+                        <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
+                        <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                        <div class="toggle-estado">
+                            <label class="toggle-switch" aria-label="Ativar ou desativar utilizador">
+                                <input type="checkbox" class="toggle-input" checked onchange="toggleEstado(this)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span class="toggle-estado-label ativo">Ativo</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -206,7 +305,7 @@
 
                     <table>
                         <tr>
-                            <td style="width:120px;"><strong>Número:</strong></td>
+                            <td style="width:160px;"><strong>Número:</strong></td>
                             <td>2024002</td>
                         </tr>
 
@@ -243,6 +342,26 @@
                         </tr>
 
                         <tr>
+                            <td><strong>NIF:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-nif"
+                                       type="text"
+                                       value="234567890"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Data de Nasc.:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-data"
+                                       type="date"
+                                       value="1998-07-22"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
                             <td><strong>Morada:</strong></td>
                             <td>
                                 <input class="campo-editavel campo-morada"
@@ -253,8 +372,17 @@
                         </tr>
                     </table>
 
-                    <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
-                    <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                    <div class="acoes-card">
+                        <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
+                        <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                        <div class="toggle-estado">
+                            <label class="toggle-switch" aria-label="Ativar ou desativar utilizador">
+                                <input type="checkbox" class="toggle-input" checked onchange="toggleEstado(this)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span class="toggle-estado-label ativo">Ativo</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -264,7 +392,7 @@
 
                     <table>
                         <tr>
-                            <td style="width:120px;"><strong>Número:</strong></td>
+                            <td style="width:160px;"><strong>Número:</strong></td>
                             <td>2024003</td>
                         </tr>
 
@@ -301,6 +429,26 @@
                         </tr>
 
                         <tr>
+                            <td><strong>NIF:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-nif"
+                                       type="text"
+                                       value="345678901"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Data de Nasc.:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-data"
+                                       type="date"
+                                       value="1997-11-10"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
                             <td><strong>Morada:</strong></td>
                             <td>
                                 <input class="campo-editavel campo-morada"
@@ -311,8 +459,17 @@
                         </tr>
                     </table>
 
-                    <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
-                    <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                    <div class="acoes-card">
+                        <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
+                        <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                        <div class="toggle-estado">
+                            <label class="toggle-switch" aria-label="Ativar ou desativar utilizador">
+                                <input type="checkbox" class="toggle-input" checked onchange="toggleEstado(this)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span class="toggle-estado-label ativo">Ativo</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -322,7 +479,7 @@
 
                     <table>
                         <tr>
-                            <td style="width:120px;"><strong>Número:</strong></td>
+                            <td style="width:160px;"><strong>Número:</strong></td>
                             <td>2024004</td>
                         </tr>
 
@@ -359,6 +516,26 @@
                         </tr>
 
                         <tr>
+                            <td><strong>NIF:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-nif"
+                                       type="text"
+                                       value="456789012"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Data de Nasc.:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-data"
+                                       type="date"
+                                       value="1999-05-30"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
                             <td><strong>Morada:</strong></td>
                             <td>
                                 <input class="campo-editavel campo-morada"
@@ -369,8 +546,17 @@
                         </tr>
                     </table>
 
-                    <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
-                    <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                    <div class="acoes-card">
+                        <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
+                        <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                        <div class="toggle-estado">
+                            <label class="toggle-switch" aria-label="Ativar ou desativar utilizador">
+                                <input type="checkbox" class="toggle-input" checked onchange="toggleEstado(this)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span class="toggle-estado-label ativo">Ativo</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -380,7 +566,7 @@
 
                     <table>
                         <tr>
-                            <td style="width:120px;"><strong>Número:</strong></td>
+                            <td style="width:160px;"><strong>Número:</strong></td>
                             <td>2024005</td>
                         </tr>
 
@@ -417,6 +603,26 @@
                         </tr>
 
                         <tr>
+                            <td><strong>NIF:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-nif"
+                                       type="text"
+                                       value="567890123"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Data de Nasc.:</strong></td>
+                            <td>
+                                <input class="campo-editavel campo-data"
+                                       type="date"
+                                       value="1996-09-18"
+                                       readonly>
+                            </td>
+                        </tr>
+
+                        <tr>
                             <td><strong>Morada:</strong></td>
                             <td>
                                 <input class="campo-editavel campo-morada"
@@ -427,8 +633,17 @@
                         </tr>
                     </table>
 
-                    <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
-                    <button type="button" onclick="removerUtilizador(this)">Desativar</button>
+                    <div class="acoes-card">
+                        <button type="button" onclick="alterarUtilizador(this)">Alterar</button>
+                        <button type="button" onclick="removerUtilizador(this)">Remover</button>
+                        <div class="toggle-estado">
+                            <label class="toggle-switch" aria-label="Ativar ou desativar utilizador">
+                                <input type="checkbox" class="toggle-input" checked onchange="toggleEstado(this)">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span class="toggle-estado-label ativo">Ativo</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -561,33 +776,31 @@
                 campo.style.opacity = "1";
             });
 
-            const tipos = document.querySelectorAll(".campo-tipo");
-
-            tipos.forEach(function(campo) {
+            document.querySelectorAll(".campo-tipo").forEach(function(campo) {
                 campo.style.width = "130px";
             });
 
-            const emails = document.querySelectorAll("input[type='email']");
-
-            emails.forEach(function(campo) {
+            document.querySelectorAll("input[type='email']").forEach(function(campo) {
                 campo.style.width = "230px";
             });
 
-            const contactos = document.querySelectorAll(".campo-contacto");
-
-            contactos.forEach(function(campo) {
+            document.querySelectorAll(".campo-contacto").forEach(function(campo) {
                 campo.style.width = "120px";
             });
 
-            const moradas = document.querySelectorAll(".campo-morada");
+            document.querySelectorAll(".campo-nif").forEach(function(campo) {
+                campo.style.width = "110px";
+            });
 
-            moradas.forEach(function(campo) {
+            document.querySelectorAll(".campo-data").forEach(function(campo) {
+                campo.style.width = "150px";
+            });
+
+            document.querySelectorAll(".campo-morada").forEach(function(campo) {
                 campo.style.width = "260px";
             });
 
-
             const pesquisa = document.getElementById("pesquisa-numero");
-
             pesquisa.style.width = "160px";
             pesquisa.style.boxSizing = "border-box";
             pesquisa.style.backgroundColor = "white";
@@ -620,16 +833,11 @@
                 }
             });
 
-            if (encontrados === 0) {
-                mensagem.style.display = "block";
-            } else {
-                mensagem.style.display = "none";
-            }
+            mensagem.style.display = encontrados === 0 ? "block" : "none";
         }
 
         function limparPesquisa() {
             const pesquisa = document.getElementById("pesquisa-numero");
-
             pesquisa.value = "";
             pesquisarPorNumero();
             pesquisa.focus();
@@ -646,7 +854,6 @@
                     } else {
                         campo.readOnly = false;
                     }
-
                     campo.style.backgroundColor = "white";
                     campo.style.border = "1px solid black";
                     campo.style.outline = "none";
@@ -664,7 +871,6 @@
                     } else {
                         campo.readOnly = true;
                     }
-
                     campo.style.backgroundColor = "transparent";
                     campo.style.border = "1px solid transparent";
                     campo.style.outline = "none";
@@ -675,12 +881,30 @@
         }
 
         function removerUtilizador(botao) {
-            const confirmar = confirm("Tem a certeza que pretende desativar este utilizador?");
+            const confirmar = confirm("Quer remover este utilizador?");
 
             if (confirmar) {
                 const card = botao.closest(".card");
                 card.remove();
                 pesquisarPorNumero();
+            }
+        }
+
+        function toggleEstado(input) {
+            const card = input.closest(".card");
+            const label = card.querySelector(".toggle-estado-label");
+
+            if (!input.checked) {
+                const confirmar = confirm("Quer desativar este utilizador?");
+                if (!confirmar) {
+                    input.checked = true;
+                    return;
+                }
+                label.textContent = "Inativo";
+                label.className = "toggle-estado-label inativo";
+            } else {
+                label.textContent = "Ativo";
+                label.className = "toggle-estado-label ativo";
             }
         }
 
