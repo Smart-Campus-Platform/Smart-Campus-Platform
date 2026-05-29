@@ -11,6 +11,10 @@ const frontendPath = path.join(__dirname, 'frontend');
 app.use(express.json());
 app.use(express.static(frontendPath));
 
+const utilizadorTeste = {
+    email: "teste@upt.pt"
+};
+
 const {spawn} = require("child_process"); //aqui estou a importar um modulo do node para permitir criar e controlar outros processos do sistema operativo
 
 function callPythonLSS(comando) { // esta é a função que vai permitir receber um comando do LSS, executar em python, com o ply, espera pela resposta e devolve o resultado
@@ -184,13 +188,50 @@ app.post('/api/lss', async (req, res) => { //é para aqui que são enviados os c
     try {
         console.log("Comando recebido:", comando); 
         const resultado = await callPythonLSS(comando); //Node chama o python, espera e recebe o resultado
-        console.log("Resultado Python:", resultado);
+        const [utilizadores] = await db.promise().query(
+            "SELECT id_utilizador FROM utilizador WHERE email = ?", [utilizadorTeste.email]
+        );
 
-        res.json({ 
-            mensagem: "Comando interpretado pelo Python",
+        if(utilizadores.length === 0){
+            throw new Error("Utilizador não encontrado");
+        }
+
+        const utilizador = utilizadores[0];
+
+        const [salas] = await db.promise().query(
+            "SELECT id_sala FROM sala WHERE nome = ?",
+            [resultado.recurso_nome]
+        );
+
+        if (salas.length === 0) {
+            throw new Error("Sala não encontrada");
+        }
+
+        const sala = salas[0];
+
+        const dataInicio = `${resultado.data} ${resultado.inicio}:00`; //00 é por causa dos segundos do formato datetime
+        const dataFim = `${resultado.data} ${resultado.fim}:00`;
+
+        //inserir a reserva na base de dados
+        const [reserva] = await db.promise().query(
+            `INSERT INTO reserva_sala
+            (u_id_utilizador, s_id_sala, data_inicio, data_fim)
+            VALUES (?, ?, ?, ?)`,
+            [
+                utilizador.id_utilizador,
+                sala.id_sala,
+                dataInicio,
+                dataFim
+            ]
+        );
+
+        res.json({
+            mensagem: "Reserva efetuada",
             comando: comando,
-            resultado: resultado
+            resultado: resultado,
+            id_reserva: reserva.insertId
         });
+
 
     } catch (erro) {
         res.status(400).json({

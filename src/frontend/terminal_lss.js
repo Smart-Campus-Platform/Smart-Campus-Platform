@@ -18,7 +18,7 @@ executarComandoLSS.addEventListener("click", async() => {
     const comando = comandoLSS.value.trim();
 
     if(!comando){
-        resultadoLSS.textContent = "Escreve um comando primeiro.";
+        resultadoLSS.textContent = "Escreva um comando primeiro.";
         return;
     }
 
@@ -43,6 +43,7 @@ executarComandoLSS.addEventListener("click", async() => {
         resultadoLSS.textContent =
             `Comando: ${dados.comando}\n\n` +
             `${dados.mensagem}\n\n` +
+            `ID Reserva: ${dados.id_reserva}\n\n` + 
             JSON.stringify(dados.resultado, null, 2);
   
     } catch (erro) {
