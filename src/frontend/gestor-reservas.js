@@ -31,4 +31,22 @@ function selecionarFiltro(el) {
     });
     el.classList.add('ativo');
     el.setAttribute('aria-pressed', 'true');
+
+    var filtro = el.textContent.trim();
+    document.querySelectorAll('.reserva-item').forEach(function (item) {
+        item.style.display = (item.dataset.tipo === filtro) ? '' : 'none';
+    });
 }
+
+function devolverReserva(btn) {
+    var item = btn.closest('.reserva-item');
+    var nome = item.querySelector('.reserva-nome').textContent;
+    if (confirm('Confirmar devolução de ' + nome + '?')) {
+        item.remove();
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    var filtroAtivo = document.querySelector('.filtro-opcao.ativo');
+    if (filtroAtivo) selecionarFiltro(filtroAtivo);
+});

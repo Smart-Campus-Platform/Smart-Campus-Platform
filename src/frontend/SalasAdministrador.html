@@ -84,7 +84,7 @@
 
                     <ul class="sensor-lista" role="list" aria-label="Lista de salas">
 
-                        <li class="sensor-item">
+                        <li class="sensor-item" data-capacidade="30">
                             <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-s1"
                                  onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
                                 <span class="sensor-nome">Sala 101</span>
@@ -99,6 +99,7 @@
                                     <div class="sensor-campo"><label>Tipo</label>
                                         <select class="input-tipo"><option value="Sala">Sala</option><option value="Laboratório">Laboratório</option></select>
                                     </div>
+                                    <div class="sensor-campo"><label>Capacidade</label><input class="input-capacidade" type="number" min="1" placeholder="Mín: 1"></div>
                                     <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
                                 </div>
                                 <div class="sensor-botoes item-acoes">
@@ -118,7 +119,7 @@
                             </div>
                         </li>
 
-                        <li class="sensor-item">
+                        <li class="sensor-item" data-capacidade="25">
                             <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-s2"
                                  onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
                                 <span class="sensor-nome">Sala 102</span>
@@ -133,6 +134,7 @@
                                     <div class="sensor-campo"><label>Tipo</label>
                                         <select class="input-tipo"><option value="Sala">Sala</option><option value="Laboratório">Laboratório</option></select>
                                     </div>
+                                    <div class="sensor-campo"><label>Capacidade</label><input class="input-capacidade" type="number" min="1" placeholder="Mín: 1"></div>
                                     <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
                                 </div>
                                 <div class="sensor-botoes item-acoes">
@@ -152,7 +154,7 @@
                             </div>
                         </li>
 
-                        <li class="sensor-item">
+                        <li class="sensor-item" data-capacidade="20">
                             <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-s3"
                                  onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
                                 <span class="sensor-nome">Laboratório 109</span>
@@ -167,6 +169,7 @@
                                     <div class="sensor-campo"><label>Tipo</label>
                                         <select class="input-tipo"><option value="Sala">Sala</option><option value="Laboratório">Laboratório</option></select>
                                     </div>
+                                    <div class="sensor-campo"><label>Capacidade</label><input class="input-capacidade" type="number" min="1" placeholder="Mín: 1"></div>
                                     <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
                                 </div>
                                 <div class="sensor-botoes item-acoes">
@@ -186,7 +189,7 @@
                             </div>
                         </li>
 
-                        <li class="sensor-item">
+                        <li class="sensor-item" data-capacidade="35">
                             <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-s4"
                                  onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
                                 <span class="sensor-nome">Sala 201</span>
@@ -201,6 +204,7 @@
                                     <div class="sensor-campo"><label>Tipo</label>
                                         <select class="input-tipo"><option value="Sala">Sala</option><option value="Laboratório">Laboratório</option></select>
                                     </div>
+                                    <div class="sensor-campo"><label>Capacidade</label><input class="input-capacidade" type="number" min="1" placeholder="Mín: 1"></div>
                                     <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
                                 </div>
                                 <div class="sensor-botoes item-acoes">
@@ -254,6 +258,10 @@
             <div class="modal-campo">
                 <label for="novo-tipo">Tipo</label>
                 <select id="novo-tipo"><option value="Sala">Sala</option><option value="Laboratório">Laboratório</option></select>
+            </div>
+            <div class="modal-campo">
+                <label for="nova-capacidade">Capacidade</label>
+                <input type="number" id="nova-capacidade" min="1" placeholder="Mín: 1" required>
             </div>
             <div class="modal-botoes"><button type="button" onclick="confirmarNovo()">Confirmar</button></div>
         </div>

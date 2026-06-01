@@ -202,7 +202,17 @@
                     <input id="pesquisa-numero"
                            type="text"
                            placeholder="Ex: 2024001"
-                           oninput="pesquisarPorNumero()">
+                           oninput="aplicarFiltros()">
+
+                    <label for="pesquisa-estado" style="margin-left:12px;">
+                        <strong>Estado:</strong>
+                    </label>
+
+                    <select id="pesquisa-estado" onchange="aplicarFiltros()">
+                        <option value="">Todos</option>
+                        <option value="ativo">Ativo</option>
+                        <option value="inativo">Inativo</option>
+                    </select>
 
                     <button type="button" onclick="limparPesquisa()">Limpar</button>
 
@@ -813,10 +823,24 @@
             pesquisa.style.height = "26px";
             pesquisa.style.marginLeft = "8px";
             pesquisa.style.marginRight = "8px";
+
+            const estadoSel = document.getElementById("pesquisa-estado");
+            estadoSel.style.boxSizing = "border-box";
+            estadoSel.style.backgroundColor = "white";
+            estadoSel.style.border = "1px solid black";
+            estadoSel.style.borderRadius = "5px";
+            estadoSel.style.padding = "2px 5px";
+            estadoSel.style.font = "inherit";
+            estadoSel.style.color = "black";
+            estadoSel.style.outline = "none";
+            estadoSel.style.height = "26px";
+            estadoSel.style.marginLeft = "8px";
+            estadoSel.style.marginRight = "8px";
         }
 
-        function pesquisarPorNumero() {
+        function aplicarFiltros() {
             const pesquisa = document.getElementById("pesquisa-numero").value.trim();
+            const estadoFiltro = document.getElementById("pesquisa-estado").value;
             const cards = document.querySelectorAll(".utilizador-card");
             const mensagem = document.getElementById("mensagem-pesquisa");
 
@@ -824,8 +848,13 @@
 
             cards.forEach(function(card) {
                 const numero = card.getAttribute("data-numero");
+                const label = card.querySelector(".toggle-estado-label");
+                const estadoCard = label ? label.className.includes("ativo") && !label.className.includes("inativo") ? "ativo" : "inativo" : "";
 
-                if (pesquisa === "" || numero.includes(pesquisa)) {
+                const passaNumero = pesquisa === "" || numero.includes(pesquisa);
+                const passaEstado = estadoFiltro === "" || estadoCard === estadoFiltro;
+
+                if (passaNumero && passaEstado) {
                     card.style.display = "flex";
                     encontrados++;
                 } else {
@@ -836,11 +865,15 @@
             mensagem.style.display = encontrados === 0 ? "block" : "none";
         }
 
+        function pesquisarPorNumero() {
+            aplicarFiltros();
+        }
+
         function limparPesquisa() {
-            const pesquisa = document.getElementById("pesquisa-numero");
-            pesquisa.value = "";
-            pesquisarPorNumero();
-            pesquisa.focus();
+            document.getElementById("pesquisa-numero").value = "";
+            document.getElementById("pesquisa-estado").value = "";
+            aplicarFiltros();
+            document.getElementById("pesquisa-numero").focus();
         }
 
         function alterarUtilizador(botao) {

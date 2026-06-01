@@ -39,7 +39,7 @@ function removerItem(btn) {
 function mostrarEdicao(btn) {
     var detalhe = btn.closest('.sensor-detalhe');
     var row = btn.closest('.sensor-item').querySelector('.sensor-row');
-    detalhe.querySelector('.input-nome').value = row.querySelector('.sensor-nome').textContent.trim();
+    detalhe.querySelector('.input-codigo').value = row.querySelector('.sensor-nome').textContent.trim();
     detalhe.querySelector('.input-local').value = row.querySelector('.sensor-local').textContent.trim();
     detalhe.querySelector('.edicao-campos').style.display = '';
     detalhe.querySelector('.item-acoes').style.display = 'none';
@@ -49,7 +49,7 @@ function guardarAlteracoes(btn) {
     var item = btn.closest('.sensor-item');
     var detalhe = btn.closest('.sensor-detalhe');
     var row = item.querySelector('.sensor-row');
-    var novoNome = detalhe.querySelector('.input-nome').value.trim();
+    var novoNome = detalhe.querySelector('.input-codigo').value.trim();
     var novoLocal = detalhe.querySelector('.input-local').value.trim();
     if (!novoNome || !novoLocal) {
         alert('Por favor preencha todos os campos.');
@@ -67,10 +67,10 @@ function guardarAlteracoes(btn) {
 var itemCounter = 2;
 
 function abrirModal() {
-    document.getElementById('novo-nome').value = '';
+    document.getElementById('novo-codigo').value = '';
     document.getElementById('nova-area').value = '';
     document.getElementById('modal-overlay').classList.add('aberto');
-    document.getElementById('novo-nome').focus();
+    document.getElementById('novo-codigo').focus();
 }
 
 function fecharModal() {
@@ -78,9 +78,9 @@ function fecharModal() {
 }
 
 function confirmarNovo() {
-    var nome = document.getElementById('novo-nome').value.trim();
+    var codigo = document.getElementById('novo-codigo').value.trim();
     var area = document.getElementById('nova-area').value.trim();
-    if (!nome || !area) {
+    if (!codigo || !area) {
         alert('Por favor preencha todos os campos.');
         return;
     }
@@ -93,13 +93,13 @@ function confirmarNovo() {
         '     aria-expanded="false" aria-controls="' + id + '"' +
         '     onclick="toggleItem(this)"' +
         '     onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();toggleItem(this);}">' +
-        '    <span class="sensor-nome">' + nome + '</span>' +
+        '    <span class="sensor-nome">' + codigo + '</span>' +
         '    <span class="sensor-local">' + area + '</span>' +
         '    <span class="sensor-chevron" aria-hidden="true">▼</span>' +
         '</div>' +
         '<div class="sensor-detalhe" id="' + id + '" aria-hidden="true">' +
         '    <div class="edicao-campos" style="display:none">' +
-        '        <div class="sensor-campo"><label>Nome</label><input class="input-nome" type="text"></div>' +
+        '        <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text"></div>' +
         '        <div class="sensor-campo"><label>Área</label><input class="input-local" type="text"></div>' +
         '        <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>' +
         '    </div>' +

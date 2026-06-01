@@ -105,7 +105,7 @@
 
                     <ul class="reserva-lista" role="list" aria-label="Lista de reservas">
 
-                        <li class="reserva-item">
+                        <li class="reserva-item" data-tipo="Salas">
                             <div class="reserva-row"
                                  role="button" tabindex="0"
                                  aria-expanded="false"
@@ -113,7 +113,7 @@
                                  onclick="toggleReserva(this)"
                                  onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleReserva(this);}">
                                 <span class="reserva-nome">Reserva1</span>
-                                <span class="reserva-sala">Sala10</span>
+                                <span class="reserva-sala">Sala 10</span>
                                 <span class="reserva-chevron" aria-hidden="true">▼</span>
                             </div>
                             <div class="reserva-acoes" id="acoes-r1" aria-hidden="true">
@@ -123,7 +123,7 @@
                             </div>
                         </li>
 
-                        <li class="reserva-item">
+                        <li class="reserva-item" data-tipo="Salas">
                             <div class="reserva-row"
                                  role="button" tabindex="0"
                                  aria-expanded="false"
@@ -131,7 +131,7 @@
                                  onclick="toggleReserva(this)"
                                  onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleReserva(this);}">
                                 <span class="reserva-nome">Reserva2</span>
-                                <span class="reserva-sala">Sala12</span>
+                                <span class="reserva-sala">Sala 12</span>
                                 <span class="reserva-chevron" aria-hidden="true">▼</span>
                             </div>
                             <div class="reserva-acoes" id="acoes-r2" aria-hidden="true">
@@ -141,7 +141,7 @@
                             </div>
                         </li>
 
-                        <li class="reserva-item">
+                        <li class="reserva-item" data-tipo="Trotinetes">
                             <div class="reserva-row"
                                  role="button" tabindex="0"
                                  aria-expanded="false"
@@ -149,17 +149,18 @@
                                  onclick="toggleReserva(this)"
                                  onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleReserva(this);}">
                                 <span class="reserva-nome">Reserva3</span>
-                                <span class="reserva-sala">Sala14</span>
+                                <span class="reserva-sala">TRT01</span>
                                 <span class="reserva-chevron" aria-hidden="true">▼</span>
                             </div>
                             <div class="reserva-acoes" id="acoes-r3" aria-hidden="true">
                                 <div class="reserva-acoes-row">
                                     <button type="button">Cancelar</button>
+                                    <button type="button" onclick="devolverReserva(this)">Devolver</button>
                                 </div>
                             </div>
                         </li>
 
-                        <li class="reserva-item">
+                        <li class="reserva-item" data-tipo="Equipamento">
                             <div class="reserva-row"
                                  role="button" tabindex="0"
                                  aria-expanded="false"
@@ -167,7 +168,7 @@
                                  onclick="toggleReserva(this)"
                                  onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleReserva(this);}">
                                 <span class="reserva-nome">Reserva4</span>
-                                <span class="reserva-sala">Sala23</span>
+                                <span class="reserva-sala">Equipamento 01</span>
                                 <span class="reserva-chevron" aria-hidden="true">▼</span>
                             </div>
                             <div class="reserva-acoes" id="acoes-r4" aria-hidden="true">
@@ -177,7 +178,7 @@
                             </div>
                         </li>
 
-                        <li class="reserva-item">
+                        <li class="reserva-item" data-tipo="Bicicletas">
                             <div class="reserva-row"
                                  role="button" tabindex="0"
                                  aria-expanded="false"
@@ -185,17 +186,18 @@
                                  onclick="toggleReserva(this)"
                                  onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleReserva(this);}">
                                 <span class="reserva-nome">Reserva5</span>
-                                <span class="reserva-sala">Sala33</span>
+                                <span class="reserva-sala">BIC01</span>
                                 <span class="reserva-chevron" aria-hidden="true">▼</span>
                             </div>
                             <div class="reserva-acoes" id="acoes-r5" aria-hidden="true">
                                 <div class="reserva-acoes-row">
                                     <button type="button">Cancelar</button>
+                                    <button type="button" onclick="devolverReserva(this)">Devolver</button>
                                 </div>
                             </div>
                         </li>
 
-                        <li class="reserva-item">
+                        <li class="reserva-item" data-tipo="Salas">
                             <div class="reserva-row"
                                  role="button" tabindex="0"
                                  aria-expanded="false"
@@ -203,7 +205,7 @@
                                  onclick="toggleReserva(this)"
                                  onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleReserva(this);}">
                                 <span class="reserva-nome">Reserva6</span>
-                                <span class="reserva-sala">Sala34</span>
+                                <span class="reserva-sala">Sala 34</span>
                                 <span class="reserva-chevron" aria-hidden="true">▼</span>
                             </div>
                             <div class="reserva-acoes" id="acoes-r6" aria-hidden="true">

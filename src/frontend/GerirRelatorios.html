@@ -10,261 +10,66 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
-        .rel-main {
-            width: 90%;
-            max-width: 1100px;
-            margin: 40px auto;
-        }
+        .rel-main { width: 90%; max-width: 1100px; margin: 40px auto; }
+        .rel-titulo { color: #1e4c5c; font-size: 32px; font-weight: 300; margin-bottom: 6px; }
+        .rel-subtitulo { color: #4a7a8a; font-size: 13px; margin-bottom: 32px; }
 
-        .rel-titulo {
-            color: #1e4c5c;
-            font-size: 32px;
-            font-weight: 300;
-            margin-bottom: 6px;
-        }
-
-        .rel-subtitulo {
-            color: #4a7a8a;
-            font-size: 13px;
-            margin-bottom: 32px;
-        }
-
-        /* cards de resumo */
-        .resumo-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-            margin-bottom: 36px;
-        }
-
-        .resumo-card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px 22px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .resumo-card .rc-valor {
-            font-size: 30px;
-            font-weight: 700;
-            color: #1e4c5c;
-            line-height: 1.1;
-        }
-
-        .resumo-card .rc-label {
-            font-size: 12px;
-            color: #6a9aaa;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .resumo-card .rc-icone {
-            font-size: 20px;
-            color: #2aa8d2;
-            margin-bottom: 4px;
-        }
-
+        /* cards resumo */
+        .resumo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 36px; }
+        .resumo-card { background: white; border-radius: 12px; padding: 20px 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column; gap: 6px; }
+        .resumo-card .rc-valor { font-size: 30px; font-weight: 700; color: #1e4c5c; line-height: 1.1; }
+        .resumo-card .rc-label { font-size: 12px; color: #6a9aaa; text-transform: uppercase; letter-spacing: 0.5px; }
+        .resumo-card .rc-icone { font-size: 20px; color: #2aa8d2; margin-bottom: 4px; }
         .resumo-card.alerta { border-left: 4px solid #e05252; }
         .resumo-card.ok     { border-left: 4px solid #28a745; }
         .resumo-card.info   { border-left: 4px solid #2aa8d2; }
 
         /* secções */
-        .secao-rel {
-            background: white;
-            border-radius: 12px;
-            padding: 24px 28px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-            margin-bottom: 24px;
-        }
-
-        .secao-rel h2 {
-            font-size: 18px;
-            font-weight: 600;
-            color: #1e4c5c;
-            margin: 0 0 18px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .secao-rel h2 i {
-            color: #2aa8d2;
-        }
+        .secao-rel { background: white; border-radius: 12px; padding: 24px 28px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); margin-bottom: 24px; }
+        .secao-rel h2 { font-size: 18px; font-weight: 600; color: #1e4c5c; margin: 0 0 18px 0; display: flex; align-items: center; gap: 10px; }
+        .secao-rel h2 i { color: #2aa8d2; }
 
         /* tabelas */
-        .tabela-rel {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-
-        .tabela-rel thead th {
-            background: #f0f8fb;
-            color: #1e4c5c;
-            font-weight: 600;
-            padding: 10px 14px;
-            border-bottom: 2px solid #d0e8f0;
-            text-align: left;
-        }
-
-        .tabela-rel tbody td {
-            padding: 9px 14px;
-            border-bottom: 1px solid #eef4f7;
-            color: #334;
-        }
-
-        .tabela-rel tbody tr:last-child td {
-            border-bottom: none;
-        }
-
+        .tabela-rel { width: 100%; border-collapse: collapse; font-size: 14px; }
+        .tabela-rel thead th { background: #f0f8fb; color: #1e4c5c; font-weight: 600; padding: 10px 14px; border-bottom: 2px solid #d0e8f0; text-align: left; }
+        .tabela-rel tbody td { padding: 9px 14px; border-bottom: 1px solid #eef4f7; color: #334; }
+        .tabela-rel tbody tr:last-child td { border-bottom: none; }
         .tabela-rel tbody tr:hover { background: #f7fbfd; }
 
-        .badge-alerta { background: #f8d7da; color: #721c24; border-radius: 12px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
-        .badge-normal { background: #d4edda; color: #155724; border-radius: 12px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
+        .badge-alerta  { background: #f8d7da; color: #721c24; border-radius: 12px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
+        .badge-normal  { background: #d4edda; color: #155724; border-radius: 12px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
         .badge-atencao { background: #fff3cd; color: #856404; border-radius: 12px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
+        .badge-inativo { background: #e2e3e5; color: #383d41; border-radius: 12px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
 
         /* botão gerar */
-        .wrap-relatorio {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 20px;
-            margin-bottom: 50px;
-        }
-
-        .btn-relatorio {
-            background: #2aa8d2;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 13px 34px;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 3px 10px rgba(42,168,210,0.35);
-            transition: background 0.2s;
-        }
-
+        .wrap-relatorio { display: flex; justify-content: flex-end; margin-top: 20px; margin-bottom: 50px; }
+        .btn-relatorio { background: #2aa8d2; color: white; border: none; border-radius: 10px; padding: 13px 34px; font-size: 16px; cursor: pointer; display: flex; align-items: center; gap: 10px; box-shadow: 0 3px 10px rgba(42,168,210,0.35); transition: background 0.2s; }
         .btn-relatorio:hover { background: #1e8ab0; }
 
         /* modal */
-        .modal-rel-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.45);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
+        .modal-rel-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 1000; align-items: center; justify-content: center; }
         .modal-rel-overlay.aberto { display: flex; }
-
-        .modal-rel-caixa {
-            background: white;
-            border-radius: 14px;
-            padding: 32px 36px;
-            width: 480px;
-            max-width: 95%;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-        }
-
-        .modal-rel-caixa h3 {
-            color: #1e4c5c;
-            font-size: 20px;
-            margin: 0 0 22px 0;
-        }
-
-        .modal-campo-rel {
-            margin-bottom: 18px;
-        }
-
-        .modal-campo-rel label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: #1e4c5c;
-            margin-bottom: 6px;
-        }
-
-        .modal-campo-rel input[type="text"] {
-            width: 100%;
-            border: 1px solid #c5dce6;
-            border-radius: 8px;
-            padding: 10px 12px;
-            font-size: 14px;
-            color: #334;
-            outline: none;
-        }
-
-        .modal-campo-rel input[type="text"]:focus {
-            border-color: #2aa8d2;
-            box-shadow: 0 0 0 2px rgba(42,168,210,0.15);
-        }
-
-        .check-lista {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .check-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 14px;
-            color: #334;
-            cursor: pointer;
-        }
-
-        .check-item input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
-            accent-color: #2aa8d2;
-            cursor: pointer;
-        }
-
-        .modal-rel-botoes {
-            display: flex;
-            justify-content: flex-end;
-            gap: 12px;
-            margin-top: 26px;
-        }
-
-        .btn-cancelar-rel {
-            background: #e8f4f8;
-            color: #1e4c5c;
-            border: none;
-            border-radius: 8px;
-            padding: 10px 22px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
+        .modal-rel-caixa { background: white; border-radius: 14px; padding: 32px 36px; width: 520px; max-width: 95%; box-shadow: 0 8px 32px rgba(0,0,0,0.18); }
+        .modal-rel-caixa h3 { color: #1e4c5c; font-size: 20px; margin: 0 0 22px 0; }
+        .modal-campo-rel { margin-bottom: 18px; }
+        .modal-campo-rel label { display: block; font-size: 13px; font-weight: 600; color: #1e4c5c; margin-bottom: 6px; }
+        .modal-campo-rel input[type="text"] { width: 100%; border: 1px solid #c5dce6; border-radius: 8px; padding: 10px 12px; font-size: 14px; color: #334; outline: none; }
+        .modal-campo-rel input[type="text"]:focus { border-color: #2aa8d2; box-shadow: 0 0 0 2px rgba(42,168,210,0.15); }
+        .check-lista { display: flex; flex-direction: column; gap: 10px; }
+        .check-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #334; cursor: pointer; }
+        .check-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: #2aa8d2; cursor: pointer; flex-shrink: 0; }
+        .modal-rel-botoes { display: flex; justify-content: flex-end; gap: 12px; margin-top: 26px; }
+        .btn-cancelar-rel { background: #e8f4f8; color: #1e4c5c; border: none; border-radius: 8px; padding: 10px 22px; font-size: 14px; cursor: pointer; }
         .btn-cancelar-rel:hover { background: #d0e8f0; }
-
-        .btn-confirmar-rel {
-            background: #2aa8d2;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 10px 22px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
+        .btn-confirmar-rel { background: #2aa8d2; color: white; border: none; border-radius: 8px; padding: 10px 22px; font-size: 14px; cursor: pointer; }
         .btn-confirmar-rel:hover { background: #1e8ab0; }
 
-        /* cabeçalho visível só na impressão */
-        .print-header {
-            display: none;
-        }
+        /* secções PDF (ocultas por defeito, surgem apenas durante a impressão) */
+        .secao-pdf { display: none; }
 
-        /* impressão */
+        /* cabeçalho visível só na impressão */
+        .print-header { display: none; }
+
         @media print {
             .barracima, #botao-acessibilidade, #painel-acessibilidade,
             .wrap-relatorio, .footer, .modal-rel-overlay { display: none !important; }
@@ -342,7 +147,7 @@
 
         <main class="content rel-main" aria-label="Relatórios estatísticos">
 
-            <!-- cabeçalho que só aparece na impressão -->
+            <!-- cabeçalho visível só na impressão -->
             <div class="print-header">
                 <h1 id="titulo-print">Relatório</h1>
                 <p id="data-print"></p>
@@ -370,18 +175,18 @@
                 </div>
             </div>
 
-            <!-- consumo diário -->
+            <!-- top 10 consumo -->
             <section class="secao-rel" id="secao-consumo" aria-labelledby="titulo-consumo">
                 <h2 id="titulo-consumo">
                     <i class="fa-solid fa-bolt"></i>
-                    Consumo Diário — Últimos 30 dias
+                    Top 10 Consumo — Últimos 30 Dias
                 </h2>
-                <table class="tabela-rel" aria-label="Consumo energético diário">
+                <table class="tabela-rel" aria-label="Top 10 dias de maior consumo energético">
                     <thead>
                         <tr>
+                            <th>Pos.</th>
                             <th>Data</th>
                             <th>Consumo (kWh)</th>
-                            <th>Variação</th>
                             <th>Estado</th>
                         </tr>
                     </thead>
@@ -469,6 +274,50 @@
                 </table>
             </section>
 
+            <!-- qualidade do ar — média (sempre visível) -->
+            <section class="secao-rel" id="secao-qualidade-ar-media" aria-labelledby="titulo-qar-media">
+                <h2 id="titulo-qar-media">
+                    <i class="fa-solid fa-wind"></i>
+                    Qualidade do Ar — Média (30 dias)
+                </h2>
+                <table class="tabela-rel" aria-label="Média da qualidade do ar por local">
+                    <thead>
+                        <tr>
+                            <th>Local</th>
+                            <th>AQI Médio</th>
+                            <th>Tendência</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sala 102</td>
+                            <td>N/D</td>
+                            <td>—</td>
+                            <td><span class="badge-inativo">Inativo</span></td>
+                        </tr>
+                        <tr>
+                            <td>Sala 104</td>
+                            <td>62 AQI</td>
+                            <td>Estável</td>
+                            <td><span class="badge-normal">Normal</span></td>
+                        </tr>
+                        <tr>
+                            <td>Lab 201</td>
+                            <td>78 AQI</td>
+                            <td>↑ Subindo</td>
+                            <td><span class="badge-atencao">Atenção</span></td>
+                        </tr>
+                        <tr>
+                            <td>Corredor A</td>
+                            <td>45 AQI</td>
+                            <td>Estável</td>
+                            <td><span class="badge-normal">Normal</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
             <!-- botão gerar relatório -->
             <div class="wrap-relatorio">
                 <button class="btn-relatorio" onclick="abrirModalRelatorio()" aria-label="Gerar relatório PDF">
@@ -476,6 +325,102 @@
                     Gerar Relatório
                 </button>
             </div>
+
+            <!-- ═══ SECÇÕES PDF (ocultas no ecrã, surgem no PDF conforme seleção) ═══ -->
+
+            <!-- média de todos os sensores -->
+            <section class="secao-rel secao-pdf" id="secao-media-sensores" aria-labelledby="titulo-pdf-media">
+                <h2 id="titulo-pdf-media">
+                    <i class="fa-solid fa-satellite-dish"></i>
+                    Média de Todos os Sensores — Últimos 30 Dias
+                </h2>
+                <table class="tabela-rel">
+                    <thead>
+                        <tr><th>Sensor</th><th>Tipo</th><th>Local</th><th>Média</th><th>Unidade</th><th>Estado</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Sensor 1</td><td>Temperatura</td><td>Sala 101</td><td>21,8</td><td>°C</td><td><span class="badge-normal">Normal</span></td></tr>
+                        <tr><td>Sensor 5</td><td>Temperatura</td><td>Sala 203</td><td>25,9</td><td>°C</td><td><span class="badge-atencao">Atenção</span></td></tr>
+                        <tr><td>Sensor 2</td><td>Qualidade do Ar</td><td>Sala 102</td><td>N/D</td><td>AQI</td><td><span class="badge-inativo">Inativo</span></td></tr>
+                        <tr><td>Sensor 3</td><td>Ocupação</td><td>Lab 201</td><td>16 / 30</td><td>pessoas</td><td><span class="badge-normal">Normal</span></td></tr>
+                        <tr><td>Sensor 4</td><td>Cons. Energético</td><td>Corredor A</td><td>3,8</td><td>kW</td><td><span class="badge-normal">Normal</span></td></tr>
+                        <tr><td>Sensor 6</td><td>Cons. Energético</td><td>Lab 301</td><td>6,2</td><td>kW</td><td><span class="badge-atencao">Atenção</span></td></tr>
+                        <tr><td>Sensor 7</td><td>Cons. Energético</td><td>Corredor B</td><td>2,5</td><td>kW</td><td><span class="badge-normal">Normal</span></td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- ocupação média diária por sala -->
+            <section class="secao-rel secao-pdf" id="secao-ocupacao-media" aria-labelledby="titulo-pdf-ocup">
+                <h2 id="titulo-pdf-ocup">
+                    <i class="fa-solid fa-users"></i>
+                    Ocupação Média Diária por Sala
+                </h2>
+                <table class="tabela-rel">
+                    <thead>
+                        <tr><th>Sala / Lab</th><th>Capacidade</th><th>Ocupação Média</th><th>Taxa de Utilização</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Sala 101</td><td>30</td><td>18 pessoas</td><td>60%</td></tr>
+                        <tr><td>Sala 203</td><td>25</td><td>20 pessoas</td><td>80%</td></tr>
+                        <tr><td>Sala 102</td><td>20</td><td>14 pessoas</td><td>70%</td></tr>
+                        <tr><td>Lab 201</td><td>30</td><td>16 pessoas</td><td>53%</td></tr>
+                        <tr><td>Lab 301</td><td>25</td><td>19 pessoas</td><td>76%</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- picos de ocupação -->
+            <section class="secao-rel secao-pdf" id="secao-picos-ocupacao" aria-labelledby="titulo-pdf-picos">
+                <h2 id="titulo-pdf-picos">
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                    Picos de Ocupação — Salas e Horários
+                </h2>
+                <table class="tabela-rel">
+                    <thead>
+                        <tr><th>Sala / Lab</th><th>Capacidade</th><th>Pico de Ocupação</th><th>Horário</th><th>Data</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Sala 203</td><td>25</td><td>25 pessoas (100%)</td><td>10:00 – 12:00</td><td>20/05/2026</td></tr>
+                        <tr><td>Lab 301</td><td>25</td><td>24 pessoas (96%)</td><td>14:00 – 16:00</td><td>23/05/2026</td></tr>
+                        <tr><td>Lab 201</td><td>30</td><td>29 pessoas (97%)</td><td>09:00 – 11:00</td><td>15/05/2026</td></tr>
+                        <tr><td>Sala 101</td><td>30</td><td>27 pessoas (90%)</td><td>11:00 – 13:00</td><td>18/05/2026</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- parques de estacionamento -->
+            <section class="secao-rel secao-pdf" id="secao-parques" aria-labelledby="titulo-pdf-parques">
+                <h2 id="titulo-pdf-parques">
+                    <i class="fa-solid fa-square-parking"></i>
+                    Parques de Estacionamento — Pico e Média de Ocupação
+                </h2>
+                <table class="tabela-rel">
+                    <thead>
+                        <tr><th>Parque</th><th>Lugares</th><th>Pico de Ocupação</th><th>Média de Ocupação</th><th>Horário de Pico</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Parque A</td><td>50</td><td>48 (96%)</td><td>32 (64%)</td><td>08:30 – 09:30</td></tr>
+                        <tr><td>Parque B</td><td>30</td><td>30 (100%)</td><td>22 (73%)</td><td>09:00 – 10:00</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- qualidade do ar nos últimos 30 dias -->
+            <section class="secao-rel secao-pdf" id="secao-qualidade-ar-30" aria-labelledby="titulo-pdf-qar30">
+                <h2 id="titulo-pdf-qar30">
+                    <i class="fa-solid fa-wind"></i>
+                    Qualidade do Ar — Últimos 30 Dias
+                </h2>
+                <table class="tabela-rel">
+                    <thead>
+                        <tr><th>Data</th><th>Local</th><th>AQI</th><th>Estado</th></tr>
+                    </thead>
+                    <tbody id="tabela-qar-body">
+                        <!-- preenchido por JS -->
+                    </tbody>
+                </table>
+            </section>
 
         </main>
 
@@ -496,19 +441,27 @@
             </div>
 
             <div class="modal-campo-rel">
-                <label>Dados a incluir</label>
+                <label>Dados a incluir no PDF</label>
                 <div class="check-lista">
                     <label class="check-item">
-                        <input type="checkbox" id="check-resumo" checked>
-                        Resumo estatístico (consumo total, média, alertas)
+                        <input type="checkbox" id="check-media-sensores" checked>
+                        Média de todos os sensores (últimos 30 dias)
                     </label>
                     <label class="check-item">
-                        <input type="checkbox" id="check-consumo" checked>
-                        Consumo diário — últimos 30 dias
+                        <input type="checkbox" id="check-ocupacao-media" checked>
+                        Ocupação média diária por sala
                     </label>
                     <label class="check-item">
-                        <input type="checkbox" id="check-alertas" checked>
-                        Registo de alertas
+                        <input type="checkbox" id="check-picos-ocupacao">
+                        Picos de ocupação (salas e horários)
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" id="check-parques">
+                        Parques de estacionamento (pico e média)
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" id="check-qualidade-ar-30">
+                        Qualidade do ar (últimos 30 dias)
                     </label>
                 </div>
             </div>
@@ -539,11 +492,10 @@
     </div>
 
     <script>
-        // timestamp
         document.getElementById('rel-timestamp').textContent =
             'Última atualização: ' + new Date().toLocaleString('pt-PT');
 
-        // gerar tabela consumo diário (últimos 30 dias, dados simulados)
+        // top 10 consumo (ordenado por valor, decrescente)
         (function() {
             var dados = [
                 41.2, 38.9, 43.5, 40.1, 44.8, 37.6, 42.3,
@@ -552,20 +504,49 @@
                 42.1, 45.3, 39.0, 41.9, 43.7, 38.5, 40.2,
                 42.6, 44.1
             ];
-            var tbody = document.getElementById('tabela-consumo-body');
             var hoje = new Date();
-            var linhas = '';
-            for (var i = 29; i >= 0; i--) {
+            var entradas = dados.map(function(v, i) {
                 var d = new Date(hoje);
-                d.setDate(hoje.getDate() - i);
-                var data = d.toLocaleDateString('pt-PT');
-                var consumo = dados[29 - i];
-                var anterior = i < 29 ? dados[29 - i - 1] : consumo;
-                var variacao = ((consumo - anterior) / anterior * 100).toFixed(1);
-                var variacaoTxt = variacao > 0 ? '+' + variacao + '%' : variacao + '%';
-                var cor = variacao > 5 ? 'color:#e05252' : (variacao < -5 ? 'color:#28a745' : 'color:#6a9aaa');
-                var estado = consumo > 43 ? '<span class="badge-atencao">Atenção</span>' : '<span class="badge-normal">Normal</span>';
-                linhas += '<tr><td>' + data + '</td><td>' + consumo.toFixed(1) + ' kWh</td><td style="' + cor + '">' + variacaoTxt + '</td><td>' + estado + '</td></tr>';
+                d.setDate(hoje.getDate() - (29 - i));
+                return { consumo: v, data: d };
+            });
+            entradas.sort(function(a, b) { return b.consumo - a.consumo; });
+            var top10 = entradas.slice(0, 10);
+
+            var tbody = document.getElementById('tabela-consumo-body');
+            var linhas = '';
+            top10.forEach(function(e, idx) {
+                var estado = e.consumo > 43
+                    ? '<span class="badge-atencao">Atenção</span>'
+                    : '<span class="badge-normal">Normal</span>';
+                linhas += '<tr><td>' + (idx + 1) + 'º</td><td>'
+                    + e.data.toLocaleDateString('pt-PT') + '</td><td>'
+                    + e.consumo.toFixed(1) + ' kWh</td><td>' + estado + '</td></tr>';
+            });
+            tbody.innerHTML = linhas;
+        })();
+
+        // qualidade do ar 30 dias (dados simulados para PDF)
+        (function() {
+            var locais = ['Sala 102', 'Sala 104', 'Lab 201', 'Corredor A'];
+            var aqiBase = [null, 62, 78, 45];
+            var hoje = new Date();
+            var tbody = document.getElementById('tabela-qar-body');
+            var linhas = '';
+            for (var i = 0; i < 10; i++) {
+                var d = new Date(hoje);
+                d.setDate(hoje.getDate() - (i * 3));
+                var localIdx = i % locais.length;
+                var base = aqiBase[localIdx];
+                var aqi = base === null ? null : Math.round(base + (Math.random() * 20 - 10));
+                var aqiTxt = aqi === null ? 'N/D' : aqi + ' AQI';
+                var estado = aqi === null
+                    ? '<span class="badge-inativo">Inativo</span>'
+                    : (aqi > 100 ? '<span class="badge-alerta">Alerta</span>'
+                        : (aqi > 75 ? '<span class="badge-atencao">Atenção</span>'
+                            : '<span class="badge-normal">Normal</span>'));
+                linhas += '<tr><td>' + d.toLocaleDateString('pt-PT') + '</td><td>'
+                    + locais[localIdx] + '</td><td>' + aqiTxt + '</td><td>' + estado + '</td></tr>';
             }
             tbody.innerHTML = linhas;
         })();
@@ -586,29 +567,42 @@
             document.getElementById('data-print').textContent =
                 'Gerado em: ' + new Date().toLocaleString('pt-PT');
 
-            var mapa = {
-                'check-resumo':  'secao-resumo',
-                'check-consumo': 'secao-consumo',
-                'check-alertas': 'secao-alertas'
-            };
+            var opcoesPdf = [
+                { check: 'check-media-sensores',  id: 'secao-media-sensores' },
+                { check: 'check-ocupacao-media',  id: 'secao-ocupacao-media' },
+                { check: 'check-picos-ocupacao',  id: 'secao-picos-ocupacao' },
+                { check: 'check-parques',         id: 'secao-parques' },
+                { check: 'check-qualidade-ar-30', id: 'secao-qualidade-ar-30' }
+            ];
 
-            // ocultar secções não selecionadas
-            for (var id in mapa) {
-                var secao = document.getElementById(mapa[id]);
-                if (secao) secao.style.display = document.getElementById(id).checked ? '' : 'none';
-            }
+            var secoesNormais = ['secao-resumo', 'secao-consumo', 'secao-alertas', 'secao-qualidade-ar-media'];
+
+            // ocultar secções normais
+            secoesNormais.forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el) el.style.display = 'none';
+            });
+
+            // mostrar apenas as secções PDF selecionadas
+            opcoesPdf.forEach(function(item) {
+                var el = document.getElementById(item.id);
+                if (el) el.style.display = document.getElementById(item.check).checked ? '' : 'none';
+            });
 
             fecharModalRelatorio();
             window.print();
 
-            // restaurar
-            for (var id in mapa) {
-                var secao = document.getElementById(mapa[id]);
-                if (secao) secao.style.display = '';
-            }
+            // restaurar estado normal
+            secoesNormais.forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el) el.style.display = '';
+            });
+            opcoesPdf.forEach(function(item) {
+                var el = document.getElementById(item.id);
+                if (el) el.style.display = 'none';
+            });
         }
 
-        // fechar modal ao clicar fora
         document.getElementById('modal-relatorio').addEventListener('click', function(e) {
             if (e.target === this) fecharModalRelatorio();
         });
