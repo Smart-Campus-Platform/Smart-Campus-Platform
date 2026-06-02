@@ -88,7 +88,7 @@ const registarCarregamento = async (id_posto, kwh) => {
     }
 
     const posto = postos[0];
-    const disponivel = posto.disponibilidade === 1 || posto.disponibilidade === "1";
+    const disponivel = posto.disponibilidade === true || posto.disponibilidade === 1 || posto.disponibilidade === "1";
 
     if (!disponivel) {
         const erro = new Error("Posto de carregamento indisponivel");
