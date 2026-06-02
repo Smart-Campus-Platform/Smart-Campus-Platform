@@ -1,15 +1,18 @@
 const db = require("../config/db");
 
+const PRECO_KWH = 0.10;
+
 //para mostrar os diferentes postos de carregamento organizados por zona
 const listarPostos = async() => {
     const [postos] = await db.promise().query(`
         SELECT
             id_posto,
             area,
-            disponibilidade
+            disponibilidade,
+            ? AS preco_kwh
         FROM posto_carregamento
         ORDER BY area, id_posto
-     `);
+     `, [PRECO_KWH]);
 
      return postos
 };
@@ -69,6 +72,49 @@ const alterarDisponibilidadeManual = async (id_posto, disponibilidade) => {
     );
 };
 
+//para registar o carregamento feito por um utilizador num posto disponivel
+const registarCarregamento = async (id_posto, kwh) => {
+    const [postos] = await db.promise().query(
+        `SELECT id_posto, area, disponibilidade
+         FROM posto_carregamento
+         WHERE id_posto = ?`,
+        [id_posto]
+    );
+
+    if (postos.length === 0) {
+        const erro = new Error("Posto de carregamento nao encontrado");
+        erro.status = 404;
+        throw erro;
+    }
+
+    const posto = postos[0];
+    const disponivel = posto.disponibilidade === 1 || posto.disponibilidade === "1";
+
+    if (!disponivel) {
+        const erro = new Error("Posto de carregamento indisponivel");
+        erro.status = 409;
+        throw erro;
+    }
+
+    const precoTotal = Number((kwh * PRECO_KWH).toFixed(2));
+
+    const [resultado] = await db.promise().query(
+        `INSERT INTO carregamento_posto
+         (pc_id_posto, kwh, preco_kwh, preco_total)
+         VALUES (?, ?, ?, ?)`,
+        [id_posto, kwh, PRECO_KWH, precoTotal]
+    );
+
+    return {
+        id_carregamento: resultado.insertId,
+        id_posto: posto.id_posto,
+        area: posto.area,
+        kwh,
+        preco_kwh: PRECO_KWH,
+        preco_total: precoTotal
+    };
+};
+
 
 
 
@@ -78,5 +124,6 @@ module.exports = {
     adicionarPosto,
     atualizarPosto,
     removerPosto,
-    alterarDisponibilidadeManual
+    alterarDisponibilidadeManual,
+    registarCarregamento
 };

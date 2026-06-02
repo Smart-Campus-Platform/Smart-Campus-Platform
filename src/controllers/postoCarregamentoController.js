@@ -82,11 +82,36 @@ const alterarDisponibilidade = async (req, res) => {
     }
 };
 
+const carregarPosto = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const kwh = Number(req.body.kwh);
+
+        if (!kwh || kwh <= 0) {
+            return res.status(400).json({
+                erro: "Numero de kWh invalido"
+            });
+        }
+
+        const carregamento = await posto.registarCarregamento(id, kwh);
+
+        res.status(201).json({
+            mensagem: "Carregamento efetuado com sucesso",
+            carregamento
+        });
+    } catch (erro) {
+        res.status(erro.status || 500).json({
+            erro: erro.status ? erro.message : "Erro ao efetuar carregamento"
+        });
+    }
+};
+
 module.exports = {
     listarPostos,
     listarAreas,
     adicionarPosto,
     atualizarPosto,
     removerPosto,
-    alterarDisponibilidade
+    alterarDisponibilidade,
+    carregarPosto
 };
