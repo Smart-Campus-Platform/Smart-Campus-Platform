@@ -82,69 +82,7 @@
                         </button>
                     </div>
 
-                    <ul class="sensor-lista" role="list" aria-label="Lista de postos de carregamento">
-
-                        <li class="sensor-item">
-                            <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-pc1"
-                                 onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-                                <span class="sensor-nome">PST-01</span>
-                                <span class="sensor-local">Área A</span>
-                                <span class="sensor-chevron" aria-hidden="true">▼</span>
-                            </div>
-                            <div class="sensor-detalhe" id="detalhe-pc1" aria-hidden="true">
-                                <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text"></div>
-                                    <div class="sensor-campo"><label>Área</label><input class="input-local" type="text"></div>
-                                    <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
-                                </div>
-                                <div class="sensor-botoes item-acoes">
-                                    <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">Alterar Detalhes</button>
-                                    <button type="button" class="btn-remover" onclick="removerItem(this)">Remover</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="sensor-item">
-                            <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-pc2"
-                                 onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-                                <span class="sensor-nome">PST-02</span>
-                                <span class="sensor-local">Área A</span>
-                                <span class="sensor-chevron" aria-hidden="true">▼</span>
-                            </div>
-                            <div class="sensor-detalhe" id="detalhe-pc2" aria-hidden="true">
-                                <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text"></div>
-                                    <div class="sensor-campo"><label>Área</label><input class="input-local" type="text"></div>
-                                    <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
-                                </div>
-                                <div class="sensor-botoes item-acoes">
-                                    <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">Alterar Detalhes</button>
-                                    <button type="button" class="btn-remover" onclick="removerItem(this)">Remover</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="sensor-item">
-                            <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-pc3"
-                                 onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-                                <span class="sensor-nome">PST-03</span>
-                                <span class="sensor-local">Área B</span>
-                                <span class="sensor-chevron" aria-hidden="true">▼</span>
-                            </div>
-                            <div class="sensor-detalhe" id="detalhe-pc3" aria-hidden="true">
-                                <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text"></div>
-                                    <div class="sensor-campo"><label>Área</label><input class="input-local" type="text"></div>
-                                    <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
-                                </div>
-                                <div class="sensor-botoes item-acoes">
-                                    <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">Alterar Detalhes</button>
-                                    <button type="button" class="btn-remover" onclick="removerItem(this)">Remover</button>
-                                </div>
-                            </div>
-                        </li>
-
-                    </ul>
+                    <ul class="sensor-lista" role="list" aria-label="Lista de postos de carregamento"></ul>
                 </section>
 
                 <aside class="filtros-panel" aria-label="Filtros">
@@ -155,10 +93,7 @@
                             <span class="seta" aria-hidden="true">▼</span>
                         </button>
                     </div>
-                    <div class="filtros-lista" id="filtros-lista" role="group">
-                        <div class="filtro-opcao ativo" role="button" tabindex="0" aria-pressed="true" onclick="selecionarFiltro(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selecionarFiltro(this);}">Área A</div>
-                        <div class="filtro-opcao" role="button" tabindex="0" aria-pressed="false" onclick="selecionarFiltro(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selecionarFiltro(this);}">Área B</div>
-                    </div>
+                    <div class="filtros-lista" id="filtros-lista" role="group"></div>
                 </aside>
             </div>
         </main>
