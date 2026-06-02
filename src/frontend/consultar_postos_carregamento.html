@@ -181,6 +181,47 @@
             </div>
         </div>
 
+        <div id="modal-carregamento" class="modal-carregamento" aria-hidden="true">
+            <div class="modal-carregamento-caixa" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-carregamento">
+                <button type="button" class="fechar-modal-carregamento" onclick="fecharModalCarregamento()" aria-label="Fechar">&times;</button>
+
+                <div id="formulario-carregamento">
+                    <h2 id="titulo-modal-carregamento">Carregar posto</h2>
+                    <p class="detalhe-posto-carregamento">
+                        Posto <strong id="posto-carregamento-selecionado"></strong> -
+                        <span id="area-carregamento-selecionada"></span>
+                    </p>
+
+                    <label for="valor-kwh">Numero de kWh</label>
+                    <input type="number" id="valor-kwh" min="0.1" step="0.1" oninput="atualizarPrecoCarregamento()" />
+
+                    <div class="resumo-preco-carregamento">
+                        <span>Preco a pagar</span>
+                        <strong id="preco-carregamento">0,00 EUR</strong>
+                    </div>
+
+                    <p class="mensagem-carregamento" id="mensagem-carregamento"></p>
+
+                    <div class="acoes-modal-carregamento">
+                        <button type="button" onclick="fecharModalCarregamento()">Cancelar</button>
+                        <button type="button" class="btn-confirmar-pagamento" onclick="confirmarPagamentoCarregamento()">Confirmar pagamento</button>
+                    </div>
+                </div>
+
+                <div id="processamento-carregamento" hidden>
+                    <div class="spinner-carregamento" aria-hidden="true"></div>
+                    <p>A processar pagamento...</p>
+                </div>
+
+                <div id="sucesso-carregamento" hidden>
+                    <div class="icone-sucesso-carregamento">&check;</div>
+                    <h2>Carregamento efetuado</h2>
+                    <p id="mensagem-sucesso-carregamento"></p>
+                    <button type="button" class="btn-confirmar-pagamento" onclick="fecharModalCarregamento()">OK</button>
+                </div>
+            </div>
+        </div>
+
         <script src="consultar-postos-carregamento.js"></script>
         <script src="reservas.js"></script>
         <script src="navbar.js"></script>

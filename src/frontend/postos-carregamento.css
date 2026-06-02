@@ -2,7 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 8px;
+    gap: 12px;
+    padding: 8px 10px;
     border-radius: 8px;
     margin: 5px;
 }
@@ -18,10 +19,225 @@
     flex-shrink: 0;
 }
 
+.nome-posto {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    text-align: left;
+}
+
+.acoes-posto {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.btn-carregar {
+    width: auto;
+    min-width: 86px;
+    padding: 4px 10px;
+    border: 1px solid #1e4c5c;
+    border-radius: 8px;
+    background: #4c91a8;
+    color: #fff;
+    font-size: 13px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.btn-carregar:hover {
+    background: #2a92b5;
+}
+
+.btn-carregar:disabled,
+.btn-carregar.indisponivel-botao {
+    background: #d8d8d8;
+    border-color: #aaa;
+    color: #555;
+    cursor: not-allowed;
+}
+
 .disponivel {
     background: #28a745;
 }
 
 .indisponivel {
     background: #dc3545;
+}
+
+.modal-carregamento {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.modal-carregamento.aberto {
+    display: flex;
+}
+
+.modal-carregamento-caixa {
+    position: relative;
+    width: min(420px, 100%);
+    border-radius: 10px;
+    background: #fff;
+    color: #1e4c5c;
+    padding: 26px;
+    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.28);
+    text-align: left;
+}
+
+.modal-carregamento-caixa h2 {
+    margin: 0 0 12px;
+    color: #1e4c5c;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.detalhe-posto-carregamento {
+    margin: 0 0 16px;
+    color: #345f6e;
+}
+
+.modal-carregamento-caixa label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 15px;
+    color: #1e4c5c;
+}
+
+.modal-carregamento-caixa input {
+    width: 100%;
+    padding: 9px 10px;
+    border: 1px solid #9bb9c3;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.resumo-preco-carregamento {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin: 18px 0 8px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: #e8f6fb;
+}
+
+.resumo-preco-carregamento strong {
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+.mensagem-carregamento {
+    min-height: 24px;
+    margin: 4px 0 8px;
+    color: #b00020;
+}
+
+.acoes-modal-carregamento {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.acoes-modal-carregamento button,
+.btn-confirmar-pagamento {
+    width: auto;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid #1e4c5c;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.btn-confirmar-pagamento {
+    background: #4c91a8;
+    color: #fff;
+}
+
+.fechar-modal-carregamento {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #1e4c5c;
+    font-size: 28px;
+    line-height: 30px;
+}
+
+.fechar-modal-carregamento:hover {
+    background: #e8f6fb;
+}
+
+#processamento-carregamento,
+#sucesso-carregamento {
+    text-align: center;
+}
+
+.spinner-carregamento {
+    width: 58px;
+    height: 58px;
+    margin: 10px auto 18px;
+    border: 6px solid #d7eef6;
+    border-top-color: #2a92b5;
+    border-radius: 50%;
+    animation: rodar-carregamento 0.8s linear infinite;
+}
+
+.icone-sucesso-carregamento {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    margin-bottom: 12px;
+    border-radius: 50%;
+    background: #28a745;
+    color: #fff;
+    font-size: 32px;
+    line-height: 1;
+}
+
+@keyframes rodar-carregamento {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 520px) {
+    .lugar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .acoes-posto {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .btn-carregar {
+        flex: 1;
+    }
+
+    .acoes-modal-carregamento {
+        flex-direction: column;
+    }
+
+    .acoes-modal-carregamento button,
+    .btn-confirmar-pagamento {
+        width: 100%;
+    }
 }
