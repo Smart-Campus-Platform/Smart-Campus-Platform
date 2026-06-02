@@ -1,3 +1,5 @@
+var postoAbertoId = null;
+
 async function carregarPostos() {
     try {
         const resposta = await fetch("/api/postos-carregamento"); //vai buscar à API todos os postos que estão na BD
@@ -12,6 +14,7 @@ async function carregarPostos() {
         });
 
         carregarFiltros(postos);
+        restaurarPostoAberto();
     } catch (erro) {
         alert(erro.message);
     }
@@ -95,9 +98,10 @@ async function removerItem(botao) {
     }
 }
 
-async function alterarDisponibilidade(botao, novaDisponibilidade) {
-    var postoElemento = botao.closest(".sensor-item");
+async function alterarDisponibilidade(input) {
+    var postoElemento = input.closest(".sensor-item");
     var idPosto = postoElemento.dataset.idPosto;
+    var novaDisponibilidade = input.checked;
 
     try {
         const resposta = await fetch("/api/postos-carregamento/" + encodeURIComponent(idPosto) + "/disponibilidade", {
@@ -113,6 +117,7 @@ async function alterarDisponibilidade(botao, novaDisponibilidade) {
 
         carregarPostos();
     } catch (erro) {
+        input.checked = !novaDisponibilidade;
         alert(erro.message);
     }
 }
@@ -137,11 +142,10 @@ function criarElementoPosto(posto) {
     postoElemento.dataset.idPosto = posto.id_posto;//para guardar o id real da base de dados
     postoElemento.dataset.area = posto.area;
 
-    var disponivel = posto.disponibilidade === 1 || posto.disponibilidade === "1";
+    var disponivel = posto.disponibilidade === true || posto.disponibilidade === 1 || posto.disponibilidade === "1";
     var textoDisponibilidade = disponivel ? "Disponivel" : "Indisponivel";
-    var textoBotaoDisponibilidade = disponivel ? "Marcar como Indisponivel" : "Marcar como Disponivel";
-
     var idDetalhePosto = "detalhe-pc-" + posto.id_posto;//associar o botão à secção que abre e fecha.
+    var checkedDisponibilidade = disponivel ? " checked" : "";
 
     postoElemento.innerHTML =
         "<div class=\"sensor-row\" role=\"button\" tabindex=\"0\"" +
@@ -161,7 +165,14 @@ function criarElementoPosto(posto) {
         "    </div>" +
         "    <div class=\"sensor-botoes item-acoes\">" +
         "        <button type=\"button\" class=\"btn-configurar\" onclick=\"mostrarEdicao(this)\">Alterar Detalhes</button>" +
-        "        <button type=\"button\" class=\"btn-configurar\" onclick=\"alterarDisponibilidade(this, " + !disponivel + ")\">" + textoBotaoDisponibilidade + "</button>" +
+        "        <div class=\"sensor-estado-wrap\">" +
+        "            <span class=\"sensor-estado-label\">Disponibilidade</span>" +
+        "            <label class=\"toggle-switch\" aria-label=\"Alterar disponibilidade do posto\">" +
+        "                <input type=\"checkbox\" onchange=\"alterarDisponibilidade(this)\"" + checkedDisponibilidade + ">" +
+        "                <span class=\"toggle-track\"><span class=\"toggle-thumb\"></span></span>" +
+        "                <span class=\"toggle-text toggle-text-disponibilidade\"></span>" +
+        "            </label>" +
+        "        </div>" +
         "        <button type=\"button\" class=\"btn-remover\" onclick=\"removerItem(this)\">Remover</button>" +
         "    </div>" +
         "</div>";
@@ -225,7 +236,27 @@ function toggleItem(linhaPosto) {
         postoElemento.classList.add("aberto");
         linhaPosto.setAttribute("aria-expanded", "true");
         postoElemento.querySelector(".sensor-detalhe").setAttribute("aria-hidden", "false");
+        postoAbertoId = postoElemento.dataset.idPosto;
+    } else {
+        postoAbertoId = null;
     }
+}
+
+function restaurarPostoAberto() {
+    if (!postoAbertoId) {
+        return;
+    }
+
+    var postoElemento = document.querySelector(".sensor-item[data-id-posto=\"" + postoAbertoId + "\"]");
+
+    if (!postoElemento) {
+        postoAbertoId = null;
+        return;
+    }
+
+    postoElemento.classList.add("aberto");
+    postoElemento.querySelector(".sensor-row").setAttribute("aria-expanded", "true");
+    postoElemento.querySelector(".sensor-detalhe").setAttribute("aria-hidden", "false");
 }
 
 function toggleFiltros(botao) {

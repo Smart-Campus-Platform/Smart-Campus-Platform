@@ -65,7 +65,7 @@ function criarElementoArea(area, postos, indiceArea) {
 }
 
 function criarHtmlPosto(posto) {
-    const disponivel = posto.disponibilidade === 1 || posto.disponibilidade === "1";
+    const disponivel = posto.disponibilidade === true || posto.disponibilidade === 1 || posto.disponibilidade === "1";
     const classeDisponibilidade = disponivel ? "disponivel" : "indisponivel";
     const textoDisponibilidade = disponivel ? "Disponivel" : "Indisponivel";
     const idPosto = posto.id_posto;
@@ -168,7 +168,7 @@ async function confirmarPagamentoCarregamento() {
 
         mostrarEstadoModal("sucesso");
         document.getElementById("mensagem-sucesso-carregamento").textContent =
-            "Carregamento efetuado no posto " + carregamento.id_posto +
+            "Carregamento de " + carregamento.kwh + " kWh efetuado no posto " + carregamento.id_posto +
             " por " + formatarMoeda(Number(carregamento.preco_total)) + ".";
         temporizadorCarregamento = null;
     } catch (erro) {

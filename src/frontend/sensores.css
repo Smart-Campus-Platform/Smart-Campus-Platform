@@ -370,6 +370,14 @@ body.tema-rosa .sensor-ocup-valor {
 
 /* ===== Botões ===== */
 
+.toggle-switch input:checked ~ .toggle-text-disponibilidade::before {
+    content: "Disponivel";
+}
+
+.toggle-text-disponibilidade::before {
+    content: "Indisponivel";
+}
+
 .sensor-botoes {
     display: flex;
     gap: 12px;
