@@ -1,140 +1,178 @@
 async function carregarPostos() {
-    const resposta = await fetch("/api/postos-carregamento"); //vai buscar à API todos os postos que estão na BD
-    const postos = await resposta.json();
+    try {
+        const resposta = await fetch("/api/postos-carregamento"); //vai buscar à API todos os postos que estão na BD
+        await verificarResposta(resposta, "Erro ao carregar postos.");
+        const postos = await resposta.json();
 
-    const lista = document.querySelector(".sensor-lista");
-    lista.innerHTML = ""; //limpa a lista
+        const listaPostos = document.querySelector(".sensor-lista");
+        listaPostos.innerHTML = ""; //limpa a lista
 
-    postos.forEach(function(posto) {
-        lista.appendChild(criarElementoPosto(posto));
-    });
+        postos.forEach(function(posto) {
+            listaPostos.appendChild(criarElementoPosto(posto));
+        });
 
-    carregarFiltros(postos);
+        carregarFiltros(postos);
+    } catch (erro) {
+        alert(erro.message);
+    }
 }
 
 //Quando clicamento em adicionar posto e confirmamos chama esta função
 async function confirmarNovo() {
-    var codigo = document.getElementById("novo-codigo").value.trim();
+    var idPosto = document.getElementById("novo-codigo").value.trim();
     var area = document.getElementById("nova-area").value.trim();
 
-    if (!codigo || !area) {
+    if (!idPosto || !area) {
         alert("Por favor preencha todos os campos.");
         return;
     }
 
-    await fetch("/api/postos-carregamento", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            id_posto: codigo,
-            area: area
-        })
-    });
+    try {
+        const resposta = await fetch("/api/postos-carregamento", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id_posto: idPosto,
+                area: area
+            })
+        });
+        await verificarResposta(resposta, "Erro ao adicionar posto.");
 
-    fecharModal();
-    carregarPostos();//para fechar o modal
+        fecharModal();
+        carregarPostos();//para fechar o modal e mostrar de novo os postos
+    } catch (erro) {
+        alert(erro.message);
+    }
 }
 
-async function guardarAlteracoes(btn) {
-    var item = btn.closest(".sensor-item");
-    var idAtual = item.dataset.idPosto;
-    var detalhe = btn.closest(".sensor-detalhe");
+async function guardarAlteracoes(botao) {
+    var postoElemento = botao.closest(".sensor-item");//posto de carregamento a que pertence o botão selecionado
+    var idPostoAtual = postoElemento.dataset.idPosto;
 
-    var novoCodigo = detalhe.querySelector(".input-codigo").value.trim();
-    var novaArea = detalhe.querySelector(".input-local").value.trim();
+    var novoIdPosto = postoElemento.querySelector(".input-codigo").value.trim();
+    var novaArea = postoElemento.querySelector(".input-local").value.trim();
 
-    if (!novoCodigo || !novaArea) {
+    if (!novoIdPosto || !novaArea) {
         alert("Por favor preencha todos os campos.");
         return;
     }
 
-    await fetch("/api/postos-carregamento/" + encodeURIComponent(idAtual), {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            id_posto: novoCodigo,
-            area: novaArea
-        })
-    });
+    try {
+        const resposta = await fetch("/api/postos-carregamento/" + encodeURIComponent(idPostoAtual), {
+            //encodeURIComponent() serve para converter caracteres especiais para uma forma segura para URLs, tipo acentos e assim
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id_posto: novoIdPosto,
+                area: novaArea
+            })
+        });
+        await verificarResposta(resposta, "Erro ao guardar alterações.");
 
-    carregarPostos(); //chama sempre o carregarPostos para atualizar a lista
+        carregarPostos(); //chama sempre o carregarPostos para atualizar a lista
+    } catch (erro) {
+        alert(erro.message);
+    }
 }
 
-async function removerItem(btn) {
-    var item = btn.closest(".sensor-item");
-    var idPosto = item.dataset.idPosto;
+async function removerItem(botao) {
+    var postoElemento = botao.closest(".sensor-item");
+    var idPosto = postoElemento.dataset.idPosto;
 
-    await fetch("/api/postos-carregamento/" + encodeURIComponent(idPosto), {
-        method: "DELETE"
-    });
+    try {
+        const resposta = await fetch("/api/postos-carregamento/" + encodeURIComponent(idPosto), {
+            method: "DELETE"
+        });
+        await verificarResposta(resposta, "Erro ao remover posto.");
 
-    carregarPostos();
+        carregarPostos();
+    } catch (erro) {
+        alert(erro.message);
+    }
 }
 
-async function alterarDisponibilidade(btn, novaDisponibilidade) {
-    var item = btn.closest(".sensor-item");
-    var idPosto = item.dataset.idPosto;
+async function alterarDisponibilidade(botao, novaDisponibilidade) {
+    var postoElemento = botao.closest(".sensor-item");
+    var idPosto = postoElemento.dataset.idPosto;
 
-    await fetch("/api/postos-carregamento/" + encodeURIComponent(idPosto) + "/disponibilidade", {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            disponibilidade: novaDisponibilidade
-        })
-    });
+    try {
+        const resposta = await fetch("/api/postos-carregamento/" + encodeURIComponent(idPosto) + "/disponibilidade", {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                disponibilidade: novaDisponibilidade
+            })
+        });
+        await verificarResposta(resposta, "Erro ao alterar disponibilidade.");
 
-    carregarPostos();
+        carregarPostos();
+    } catch (erro) {
+        alert(erro.message);
+    }
+}
+
+async function verificarResposta(resposta, mensagemPadrao) {
+    if (resposta.ok) {
+        return;
+    }
+
+    try {
+        const dados = await resposta.json();
+        throw new Error(dados.erro || mensagemPadrao);
+    } catch (erro) {
+        throw new Error(erro.message || mensagemPadrao);
+    }
 }
 
 //por cada posto recebido vamos criar um <li>
 function criarElementoPosto(posto) {
-    var li = document.createElement("li");
-    li.className = "sensor-item";
-    li.dataset.idPosto = posto.id_posto;//para guardar o id real da base de dados
-    li.dataset.area = posto.area;
+    var postoElemento = document.createElement("li");
+    postoElemento.className = "sensor-item";
+    postoElemento.dataset.idPosto = posto.id_posto;//para guardar o id real da base de dados
+    postoElemento.dataset.area = posto.area;
 
     var disponivel = posto.disponibilidade === 1 || posto.disponibilidade === "1";
     var textoDisponibilidade = disponivel ? "Disponivel" : "Indisponivel";
     var textoBotaoDisponibilidade = disponivel ? "Marcar como Indisponivel" : "Marcar como Disponivel";
 
-    var detalheId = "detalhe-pc-" + posto.id_posto;//associar o botão à secção que abre e fecha.
+    var idDetalhePosto = "detalhe-pc-" + posto.id_posto;//associar o botão à secção que abre e fecha.
 
-    li.innerHTML =
-        '<div class="sensor-row" role="button" tabindex="0"' +
-        ' aria-expanded="false" aria-controls="' + detalheId + '"' +
-        ' onclick="toggleItem(this)"' +
-        ' onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();toggleItem(this);}">' +
-        '    <span class="sensor-nome">' + posto.id_posto + '</span>' +
-        '    <span class="sensor-local">' + posto.area + '</span>' +
-        '    <span class="sensor-disponibilidade">' + textoDisponibilidade + '</span>' +
-        '    <span class="sensor-chevron" aria-hidden="true">▼</span>' +
-        '</div>' +
-        '<div class="sensor-detalhe" id="' + detalheId + '" aria-hidden="true">' +
-        '    <div class="edicao-campos" style="display:none">' +
-        '        <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text"></div>' +
-        '        <div class="sensor-campo"><label>Área</label><input class="input-local" type="text"></div>' +
-        '        <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>' +
-        '    </div>' +
-        '    <div class="sensor-botoes item-acoes">' +
-        '        <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">Alterar Detalhes</button>' +
-        '        <button type="button" class="btn-configurar" onclick="alterarDisponibilidade(this, ' + !disponivel + ')">' + textoBotaoDisponibilidade + '</button>' +
-        '        <button type="button" class="btn-remover" onclick="removerItem(this)">Remover</button>' +
-        '    </div>' +
-        '</div>';
+    postoElemento.innerHTML =
+        "<div class=\"sensor-row\" role=\"button\" tabindex=\"0\"" +
+        " aria-expanded=\"false\" aria-controls=\"" + idDetalhePosto + "\"" +
+        " onclick=\"toggleItem(this)\"" +
+        " onkeydown=\"if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;){event.preventDefault();toggleItem(this);}\">" +
+        "    <span class=\"sensor-nome\">" + posto.id_posto + "</span>" +
+        "    <span class=\"sensor-local\">" + posto.area + "</span>" +
+        "    <span class=\"sensor-disponibilidade\">" + textoDisponibilidade + "</span>" +
+        "    <span class=\"sensor-chevron\" aria-hidden=\"true\">▼</span>" +
+        "</div>" +
+        "<div class=\"sensor-detalhe\" id=\"" + idDetalhePosto + "\" aria-hidden=\"true\">" +
+        "    <div class=\"edicao-campos\" style=\"display:none\">" +
+        "        <div class=\"sensor-campo\"><label>Código</label><input class=\"input-codigo\" type=\"text\"></div>" +
+        "        <div class=\"sensor-campo\"><label>Área</label><input class=\"input-local\" type=\"text\"></div>" +
+        "        <div class=\"sensor-botoes\"><button type=\"button\" class=\"btn-configurar\" onclick=\"guardarAlteracoes(this)\">Guardar</button></div>" +
+        "    </div>" +
+        "    <div class=\"sensor-botoes item-acoes\">" +
+        "        <button type=\"button\" class=\"btn-configurar\" onclick=\"mostrarEdicao(this)\">Alterar Detalhes</button>" +
+        "        <button type=\"button\" class=\"btn-configurar\" onclick=\"alterarDisponibilidade(this, " + !disponivel + ")\">" + textoBotaoDisponibilidade + "</button>" +
+        "        <button type=\"button\" class=\"btn-remover\" onclick=\"removerItem(this)\">Remover</button>" +
+        "    </div>" +
+        "</div>";
 
-    return li;
+    return postoElemento;
 }
 
 //vai tirar areas repetidas e garantir que mostra cada área uma vez
 function carregarFiltros(postos) {
-    var filtros = document.getElementById("filtros-lista");
-    filtros.innerHTML = "";
+    var listaFiltros = document.getElementById("filtros-lista");
+    listaFiltros.innerHTML = "";
 
     var filtroTodos = document.createElement("div");
     filtroTodos.className = "filtro-opcao ativo";
@@ -146,82 +184,82 @@ function carregarFiltros(postos) {
     filtroTodos.onclick = function() {
         selecionarFiltro(filtroTodos);
     };
-    filtros.appendChild(filtroTodos);
+    listaFiltros.appendChild(filtroTodos);
 
     var areas = [...new Set(postos.map(function(posto) { return posto.area; }))];
 
     areas.forEach(function(area) {
-        var div = document.createElement("div");
-        div.className = "filtro-opcao";
-        div.setAttribute("role", "button");
-        div.setAttribute("tabindex", "0");
-        div.setAttribute("aria-pressed", "false");
-        div.dataset.area = area;
-        div.textContent = area;
-        div.onclick = function() {
-            selecionarFiltro(div);
+        var filtroArea = document.createElement("div");
+        filtroArea.className = "filtro-opcao";
+        filtroArea.setAttribute("role", "button");
+        filtroArea.setAttribute("tabindex", "0");
+        filtroArea.setAttribute("aria-pressed", "false");
+        filtroArea.dataset.area = area;
+        filtroArea.textContent = area;
+        filtroArea.onclick = function() {
+            selecionarFiltro(filtroArea);
         };
 
-        filtros.appendChild(div);
+        listaFiltros.appendChild(filtroArea);
     });
 }
 
 function filtrarPostosPorArea(area) {
-    document.querySelectorAll(".sensor-item").forEach(function(item) {
-        var mostrar = !area || item.dataset.area === area;
-        item.style.display = mostrar ? "" : "none";
+    document.querySelectorAll(".sensor-item").forEach(function(postoElemento) {
+        var mostrarPosto = !area || postoElemento.dataset.area === area;
+        postoElemento.style.display = mostrarPosto ? "" : "none";
     });
 }
 
-function toggleItem(row) {
-    var item = row.closest('.sensor-item');
-    var wasAberto = item.classList.contains('aberto');
-    document.querySelectorAll('.sensor-item.aberto').forEach(function(other) {
-        other.classList.remove('aberto');
-        other.querySelector('.sensor-row').setAttribute('aria-expanded', 'false');
-        other.querySelector('.sensor-detalhe').setAttribute('aria-hidden', 'true');
-        other.querySelector('.edicao-campos').style.display = 'none';
-        other.querySelector('.item-acoes').style.display = '';
+function toggleItem(linhaPosto) {
+    var postoElemento = linhaPosto.closest(".sensor-item");
+    var estavaAberto = postoElemento.classList.contains("aberto");
+    document.querySelectorAll(".sensor-item.aberto").forEach(function(outroPosto) {
+        outroPosto.classList.remove("aberto");
+        outroPosto.querySelector(".sensor-row").setAttribute("aria-expanded", "false");
+        outroPosto.querySelector(".sensor-detalhe").setAttribute("aria-hidden", "true");
+        outroPosto.querySelector(".edicao-campos").style.display = "none";
+        outroPosto.querySelector(".item-acoes").style.display = "";
     });
-    if (!wasAberto) {
-        item.classList.add('aberto');
-        row.setAttribute('aria-expanded', 'true');
-        item.querySelector('.sensor-detalhe').setAttribute('aria-hidden', 'false');
+    if (!estavaAberto) {
+        postoElemento.classList.add("aberto");
+        linhaPosto.setAttribute("aria-expanded", "true");
+        postoElemento.querySelector(".sensor-detalhe").setAttribute("aria-hidden", "false");
     }
 }
 
-function toggleFiltros(btn) {
-    var lista = document.getElementById('filtros-lista');
-    var isAberto = lista.classList.toggle('aberto');
-    btn.setAttribute('aria-expanded', isAberto ? 'true' : 'false');
-    btn.setAttribute('aria-label', isAberto ? 'Esconder filtros' : 'Mostrar filtros');
+function toggleFiltros(botao) {
+    var listaFiltros = document.getElementById("filtros-lista");
+    var filtrosAbertos = listaFiltros.classList.toggle("aberto");
+    botao.setAttribute("aria-expanded", filtrosAbertos ? "true" : "false");
+    botao.setAttribute("aria-label", filtrosAbertos ? "Esconder filtros" : "Mostrar filtros");
 }
 
-function selecionarFiltro(el) {
-    document.querySelectorAll('.filtro-opcao').forEach(function(item) {
-        item.classList.remove('ativo');
-        item.setAttribute('aria-pressed', 'false');
+function selecionarFiltro(filtroSelecionado) {
+    document.querySelectorAll(".filtro-opcao").forEach(function(filtro) {
+        filtro.classList.remove("ativo");
+        filtro.setAttribute("aria-pressed", "false");
     });
-    el.classList.add('ativo');
-    el.setAttribute('aria-pressed', 'true');
+    filtroSelecionado.classList.add("ativo");
+    filtroSelecionado.setAttribute("aria-pressed", "true");
 
-    filtrarPostosPorArea(el.dataset.area);
+    filtrarPostosPorArea(filtroSelecionado.dataset.area);
 }
 
-function mostrarEdicao(btn) {
-    var detalhe = btn.closest('.sensor-detalhe');
-    var row = btn.closest('.sensor-item').querySelector('.sensor-row');
-    detalhe.querySelector('.input-codigo').value = row.querySelector('.sensor-nome').textContent.trim();
-    detalhe.querySelector('.input-local').value = row.querySelector('.sensor-local').textContent.trim();
-    detalhe.querySelector('.edicao-campos').style.display = '';
-    detalhe.querySelector('.item-acoes').style.display = 'none';
+function mostrarEdicao(botao) {
+    var detalhePosto = botao.closest(".sensor-detalhe");
+    var linhaPosto = botao.closest(".sensor-item").querySelector(".sensor-row");
+    detalhePosto.querySelector(".input-codigo").value = linhaPosto.querySelector(".sensor-nome").textContent.trim();
+    detalhePosto.querySelector(".input-local").value = linhaPosto.querySelector(".sensor-local").textContent.trim();
+    detalhePosto.querySelector(".edicao-campos").style.display = "";
+    detalhePosto.querySelector(".item-acoes").style.display = "none";
 }
 
 function abrirModal() {
-    document.getElementById('novo-codigo').value = '';
-    document.getElementById('nova-area').value = '';
-    document.getElementById('modal-overlay').classList.add('aberto');
-    document.getElementById('novo-codigo').focus();
+    document.getElementById("novo-codigo").value = "";
+    document.getElementById("nova-area").value = "";
+    document.getElementById("modal-overlay").classList.add("aberto");
+    document.getElementById("novo-codigo").focus();
 }
 
 function fecharModal() {
@@ -232,11 +270,11 @@ function fecharModal() {
 document.addEventListener("DOMContentLoaded", function() {
     carregarPostos();
     //também abre e fecha um modal
-    document.getElementById("modal-overlay").addEventListener("click", function(e) {
-        if (e.target === this) fecharModal();
+    document.getElementById("modal-overlay").addEventListener("click", function(evento) {
+        if (evento.target === this) fecharModal();
     });
 });
 
-document.addEventListener("keydown", function(e) {
-    if (e.key === "Escape") fecharModal();
+document.addEventListener("keydown", function(evento) {
+    if (evento.key === "Escape") fecharModal();
 });

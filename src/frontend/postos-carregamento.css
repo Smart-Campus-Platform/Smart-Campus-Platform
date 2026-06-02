@@ -1,0 +1,27 @@
+.lugar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 8px;
+    border-radius: 8px;
+    margin: 5px;
+}
+
+.lugar:hover {
+    background: #dff3fa;
+}
+
+.indicador {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.disponivel {
+    background: #28a745;
+}
+
+.indisponivel {
+    background: #dc3545;
+}
