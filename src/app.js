@@ -11,6 +11,8 @@ const frontendPath = path.join(__dirname, 'frontend');
 app.use(express.json());
 app.use(express.static(frontendPath));
 
+const postoCarregamentoRoutes = require("./routes/postoCarregamentoRoutes");
+
 const utilizadorTeste = {
     email: "teste@upt.pt"
 };
@@ -240,6 +242,8 @@ app.post('/api/lss', async (req, res) => { //é para aqui que são enviados os c
     }
 
 });
+
+app.use("/api", postoCarregamentoRoutes);
 
 
 app.listen(PORT, () => {
