@@ -7,82 +7,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="gerir-relatorios.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <style>
-        .rel-main { width: 90%; max-width: 1100px; margin: 40px auto; }
-        .rel-titulo { color: #1e4c5c; font-size: 32px; font-weight: 300; margin-bottom: 6px; }
-        .rel-subtitulo { color: #4a7a8a; font-size: 13px; margin-bottom: 32px; }
-
-        /* cards resumo */
-        .resumo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 36px; }
-        .resumo-card { background: white; border-radius: 12px; padding: 20px 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column; gap: 6px; }
-        .resumo-card .rc-valor { font-size: 30px; font-weight: 700; color: #1e4c5c; line-height: 1.1; }
-        .resumo-card .rc-label { font-size: 12px; color: #6a9aaa; text-transform: uppercase; letter-spacing: 0.5px; }
-        .resumo-card .rc-icone { font-size: 20px; color: #2aa8d2; margin-bottom: 4px; }
-        .resumo-card.alerta { border-left: 4px solid #e05252; }
-        .resumo-card.ok     { border-left: 4px solid #28a745; }
-        .resumo-card.info   { border-left: 4px solid #2aa8d2; }
-
-        /* secções */
-        .secao-rel { background: white; border-radius: 12px; padding: 24px 28px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); margin-bottom: 24px; }
-        .secao-rel h2 { font-size: 18px; font-weight: 600; color: #1e4c5c; margin: 0 0 18px 0; display: flex; align-items: center; gap: 10px; }
-        .secao-rel h2 i { color: #2aa8d2; }
-
-        /* tabelas */
-        .tabela-rel { width: 100%; border-collapse: collapse; font-size: 14px; }
-        .tabela-rel thead th { background: #f0f8fb; color: #1e4c5c; font-weight: 600; padding: 10px 14px; border-bottom: 2px solid #d0e8f0; text-align: left; }
-        .tabela-rel tbody td { padding: 9px 14px; border-bottom: 1px solid #eef4f7; color: #334; }
-        .tabela-rel tbody tr:last-child td { border-bottom: none; }
-        .tabela-rel tbody tr:hover { background: #f7fbfd; }
-
-        .badge-alerta  { background: #f8d7da; color: #721c24; border-radius: 12px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
-        .badge-normal  { background: #d4edda; color: #155724; border-radius: 12px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
-        .badge-atencao { background: #fff3cd; color: #856404; border-radius: 12px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
-        .badge-inativo { background: #e2e3e5; color: #383d41; border-radius: 12px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
-
-        /* botão gerar */
-        .wrap-relatorio { display: flex; justify-content: flex-end; margin-top: 20px; margin-bottom: 50px; }
-        .btn-relatorio { background: #2aa8d2; color: white; border: none; border-radius: 10px; padding: 13px 34px; font-size: 16px; cursor: pointer; display: flex; align-items: center; gap: 10px; box-shadow: 0 3px 10px rgba(42,168,210,0.35); transition: background 0.2s; }
-        .btn-relatorio:hover { background: #1e8ab0; }
-
-        /* modal */
-        .modal-rel-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 1000; align-items: center; justify-content: center; }
-        .modal-rel-overlay.aberto { display: flex; }
-        .modal-rel-caixa { background: white; border-radius: 14px; padding: 32px 36px; width: 520px; max-width: 95%; box-shadow: 0 8px 32px rgba(0,0,0,0.18); }
-        .modal-rel-caixa h3 { color: #1e4c5c; font-size: 20px; margin: 0 0 22px 0; }
-        .modal-campo-rel { margin-bottom: 18px; }
-        .modal-campo-rel label { display: block; font-size: 13px; font-weight: 600; color: #1e4c5c; margin-bottom: 6px; }
-        .modal-campo-rel input[type="text"] { width: 100%; border: 1px solid #c5dce6; border-radius: 8px; padding: 10px 12px; font-size: 14px; color: #334; outline: none; }
-        .modal-campo-rel input[type="text"]:focus { border-color: #2aa8d2; box-shadow: 0 0 0 2px rgba(42,168,210,0.15); }
-        .check-lista { display: flex; flex-direction: column; gap: 10px; }
-        .check-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #334; cursor: pointer; }
-        .check-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: #2aa8d2; cursor: pointer; flex-shrink: 0; }
-        .modal-rel-botoes { display: flex; justify-content: flex-end; gap: 12px; margin-top: 26px; }
-        .btn-cancelar-rel { background: #e8f4f8; color: #1e4c5c; border: none; border-radius: 8px; padding: 10px 22px; font-size: 14px; cursor: pointer; }
-        .btn-cancelar-rel:hover { background: #d0e8f0; }
-        .btn-confirmar-rel { background: #2aa8d2; color: white; border: none; border-radius: 8px; padding: 10px 22px; font-size: 14px; cursor: pointer; }
-        .btn-confirmar-rel:hover { background: #1e8ab0; }
-
-        /* secções PDF (ocultas por defeito, surgem apenas durante a impressão) */
-        .secao-pdf { display: none; }
-
-        /* cabeçalho visível só na impressão */
-        .print-header { display: none; }
-
-        @media print {
-            .barracima, #botao-acessibilidade, #painel-acessibilidade,
-            .wrap-relatorio, .footer, .modal-rel-overlay { display: none !important; }
-            .pagina { background: white !important; }
-            body { background: white; }
-            .secao-rel { box-shadow: none; border: 1px solid #ccc; }
-            .rel-main { width: 100%; max-width: 100%; margin: 20px; }
-            .print-header { display: block; margin-bottom: 20px; }
-            .print-header h1 { font-size: 22px; color: #1e4c5c; margin: 0 0 4px 0; }
-            .print-header p { font-size: 12px; color: #6a9aaa; margin: 0; }
-            .resumo-card { box-shadow: none; border: 1px solid #ccc; }
-        }
-    </style>
 </head>
 <body>
     <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
@@ -147,7 +74,6 @@
 
         <main class="content rel-main" aria-label="Relatórios estatísticos">
 
-            <!-- cabeçalho visível só na impressão -->
             <div class="print-header">
                 <h1 id="titulo-print">Relatório</h1>
                 <p id="data-print"></p>
@@ -156,47 +82,44 @@
             <h1 class="rel-titulo">Relatórios Estatísticos</h1>
             <p class="rel-subtitulo" id="rel-timestamp">Última atualização: —</p>
 
-            <!-- resumo -->
             <div class="resumo-grid" id="secao-resumo" aria-label="Resumo estatístico">
                 <div class="resumo-card info">
                     <span class="rc-icone"><i class="fa-solid fa-bolt"></i></span>
-                    <span class="rc-valor">1 247 kWh</span>
+                    <span class="rc-valor" id="rc-consumo-total">—</span>
                     <span class="rc-label">Consumo Total (30 dias)</span>
                 </div>
                 <div class="resumo-card info">
                     <span class="rc-icone"><i class="fa-solid fa-chart-line"></i></span>
-                    <span class="rc-valor">41,6 kWh</span>
+                    <span class="rc-valor" id="rc-media-diaria">—</span>
                     <span class="rc-label">Média Diária</span>
                 </div>
                 <div class="resumo-card alerta">
                     <span class="rc-icone"><i class="fa-solid fa-triangle-exclamation"></i></span>
-                    <span class="rc-valor">7</span>
+                    <span class="rc-valor" id="rc-alertas">—</span>
                     <span class="rc-label">Alertas (30 dias)</span>
                 </div>
             </div>
 
-            <!-- top 10 consumo -->
             <section class="secao-rel" id="secao-consumo" aria-labelledby="titulo-consumo">
                 <h2 id="titulo-consumo">
                     <i class="fa-solid fa-bolt"></i>
-                    Top 10 Consumo — Últimos 30 Dias
+                    Top 10 Sensores de Maior Consumo — Últimos 30 Dias
                 </h2>
-                <table class="tabela-rel" aria-label="Top 10 dias de maior consumo energético">
+                <table class="tabela-rel" aria-label="Top 10 sensores de maior consumo energético">
                     <thead>
                         <tr>
                             <th>Pos.</th>
-                            <th>Data</th>
-                            <th>Consumo (kWh)</th>
+                            <th>Sensor</th>
+                            <th>Local</th>
+                            <th>Consumo Médio</th>
                             <th>Estado</th>
                         </tr>
                     </thead>
                     <tbody id="tabela-consumo-body">
-                        <!-- preenchido por JS -->
                     </tbody>
                 </table>
             </section>
 
-            <!-- alertas -->
             <section class="secao-rel" id="secao-alertas" aria-labelledby="titulo-alertas">
                 <h2 id="titulo-alertas">
                     <i class="fa-solid fa-triangle-exclamation"></i>
@@ -213,68 +136,12 @@
                             <th>Estado</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>27/05/2026</td>
-                            <td>Sensor 5 — Sala 203</td>
-                            <td>Temperatura</td>
-                            <td>28,7 °C</td>
-                            <td>26 °C</td>
-                            <td><span class="badge-alerta">Alerta</span></td>
-                        </tr>
-                        <tr>
-                            <td>25/05/2026</td>
-                            <td>Sensor 1 — Sala 101</td>
-                            <td>Temperatura</td>
-                            <td>27,1 °C</td>
-                            <td>26 °C</td>
-                            <td><span class="badge-atencao">Atenção</span></td>
-                        </tr>
-                        <tr>
-                            <td>22/05/2026</td>
-                            <td>Sensor 4 — Corredor A</td>
-                            <td>Consumo Energético</td>
-                            <td>9,8 kW</td>
-                            <td>10 kW</td>
-                            <td><span class="badge-atencao">Atenção</span></td>
-                        </tr>
-                        <tr>
-                            <td>20/05/2026</td>
-                            <td>Sensor 5 — Sala 203</td>
-                            <td>Temperatura</td>
-                            <td>29,2 °C</td>
-                            <td>26 °C</td>
-                            <td><span class="badge-alerta">Alerta</span></td>
-                        </tr>
-                        <tr>
-                            <td>17/05/2026</td>
-                            <td>Sensor 2 — Sala 102</td>
-                            <td>Qualidade do Ar</td>
-                            <td>138 AQI</td>
-                            <td>150 AQI</td>
-                            <td><span class="badge-atencao">Atenção</span></td>
-                        </tr>
-                        <tr>
-                            <td>14/05/2026</td>
-                            <td>Sensor 3 — Lab 201</td>
-                            <td>Ocupação</td>
-                            <td>30 / 30</td>
-                            <td>30</td>
-                            <td><span class="badge-atencao">Atenção</span></td>
-                        </tr>
-                        <tr>
-                            <td>10/05/2026</td>
-                            <td>Sensor 5 — Sala 203</td>
-                            <td>Temperatura</td>
-                            <td>30,0 °C</td>
-                            <td>26 °C</td>
-                            <td><span class="badge-alerta">Alerta</span></td>
-                        </tr>
+                    <tbody id="tabela-alertas-body">
+                        <tr><td colspan="6" style="color:#666;padding:16px;">Sem alertas registados.</td></tr>
                     </tbody>
                 </table>
             </section>
 
-            <!-- qualidade do ar — média (sempre visível) -->
             <section class="secao-rel" id="secao-qualidade-ar-media" aria-labelledby="titulo-qar-media">
                 <h2 id="titulo-qar-media">
                     <i class="fa-solid fa-wind"></i>
@@ -289,36 +156,12 @@
                             <th>Estado</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Sala 102</td>
-                            <td>N/D</td>
-                            <td>—</td>
-                            <td><span class="badge-inativo">Inativo</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sala 104</td>
-                            <td>62 AQI</td>
-                            <td>Estável</td>
-                            <td><span class="badge-normal">Normal</span></td>
-                        </tr>
-                        <tr>
-                            <td>Lab 201</td>
-                            <td>78 AQI</td>
-                            <td>↑ Subindo</td>
-                            <td><span class="badge-atencao">Atenção</span></td>
-                        </tr>
-                        <tr>
-                            <td>Corredor A</td>
-                            <td>45 AQI</td>
-                            <td>Estável</td>
-                            <td><span class="badge-normal">Normal</span></td>
-                        </tr>
+                    <tbody id="tabela-qar-media-body">
+                        <tr><td colspan="4" style="color:#666;padding:16px;">Sem dados disponíveis.</td></tr>
                     </tbody>
                 </table>
             </section>
 
-            <!-- botão gerar relatório -->
             <div class="wrap-relatorio">
                 <button class="btn-relatorio" onclick="abrirModalRelatorio()" aria-label="Gerar relatório PDF">
                     <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
@@ -326,9 +169,6 @@
                 </button>
             </div>
 
-            <!-- ═══ SECÇÕES PDF (ocultas no ecrã, surgem no PDF conforme seleção) ═══ -->
-
-            <!-- média de todos os sensores -->
             <section class="secao-rel secao-pdf" id="secao-media-sensores" aria-labelledby="titulo-pdf-media">
                 <h2 id="titulo-pdf-media">
                     <i class="fa-solid fa-satellite-dish"></i>
@@ -338,19 +178,12 @@
                     <thead>
                         <tr><th>Sensor</th><th>Tipo</th><th>Local</th><th>Média</th><th>Unidade</th><th>Estado</th></tr>
                     </thead>
-                    <tbody>
-                        <tr><td>Sensor 1</td><td>Temperatura</td><td>Sala 101</td><td>21,8</td><td>°C</td><td><span class="badge-normal">Normal</span></td></tr>
-                        <tr><td>Sensor 5</td><td>Temperatura</td><td>Sala 203</td><td>25,9</td><td>°C</td><td><span class="badge-atencao">Atenção</span></td></tr>
-                        <tr><td>Sensor 2</td><td>Qualidade do Ar</td><td>Sala 102</td><td>N/D</td><td>AQI</td><td><span class="badge-inativo">Inativo</span></td></tr>
-                        <tr><td>Sensor 3</td><td>Ocupação</td><td>Lab 201</td><td>16 / 30</td><td>pessoas</td><td><span class="badge-normal">Normal</span></td></tr>
-                        <tr><td>Sensor 4</td><td>Cons. Energético</td><td>Corredor A</td><td>3,8</td><td>kW</td><td><span class="badge-normal">Normal</span></td></tr>
-                        <tr><td>Sensor 6</td><td>Cons. Energético</td><td>Lab 301</td><td>6,2</td><td>kW</td><td><span class="badge-atencao">Atenção</span></td></tr>
-                        <tr><td>Sensor 7</td><td>Cons. Energético</td><td>Corredor B</td><td>2,5</td><td>kW</td><td><span class="badge-normal">Normal</span></td></tr>
+                    <tbody id="tabela-media-sensores-body">
+                        <tr><td colspan="6" style="color:#666;padding:16px;">Sem dados disponíveis.</td></tr>
                     </tbody>
                 </table>
             </section>
 
-            <!-- ocupação média diária por sala -->
             <section class="secao-rel secao-pdf" id="secao-ocupacao-media" aria-labelledby="titulo-pdf-ocup">
                 <h2 id="titulo-pdf-ocup">
                     <i class="fa-solid fa-users"></i>
@@ -360,17 +193,12 @@
                     <thead>
                         <tr><th>Sala / Lab</th><th>Capacidade</th><th>Ocupação Média</th><th>Taxa de Utilização</th></tr>
                     </thead>
-                    <tbody>
-                        <tr><td>Sala 101</td><td>30</td><td>18 pessoas</td><td>60%</td></tr>
-                        <tr><td>Sala 203</td><td>25</td><td>20 pessoas</td><td>80%</td></tr>
-                        <tr><td>Sala 102</td><td>20</td><td>14 pessoas</td><td>70%</td></tr>
-                        <tr><td>Lab 201</td><td>30</td><td>16 pessoas</td><td>53%</td></tr>
-                        <tr><td>Lab 301</td><td>25</td><td>19 pessoas</td><td>76%</td></tr>
+                    <tbody id="tabela-ocupacao-media-body">
+                        <tr><td colspan="4" style="color:#666;padding:16px;">Sem dados disponíveis.</td></tr>
                     </tbody>
                 </table>
             </section>
 
-            <!-- picos de ocupação -->
             <section class="secao-rel secao-pdf" id="secao-picos-ocupacao" aria-labelledby="titulo-pdf-picos">
                 <h2 id="titulo-pdf-picos">
                     <i class="fa-solid fa-arrow-trend-up"></i>
@@ -380,16 +208,12 @@
                     <thead>
                         <tr><th>Sala / Lab</th><th>Capacidade</th><th>Pico de Ocupação</th><th>Horário</th><th>Data</th></tr>
                     </thead>
-                    <tbody>
-                        <tr><td>Sala 203</td><td>25</td><td>25 pessoas (100%)</td><td>10:00 – 12:00</td><td>20/05/2026</td></tr>
-                        <tr><td>Lab 301</td><td>25</td><td>24 pessoas (96%)</td><td>14:00 – 16:00</td><td>23/05/2026</td></tr>
-                        <tr><td>Lab 201</td><td>30</td><td>29 pessoas (97%)</td><td>09:00 – 11:00</td><td>15/05/2026</td></tr>
-                        <tr><td>Sala 101</td><td>30</td><td>27 pessoas (90%)</td><td>11:00 – 13:00</td><td>18/05/2026</td></tr>
+                    <tbody id="tabela-picos-body">
+                        <tr><td colspan="5" style="color:#666;padding:16px;">Sem dados disponíveis.</td></tr>
                     </tbody>
                 </table>
             </section>
 
-            <!-- parques de estacionamento -->
             <section class="secao-rel secao-pdf" id="secao-parques" aria-labelledby="titulo-pdf-parques">
                 <h2 id="titulo-pdf-parques">
                     <i class="fa-solid fa-square-parking"></i>
@@ -399,14 +223,12 @@
                     <thead>
                         <tr><th>Parque</th><th>Lugares</th><th>Pico de Ocupação</th><th>Média de Ocupação</th><th>Horário de Pico</th></tr>
                     </thead>
-                    <tbody>
-                        <tr><td>Parque A</td><td>50</td><td>48 (96%)</td><td>32 (64%)</td><td>08:30 – 09:30</td></tr>
-                        <tr><td>Parque B</td><td>30</td><td>30 (100%)</td><td>22 (73%)</td><td>09:00 – 10:00</td></tr>
+                    <tbody id="tabela-parques-body">
+                        <tr><td colspan="5" style="color:#666;padding:16px;">Sem dados disponíveis.</td></tr>
                     </tbody>
                 </table>
             </section>
 
-            <!-- qualidade do ar nos últimos 30 dias -->
             <section class="secao-rel secao-pdf" id="secao-qualidade-ar-30" aria-labelledby="titulo-pdf-qar30">
                 <h2 id="titulo-pdf-qar30">
                     <i class="fa-solid fa-wind"></i>
@@ -417,7 +239,6 @@
                         <tr><th>Data</th><th>Local</th><th>AQI</th><th>Estado</th></tr>
                     </thead>
                     <tbody id="tabela-qar-body">
-                        <!-- preenchido por JS -->
                     </tbody>
                 </table>
             </section>
@@ -430,7 +251,6 @@
         </footer>
     </div>
 
-    <!-- modal gerar relatório -->
     <div id="modal-relatorio" class="modal-rel-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-rel-titulo">
         <div class="modal-rel-caixa">
             <h3 id="modal-rel-titulo">Gerar Relatório</h3>
@@ -491,126 +311,8 @@
         </div></div>
     </div>
 
-    <script>
-        document.getElementById('rel-timestamp').textContent =
-            'Última atualização: ' + new Date().toLocaleString('pt-PT');
-
-        // top 10 consumo (ordenado por valor, decrescente)
-        (function() {
-            var dados = [
-                41.2, 38.9, 43.5, 40.1, 44.8, 37.6, 42.3,
-                45.1, 39.4, 41.8, 43.0, 38.2, 40.7, 42.9,
-                37.3, 44.6, 41.5, 39.8, 43.2, 40.4, 38.7,
-                42.1, 45.3, 39.0, 41.9, 43.7, 38.5, 40.2,
-                42.6, 44.1
-            ];
-            var hoje = new Date();
-            var entradas = dados.map(function(v, i) {
-                var d = new Date(hoje);
-                d.setDate(hoje.getDate() - (29 - i));
-                return { consumo: v, data: d };
-            });
-            entradas.sort(function(a, b) { return b.consumo - a.consumo; });
-            var top10 = entradas.slice(0, 10);
-
-            var tbody = document.getElementById('tabela-consumo-body');
-            var linhas = '';
-            top10.forEach(function(e, idx) {
-                var estado = e.consumo > 43
-                    ? '<span class="badge-atencao">Atenção</span>'
-                    : '<span class="badge-normal">Normal</span>';
-                linhas += '<tr><td>' + (idx + 1) + 'º</td><td>'
-                    + e.data.toLocaleDateString('pt-PT') + '</td><td>'
-                    + e.consumo.toFixed(1) + ' kWh</td><td>' + estado + '</td></tr>';
-            });
-            tbody.innerHTML = linhas;
-        })();
-
-        // qualidade do ar 30 dias (dados simulados para PDF)
-        (function() {
-            var locais = ['Sala 102', 'Sala 104', 'Lab 201', 'Corredor A'];
-            var aqiBase = [null, 62, 78, 45];
-            var hoje = new Date();
-            var tbody = document.getElementById('tabela-qar-body');
-            var linhas = '';
-            for (var i = 0; i < 10; i++) {
-                var d = new Date(hoje);
-                d.setDate(hoje.getDate() - (i * 3));
-                var localIdx = i % locais.length;
-                var base = aqiBase[localIdx];
-                var aqi = base === null ? null : Math.round(base + (Math.random() * 20 - 10));
-                var aqiTxt = aqi === null ? 'N/D' : aqi + ' AQI';
-                var estado = aqi === null
-                    ? '<span class="badge-inativo">Inativo</span>'
-                    : (aqi > 100 ? '<span class="badge-alerta">Alerta</span>'
-                        : (aqi > 75 ? '<span class="badge-atencao">Atenção</span>'
-                            : '<span class="badge-normal">Normal</span>'));
-                linhas += '<tr><td>' + d.toLocaleDateString('pt-PT') + '</td><td>'
-                    + locais[localIdx] + '</td><td>' + aqiTxt + '</td><td>' + estado + '</td></tr>';
-            }
-            tbody.innerHTML = linhas;
-        })();
-
-        // modal
-        function abrirModalRelatorio() {
-            document.getElementById('modal-relatorio').classList.add('aberto');
-            document.getElementById('nome-relatorio').focus();
-        }
-
-        function fecharModalRelatorio() {
-            document.getElementById('modal-relatorio').classList.remove('aberto');
-        }
-
-        function confirmarGerarRelatorio() {
-            var nome = document.getElementById('nome-relatorio').value.trim() || 'Relatório';
-            document.getElementById('titulo-print').textContent = nome;
-            document.getElementById('data-print').textContent =
-                'Gerado em: ' + new Date().toLocaleString('pt-PT');
-
-            var opcoesPdf = [
-                { check: 'check-media-sensores',  id: 'secao-media-sensores' },
-                { check: 'check-ocupacao-media',  id: 'secao-ocupacao-media' },
-                { check: 'check-picos-ocupacao',  id: 'secao-picos-ocupacao' },
-                { check: 'check-parques',         id: 'secao-parques' },
-                { check: 'check-qualidade-ar-30', id: 'secao-qualidade-ar-30' }
-            ];
-
-            var secoesNormais = ['secao-resumo', 'secao-consumo', 'secao-alertas', 'secao-qualidade-ar-media'];
-
-            // ocultar secções normais
-            secoesNormais.forEach(function(id) {
-                var el = document.getElementById(id);
-                if (el) el.style.display = 'none';
-            });
-
-            // mostrar apenas as secções PDF selecionadas
-            opcoesPdf.forEach(function(item) {
-                var el = document.getElementById(item.id);
-                if (el) el.style.display = document.getElementById(item.check).checked ? '' : 'none';
-            });
-
-            fecharModalRelatorio();
-            window.print();
-
-            // restaurar estado normal
-            secoesNormais.forEach(function(id) {
-                var el = document.getElementById(id);
-                if (el) el.style.display = '';
-            });
-            opcoesPdf.forEach(function(item) {
-                var el = document.getElementById(item.id);
-                if (el) el.style.display = 'none';
-            });
-        }
-
-        document.getElementById('modal-relatorio').addEventListener('click', function(e) {
-            if (e.target === this) fecharModalRelatorio();
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') fecharModalRelatorio();
-        });
-    </script>
+    <script src="session.js"></script>
+    <script src="gerir-relatorios.js"></script>
     <script src="navbar.js"></script>
     <script src="acessiblidade.js"></script>
     <script src="menu_perfil.js"></script>

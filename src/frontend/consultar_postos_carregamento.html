@@ -10,31 +10,7 @@
         <link rel="stylesheet" href="style.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <style>
-            .lugar {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 5px 8px;
-                border-radius: 8px;
-                margin: 5px;
-            }
-            .lugar:hover {
-                background: #dff3fa;
-            }
-            .indicador {
-                width: 14px;
-                height: 14px;
-                border-radius: 50%;
-                flex-shrink: 0;
-            }
-            .disponivel {
-                background: #28a745;
-            }
-            .indisponivel {
-                background: #dc3545;
-            }
-        </style>
+        <link rel="stylesheet" href="postos-carregamento.css" />
     </head>
     <body>
         <svg xmlns="http://www.w3.org/2000/svg"
@@ -134,107 +110,7 @@
 
                     <div class="pisos">
                         <div class="lista">
-
-                            <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('area1', this)">
-                                    <span class="seta-piso">▸</span>
-                                    <span>Área A</span>
-                                </div>
-                                <div class="salas" id="area1">
-                                    <div class="lugar">
-                                        <span>Lugar 1</span>
-                                        <span class="indicador disponivel" title="Disponível"></span>
-                                    </div>
-                                    <div class="lugar">
-                                        <span>Lugar 2</span>
-                                        <span class="indicador indisponivel" title="Indisponível"></span>
-                                    </div>
-                                    <div class="lugar">
-                                        <span>Lugar 3</span>
-                                        <span class="indicador disponivel" title="Disponível"></span>
-                                    </div>
-                                    <div class="lugar">
-                                        <span>Lugar 4</span>
-                                        <span class="indicador disponivel" title="Disponível"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('area2', this)">
-                                    <span class="seta-piso">▸</span>
-                                    <span>Área B</span>
-                                </div>
-                                <div class="salas" id="area2">
-                                    <div class="lugar">
-                                        <span>Lugar 1</span>
-                                        <span class="indicador indisponivel" title="Indisponível"></span>
-                                    </div>
-                                    <div class="lugar">
-                                        <span>Lugar 2</span>
-                                        <span class="indicador disponivel" title="Disponível"></span>
-                                    </div>
-                                    <div class="lugar">
-                                        <span>Lugar 3</span>
-                                        <span class="indicador indisponivel" title="Indisponível"></span>
-                                    </div>
-                                    <div class="lugar">
-                                        <span>Lugar 4</span>
-                                        <span class="indicador disponivel" title="Disponível"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('area3', this)">
-                                    <span class="seta-piso">▸</span>
-                                    <span>Área C</span>
-                                </div>
-                                <div class="salas" id="area3">
-                                    <div class="lugar">
-                                        <span>Lugar 1</span>
-                                        <span class="indicador disponivel" title="Disponível"></span>
-                                    </div>
-                                    <div class="lugar">
-                                        <span>Lugar 2</span>
-                                        <span class="indicador disponivel" title="Disponível"></span>
-                                    </div>
-                                    <div class="lugar">
-                                        <span>Lugar 3</span>
-                                        <span class="indicador indisponivel" title="Indisponível"></span>
-                                    </div>
-                                    <div class="lugar">
-                                        <span>Lugar 4</span>
-                                        <span class="indicador indisponivel" title="Indisponível"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('area4', this)">
-                                    <span class="seta-piso">▸</span>
-                                    <span>Área D</span>
-                                </div>
-                                <div class="salas" id="area4">
-                                    <div class="lugar">
-                                        <span>Lugar 1</span>
-                                        <span class="indicador disponivel" title="Disponível"></span>
-                                    </div>
-                                    <div class="lugar">
-                                        <span>Lugar 2</span>
-                                        <span class="indicador disponivel" title="Disponível"></span>
-                                    </div>
-                                    <div class="lugar">
-                                        <span>Lugar 3</span>
-                                        <span class="indicador disponivel" title="Disponível"></span>
-                                    </div>
-                                    <div class="lugar">
-                                        <span>Lugar 4</span>
-                                        <span class="indicador indisponivel" title="Indisponível"></span>
-                                    </div>
-                                </div>
-                            </div>
-
+                            <p style="padding:16px;color:#666;">A carregar postos...</p>
                         </div>
                     </div>
                 </div>
@@ -308,6 +184,7 @@
         </div>
 
         <script src="reservas.js"></script>
+        <script src="consultar-postos.js"></script>
         <script src="navbar.js"></script>
         <script src="acessiblidade.js"></script>
         <script src="menu_perfil.js"></script>

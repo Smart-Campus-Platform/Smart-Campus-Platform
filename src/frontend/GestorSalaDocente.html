@@ -10,28 +10,7 @@
         <link rel="stylesheet" href="style.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <style>
-            .sala-disp {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 5px 8px;
-                border-radius: 8px;
-                margin: 5px;
-                cursor: default;
-            }
-            .sala-disp:hover {
-                background: #dff3fa;
-            }
-            .indicador {
-                width: 13px;
-                height: 13px;
-                border-radius: 50%;
-                flex-shrink: 0;
-            }
-            .disponivel  { background: #28a745; }
-            .indisponivel { background: #dc3545; }
-        </style>
+        <link rel="stylesheet" href="gestor-sala-docente.css" />
     </head>
     <body>
         <svg xmlns="http://www.w3.org/2000/svg"
@@ -126,102 +105,7 @@
 
                     <div class="pisos">
                         <div class="lista">
-
-                            <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('salas1', this)">
-                                    <span class="seta-piso">▸</span>
-                                    <span>Piso 1</span>
-                                </div>
-                                <div class="salas" id="salas1">
-                                    <div class="sala-disp"><span>Sala 101</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 102</span><span class="indicador indisponivel" title="Indisponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 103</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 104</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 105</span><span class="indicador indisponivel" title="Indisponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 106</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 107</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 108</span><span class="indicador indisponivel" title="Indisponível"></span></div>
-                                    <div class="sala-disp"><span>Laboratório 109</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Laboratório 110</span><span class="indicador indisponivel" title="Indisponível"></span></div>
-                                </div>
-                            </div>
-
-                            <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('salas2', this)">
-                                    <span class="seta-piso">▸</span>
-                                    <span>Piso 2</span>
-                                </div>
-                                <div class="salas" id="salas2">
-                                    <div class="sala-disp"><span>Sala 201</span><span class="indicador indisponivel" title="Indisponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 202</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 203</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 204</span><span class="indicador indisponivel" title="Indisponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 205</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 206</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 207</span><span class="indicador indisponivel" title="Indisponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 208</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Laboratório 209</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Laboratório 210</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                </div>
-                            </div>
-
-                            <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('salas3', this)">
-                                    <span class="seta-piso">▸</span>
-                                    <span>Piso 3</span>
-                                </div>
-                                <div class="salas" id="salas3">
-                                    <div class="sala-disp"><span>Sala 301</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 302</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 303</span><span class="indicador indisponivel" title="Indisponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 304</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 305</span><span class="indicador indisponivel" title="Indisponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 306</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 307</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 308</span><span class="indicador indisponivel" title="Indisponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 309</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 310</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                </div>
-                            </div>
-
-                            <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('salas4', this)">
-                                    <span class="seta-piso">▸</span>
-                                    <span>Piso 4</span>
-                                </div>
-                                <div class="salas" id="salas4">
-                                    <div class="sala-disp"><span>Sala 401</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 402</span><span class="indicador indisponivel" title="Indisponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 403</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 404</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 405</span><span class="indicador indisponivel" title="Indisponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 406</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 407</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 408</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 409</span><span class="indicador indisponivel" title="Indisponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 410</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                </div>
-                            </div>
-
-                            <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('salas5', this)">
-                                    <span class="seta-piso">▸</span>
-                                    <span>Piso 5</span>
-                                </div>
-                                <div class="salas" id="salas5">
-                                    <div class="sala-disp"><span>Sala 501</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 502</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 503</span><span class="indicador indisponivel" title="Indisponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 504</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 505</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 506</span><span class="indicador indisponivel" title="Indisponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 507</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 508</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 509</span><span class="indicador disponivel"   title="Disponível"></span></div>
-                                    <div class="sala-disp"><span>Sala 510</span><span class="indicador indisponivel" title="Indisponível"></span></div>
-                                </div>
-                            </div>
-
+                            <p style="padding:16px;color:#666;">A carregar disponibilidade...</p>
                         </div>
                     </div>
                 </div>
@@ -295,6 +179,7 @@
         </div>
 
         <script src="reservas.js"></script>
+        <script src="gestor-sala-docente.js"></script>
         <script src="navbar.js"></script>
         <script src="acessiblidade.js"></script>
         <script src="menu_perfil.js"></script>

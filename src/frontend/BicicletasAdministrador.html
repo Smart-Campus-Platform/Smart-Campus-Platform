@@ -83,47 +83,6 @@
                     </div>
 
                     <ul class="sensor-lista" role="list" aria-label="Lista de bicicletas">
-
-                        <li class="sensor-item">
-                            <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-b1"
-                                 onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-                                <span class="sensor-nome">BIC01</span>
-                                <span class="sensor-local">Área A</span>
-                                <span class="sensor-chevron" aria-hidden="true">▼</span>
-                            </div>
-                            <div class="sensor-detalhe" id="detalhe-b1" aria-hidden="true">
-                                <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text"></div>
-                                    <div class="sensor-campo"><label>Área</label><input class="input-local" type="text"></div>
-                                    <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
-                                </div>
-                                <div class="sensor-botoes item-acoes">
-                                    <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">Alterar Detalhes</button>
-                                    <button type="button" class="btn-remover" onclick="removerItem(this)">Remover</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="sensor-item">
-                            <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-b2"
-                                 onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-                                <span class="sensor-nome">BIC02</span>
-                                <span class="sensor-local">Área B</span>
-                                <span class="sensor-chevron" aria-hidden="true">▼</span>
-                            </div>
-                            <div class="sensor-detalhe" id="detalhe-b2" aria-hidden="true">
-                                <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text"></div>
-                                    <div class="sensor-campo"><label>Área</label><input class="input-local" type="text"></div>
-                                    <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
-                                </div>
-                                <div class="sensor-botoes item-acoes">
-                                    <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">Alterar Detalhes</button>
-                                    <button type="button" class="btn-remover" onclick="removerItem(this)">Remover</button>
-                                </div>
-                            </div>
-                        </li>
-
                     </ul>
                 </section>
 
@@ -174,7 +133,9 @@
         </div></div>
     </div>
 
-    <script src="bicicletas-administrador.js"></script>
+    <script>window.TIPO_MOB = 'bicicleta';</script>
+    <script src="session.js"></script>
+    <script src="trotinetes-administrador.js"></script>
     <script src="navbar.js"></script>
     <script src="acessiblidade.js"></script>
     <script src="menu_perfil.js"></script>

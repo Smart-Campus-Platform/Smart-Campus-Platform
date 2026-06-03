@@ -83,67 +83,6 @@
                     </div>
 
                     <ul class="sensor-lista" role="list" aria-label="Lista de postos de carregamento">
-
-                        <li class="sensor-item">
-                            <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-pc1"
-                                 onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-                                <span class="sensor-nome">PST-01</span>
-                                <span class="sensor-local">Área A</span>
-                                <span class="sensor-chevron" aria-hidden="true">▼</span>
-                            </div>
-                            <div class="sensor-detalhe" id="detalhe-pc1" aria-hidden="true">
-                                <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text"></div>
-                                    <div class="sensor-campo"><label>Área</label><input class="input-local" type="text"></div>
-                                    <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
-                                </div>
-                                <div class="sensor-botoes item-acoes">
-                                    <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">Alterar Detalhes</button>
-                                    <button type="button" class="btn-remover" onclick="removerItem(this)">Remover</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="sensor-item">
-                            <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-pc2"
-                                 onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-                                <span class="sensor-nome">PST-02</span>
-                                <span class="sensor-local">Área A</span>
-                                <span class="sensor-chevron" aria-hidden="true">▼</span>
-                            </div>
-                            <div class="sensor-detalhe" id="detalhe-pc2" aria-hidden="true">
-                                <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text"></div>
-                                    <div class="sensor-campo"><label>Área</label><input class="input-local" type="text"></div>
-                                    <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
-                                </div>
-                                <div class="sensor-botoes item-acoes">
-                                    <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">Alterar Detalhes</button>
-                                    <button type="button" class="btn-remover" onclick="removerItem(this)">Remover</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="sensor-item">
-                            <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-pc3"
-                                 onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-                                <span class="sensor-nome">PST-03</span>
-                                <span class="sensor-local">Área B</span>
-                                <span class="sensor-chevron" aria-hidden="true">▼</span>
-                            </div>
-                            <div class="sensor-detalhe" id="detalhe-pc3" aria-hidden="true">
-                                <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text"></div>
-                                    <div class="sensor-campo"><label>Área</label><input class="input-local" type="text"></div>
-                                    <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
-                                </div>
-                                <div class="sensor-botoes item-acoes">
-                                    <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">Alterar Detalhes</button>
-                                    <button type="button" class="btn-remover" onclick="removerItem(this)">Remover</button>
-                                </div>
-                            </div>
-                        </li>
-
                     </ul>
                 </section>
 
@@ -172,8 +111,7 @@
     <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
         <div class="modal-caixa">
             <h3 id="modal-titulo">Adicionar Posto</h3>
-            <div class="modal-campo"><label for="novo-codigo">Código</label><input type="text" id="novo-codigo" placeholder="Ex: PST-04"></div>
-            <div class="modal-campo"><label for="nova-area">Área</label><input type="text" id="nova-area" placeholder="Ex: Área A"></div>
+            <div class="modal-campo"><label for="novo-id">ID do Posto</label><input type="text" id="novo-id" placeholder="Ex: PST-04"></div>
             <div class="modal-botoes"><button type="button" onclick="confirmarNovo()">Confirmar</button></div>
         </div>
     </div>
@@ -194,6 +132,7 @@
         </div></div>
     </div>
 
+    <script src="session.js"></script>
     <script src="posto-carregamento-administrador.js"></script>
     <script src="navbar.js"></script>
     <script src="acessiblidade.js"></script>

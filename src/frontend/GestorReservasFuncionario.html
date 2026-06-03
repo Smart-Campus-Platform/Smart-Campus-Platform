@@ -104,127 +104,7 @@
                     <h1 id="titulo-reservas">Reservas</h1>
 
                     <ul class="reserva-lista" role="list" aria-label="Lista de reservas">
-
-                        <li class="reserva-item">
-                            <div class="reserva-row"
-                                 role="button" tabindex="0"
-                                 aria-expanded="false"
-                                 aria-controls="acoes-r1"
-                                 onclick="toggleReserva(this)"
-                                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleReserva(this);}">
-                                <span class="reserva-nome">Reserva1</span>
-                                <span class="reserva-sala">Sala10</span>
-                                <span class="reserva-chevron" aria-hidden="true">▼</span>
-                            </div>
-                            <div class="reserva-acoes" id="acoes-r1" aria-hidden="true">
-                                <div class="reserva-acoes-row">
-                                    <button type="button">Confirmar</button>
-                                    <button type="button">Alterar</button>
-                                    <button type="button">Cancelar</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="reserva-item">
-                            <div class="reserva-row"
-                                 role="button" tabindex="0"
-                                 aria-expanded="false"
-                                 aria-controls="acoes-r2"
-                                 onclick="toggleReserva(this)"
-                                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleReserva(this);}">
-                                <span class="reserva-nome">Reserva2</span>
-                                <span class="reserva-sala">Sala12</span>
-                                <span class="reserva-chevron" aria-hidden="true">▼</span>
-                            </div>
-                            <div class="reserva-acoes" id="acoes-r2" aria-hidden="true">
-                                <div class="reserva-acoes-row">
-                                    <button type="button">Confirmar</button>
-                                    <button type="button">Alterar</button>
-                                    <button type="button">Cancelar</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="reserva-item">
-                            <div class="reserva-row"
-                                 role="button" tabindex="0"
-                                 aria-expanded="false"
-                                 aria-controls="acoes-r3"
-                                 onclick="toggleReserva(this)"
-                                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleReserva(this);}">
-                                <span class="reserva-nome">Reserva3</span>
-                                <span class="reserva-sala">Sala14</span>
-                                <span class="reserva-chevron" aria-hidden="true">▼</span>
-                            </div>
-                            <div class="reserva-acoes" id="acoes-r3" aria-hidden="true">
-                                <div class="reserva-acoes-row">
-                                    <button type="button">Confirmar</button>
-                                    <button type="button">Alterar</button>
-                                    <button type="button">Cancelar</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="reserva-item">
-                            <div class="reserva-row"
-                                 role="button" tabindex="0"
-                                 aria-expanded="false"
-                                 aria-controls="acoes-r4"
-                                 onclick="toggleReserva(this)"
-                                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleReserva(this);}">
-                                <span class="reserva-nome">Reserva4</span>
-                                <span class="reserva-sala">Sala23</span>
-                                <span class="reserva-chevron" aria-hidden="true">▼</span>
-                            </div>
-                            <div class="reserva-acoes" id="acoes-r4" aria-hidden="true">
-                                <div class="reserva-acoes-row">
-                                    <button type="button">Confirmar</button>
-                                    <button type="button">Alterar</button>
-                                    <button type="button">Cancelar</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="reserva-item">
-                            <div class="reserva-row"
-                                 role="button" tabindex="0"
-                                 aria-expanded="false"
-                                 aria-controls="acoes-r5"
-                                 onclick="toggleReserva(this)"
-                                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleReserva(this);}">
-                                <span class="reserva-nome">Reserva5</span>
-                                <span class="reserva-sala">Sala33</span>
-                                <span class="reserva-chevron" aria-hidden="true">▼</span>
-                            </div>
-                            <div class="reserva-acoes" id="acoes-r5" aria-hidden="true">
-                                <div class="reserva-acoes-row">
-                                    <button type="button">Confirmar</button>
-                                    <button type="button">Alterar</button>
-                                    <button type="button">Cancelar</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="reserva-item">
-                            <div class="reserva-row"
-                                 role="button" tabindex="0"
-                                 aria-expanded="false"
-                                 aria-controls="acoes-r6"
-                                 onclick="toggleReserva(this)"
-                                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleReserva(this);}">
-                                <span class="reserva-nome">Reserva6</span>
-                                <span class="reserva-sala">Sala34</span>
-                                <span class="reserva-chevron" aria-hidden="true">▼</span>
-                            </div>
-                            <div class="reserva-acoes" id="acoes-r6" aria-hidden="true">
-                                <div class="reserva-acoes-row">
-                                    <button type="button">Confirmar</button>
-                                    <button type="button">Alterar</button>
-                                    <button type="button">Cancelar</button>
-                                </div>
-                            </div>
-                        </li>
-
+                        <li style="padding:16px;color:#666;">A carregar reservas...</li>
                     </ul>
                 </section>
 
@@ -338,7 +218,8 @@
         </div>
     </div>
 
-    <script src="gestor-reservas.js"></script>
+    <script src="session.js"></script>
+    <script src="gestor-reservas-funcionario.js"></script>
     <script src="navbar.js"></script>
     <script src="horas.js"></script>
     <script src="acessiblidade.js"></script>

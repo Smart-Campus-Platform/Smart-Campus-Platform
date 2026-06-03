@@ -110,176 +110,6 @@
                     </div>
 
                     <ul class="sensor-lista" role="list" aria-label="Lista de equipamentos">
-                        <li class="sensor-item">
-                            <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-e1"
-                                 onclick="toggleItem(this)"
-                                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-
-                                <span class="sensor-nome">pc1</span>
-                                <span class="sensor-tipo">Informática</span>
-                                <span class="sensor-local">piso 1</span>
-                                <span class="sensor-chevron" aria-hidden="true">▼</span>
-                            </div>
-
-                            <div class="sensor-detalhe" id="detalhe-e1" aria-hidden="true">
-                                <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo">
-                                        <label>Tipo</label>
-                                        <input class="input-tipo" type="text" value="Informática">
-                                    </div>
-
-                                    <div class="sensor-campo">
-                                        <label>Código</label>
-                                        <input class="input-codigo input-nome" type="text" value="pc1">
-                                    </div>
-
-                                    <div class="sensor-campo">
-                                        <label>Piso</label>
-                                        <input class="input-piso input-local" type="text" value="piso 1">
-                                    </div>
-
-                                    <div class="sensor-botoes">
-                                        <button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">
-                                            Guardar
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="sensor-botoes item-acoes">
-                                    <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">
-                                        Alterar Detalhes
-                                    </button>
-
-                                    <button type="button" class="btn-remover" onclick="removerItem(this)">
-                                        Remover
-                                    </button>
-                                    <div class="sensor-estado-wrap">
-                                    <span class="sensor-estado-label">Estado</span>
-                                    <label class="toggle-switch" aria-label="Ativar ou desativar sensor">
-                                        <input type="checkbox" checked>
-                                        <span class="toggle-track">
-                                            <span class="toggle-thumb"></span>
-                                        </span>
-                                        <span class="toggle-text"></span>
-                                    </label>
-                                </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="sensor-item">
-                            <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-e2"
-                                 onclick="toggleItem(this)"
-                                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-
-                                <span class="sensor-nome">Projetor 01</span>
-                                <span class="sensor-tipo">Audiovisual</span>
-                                <span class="sensor-local">Piso 2</span>
-                                <span class="sensor-chevron" aria-hidden="true">▼</span>
-                            </div>
-
-                            <div class="sensor-detalhe" id="detalhe-e2" aria-hidden="true">
-                                <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo">
-                                        <label>Tipo</label>
-                                        <input class="input-tipo" type="text" value="Audiovisual">
-                                    </div>
-
-                                    <div class="sensor-campo">
-                                        <label>Código</label>
-                                        <input class="input-codigo input-nome" type="text" value="Projetor 01">
-                                    </div>
-
-                                    <div class="sensor-campo">
-                                        <label>Piso</label>
-                                        <input class="input-piso input-local" type="text" value="Piso 2">
-                                    </div>
-
-                                    <div class="sensor-botoes">
-                                        <button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">
-                                            Guardar
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="sensor-botoes item-acoes">
-                                    <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">
-                                        Alterar Detalhes
-                                    </button>
-
-                                    <button type="button" class="btn-remover" onclick="removerItem(this)">
-                                        Remover
-                                    </button>
-                                    <div class="sensor-estado-wrap">
-                                    <span class="sensor-estado-label">Estado</span>
-                                    <label class="toggle-switch" aria-label="Ativar ou desativar sensor">
-                                        <input type="checkbox" checked>
-                                        <span class="toggle-track">
-                                            <span class="toggle-thumb"></span>
-                                        </span>
-                                        <span class="toggle-text"></span>
-                                    </label>
-                                </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="sensor-item">
-                            <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-e3"
-                                 onclick="toggleItem(this)"
-                                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-
-                                <span class="sensor-nome">Microscópio 01</span>
-                                <span class="sensor-tipo">Laboratório</span>
-                                <span class="sensor-local">Piso 3</span>
-                                <span class="sensor-chevron" aria-hidden="true">▼</span>
-                            </div>
-
-                            <div class="sensor-detalhe" id="detalhe-e3" aria-hidden="true">
-                                <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo">
-                                        <label>Tipo</label>
-                                        <input class="input-tipo" type="text" value="Laboratório">
-                                    </div>
-
-                                    <div class="sensor-campo">
-                                        <label>Código</label>
-                                        <input class="input-codigo input-nome" type="text" value="Microscópio 01">
-                                    </div>
-
-                                    <div class="sensor-campo">
-                                        <label>Piso</label>
-                                        <input class="input-piso input-local" type="text" value="Piso 3">
-                                    </div>
-
-                                    <div class="sensor-botoes">
-                                        <button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">
-                                            Guardar
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="sensor-botoes item-acoes">
-                                    <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">
-                                        Alterar Detalhes
-                                    </button>
-
-                                    <button type="button" class="btn-remover" onclick="removerItem(this)">
-                                        Remover
-                                    </button>
-                                    <div class="sensor-estado-wrap">
-                                    <span class="sensor-estado-label">Estado</span>
-                                    <label class="toggle-switch" aria-label="Ativar ou desativar sensor">
-                                        <input type="checkbox" checked>
-                                        <span class="toggle-track">
-                                            <span class="toggle-thumb"></span>
-                                        </span>
-                                        <span class="toggle-text"></span>
-                                    </label>
-                                </div>
-                                </div>
-                            </div>
-                        </li>
                     </ul>
                 </section>
 
@@ -344,18 +174,13 @@
             <h3 id="modal-titulo">Adicionar Equipamento</h3>
 
             <div class="modal-campo">
-                <label for="novo-tipo">Tipo</label>
-                <input type="text" id="novo-tipo" placeholder="Ex: Informática">
-            </div>
-
-            <div class="modal-campo">
-                <label for="novo-codigo">Código</label>
-                <input type="text" id="novo-codigo" placeholder="Ex: pc1">
+                <label for="novo-nome">Nome do Equipamento</label>
+                <input type="text" id="novo-nome" placeholder="Ex: Projetor 01">
             </div>
 
             <div class="modal-campo">
                 <label for="novo-piso">Piso</label>
-                <input type="text" id="novo-piso" placeholder="Ex: piso 1">
+                <input type="number" id="novo-piso" placeholder="Ex: 1">
             </div>
 
             <div class="modal-botoes">
@@ -400,6 +225,7 @@
         </div>
     </div>
 
+    <script src="session.js"></script>
     <script src="equipamentos-administrador.js"></script>
     <script src="navbar.js"></script>
     <script src="acessiblidade.js"></script>
