@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--comentario-->
 <html lang="pt">
 <head>
     <meta charset="UTF-8" />
@@ -104,6 +105,13 @@
             <div class="perfil-wrapper">
                 <h1 class="perfil-titulo">Registar Utilizador</h1>
                 <form class="perfil-form" method="post" aria-label="Formulário de registo de utilizador">
+                    <div class="perfil-campo">
+                        <label for="nome">Nome</label>
+                        <input id="nome" name="nome" type="nome"
+                               placeholder="Introduza um nome"
+                               aria-required="true"
+                               >
+                    </div>
                     <div class="perfil-campo">
                         <label for="email">Email</label>
                         <input id="email" name="email" type="email"
@@ -224,6 +232,8 @@
         </div>
     </div>
 
+    <script src="session.js"></script>
+    <script src="registar-utilizador.js"></script>
     <script src="navbar.js"></script>
     <script src="acessiblidade.js"></script>
     <script src="menu_perfil.js"></script>

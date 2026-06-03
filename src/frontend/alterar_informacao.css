@@ -1,3 +1,4 @@
+/*comentario*/
 .perfil-wrapper {
     max-width: 560px;
     margin: 0 auto;
@@ -6,7 +7,7 @@
     padding: 36px 40px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.10);
 }
-
+ 
 .perfil-titulo {
     font-size: 22px;
     font-weight: 700;

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--comentario-->
 <html lang="pt">
 <head>
     <meta charset="UTF-8" />
@@ -83,67 +84,6 @@
                     </div>
 
                     <ul class="sensor-lista" role="list" aria-label="Lista de lugares de estacionamento">
-
-                        <li class="sensor-item">
-                            <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-p1"
-                                 onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-                                <span class="sensor-nome">LUG-A1</span>
-                                <span class="sensor-local">Piso 1</span>
-                                <span class="sensor-chevron" aria-hidden="true">▼</span>
-                            </div>
-                            <div class="sensor-detalhe" id="detalhe-p1" aria-hidden="true">
-                                <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text"></div>
-                                    <div class="sensor-campo"><label>Piso</label><input class="input-local" type="text"></div>
-                                    <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
-                                </div>
-                                <div class="sensor-botoes item-acoes">
-                                    <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">Alterar Detalhes</button>
-                                    <button type="button" class="btn-remover" onclick="removerItem(this)">Remover</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="sensor-item">
-                            <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-p2"
-                                 onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-                                <span class="sensor-nome">LUG-A2</span>
-                                <span class="sensor-local">Piso 1</span>
-                                <span class="sensor-chevron" aria-hidden="true">▼</span>
-                            </div>
-                            <div class="sensor-detalhe" id="detalhe-p2" aria-hidden="true">
-                                <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text"></div>
-                                    <div class="sensor-campo"><label>Piso</label><input class="input-local" type="text"></div>
-                                    <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
-                                </div>
-                                <div class="sensor-botoes item-acoes">
-                                    <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">Alterar Detalhes</button>
-                                    <button type="button" class="btn-remover" onclick="removerItem(this)">Remover</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="sensor-item">
-                            <div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="detalhe-p3"
-                                 onclick="toggleItem(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleItem(this);}">
-                                <span class="sensor-nome">LUG-B1</span>
-                                <span class="sensor-local">Piso 2</span>
-                                <span class="sensor-chevron" aria-hidden="true">▼</span>
-                            </div>
-                            <div class="sensor-detalhe" id="detalhe-p3" aria-hidden="true">
-                                <div class="edicao-campos" style="display:none">
-                                    <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text"></div>
-                                    <div class="sensor-campo"><label>Piso</label><input class="input-local" type="text"></div>
-                                    <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>
-                                </div>
-                                <div class="sensor-botoes item-acoes">
-                                    <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">Alterar Detalhes</button>
-                                    <button type="button" class="btn-remover" onclick="removerItem(this)">Remover</button>
-                                </div>
-                            </div>
-                        </li>
-
                     </ul>
                 </section>
 
@@ -172,8 +112,8 @@
     <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
         <div class="modal-caixa">
             <h3 id="modal-titulo">Adicionar Lugar</h3>
-            <div class="modal-campo"><label for="novo-codigo">Código</label><input type="text" id="novo-codigo" placeholder="Ex: LUG-C1"></div>
-            <div class="modal-campo"><label for="novo-piso">Piso</label><input type="text" id="novo-piso" placeholder="Ex: Piso 1"></div>
+            <div class="modal-campo"><label for="novo-id">ID do Lugar</label><input type="text" id="novo-id" placeholder="Ex: LUG-C1"></div>
+            <div class="modal-campo"><label for="novo-parque">Parque</label><input type="text" id="novo-parque" placeholder="Ex: Parque A"></div>
             <div class="modal-botoes"><button type="button" onclick="confirmarNovo()">Confirmar</button></div>
         </div>
     </div>
@@ -194,6 +134,7 @@
         </div></div>
     </div>
 
+    <script src="session.js"></script>
     <script src="parque-estacionamento-administrador.js"></script>
     <script src="navbar.js"></script>
     <script src="acessiblidade.js"></script>

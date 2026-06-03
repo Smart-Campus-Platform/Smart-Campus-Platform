@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--comentario-->
 <html lang="pt">
     <head>
         <meta charset="UTF-8" />
@@ -107,70 +108,28 @@
                 <div class="reservar">
                     <h1>Reservar Bicicletas</h1>
 
+                    <div class="filtros-topo">
+                        <div class="campo">
+                            <label>Data início</label>
+                            <input type="date" id="mob-data-inicio">
+                        </div>
+                        <div class="campo">
+                            <label>Data fim</label>
+                            <input type="date" id="mob-data-fim">
+                        </div>
+                        <div class="campo">
+                            <label>Hora início</label>
+                            <input type="time" id="mob-hora-inicio">
+                        </div>
+                        <div class="campo">
+                            <label>Hora fim</label>
+                            <input type="time" id="mob-hora-fim">
+                        </div>
+                    </div>
+
                     <div class="pisos">
                         <div class="lista">
-                            <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('salas1', this)">
-                                    <span class="seta-piso">▸</span>
-                                    <span>Área 1</span>
-                                </div>
-                                <div class="salas" id="salas1">
-                                    <p class="sala sala-normal">Bicicleta 1</p>
-                                    <p class="sala sala-normal">Bicicleta 5</p>
-                                    <p class="sala sala-normal">Bicicleta 7</p>
-                                </div>
-                            </div>
-
-                            <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('salas2', this)">
-                                    <span class="seta-piso">▸</span>
-                                    <span>Área 2</span>
-                                </div>
-                                <div class="salas" id="salas2">
-                                    <p class="sala sala-normal">Bicicleta 2</p>
-                                    <p class="sala sala-normal">Bicicleta 3</p>
-                                    <p class="sala sala-normal">Bicicleta 8</p>
-                                </div>
-                            </div>
-
-                            <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('salas3', this)">
-                                    <span class="seta-piso">▸</span>
-                                    <span>Área 3</span>
-                                </div>
-                                <div class="salas" id="salas3">
-                                    <p class="sala sala-normal">Bicicleta 4</p>
-                                    <p class="sala sala-normal">Bicicleta 6</p>
-                                    <p class="sala sala-normal">Bicicleta 9</p>
-                                    <p class="sala sala-normal">Bicicleta 10</p>
-                                </div>
-                            </div>
-
-                            <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('salas4', this)">
-                                    <span class="seta-piso">▸</span>
-                                    <span>Área 4</span>
-                                </div>
-                                <div class="salas" id="salas4">
-                                    <p class="sala sala-normal">Bicicleta 11</p>
-                                    <p class="sala sala-normal">Bicicleta 12</p>
-                                    <p class="sala sala-normal">Bicicleta 13</p>
-                                    <p class="sala sala-normal">Bicicleta 14</p>
-                                </div>
-                            </div>
-
-                            <div class="piso">
-                                <div class="titulo-piso" onclick="toggleSalas('salas5', this)">
-                                    <span class="seta-piso">▸</span>
-                                    <span>Área 5</span>
-                                </div>
-                                <div class="salas" id="salas5">
-                                    <p class="sala sala-normal">Bicicleta 15</p>
-                                    <p class="sala sala-normal">Bicicleta 16</p>
-                                    <p class="sala sala-normal">Bicicleta 17</p>
-                                    <p class="sala sala-normal">Bicicleta 18</p>
-                                </div>
-                            </div>
+                            <p style="padding:16px;color:#666;">A carregar bicicletas...</p>
                         </div>
                     </div>
 
@@ -245,7 +204,10 @@
             </div>
         </div>
 
+        <script>window.TIPO_MOBILIDADE = 'bicicleta';</script>
+        <script src="session.js"></script>
         <script src="reservas.js"></script>
+        <script src="reservar-mobilidade.js"></script>
         <script src="navbar.js"></script>
         <script src="acessiblidade.js"></script>
         <script src="menu_perfil.js"></script>

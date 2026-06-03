@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--comentario-->
 <html lang="pt">
     <head>
         <meta charset="utf-8">
@@ -8,7 +9,7 @@
     </head>
     <body>
         <main>
-            <form action="" method="post" aria-label="Formulário de autenticação">
+            <form id="form-login" aria-label="Formulário de autenticação">
                 <div id="login">
                     <h1>Login</h1>
                     <div class="inputs">
@@ -27,10 +28,12 @@
                                aria-required="true"
                                aria-label="Palavra-passe"><br/>
                     </div>
+                    <p id="erro-login" role="alert" style="color:red; display:none;"></p>
                     <button type="submit" aria-label="Entrar na plataforma">Entrar</button>
                 </div>
             </form>
         </main>
+        <script src="login.js"></script>
     </body>
 
 </html>

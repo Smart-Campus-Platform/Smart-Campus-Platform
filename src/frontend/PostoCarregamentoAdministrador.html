@@ -82,6 +82,7 @@
                         </button>
                     </div>
 
+
                     <ul class="sensor-lista" role="list" aria-label="Lista de postos de carregamento"></ul>
                 </section>
 
@@ -107,8 +108,7 @@
     <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
         <div class="modal-caixa">
             <h3 id="modal-titulo">Adicionar Posto</h3>
-            <div class="modal-campo"><label for="novo-codigo">Código</label><input type="text" id="novo-codigo" placeholder="Ex: PST-04"></div>
-            <div class="modal-campo"><label for="nova-area">Área</label><input type="text" id="nova-area" placeholder="Ex: Área A"></div>
+            <div class="modal-campo"><label for="novo-id">ID do Posto</label><input type="text" id="novo-id" placeholder="Ex: PST-04"></div>
             <div class="modal-botoes"><button type="button" onclick="confirmarNovo()">Confirmar</button></div>
         </div>
     </div>
@@ -129,6 +129,7 @@
         </div></div>
     </div>
 
+    <script src="session.js"></script>
     <script src="posto-carregamento-administrador.js"></script>
     <script src="navbar.js"></script>
     <script src="acessiblidade.js"></script>

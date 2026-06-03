@@ -26,7 +26,7 @@
     justify-content: flex-end;
     gap: 10px;
 }
-
+/*comentario*/
 .icons > span {
     display: inline-flex;
     align-items: center;
@@ -92,7 +92,12 @@ h1 {
     display: flex;
     gap: 20px;
     margin-bottom: 20px;
-    margin-left: 80px;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.campo-btn-filtrar {
+    justify-content: flex-end;
 }
 
 .campo {
@@ -116,10 +121,11 @@ input {
     flex-direction: column;
     gap: 10px;
     margin-bottom: 40px;
+    width: 100%;
 }
 
 .piso {
-    width: 150px;
+    width: 100%;
 }
 
 .titulo-piso{
@@ -143,8 +149,9 @@ input {
     margin-left: 25px;
     background: white;
     border-radius: 10px;
-    width: 355px;
     padding: 10px;
+    flex-wrap: wrap;
+    gap: 6px;
 }
 
 .salas p {
@@ -167,10 +174,9 @@ button.btn-filtrar {
     border: 2px solid #1e4c5c;
     color: #ddd;
     font-size: 15px;
-    padding: 5px 10px;
+    padding: 5px 18px;
     cursor: pointer;
     border-radius: 10px;
-    margin-left: 50px;
 }
 
 button.btn-reservar {
@@ -181,7 +187,6 @@ button.btn-reservar {
     padding: 12px 35px;
     cursor: pointer;
     border-radius: 10px;
-    margin-left: 45px;
 }
 
 button:hover {
@@ -197,16 +202,17 @@ button:hover {
 
 .pisos {
     display: flex;
-    align-items: flex-start;
-    gap: 100px;
+    flex-direction: column;
     margin-top: 30px;
+    width: 100%;
 }
 
 .filtro-lateral {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-top: 5px;
+    justify-content: flex-end;
+    margin-bottom: 10px;
 }
 
 .icone-filtro {

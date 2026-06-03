@@ -1,4 +1,5 @@
 .lugar {
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,7 +19,6 @@
     border-radius: 50%;
     flex-shrink: 0;
 }
-
 .nome-posto {
     min-width: 0;
     overflow-wrap: anywhere;
@@ -241,3 +241,4 @@
         width: 100%;
     }
 }
+
