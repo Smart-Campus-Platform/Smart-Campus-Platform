@@ -2,7 +2,8 @@ import ply.yacc as yacc
 from lexer import tokens
 
 def p_programa(p):
-    '''programa : reservar'''
+    '''programa : reservar
+                | consultar'''
     p[0] = p[1]
 
 
@@ -17,9 +18,29 @@ def p_reservar(p):
         "fim": p[9]
     }
 
+def p_consultar(p):
+    '''consultar : CONSULTAR RESERVAS
+                    | CONSULTAR RESERVAS ATIVAS
+                    | CONSULTAR RESERVAS CANCELADAS  '''
+
+    estado = "todas" 
+
+    if len(p) == 4:
+        if p[3] == "ativas":
+            estado = "ativa"
+        elif p[3] == "canceladas":
+            estado = "cancelada"
+
+    p[0] = {
+        "tipo": "consultar",
+        "alvo": "reservas",
+        "estado": estado
+    }                      
+
 def p_recurso(p):
     '''recurso : SALA
-                | LABORATORIO '''
+                | LABORATORIO 
+                | EQUIPAMENTO'''
 
     p[0] = p[1]
 

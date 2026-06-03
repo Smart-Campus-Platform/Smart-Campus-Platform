@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'A BATCH CANCELAR CONSULTAR DATA DATE DISPONIBILIDADE EQ ESTADO FILTRO HORA_FIM HORA_INICIO LABORATORIO NE NEWLINE NUMBER PERIODO PISO RESERVAR SALA STRING TIME TIPOprograma : reservarreservar : RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIMErecurso : SALA\n                | LABORATORIO '
+_lr_signature = 'A ATIVAS BATCH CANCELADAS CANCELAR CONSULTAR DATA DATE DISPONIBILIDADE EQ EQUIPAMENTO ESTADO FILTRO HORA_FIM HORA_INICIO LABORATORIO NE NEWLINE NUMBER PERIODO PISO RESERVAR RESERVAS SALA STRING TIME TIPOprograma : reservar\n                | consultarreservar : RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIMEconsultar : CONSULTAR RESERVAS\n                    | CONSULTAR RESERVAS ATIVAS\n                    | CONSULTAR RESERVAS CANCELADAS  recurso : SALA\n                | LABORATORIO \n                | EQUIPAMENTO'
     
-_lr_action_items = {'RESERVAR':([0,],[3,]),'$end':([1,2,13,],[0,-1,-2,]),'SALA':([3,],[5,]),'LABORATORIO':([3,],[6,]),'STRING':([4,5,6,],[7,-3,-4,]),'DATA':([7,],[8,]),'DATE':([8,],[9,]),'HORA_INICIO':([9,],[10,]),'TIME':([10,12,],[11,13,]),'HORA_FIM':([11,],[12,]),}
+_lr_action_items = {'RESERVAR':([0,],[4,]),'CONSULTAR':([0,],[5,]),'$end':([1,2,3,10,12,13,19,],[0,-1,-2,-4,-5,-6,-3,]),'SALA':([4,],[7,]),'LABORATORIO':([4,],[8,]),'EQUIPAMENTO':([4,],[9,]),'RESERVAS':([5,],[10,]),'STRING':([6,7,8,9,],[11,-7,-8,-9,]),'ATIVAS':([10,],[12,]),'CANCELADAS':([10,],[13,]),'DATA':([11,],[14,]),'DATE':([14,],[15,]),'HORA_INICIO':([15,],[16,]),'TIME':([16,18,],[17,19,]),'HORA_FIM':([17,],[18,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'programa':([0,],[1,]),'reservar':([0,],[2,]),'recurso':([3,],[4,]),}
+_lr_goto_items = {'programa':([0,],[1,]),'reservar':([0,],[2,]),'consultar':([0,],[3,]),'recurso':([4,],[6,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -28,7 +28,12 @@ del _lr_goto_items
 _lr_productions = [
   ("S' -> programa","S'",1,None,None,None),
   ('programa -> reservar','programa',1,'p_programa','parser.py',5),
-  ('reservar -> RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIME','reservar',9,'p_reservar','parser.py',10),
-  ('recurso -> SALA','recurso',1,'p_recurso','parser.py',21),
-  ('recurso -> LABORATORIO','recurso',1,'p_recurso','parser.py',22),
+  ('programa -> consultar','programa',1,'p_programa','parser.py',6),
+  ('reservar -> RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIME','reservar',9,'p_reservar','parser.py',11),
+  ('consultar -> CONSULTAR RESERVAS','consultar',2,'p_consultar','parser.py',22),
+  ('consultar -> CONSULTAR RESERVAS ATIVAS','consultar',3,'p_consultar','parser.py',23),
+  ('consultar -> CONSULTAR RESERVAS CANCELADAS','consultar',3,'p_consultar','parser.py',24),
+  ('recurso -> SALA','recurso',1,'p_recurso','parser.py',41),
+  ('recurso -> LABORATORIO','recurso',1,'p_recurso','parser.py',42),
+  ('recurso -> EQUIPAMENTO','recurso',1,'p_recurso','parser.py',43),
 ]

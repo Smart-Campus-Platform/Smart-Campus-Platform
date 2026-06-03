@@ -40,10 +40,18 @@ executarComandoLSS.addEventListener("click", async() => {
             return;
         }
 
+        if (dados.reservas) {
+            resultadoLSS.textContent =
+                `Comando: ${dados.comando}\n\n` +
+                `${dados.mensagem}\n\n` +
+                JSON.stringify(dados.reservas, null, 2);
+            return;
+        }
+
         resultadoLSS.textContent =
             `Comando: ${dados.comando}\n\n` +
             `${dados.mensagem}\n\n` +
-            `ID Reserva: ${dados.id_reserva}\n\n` + 
+            `ID Reserva: ${dados.id_reserva}\n\n` +
             JSON.stringify(dados.resultado, null, 2);
   
     } catch (erro) {

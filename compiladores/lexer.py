@@ -8,8 +8,13 @@ reserved = {
     "data": "DATA",
     "hora_inicio": "HORA_INICIO",
     "hora_fim": "HORA_FIM",
+    "equipamento": "EQUIPAMENTO",
 
     "cancelar": "CANCELAR",
+
+    "reservas": "RESERVAS",
+    "ativas": "ATIVAS",
+    "canceladas": "CANCELADAS",
 
     "consultar": "CONSULTAR",
     "periodo": "PERIODO",
