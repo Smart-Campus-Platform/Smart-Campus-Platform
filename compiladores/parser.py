@@ -4,7 +4,8 @@ from lexer import tokens
 def p_programa(p):
     '''programa : reservar
                 | consultar
-                | cancelar'''
+                | cancelar
+                | disponibilidade'''
     p[0] = p[1]
 
 
@@ -52,7 +53,17 @@ def p_cancelar(p):
         "tipo": "cancelar",
         "recurso_categoria": p[3],
         "id_reserva": p[4]
-     }   
+     } 
+
+def p_disponibilidade(p):
+    '''disponibilidade : DISPONIBILIDADE recurso DATA DATE HORA_INICIO TIME HORA_FIM TIME'''
+    p[0] = {
+        "tipo": "disponibilidade",
+        "recurso_categoria": p[2],
+        "data": p[4],
+        "inicio": p[6],
+        "fim": p[8]
+    }       
 
 
 def p_error(p):

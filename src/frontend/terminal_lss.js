@@ -23,6 +23,27 @@ function formatarReservas(titulo, reservas) {
     return `${titulo}\n\n${linhas.join("\n\n")}`;
 }
 
+function formatarDisponiveis(disponiveis) {
+    if (!disponiveis || disponiveis.length === 0) {
+        return "Sem recursos disponiveis.";
+    }
+
+    return disponiveis.map((recurso) => {
+        const nome = recurso.nome || recurso.tipo_equipamento;
+        const detalhes = [`Recurso: ${nome}`];
+
+        if (recurso.piso !== undefined) {
+            detalhes.push(`Piso: ${recurso.piso}`);
+        }
+
+        if (recurso.estado !== undefined) {
+            detalhes.push(`Estado: ${recurso.estado}`);
+        }
+
+        return detalhes.join("\n");
+    }).join("\n\n");
+}
+
 abrirTerminalLSS.addEventListener("click", () => {
     terminalLSS.hidden = false;
     comandoLSS.focus();
@@ -65,6 +86,14 @@ executarComandoLSS.addEventListener("click", async() => {
                 formatarReservas("Reserva de salas", dados.reservas_sala) +
                 "\n\n" +
                 formatarReservas("Reserva de equipamentos", dados.reservas_equipamento);
+            return;
+        }
+
+        if (dados.disponiveis) {
+            resultadoLSS.textContent =
+                `Comando: ${dados.comando}\n\n` +
+                `${dados.mensagem}\n\n` +
+                formatarDisponiveis(dados.disponiveis);
             return;
         }
 

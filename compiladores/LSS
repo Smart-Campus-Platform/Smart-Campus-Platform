@@ -20,11 +20,9 @@ consultar reservas
 consultar reservas ativas
 consultar reservas canceladas
 
-# DISPONIBILIDADE
-disponibilidade:
-  tipo: sala
-  data: 2026-04-15
-  filtro: piso == 1
+# DISPONIBILIDADE DE SALAS
+disponibilidade sala data 2026-04-15 hora_inicio 10:00 hora_fim 12:00
+disponibilidade equipamento data 2026-04-15 hora_inicio 10:00 hora_fim 12:00
 
 # VÁRIOS PEDIDOS
 batch:

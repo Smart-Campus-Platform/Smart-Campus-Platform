@@ -4,7 +4,6 @@ Unused terminals:
 
     A
     BATCH
-    DISPONIBILIDADE
     EQ
     ESTADO
     FILTRO
@@ -20,44 +19,46 @@ Rule 0     S' -> programa
 Rule 1     programa -> reservar
 Rule 2     programa -> consultar
 Rule 3     programa -> cancelar
-Rule 4     reservar -> RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIME
-Rule 5     consultar -> CONSULTAR RESERVAS
-Rule 6     consultar -> CONSULTAR RESERVAS ATIVAS
-Rule 7     consultar -> CONSULTAR RESERVAS CANCELADAS
-Rule 8     recurso -> SALA
-Rule 9     recurso -> LABORATORIO
-Rule 10    recurso -> EQUIPAMENTO
-Rule 11    cancelar -> CANCELAR RESERVA recurso NUMBER
+Rule 4     programa -> disponibilidade
+Rule 5     reservar -> RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIME
+Rule 6     consultar -> CONSULTAR RESERVAS
+Rule 7     consultar -> CONSULTAR RESERVAS ATIVAS
+Rule 8     consultar -> CONSULTAR RESERVAS CANCELADAS
+Rule 9     recurso -> SALA
+Rule 10    recurso -> LABORATORIO
+Rule 11    recurso -> EQUIPAMENTO
+Rule 12    cancelar -> CANCELAR RESERVA recurso NUMBER
+Rule 13    disponibilidade -> DISPONIBILIDADE recurso DATA DATE HORA_INICIO TIME HORA_FIM TIME
 
 Terminals, with rules where they appear
 
 A                    : 
-ATIVAS               : 6
+ATIVAS               : 7
 BATCH                : 
-CANCELADAS           : 7
-CANCELAR             : 11
-CONSULTAR            : 5 6 7
-DATA                 : 4
-DATE                 : 4
-DISPONIBILIDADE      : 
+CANCELADAS           : 8
+CANCELAR             : 12
+CONSULTAR            : 6 7 8
+DATA                 : 5 13
+DATE                 : 5 13
+DISPONIBILIDADE      : 13
 EQ                   : 
-EQUIPAMENTO          : 10
+EQUIPAMENTO          : 11
 ESTADO               : 
 FILTRO               : 
-HORA_FIM             : 4
-HORA_INICIO          : 4
-LABORATORIO          : 9
+HORA_FIM             : 5 13
+HORA_INICIO          : 5 13
+LABORATORIO          : 10
 NE                   : 
 NEWLINE              : 
-NUMBER               : 11
+NUMBER               : 12
 PERIODO              : 
 PISO                 : 
-RESERVA              : 11
-RESERVAR             : 4
-RESERVAS             : 5 6 7
-SALA                 : 8
-STRING               : 4
-TIME                 : 4 4
+RESERVA              : 12
+RESERVAR             : 5
+RESERVAS             : 6 7 8
+SALA                 : 9
+STRING               : 5
+TIME                 : 5 5 13 13
 TIPO                 : 
 error                : 
 
@@ -65,8 +66,9 @@ Nonterminals, with rules where they appear
 
 cancelar             : 3
 consultar            : 2
+disponibilidade      : 4
 programa             : 0
-recurso              : 4 11
+recurso              : 5 12 13
 reservar             : 1
 
 Parsing method: LALR
@@ -77,20 +79,24 @@ state 0
     (1) programa -> . reservar
     (2) programa -> . consultar
     (3) programa -> . cancelar
-    (4) reservar -> . RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIME
-    (5) consultar -> . CONSULTAR RESERVAS
-    (6) consultar -> . CONSULTAR RESERVAS ATIVAS
-    (7) consultar -> . CONSULTAR RESERVAS CANCELADAS
-    (11) cancelar -> . CANCELAR RESERVA recurso NUMBER
+    (4) programa -> . disponibilidade
+    (5) reservar -> . RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIME
+    (6) consultar -> . CONSULTAR RESERVAS
+    (7) consultar -> . CONSULTAR RESERVAS ATIVAS
+    (8) consultar -> . CONSULTAR RESERVAS CANCELADAS
+    (12) cancelar -> . CANCELAR RESERVA recurso NUMBER
+    (13) disponibilidade -> . DISPONIBILIDADE recurso DATA DATE HORA_INICIO TIME HORA_FIM TIME
 
-    RESERVAR        shift and go to state 5
-    CONSULTAR       shift and go to state 6
-    CANCELAR        shift and go to state 7
+    RESERVAR        shift and go to state 6
+    CONSULTAR       shift and go to state 7
+    CANCELAR        shift and go to state 8
+    DISPONIBILIDADE shift and go to state 9
 
     programa                       shift and go to state 1
     reservar                       shift and go to state 2
     consultar                      shift and go to state 3
     cancelar                       shift and go to state 4
+    disponibilidade                shift and go to state 5
 
 state 1
 
@@ -121,161 +127,233 @@ state 4
 
 state 5
 
-    (4) reservar -> RESERVAR . recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIME
-    (8) recurso -> . SALA
-    (9) recurso -> . LABORATORIO
-    (10) recurso -> . EQUIPAMENTO
+    (4) programa -> disponibilidade .
 
-    SALA            shift and go to state 9
-    LABORATORIO     shift and go to state 10
-    EQUIPAMENTO     shift and go to state 11
+    $end            reduce using rule 4 (programa -> disponibilidade .)
 
-    recurso                        shift and go to state 8
 
 state 6
 
-    (5) consultar -> CONSULTAR . RESERVAS
-    (6) consultar -> CONSULTAR . RESERVAS ATIVAS
-    (7) consultar -> CONSULTAR . RESERVAS CANCELADAS
+    (5) reservar -> RESERVAR . recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIME
+    (9) recurso -> . SALA
+    (10) recurso -> . LABORATORIO
+    (11) recurso -> . EQUIPAMENTO
 
-    RESERVAS        shift and go to state 12
+    SALA            shift and go to state 11
+    LABORATORIO     shift and go to state 12
+    EQUIPAMENTO     shift and go to state 13
 
+    recurso                        shift and go to state 10
 
 state 7
 
-    (11) cancelar -> CANCELAR . RESERVA recurso NUMBER
+    (6) consultar -> CONSULTAR . RESERVAS
+    (7) consultar -> CONSULTAR . RESERVAS ATIVAS
+    (8) consultar -> CONSULTAR . RESERVAS CANCELADAS
 
-    RESERVA         shift and go to state 13
+    RESERVAS        shift and go to state 14
 
 
 state 8
 
-    (4) reservar -> RESERVAR recurso . STRING DATA DATE HORA_INICIO TIME HORA_FIM TIME
+    (12) cancelar -> CANCELAR . RESERVA recurso NUMBER
 
-    STRING          shift and go to state 14
+    RESERVA         shift and go to state 15
 
 
 state 9
 
-    (8) recurso -> SALA .
+    (13) disponibilidade -> DISPONIBILIDADE . recurso DATA DATE HORA_INICIO TIME HORA_FIM TIME
+    (9) recurso -> . SALA
+    (10) recurso -> . LABORATORIO
+    (11) recurso -> . EQUIPAMENTO
 
-    STRING          reduce using rule 8 (recurso -> SALA .)
-    NUMBER          reduce using rule 8 (recurso -> SALA .)
+    SALA            shift and go to state 11
+    LABORATORIO     shift and go to state 12
+    EQUIPAMENTO     shift and go to state 13
 
+    recurso                        shift and go to state 16
 
 state 10
 
-    (9) recurso -> LABORATORIO .
+    (5) reservar -> RESERVAR recurso . STRING DATA DATE HORA_INICIO TIME HORA_FIM TIME
 
-    STRING          reduce using rule 9 (recurso -> LABORATORIO .)
-    NUMBER          reduce using rule 9 (recurso -> LABORATORIO .)
+    STRING          shift and go to state 17
 
 
 state 11
 
-    (10) recurso -> EQUIPAMENTO .
+    (9) recurso -> SALA .
 
-    STRING          reduce using rule 10 (recurso -> EQUIPAMENTO .)
-    NUMBER          reduce using rule 10 (recurso -> EQUIPAMENTO .)
+    STRING          reduce using rule 9 (recurso -> SALA .)
+    DATA            reduce using rule 9 (recurso -> SALA .)
+    NUMBER          reduce using rule 9 (recurso -> SALA .)
 
 
 state 12
 
-    (5) consultar -> CONSULTAR RESERVAS .
-    (6) consultar -> CONSULTAR RESERVAS . ATIVAS
-    (7) consultar -> CONSULTAR RESERVAS . CANCELADAS
+    (10) recurso -> LABORATORIO .
 
-    $end            reduce using rule 5 (consultar -> CONSULTAR RESERVAS .)
-    ATIVAS          shift and go to state 15
-    CANCELADAS      shift and go to state 16
+    STRING          reduce using rule 10 (recurso -> LABORATORIO .)
+    DATA            reduce using rule 10 (recurso -> LABORATORIO .)
+    NUMBER          reduce using rule 10 (recurso -> LABORATORIO .)
 
 
 state 13
 
-    (11) cancelar -> CANCELAR RESERVA . recurso NUMBER
-    (8) recurso -> . SALA
-    (9) recurso -> . LABORATORIO
-    (10) recurso -> . EQUIPAMENTO
+    (11) recurso -> EQUIPAMENTO .
 
-    SALA            shift and go to state 9
-    LABORATORIO     shift and go to state 10
-    EQUIPAMENTO     shift and go to state 11
+    STRING          reduce using rule 11 (recurso -> EQUIPAMENTO .)
+    DATA            reduce using rule 11 (recurso -> EQUIPAMENTO .)
+    NUMBER          reduce using rule 11 (recurso -> EQUIPAMENTO .)
 
-    recurso                        shift and go to state 17
 
 state 14
 
-    (4) reservar -> RESERVAR recurso STRING . DATA DATE HORA_INICIO TIME HORA_FIM TIME
+    (6) consultar -> CONSULTAR RESERVAS .
+    (7) consultar -> CONSULTAR RESERVAS . ATIVAS
+    (8) consultar -> CONSULTAR RESERVAS . CANCELADAS
 
-    DATA            shift and go to state 18
+    $end            reduce using rule 6 (consultar -> CONSULTAR RESERVAS .)
+    ATIVAS          shift and go to state 18
+    CANCELADAS      shift and go to state 19
 
 
 state 15
 
-    (6) consultar -> CONSULTAR RESERVAS ATIVAS .
+    (12) cancelar -> CANCELAR RESERVA . recurso NUMBER
+    (9) recurso -> . SALA
+    (10) recurso -> . LABORATORIO
+    (11) recurso -> . EQUIPAMENTO
 
-    $end            reduce using rule 6 (consultar -> CONSULTAR RESERVAS ATIVAS .)
+    SALA            shift and go to state 11
+    LABORATORIO     shift and go to state 12
+    EQUIPAMENTO     shift and go to state 13
 
+    recurso                        shift and go to state 20
 
 state 16
 
-    (7) consultar -> CONSULTAR RESERVAS CANCELADAS .
+    (13) disponibilidade -> DISPONIBILIDADE recurso . DATA DATE HORA_INICIO TIME HORA_FIM TIME
 
-    $end            reduce using rule 7 (consultar -> CONSULTAR RESERVAS CANCELADAS .)
+    DATA            shift and go to state 21
 
 
 state 17
 
-    (11) cancelar -> CANCELAR RESERVA recurso . NUMBER
+    (5) reservar -> RESERVAR recurso STRING . DATA DATE HORA_INICIO TIME HORA_FIM TIME
 
-    NUMBER          shift and go to state 19
+    DATA            shift and go to state 22
 
 
 state 18
 
-    (4) reservar -> RESERVAR recurso STRING DATA . DATE HORA_INICIO TIME HORA_FIM TIME
+    (7) consultar -> CONSULTAR RESERVAS ATIVAS .
 
-    DATE            shift and go to state 20
+    $end            reduce using rule 7 (consultar -> CONSULTAR RESERVAS ATIVAS .)
 
 
 state 19
 
-    (11) cancelar -> CANCELAR RESERVA recurso NUMBER .
+    (8) consultar -> CONSULTAR RESERVAS CANCELADAS .
 
-    $end            reduce using rule 11 (cancelar -> CANCELAR RESERVA recurso NUMBER .)
+    $end            reduce using rule 8 (consultar -> CONSULTAR RESERVAS CANCELADAS .)
 
 
 state 20
 
-    (4) reservar -> RESERVAR recurso STRING DATA DATE . HORA_INICIO TIME HORA_FIM TIME
+    (12) cancelar -> CANCELAR RESERVA recurso . NUMBER
 
-    HORA_INICIO     shift and go to state 21
+    NUMBER          shift and go to state 23
 
 
 state 21
 
-    (4) reservar -> RESERVAR recurso STRING DATA DATE HORA_INICIO . TIME HORA_FIM TIME
+    (13) disponibilidade -> DISPONIBILIDADE recurso DATA . DATE HORA_INICIO TIME HORA_FIM TIME
 
-    TIME            shift and go to state 22
+    DATE            shift and go to state 24
 
 
 state 22
 
-    (4) reservar -> RESERVAR recurso STRING DATA DATE HORA_INICIO TIME . HORA_FIM TIME
+    (5) reservar -> RESERVAR recurso STRING DATA . DATE HORA_INICIO TIME HORA_FIM TIME
 
-    HORA_FIM        shift and go to state 23
+    DATE            shift and go to state 25
 
 
 state 23
 
-    (4) reservar -> RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM . TIME
+    (12) cancelar -> CANCELAR RESERVA recurso NUMBER .
 
-    TIME            shift and go to state 24
+    $end            reduce using rule 12 (cancelar -> CANCELAR RESERVA recurso NUMBER .)
 
 
 state 24
 
-    (4) reservar -> RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIME .
+    (13) disponibilidade -> DISPONIBILIDADE recurso DATA DATE . HORA_INICIO TIME HORA_FIM TIME
 
-    $end            reduce using rule 4 (reservar -> RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIME .)
+    HORA_INICIO     shift and go to state 26
+
+
+state 25
+
+    (5) reservar -> RESERVAR recurso STRING DATA DATE . HORA_INICIO TIME HORA_FIM TIME
+
+    HORA_INICIO     shift and go to state 27
+
+
+state 26
+
+    (13) disponibilidade -> DISPONIBILIDADE recurso DATA DATE HORA_INICIO . TIME HORA_FIM TIME
+
+    TIME            shift and go to state 28
+
+
+state 27
+
+    (5) reservar -> RESERVAR recurso STRING DATA DATE HORA_INICIO . TIME HORA_FIM TIME
+
+    TIME            shift and go to state 29
+
+
+state 28
+
+    (13) disponibilidade -> DISPONIBILIDADE recurso DATA DATE HORA_INICIO TIME . HORA_FIM TIME
+
+    HORA_FIM        shift and go to state 30
+
+
+state 29
+
+    (5) reservar -> RESERVAR recurso STRING DATA DATE HORA_INICIO TIME . HORA_FIM TIME
+
+    HORA_FIM        shift and go to state 31
+
+
+state 30
+
+    (13) disponibilidade -> DISPONIBILIDADE recurso DATA DATE HORA_INICIO TIME HORA_FIM . TIME
+
+    TIME            shift and go to state 32
+
+
+state 31
+
+    (5) reservar -> RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM . TIME
+
+    TIME            shift and go to state 33
+
+
+state 32
+
+    (13) disponibilidade -> DISPONIBILIDADE recurso DATA DATE HORA_INICIO TIME HORA_FIM TIME .
+
+    $end            reduce using rule 13 (disponibilidade -> DISPONIBILIDADE recurso DATA DATE HORA_INICIO TIME HORA_FIM TIME .)
+
+
+state 33
+
+    (5) reservar -> RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIME .
+
+    $end            reduce using rule 5 (reservar -> RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIME .)
 

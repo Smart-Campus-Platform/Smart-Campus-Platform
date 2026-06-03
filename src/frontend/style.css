@@ -527,7 +527,7 @@ body.tema-rosa .botao-opcao:not(.selecionado) { background: #f4f4f4 !important; 
 
 #comandoLSS {
     width: 100%;
-    height: 72px;
+    height: 36px;
     flex-shrink: 0;
     resize: vertical;
     overflow-y: auto;

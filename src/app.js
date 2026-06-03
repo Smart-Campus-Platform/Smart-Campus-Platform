@@ -315,6 +315,74 @@ app.post('/api/lss', async (req, res) => { //é para aqui que são enviados os c
             return;
         }
 
+        if (resultado.tipo === "disponibilidade") {
+            const dataInicio = `${resultado.data} ${resultado.inicio}:00`;
+            const dataFim = `${resultado.data} ${resultado.fim}:00`;
+            let disponiveis;
+
+            if (dataInicio >= dataFim) {
+                throw new Error("A hora de fim tem de ser depois da hora de inicio");
+            }
+
+            if (resultado.recurso_categoria === "sala" || resultado.recurso_categoria === "laboratorio") {
+                [disponiveis] = await db.promise().query(
+                    `SELECT
+                        s.id_sala,
+                        s.nome
+                    FROM sala s
+                    WHERE NOT EXISTS (
+                        SELECT *
+                        FROM reserva_sala rs
+                        WHERE rs.s_id_sala = s.id_sala
+                        AND rs.data_inicio < ?
+                        AND rs.data_fim > ?
+                        AND (rs.estado IS NULL OR rs.estado <> ?)
+                    )
+                    ORDER BY s.nome`,
+                    [
+                        dataFim,
+                        dataInicio,
+                        "cancelada"
+                    ]
+                );
+            }
+            else if (resultado.recurso_categoria === "equipamento") {
+                [disponiveis] = await db.promise().query(
+                    `SELECT
+                        e.tipo_equipamento,
+                        e.piso,
+                        e.estado
+                    FROM equipamento e
+                    WHERE NOT EXISTS (
+                        SELECT *
+                        FROM reserva_equipamento re
+                        WHERE re.e_tipo_equipamento = e.tipo_equipamento
+                        AND re.data_inicio < ?
+                        AND re.data_fim > ?
+                        AND (re.estado IS NULL OR re.estado <> ?)
+                    )
+                    ORDER BY e.tipo_equipamento`,
+                    [
+                        dataFim,
+                        dataInicio,
+                        "cancelada"
+                    ]
+                );
+            }
+            else {
+                throw new Error("Tipo de recurso nao suportado");
+            }
+
+            res.json({
+                mensagem: "Disponibilidade encontrada",
+                comando: comando,
+                resultado: resultado,
+                disponiveis: disponiveis
+            });
+
+            return;
+        }
+
         if (resultado.tipo !== "reservar") {
             throw new Error("Comando nao suportado");
         }
@@ -349,8 +417,7 @@ app.post('/api/lss', async (req, res) => { //é para aqui que são enviados os c
                 WHERE s_id_sala = ?
                 AND data_inicio < ?
                 AND data_fim > ?
-                AND (estado IS NULL OR estado <> ?)
-                LIMIT 1`,
+                AND (estado IS NULL OR estado <> ?)`,
                 [
                     sala.id_sala,
                     dataFim,
