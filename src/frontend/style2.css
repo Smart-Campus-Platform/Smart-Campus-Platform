@@ -32,7 +32,7 @@ button.previous {
     border: none;
     cursor: pointer;
 }
-
+/*comentario*/
 .icons {
     display: flex;
     justify-content: flex-end;

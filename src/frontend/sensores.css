@@ -32,7 +32,7 @@
     transition: background 0.15s;
     flex-shrink: 0;
 }
-
+/*comentario*/
 .btn-adicionar-sensor:hover {
     background: #2a92b5 !important;
 }
