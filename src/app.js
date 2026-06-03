@@ -259,6 +259,62 @@ app.post('/api/lss', async (req, res) => { //é para aqui que são enviados os c
             return;
         }
 
+        if (resultado.tipo === "cancelar") {
+            if (resultado.recurso_categoria === "sala" || resultado.recurso_categoria === "laboratorio"){
+                const [cancelamento] = await db.promise().query(
+                    `UPDATE reserva_sala
+                    SET estado = ?
+                    WHERE id_reserva = ?
+                    AND u_id_utilizador = ?
+                    AND estado = ?`,
+
+                    [
+                        "cancelada",
+                        resultado.id_reserva,
+                        utilizador.id_utilizador,
+                        "ativa"
+                    ]
+                );
+
+                if(cancelamento.affectedRows === 0) {
+                    throw new Error ("Reserva não encontrada ou não ativa")
+                }
+            }
+
+            else if (resultado.recurso_categoria === "equipamento"){
+                const [cancelamento] = await db.promise().query(
+                    `UPDATE reserva_equipamento
+                    SET estado = ?
+                    WHERE id_reserva = ?
+                    AND u_id_utilizador = ?
+                    AND estado = ?`,
+
+                    [
+                        "cancelada",
+                        resultado.id_reserva,
+                        utilizador.id_utilizador,
+                        "ativa"
+                    ]
+                );
+
+                if(cancelamento.affectedRows === 0) {
+                    throw new Error ("Reserva não encontrada ou não ativa")
+                }
+            }
+            else {
+                throw new Error("Tipo de recurso nao suportado");
+            }
+
+            res.json({
+                mensagem: "Reserva cancelada",
+                comando: comando,
+                resultado: resultado,
+                id_reserva: resultado.id_reserva
+            });
+
+            return;
+        }
+
         if (resultado.tipo !== "reservar") {
             throw new Error("Comando nao suportado");
         }

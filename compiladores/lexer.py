@@ -11,6 +11,7 @@ reserved = {
     "equipamento": "EQUIPAMENTO",
 
     "cancelar": "CANCELAR",
+    "reserva": "RESERVA",
 
     "reservas": "RESERVAS",
     "ativas": "ATIVAS",

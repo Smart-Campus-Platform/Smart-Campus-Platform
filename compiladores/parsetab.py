@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'A ATIVAS BATCH CANCELADAS CANCELAR CONSULTAR DATA DATE DISPONIBILIDADE EQ EQUIPAMENTO ESTADO FILTRO HORA_FIM HORA_INICIO LABORATORIO NE NEWLINE NUMBER PERIODO PISO RESERVAR RESERVAS SALA STRING TIME TIPOprograma : reservar\n                | consultarreservar : RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIMEconsultar : CONSULTAR RESERVAS\n                    | CONSULTAR RESERVAS ATIVAS\n                    | CONSULTAR RESERVAS CANCELADAS  recurso : SALA\n                | LABORATORIO \n                | EQUIPAMENTO'
+_lr_signature = 'A ATIVAS BATCH CANCELADAS CANCELAR CONSULTAR DATA DATE DISPONIBILIDADE EQ EQUIPAMENTO ESTADO FILTRO HORA_FIM HORA_INICIO LABORATORIO NE NEWLINE NUMBER PERIODO PISO RESERVA RESERVAR RESERVAS SALA STRING TIME TIPOprograma : reservar\n                | consultar\n                | cancelarreservar : RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIMEconsultar : CONSULTAR RESERVAS\n                    | CONSULTAR RESERVAS ATIVAS\n                    | CONSULTAR RESERVAS CANCELADAS  recurso : SALA\n                | LABORATORIO \n                | EQUIPAMENTOcancelar : CANCELAR RESERVA recurso NUMBER'
     
-_lr_action_items = {'RESERVAR':([0,],[4,]),'CONSULTAR':([0,],[5,]),'$end':([1,2,3,10,12,13,19,],[0,-1,-2,-4,-5,-6,-3,]),'SALA':([4,],[7,]),'LABORATORIO':([4,],[8,]),'EQUIPAMENTO':([4,],[9,]),'RESERVAS':([5,],[10,]),'STRING':([6,7,8,9,],[11,-7,-8,-9,]),'ATIVAS':([10,],[12,]),'CANCELADAS':([10,],[13,]),'DATA':([11,],[14,]),'DATE':([14,],[15,]),'HORA_INICIO':([15,],[16,]),'TIME':([16,18,],[17,19,]),'HORA_FIM':([17,],[18,]),}
+_lr_action_items = {'RESERVAR':([0,],[5,]),'CONSULTAR':([0,],[6,]),'CANCELAR':([0,],[7,]),'$end':([1,2,3,4,12,15,16,19,24,],[0,-1,-2,-3,-5,-6,-7,-11,-4,]),'SALA':([5,13,],[9,9,]),'LABORATORIO':([5,13,],[10,10,]),'EQUIPAMENTO':([5,13,],[11,11,]),'RESERVAS':([6,],[12,]),'RESERVA':([7,],[13,]),'STRING':([8,9,10,11,],[14,-8,-9,-10,]),'NUMBER':([9,10,11,17,],[-8,-9,-10,19,]),'ATIVAS':([12,],[15,]),'CANCELADAS':([12,],[16,]),'DATA':([14,],[18,]),'DATE':([18,],[20,]),'HORA_INICIO':([20,],[21,]),'TIME':([21,23,],[22,24,]),'HORA_FIM':([22,],[23,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'programa':([0,],[1,]),'reservar':([0,],[2,]),'consultar':([0,],[3,]),'recurso':([4,],[6,]),}
+_lr_goto_items = {'programa':([0,],[1,]),'reservar':([0,],[2,]),'consultar':([0,],[3,]),'cancelar':([0,],[4,]),'recurso':([5,13,],[8,17,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -29,11 +29,13 @@ _lr_productions = [
   ("S' -> programa","S'",1,None,None,None),
   ('programa -> reservar','programa',1,'p_programa','parser.py',5),
   ('programa -> consultar','programa',1,'p_programa','parser.py',6),
-  ('reservar -> RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIME','reservar',9,'p_reservar','parser.py',11),
-  ('consultar -> CONSULTAR RESERVAS','consultar',2,'p_consultar','parser.py',22),
-  ('consultar -> CONSULTAR RESERVAS ATIVAS','consultar',3,'p_consultar','parser.py',23),
-  ('consultar -> CONSULTAR RESERVAS CANCELADAS','consultar',3,'p_consultar','parser.py',24),
-  ('recurso -> SALA','recurso',1,'p_recurso','parser.py',41),
-  ('recurso -> LABORATORIO','recurso',1,'p_recurso','parser.py',42),
-  ('recurso -> EQUIPAMENTO','recurso',1,'p_recurso','parser.py',43),
+  ('programa -> cancelar','programa',1,'p_programa','parser.py',7),
+  ('reservar -> RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIME','reservar',9,'p_reservar','parser.py',12),
+  ('consultar -> CONSULTAR RESERVAS','consultar',2,'p_consultar','parser.py',23),
+  ('consultar -> CONSULTAR RESERVAS ATIVAS','consultar',3,'p_consultar','parser.py',24),
+  ('consultar -> CONSULTAR RESERVAS CANCELADAS','consultar',3,'p_consultar','parser.py',25),
+  ('recurso -> SALA','recurso',1,'p_recurso','parser.py',42),
+  ('recurso -> LABORATORIO','recurso',1,'p_recurso','parser.py',43),
+  ('recurso -> EQUIPAMENTO','recurso',1,'p_recurso','parser.py',44),
+  ('cancelar -> CANCELAR RESERVA recurso NUMBER','cancelar',4,'p_cancelar','parser.py',49),
 ]

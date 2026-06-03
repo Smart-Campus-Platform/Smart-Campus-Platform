@@ -12,11 +12,8 @@ reservar laboratorio "Lab 2" data 2026-04-16 hora_inicio 14:00 hora_fim 16:00
 reservar equipamento "Projetor P03" data 2026-04-20 hora_inicio 09:00 hora_fim 11:00
 
 # CANCELAMENTO
-cancelar:
-  tipo: sala
-  espaco: "Sala A101"
-  data: 2026-04-15
-  hora_inicio: 10:00
+cancelar reserva sala 1
+cancelar reserva equipamento 1
 
 # CONSULTA
 consultar reservas

@@ -3,7 +3,8 @@ from lexer import tokens
 
 def p_programa(p):
     '''programa : reservar
-                | consultar'''
+                | consultar
+                | cancelar'''
     p[0] = p[1]
 
 
@@ -43,6 +44,15 @@ def p_recurso(p):
                 | EQUIPAMENTO'''
 
     p[0] = p[1]
+
+def p_cancelar(p):
+     '''cancelar : CANCELAR RESERVA recurso NUMBER'''
+
+     p[0] = {
+        "tipo": "cancelar",
+        "recurso_categoria": p[3],
+        "id_reserva": p[4]
+     }   
 
 
 def p_error(p):
