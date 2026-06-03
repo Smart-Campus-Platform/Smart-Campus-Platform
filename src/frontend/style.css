@@ -481,6 +481,7 @@ body.tema-rosa .botao-opcao:not(.selecionado) { background: #f4f4f4 !important; 
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 24px;
     z-index: 1001;
 }
 
@@ -490,9 +491,13 @@ body.tema-rosa .botao-opcao:not(.selecionado) { background: #f4f4f4 !important; 
 
 .terminal-lss-conteudo {
     width: min(720px, 92vw);
+    max-height: 90vh;
     background: #ffffff;
     border-radius: 8px;
-    padding: 24px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
 }
 
 .terminal-lss-topo {
@@ -501,17 +506,29 @@ body.tema-rosa .botao-opcao:not(.selecionado) { background: #f4f4f4 !important; 
     align-items: center;
 }
 
+.terminal-lss-topo h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.terminal-lss-instrucoes p {
+    margin: 12px 0 6px;
+}
+
 .terminal-lss code {
     display: block;
-    padding: 12px;
+    padding: 8px 10px;
     background: #f4f4f4;
     border-radius: 6px;
-    margin: 12px 0;
+    margin: 6px 0;
+    font-size: 13px;
+    line-height: 1.35;
 }
 
 #comandoLSS {
     width: 100%;
-    height: 100px;
+    height: 36px;
+    flex-shrink: 0;
     resize: vertical;
     overflow-y: auto;
 }
@@ -523,4 +540,8 @@ body.tema-rosa .botao-opcao:not(.selecionado) { background: #f4f4f4 !important; 
     padding: 12px;
     border-radius: 6px;
     min-height: 48px;
+    max-height: min(360px, 38vh);
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
 }
