@@ -72,6 +72,8 @@ app.use('/api', dashboardRouter);
 app.use('/api', lssRouter);
 app.use('/api', relatorioRouter);
 
+app.use("/api", postoCarregamentoRoutes);
+
 
 app.listen(PORT, () => {
     console.log(`Servidor na porta ${PORT}`);
