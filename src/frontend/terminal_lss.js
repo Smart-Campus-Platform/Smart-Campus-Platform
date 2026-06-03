@@ -5,6 +5,24 @@ const executarComandoLSS = document.getElementById("executarComandoLSS");
 const comandoLSS = document.getElementById("comandoLSS");
 const resultadoLSS = document.getElementById("resultadoLSS");
 
+function formatarReservas(titulo, reservas) {
+    if (!reservas || reservas.length === 0) {
+        return `${titulo}\nSem reservas.`;
+    }
+
+    const linhas = reservas.map((reserva) => {
+        return [
+            `ID: ${reserva.id_reserva}`,
+            `Recurso: ${reserva.recurso_nome}`,
+            `Inicio: ${reserva.data_inicio}`,
+            `Fim: ${reserva.data_fim}`,
+            `Estado: ${reserva.estado}`
+        ].join("\n");
+    });
+
+    return `${titulo}\n\n${linhas.join("\n\n")}`;
+}
+
 abrirTerminalLSS.addEventListener("click", () => {
     terminalLSS.hidden = false;
     comandoLSS.focus();
@@ -44,7 +62,9 @@ executarComandoLSS.addEventListener("click", async() => {
             resultadoLSS.textContent =
                 `Comando: ${dados.comando}\n\n` +
                 `${dados.mensagem}\n\n` +
-                JSON.stringify(dados.reservas, null, 2);
+                formatarReservas("Reserva de salas", dados.reservas_sala) +
+                "\n\n" +
+                formatarReservas("Reserva de equipamentos", dados.reservas_equipamento);
             return;
         }
 

@@ -251,7 +251,9 @@ app.post('/api/lss', async (req, res) => { //é para aqui que são enviados os c
                 mensagem: "Reservas encontradas",
                 comando: comando,
                 resultado: resultado,
-                reservas: reservas
+                reservas: reservas,
+                reservas_sala: reservasSala,
+                reservas_equipamento: reservasEquipamento
             });
 
             return;
@@ -267,6 +269,10 @@ app.post('/api/lss', async (req, res) => { //é para aqui que são enviados os c
 
         if (dataInicio >= dataFim) {
             throw new Error("A hora de fim tem de ser depois da hora de inicio");
+        }
+
+        if (new Date(dataInicio) <= new Date()) {
+            throw new Error("So e possivel fazer reservas para uma data e hora futuras");
         }
 
         if (resultado.recurso_categoria === "sala" || resultado.recurso_categoria === "laboratorio") {
@@ -287,7 +293,7 @@ app.post('/api/lss', async (req, res) => { //é para aqui que são enviados os c
                 WHERE s_id_sala = ?
                 AND data_inicio < ?
                 AND data_fim > ?
-                AND (estado <> ?)
+                AND (estado IS NULL OR estado <> ?)
                 LIMIT 1`,
                 [
                     sala.id_sala,
@@ -332,7 +338,7 @@ app.post('/api/lss', async (req, res) => { //é para aqui que são enviados os c
                 WHERE e_tipo_equipamento = ?
                 AND data_inicio < ?
                 AND data_fim > ?
-                AND (estado <> ?)
+                AND (estado IS NULL OR estado <> ?)
                 LIMIT 1`,
                 [
                     equipamento.tipo_equipamento,
