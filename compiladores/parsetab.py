@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'A BATCH CANCELAR CONSULTAR DATA DATE DISPONIBILIDADE EQ ESTADO FILTRO HORA_FIM HORA_INICIO LABORATORIO NE NEWLINE NUMBER PERIODO PISO RESERVAR SALA STRING TIME TIPOprograma : reservarreservar : RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIMErecurso : SALA\n                | LABORATORIO '
+_lr_signature = 'A ATIVAS BATCH CANCELADAS CANCELAR CONSULTAR DATA DATE DISPONIBILIDADE EQ EQUIPAMENTO ESTADO FILTRO HORA_FIM HORA_INICIO LABORATORIO NE NEWLINE NUMBER PERIODO PISO RESERVA RESERVAR RESERVAS SALA STRING TIME TIPOprograma : reservar\n                | consultar\n                | cancelar\n                | disponibilidadereservar : RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIMEconsultar : CONSULTAR RESERVAS\n                    | CONSULTAR RESERVAS ATIVAS\n                    | CONSULTAR RESERVAS CANCELADAS  recurso : SALA\n                | LABORATORIO \n                | EQUIPAMENTOcancelar : CANCELAR RESERVA recurso NUMBERdisponibilidade : DISPONIBILIDADE recurso DATA DATE HORA_INICIO TIME HORA_FIM TIME'
     
-_lr_action_items = {'RESERVAR':([0,],[3,]),'$end':([1,2,13,],[0,-1,-2,]),'SALA':([3,],[5,]),'LABORATORIO':([3,],[6,]),'STRING':([4,5,6,],[7,-3,-4,]),'DATA':([7,],[8,]),'DATE':([8,],[9,]),'HORA_INICIO':([9,],[10,]),'TIME':([10,12,],[11,13,]),'HORA_FIM':([11,],[12,]),}
+_lr_action_items = {'RESERVAR':([0,],[6,]),'CONSULTAR':([0,],[7,]),'CANCELAR':([0,],[8,]),'DISPONIBILIDADE':([0,],[9,]),'$end':([1,2,3,4,5,14,18,19,23,32,33,],[0,-1,-2,-3,-4,-6,-7,-8,-12,-13,-5,]),'SALA':([6,9,15,],[11,11,11,]),'LABORATORIO':([6,9,15,],[12,12,12,]),'EQUIPAMENTO':([6,9,15,],[13,13,13,]),'RESERVAS':([7,],[14,]),'RESERVA':([8,],[15,]),'STRING':([10,11,12,13,],[17,-9,-10,-11,]),'DATA':([11,12,13,16,17,],[-9,-10,-11,21,22,]),'NUMBER':([11,12,13,20,],[-9,-10,-11,23,]),'ATIVAS':([14,],[18,]),'CANCELADAS':([14,],[19,]),'DATE':([21,22,],[24,25,]),'HORA_INICIO':([24,25,],[26,27,]),'TIME':([26,27,30,31,],[28,29,32,33,]),'HORA_FIM':([28,29,],[30,31,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'programa':([0,],[1,]),'reservar':([0,],[2,]),'recurso':([3,],[4,]),}
+_lr_goto_items = {'programa':([0,],[1,]),'reservar':([0,],[2,]),'consultar':([0,],[3,]),'cancelar':([0,],[4,]),'disponibilidade':([0,],[5,]),'recurso':([6,9,15,],[10,16,20,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -28,7 +28,16 @@ del _lr_goto_items
 _lr_productions = [
   ("S' -> programa","S'",1,None,None,None),
   ('programa -> reservar','programa',1,'p_programa','parser.py',5),
-  ('reservar -> RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIME','reservar',9,'p_reservar','parser.py',10),
-  ('recurso -> SALA','recurso',1,'p_recurso','parser.py',21),
-  ('recurso -> LABORATORIO','recurso',1,'p_recurso','parser.py',22),
+  ('programa -> consultar','programa',1,'p_programa','parser.py',6),
+  ('programa -> cancelar','programa',1,'p_programa','parser.py',7),
+  ('programa -> disponibilidade','programa',1,'p_programa','parser.py',8),
+  ('reservar -> RESERVAR recurso STRING DATA DATE HORA_INICIO TIME HORA_FIM TIME','reservar',9,'p_reservar','parser.py',13),
+  ('consultar -> CONSULTAR RESERVAS','consultar',2,'p_consultar','parser.py',24),
+  ('consultar -> CONSULTAR RESERVAS ATIVAS','consultar',3,'p_consultar','parser.py',25),
+  ('consultar -> CONSULTAR RESERVAS CANCELADAS','consultar',3,'p_consultar','parser.py',26),
+  ('recurso -> SALA','recurso',1,'p_recurso','parser.py',43),
+  ('recurso -> LABORATORIO','recurso',1,'p_recurso','parser.py',44),
+  ('recurso -> EQUIPAMENTO','recurso',1,'p_recurso','parser.py',45),
+  ('cancelar -> CANCELAR RESERVA recurso NUMBER','cancelar',4,'p_cancelar','parser.py',50),
+  ('disponibilidade -> DISPONIBILIDADE recurso DATA DATE HORA_INICIO TIME HORA_FIM TIME','disponibilidade',8,'p_disponibilidade','parser.py',59),
 ]
