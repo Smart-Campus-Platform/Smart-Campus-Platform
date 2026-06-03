@@ -125,7 +125,7 @@
                             <span class="seta" aria-hidden="true">▼</span>
                         </button>
                     </div>
-                    <div class="filtros-lista" id="filtros-lista" role="group" aria-label="Filtrar por tipo">
+                    <div class="filtros-lista" id="filtros-lista" role="group" aria-label="Filtrar por tipo e estado">
                         <div class="filtro-opcao ativo"
                              role="button" tabindex="0"
                              aria-pressed="true"
@@ -146,6 +146,31 @@
                              aria-pressed="false"
                              onclick="selecionarFiltro(this)"
                              onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selecionarFiltro(this);}">Bicicletas</div>
+                        <div class="filtro-grupo-titulo" aria-hidden="true">Estado</div>
+                        <div class="filtro-opcao filtro-estado ativo"
+                             role="button" tabindex="0"
+                             aria-pressed="true"
+                             data-estado=""
+                             onclick="selecionarFiltroEstado(this)"
+                             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selecionarFiltroEstado(this);}">Todos</div>
+                        <div class="filtro-opcao filtro-estado"
+                             role="button" tabindex="0"
+                             aria-pressed="false"
+                             data-estado="ativ"
+                             onclick="selecionarFiltroEstado(this)"
+                             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selecionarFiltroEstado(this);}">Ativo</div>
+                        <div class="filtro-opcao filtro-estado"
+                             role="button" tabindex="0"
+                             aria-pressed="false"
+                             data-estado="confirm"
+                             onclick="selecionarFiltroEstado(this)"
+                             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selecionarFiltroEstado(this);}">Confirmado</div>
+                        <div class="filtro-opcao filtro-estado"
+                             role="button" tabindex="0"
+                             aria-pressed="false"
+                             data-estado="cancel"
+                             onclick="selecionarFiltroEstado(this)"
+                             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selecionarFiltroEstado(this);}">Cancelado</div>
                     </div>
                 </aside>
 
