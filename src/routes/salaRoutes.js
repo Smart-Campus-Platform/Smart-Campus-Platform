@@ -1,0 +1,10 @@
+const express = require('express');
+const router = express.Router();
+const salaController = require('../controllers/salaController');
+router.get('/salas', salaController.listarSalas);
+router.get('/salas/todas', salaController.listarTodasSalas);
+router.post('/salas', salaController.adicionarSala);
+router.put('/salas/:id', salaController.atualizarSala);
+router.delete('/salas/:id', salaController.removerSala);
+router.patch('/salas/:id/disponibilidade', salaController.atualizarDisponibilidadeSala);
+module.exports = router;
