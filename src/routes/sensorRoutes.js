@@ -1,0 +1,15 @@
+const express = require('express');
+const router = express.Router();
+const sensorController = require('../controllers/sensorController');
+router.get('/sensores/tipos', sensorController.listarTiposSensor);
+router.post('/sensores/tipos', sensorController.adicionarTipoSensor);
+router.get('/sensores', sensorController.listarSensores);
+router.post('/sensores', sensorController.adicionarSensor);
+router.put('/sensores/:id', sensorController.atualizarSensor);
+router.delete('/sensores/:id', sensorController.removerSensor);
+router.patch('/sensores/:id/estado', sensorController.atualizarEstadoSensor);
+router.get('/sensores/:id/dados', sensorController.listarDadosSensor);
+router.get('/sensores/dados/dashboard', sensorController.dashboardSensores);
+router.get('/sensores/dados/relatorios', sensorController.relatoriosSensores);
+router.get('/alertas', sensorController.listarAlertas);
+module.exports = router;
