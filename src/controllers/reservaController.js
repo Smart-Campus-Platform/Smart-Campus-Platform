@@ -1,22 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const reservaSalaController = require('../controllers/reservaSalaController');
-const reservaEquipamentoController = require('../controllers/reservaEquipamentoController');
-const reservaMobilidadeController = require('../controllers/reservaMobilidadeController');
-const reservaController = require('../controllers/reservaController');
-router.get('/reservas/salas', reservaSalaController.listarReservasSalas);
-router.get('/reservas/salas/todas', reservaSalaController.listarTodasReservasSalas);
-router.post('/reservas/salas', reservaSalaController.criarReservaSala);
-router.delete('/reservas/salas/:id', reservaSalaController.cancelarReservaSala);
-router.patch('/reservas/salas/:id/estado', reservaSalaController.atualizarEstadoReservaSala);
-router.get('/reservas/equipamentos', reservaEquipamentoController.listarReservasEquipamentos);
-router.get('/reservas/equipamentos/todas', reservaEquipamentoController.listarTodasReservasEquipamentos);
-router.post('/reservas/equipamentos', reservaEquipamentoController.criarReservaEquipamento);
-router.delete('/reservas/equipamentos/:id', reservaEquipamentoController.cancelarReservaEquipamento);
-router.get('/reservas/mobilidade', reservaMobilidadeController.listarReservasMobilidade);
-router.get('/reservas/mobilidade/todas', reservaMobilidadeController.listarTodasReservasMobilidade);
-router.post('/reservas/mobilidade', reservaMobilidadeController.criarReservaMobilidade);
-router.put('/reservas/mobilidade/:id/devolver', reservaMobilidadeController.devolverVeiculo);
-router.delete('/reservas/mobilidade/:id', reservaMobilidadeController.cancelarReservaMobilidade);
-router.get('/reservas/todas', reservaController.listarTodasReservas);
-module.exports = router;
+
+const reserva = require('../models/reserva');
+const listarTodasReservas = async (req, res) => {
+    try {
+        const todas = await reserva.listarTodas();
+        res.json(todas);
+    } catch (err) {
+        res.status(500).json({ erro: 'Erro interno' });
+    }
+};
+module.exports = { listarTodasReservas };

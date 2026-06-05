@@ -4,7 +4,6 @@ const mobilidade = require('../models/mobilidade');
 function getUserId(req) {
     return parseInt(req.headers['x-user-id']) || null;
 }
-
 const listarReservasMobilidade = async (req, res) => {
     const userId = getUserId(req);
     if (!userId) return res.status(401).json({ erro: 'Não autenticado' });
@@ -41,7 +40,6 @@ const criarReservaMobilidade = async (req, res) => {
         res.status(500).json({ erro: 'Erro ao reservar veículo' });
     }
 };
-
 const devolverVeiculo = async (req, res) => {
     const userId = getUserId(req);
     if (!userId) return res.status(401).json({ erro: 'Não autenticado' });
@@ -55,7 +53,6 @@ const devolverVeiculo = async (req, res) => {
         res.status(500).json({ erro: 'Erro ao devolver veículo' });
     }
 };
-
 const cancelarReservaMobilidade = async (req, res) => {
     const userId = getUserId(req);
     if (!userId) return res.status(401).json({ erro: 'Não autenticado' });
@@ -69,5 +66,4 @@ const cancelarReservaMobilidade = async (req, res) => {
         res.status(500).json({ erro: 'Erro ao cancelar reserva' });
     }
 };
-
 module.exports = { listarReservasMobilidade, listarTodasReservasMobilidade, criarReservaMobilidade, devolverVeiculo, cancelarReservaMobilidade };
