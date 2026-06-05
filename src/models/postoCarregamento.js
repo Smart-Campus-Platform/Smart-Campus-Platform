@@ -31,7 +31,7 @@ const listarAreas = async () => {
 //para adicionar novos postos
 const adicionarPosto = async (id_posto, area) => {
     const [resultado] = await db.promise().query(
-        `INSERT INTO posto_carregamento 
+        `INSERT INTO posto_carregamento
          (id_posto, area, disponibilidade, atualizacao_automatica)
          VALUES (?, ?, true, true)`,
         [id_posto, area]

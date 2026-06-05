@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const utilizadorController = require('../controllers/utilizadorController');
 router.post('/login', utilizadorController.login);
+router.post('/logout', utilizadorController.logout);
 router.get('/me', utilizadorController.getMe);
 router.put('/me', utilizadorController.updateMe);
 router.put('/me/password', utilizadorController.changePassword);
