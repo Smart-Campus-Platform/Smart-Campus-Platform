@@ -1,4 +1,5 @@
 const reservaSala = require('../models/reservaSala');
+const { validarHorarioFaculdade } = require('../utils/horario');
 function getUserId(req) {
     return parseInt(req.headers['x-user-id']) || null;
 }
@@ -25,6 +26,8 @@ const criarReservaSala = async (req, res) => {
     if (!userId) return res.status(401).json({ erro: 'Não autenticado' });
     const { salaId, dataInicio, dataFim } = req.body;
     if (!salaId || !dataInicio || !dataFim) return res.status(400).json({ erro: 'Campos obrigatórios em falta' });
+    const erroHorario = validarHorarioFaculdade(dataInicio, dataFim);
+    if (erroHorario) return res.status(400).json({ erro: erroHorario });
     try {
         const conflito = await reservaSala.verificarConflito(salaId, dataInicio, dataFim);
         if (conflito.length > 0) return res.status(409).json({ erro: 'Sala já reservada nesse período' });

@@ -1,6 +1,6 @@
 const reservaMobilidade = require('../models/reservaMobilidade');
 const mobilidade = require('../models/mobilidade');
-
+const { validarHorarioFaculdade } = require('../utils/horario');
 function getUserId(req) {
     return parseInt(req.headers['x-user-id']) || null;
 }
@@ -29,11 +29,13 @@ const criarReservaMobilidade = async (req, res) => {
     if (!userId) return res.status(401).json({ erro: 'Não autenticado' });
     const { codigoMobilidade, dataInicio, dataFim } = req.body;
     if (!codigoMobilidade) return res.status(400).json({ erro: 'Campos obrigatórios em falta' });
+    const inicioEfetivo = dataInicio || new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const erroHorario = validarHorarioFaculdade(inicioEfetivo, dataFim || null);
+    if (erroHorario) return res.status(400).json({ erro: erroHorario });
     try {
         const conflito = await reservaMobilidade.verificarConflito(codigoMobilidade);
         if (conflito.length > 0) return res.status(409).json({ erro: 'Veículo já em uso' });
-        const inicio = dataInicio || new Date().toISOString().slice(0, 19).replace('T', ' ');
-        const result = await reservaMobilidade.criar(userId, codigoMobilidade, inicio, dataFim);
+        const result = await reservaMobilidade.criar(userId, codigoMobilidade, inicioEfetivo, dataFim);
         await mobilidade.atualizarEstado(codigoMobilidade, 'em_uso');
         res.status(201).json({ mensagem: 'Veículo reservado', id: result.insertId });
     } catch (err) {

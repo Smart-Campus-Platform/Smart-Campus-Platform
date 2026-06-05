@@ -1,5 +1,6 @@
 const { spawn } = require('child_process');
 const db = require('../config/db');
+const { validarHorarioFaculdade } = require('../utils/horario');
 function getUserId(req) {
     return parseInt(req.headers['x-user-id']) || null;
 }
@@ -27,6 +28,8 @@ const processarComando = async (req, res) => {
         const sala = salas[0];
         const dataInicio = `${resultado.data} ${resultado.inicio}:00`;
         const dataFim = `${resultado.data} ${resultado.fim}:00`;
+        const erroHorario = validarHorarioFaculdade(dataInicio, dataFim);
+        if (erroHorario) return res.status(400).json({ erro: erroHorario });
         const idUtilizador = userId || (await db.promise().query("SELECT id_utilizador FROM utilizador LIMIT 1"))[0][0]?.id_utilizador;
         if (!idUtilizador) throw new Error('Utilizador não encontrado');
         const [reserva] = await db.promise().query(
