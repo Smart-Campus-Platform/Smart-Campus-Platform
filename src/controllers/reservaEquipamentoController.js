@@ -1,4 +1,5 @@
 const reservaEquipamento = require('../models/reservaEquipamento');
+const { validarHorarioFaculdade } = require('../utils/horario');
 function getUserId(req) {
     return parseInt(req.headers['x-user-id']) || null;
 }
@@ -25,6 +26,8 @@ const criarReservaEquipamento = async (req, res) => {
     if (!userId) return res.status(401).json({ erro: 'Não autenticado' });
     const { tipoEquipamento, dataInicio, dataFim } = req.body;
     if (!tipoEquipamento || !dataInicio || !dataFim) return res.status(400).json({ erro: 'Campos obrigatórios em falta' });
+    const erroHorario = validarHorarioFaculdade(dataInicio, dataFim);
+    if (erroHorario) return res.status(400).json({ erro: erroHorario });
     try {
         const conflito = await reservaEquipamento.verificarConflito(tipoEquipamento, dataInicio, dataFim);
         if (conflito.length > 0) return res.status(409).json({ erro: 'Equipamento já reservado nesse período' });
