@@ -1,5 +1,6 @@
-// Generic mobility reservation script (used by trotinetes and bicicletas pages)
-// Expects window.TIPO_MOBILIDADE = 'trotinete' or 'bicicleta'
+// Script de reserva de mobilidade usado nas paginas de trotinetes e bicicletas.
+// Usa window.TIPO_MOBILIDADE = 'trotinete' ou 'bicicleta'.
+
 
 var veiculoSelecionado = null;
 
