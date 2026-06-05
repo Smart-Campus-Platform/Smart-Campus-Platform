@@ -107,5 +107,3 @@ app.listen(PORT, () => {
     console.log(`Servidor na porta ${PORT}`);
     sensorSimulator.iniciar();
 });
-
-})
