@@ -46,13 +46,17 @@ function renderizarConsumo(sensores) {
         return s.tipo_nome && s.tipo_nome.toLowerCase().includes('consumo') && s.ultimo_valor !== null;
     });
 
-    var total = energeticos.reduce(function (acc, s) { return acc + Number(s.ultimo_valor); }, 0);
-    document.getElementById('consumo-total').textContent = total.toFixed(1) + ' kW';
+    var elTotal = document.getElementById('consumo-total');
+    if (elTotal) {
+        var total = energeticos.reduce(function (acc, s) { return acc + Number(s.ultimo_valor); }, 0);
+        elTotal.textContent = total.toFixed(1) + ' kW';
+    }
 
     energeticos.sort(function (a, b) { return Number(b.ultimo_valor) - Number(a.ultimo_valor); });
     var top3  = energeticos.slice(0, 3);
     var lista = document.getElementById('top3-lista');
 
+    if (!lista) return;
     if (top3.length === 0) {
         lista.innerHTML = '<p style="color:#666;font-size:14px;">Sem dados de consumo disponíveis.</p>';
         return;
