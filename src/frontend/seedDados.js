@@ -24,11 +24,11 @@ async function seed() {
         process.exit(0);
     }
 
-    console.log(`Encontrados ${sensores.length} sensores. A gerar leituras (30 dias × 1h)...\n`);
+    console.log(`Encontrados ${sensores.length} sensores. A gerar leituras (365 dias × 30min)...\n`);
 
     const agora     = Date.now();
-    const MS_HORA   = 60 * 60 * 1000;
-    const NUM_LEIT  = 30 * 24;   // 720 leituras por sensor (1 por hora, 30 dias)
+    const MS_INTERVALO = 30 * 60 * 1000;          // 30 minutos
+    const NUM_LEIT     = 365 * 24 * 2;            // 17 520 leituras por sensor (1 a cada 30min, 1 ano)
     const BATCH     = 200;
     let totalGeral  = 0;
 
@@ -39,12 +39,12 @@ async function seed() {
 
         const values = [];
         for (let i = NUM_LEIT; i >= 0; i--) {
-            const ts          = new Date(agora - i * MS_HORA);
-            const forcarAlerta = Math.random() < 0.12;   // ~12% alertas
+            const ts          = new Date(agora - i * MS_INTERVALO);
+            const forcarAlerta = Math.random() < 0.12;   
             let valor;
 
             if (forcarAlerta) {
-                // ~metade acima do máximo, ~metade abaixo do mínimo
+                //metade alerta maximo, metade alerta minimo
                 valor = Math.random() > 0.5
                     ? max + (max - min) * rf(0.1, 0.35)
                     : Math.max(0, min - (max - min) * rf(0.05, 0.25));
