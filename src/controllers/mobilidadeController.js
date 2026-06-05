@@ -1,4 +1,6 @@
 const mobilidade = require('../models/mobilidade');
+
+
 const listarMobilidade = async (req, res) => {
     const { tipo } = req.query;
     try {
@@ -8,6 +10,7 @@ const listarMobilidade = async (req, res) => {
         res.status(500).json({ erro: 'Erro interno' });
     }
 };
+
 const listarTodaMobilidade = async (req, res) => {
     const { tipo } = req.query;
     try {
@@ -17,6 +20,7 @@ const listarTodaMobilidade = async (req, res) => {
         res.status(500).json({ erro: 'Erro interno' });
     }
 };
+
 const adicionarVeiculo = async (req, res) => {
     const { codigo_mobilidade, tipo_mobilidade, zona } = req.body;
     if (!codigo_mobilidade || !tipo_mobilidade) return res.status(400).json({ erro: 'Campos obrigatórios em falta' });
@@ -28,6 +32,7 @@ const adicionarVeiculo = async (req, res) => {
         res.status(500).json({ erro: 'Erro ao adicionar veículo' });
     }
 };
+
 const atualizarVeiculo = async (req, res) => {
     const { zona, estado } = req.body;
     try {
@@ -37,6 +42,7 @@ const atualizarVeiculo = async (req, res) => {
         res.status(500).json({ erro: 'Erro ao atualizar veículo' });
     }
 };
+
 const removerVeiculo = async (req, res) => {
     try {
         await mobilidade.remover(req.params.codigo);

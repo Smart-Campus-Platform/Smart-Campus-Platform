@@ -6,4 +6,5 @@ router.post('/estacionamentos', estacionamentoController.adicionarLugar);
 router.put('/estacionamentos/:id', estacionamentoController.atualizarLugar);
 router.delete('/estacionamentos/:id', estacionamentoController.removerLugar);
 router.patch('/estacionamentos/:id/disponibilidade', estacionamentoController.atualizarDisponibilidadeLugar);
+
 module.exports = router;

@@ -7,6 +7,7 @@ const listarDisponiveis = async (tipo) => {
     const [rows] = await db.promise().query(query, params);
     return rows;
 };
+
 const listarTodas = async (tipo) => {
     let query = 'SELECT * FROM mobilidade';
     const params = [];
