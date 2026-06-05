@@ -21,6 +21,91 @@ document.addEventListener('click', function (e) {
     }
 });
 
+var NAVBAR_MENUS = {
+    'admin': [
+        { label: 'Gerir', items: [
+            { href: 'SalasAdministrador.html',              label: 'Salas' },
+            { href: 'EquipamentosAdministrador.html',       label: 'Equipamentos' },
+            { href: 'TrotinetesAdministrador.html',         label: 'Trotinetes' },
+            { href: 'BicicletasAdministrador.html',         label: 'Bicicletas' },
+            { href: 'ParqueEstacionamentoAdministrador.html', label: 'Estacionamento' },
+            { href: 'PostoCarregamentoAdministrador.html',  label: 'Postos de Carregamento' },
+            { href: 'SensoresAdministrador.html',           label: 'Sensores' }
+        ]},
+        { label: 'Relatórios', items: [
+            { href: 'dashboard.html',       label: 'Dashboard' },
+            { href: 'GerirRelatorios.html', label: 'Consultar Relatórios' }
+        ]},
+        { label: 'Utilizadores', items: [
+            { href: 'gestao_utilizadores.html', label: 'Gestão de Utilizadores' },
+            { href: 'registar_utilizador.html', label: 'Registar Utilizador' }
+        ]}
+    ],
+    'docente': [
+        { label: 'Reservar', items: [
+            { href: 'reservar_sala.html',        label: 'Sala / Laboratório' },
+            { href: 'reservar_equipamento.html', label: 'Equipamento' },
+            { href: 'reservar_trotinetes.html',  label: 'Trotinete' },
+            { href: 'reservar_bicicletas.html',  label: 'Bicicleta' }
+        ]},
+        { label: 'Consultar', items: [
+            { href: 'consultar_estacionamentos.html',    label: 'Estacionamento' },
+            { href: 'consultar_postos_carregamento.html', label: 'Postos de carregamento' },
+            { href: 'SensoresFuncionario.html',          label: 'Sensores' },
+            { href: 'GestorSalaDocente.html',            label: 'Disponibilidade de salas' }
+        ]},
+        { label: 'Reservas', items: [
+            { href: 'GestorReservasUtilizador.html', label: 'Gerir Reservas' }
+        ]}
+    ],
+    'funcionario': [
+        { label: 'Gerir', items: [
+            { href: 'GestorReservasFuncionario.html', label: 'Reservas' }
+        ]},
+        { label: 'Reservar', items: [
+            { href: 'reservar_trotinetes.html', label: 'Trotinetes' },
+            { href: 'reservar_bicicletas.html', label: 'Bicicletas' }
+        ]},
+        { label: 'Consultar', items: [
+            { href: 'consultar_estacionamentos.html',     label: 'Estacionamento' },
+            { href: 'consultar_postos_carregamento.html', label: 'Postos de carregamento' },
+            { href: 'SensoresFuncionario.html',           label: 'Sensores' },
+            { href: 'GestorSalaDocente.html',             label: 'Disponibilidade de salas' }
+        ]}
+    ],
+    'estudante': [
+        { label: 'Reservar', items: [
+            { href: 'reservar_sala.html',        label: 'Sala / Laboratório' },
+            { href: 'reservar_equipamento.html', label: 'Equipamento' },
+            { href: 'reservar_trotinetes.html',  label: 'Trotinete' },
+            { href: 'reservar_bicicletas.html',  label: 'Bicicleta' }
+        ]},
+        { label: 'Consultar', items: [
+            { href: 'consultar_estacionamentos.html',     label: 'Estacionamento' },
+            { href: 'consultar_postos_carregamento.html', label: 'Postos de carregamento' }
+        ]},
+        { label: 'Reservas', items: [
+            { href: 'GestorReservasUtilizador.html', label: 'Gerir Reservas' }
+        ]}
+    ]
+};
+
+function injetarNavbar() {
+    var ul = document.querySelector('ul.nav.navbar-nav[data-navbar="auto"]');
+    if (!ul) return;
+    var tipo = typeof getUserTipo === 'function' ? getUserTipo() : null;
+    var menus = (tipo && NAVBAR_MENUS[tipo]) ? NAVBAR_MENUS[tipo] : [];
+    ul.innerHTML = menus.map(function (m) {
+        var items = m.items.map(function (it) {
+            return '<li><a href="' + it.href + '">' + it.label + '</a></li>';
+        }).join('');
+        return '<li class="dropdown">' +
+            '<a href="#" class="dropdown-toggle" data-toggle="dropdown">' +
+            m.label + ' <span class="caret"></span></a>' +
+            '<ul class="dropdown-menu">' + items + '</ul></li>';
+    }).join('');
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('a[href="login.html"], a[href="/login"]').forEach(function (a) {
         if (a.querySelector('i.fa-right-from-bracket')) {
@@ -31,6 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    injetarNavbar();
     atualizarLinkMenu();
     iniciarNotificacoes();
 });
