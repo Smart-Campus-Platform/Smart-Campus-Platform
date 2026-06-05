@@ -14,6 +14,7 @@ const listarReservasMobilidade = async (req, res) => {
         res.status(500).json({ erro: 'Erro interno' });
     }
 };
+
 const listarTodasReservasMobilidade = async (req, res) => {
     try {
         const rows = await reservaMobilidade.listarTodas();
@@ -22,6 +23,7 @@ const listarTodasReservasMobilidade = async (req, res) => {
         res.status(500).json({ erro: 'Erro interno' });
     }
 };
+
 const criarReservaMobilidade = async (req, res) => {
     const userId = getUserId(req);
     if (!userId) return res.status(401).json({ erro: 'Não autenticado' });
