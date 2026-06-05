@@ -1,18 +1,5 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
-Unused terminals:
-
-    A
-    BATCH
-    EQ
-    ESTADO
-    FILTRO
-    NE
-    NEWLINE
-    PERIODO
-    PISO
-    TIPO
-
 Grammar
 
 Rule 0     S' -> programa
@@ -32,34 +19,24 @@ Rule 13    disponibilidade -> DISPONIBILIDADE recurso DATA DATE HORA_INICIO TIME
 
 Terminals, with rules where they appear
 
-A                    : 
 ATIVAS               : 7
-BATCH                : 
 CANCELADAS           : 8
 CANCELAR             : 12
 CONSULTAR            : 6 7 8
 DATA                 : 5 13
 DATE                 : 5 13
 DISPONIBILIDADE      : 13
-EQ                   : 
 EQUIPAMENTO          : 11
-ESTADO               : 
-FILTRO               : 
 HORA_FIM             : 5 13
 HORA_INICIO          : 5 13
 LABORATORIO          : 10
-NE                   : 
-NEWLINE              : 
 NUMBER               : 12
-PERIODO              : 
-PISO                 : 
 RESERVA              : 12
 RESERVAR             : 5
 RESERVAS             : 6 7 8
 SALA                 : 9
 STRING               : 5
 TIME                 : 5 5 13 13
-TIPO                 : 
 error                : 
 
 Nonterminals, with rules where they appear

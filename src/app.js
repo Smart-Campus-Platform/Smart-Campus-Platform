@@ -30,14 +30,6 @@ app.use(session({
     cookie: { httpOnly: true, maxAge: 8 * 60 * 60 * 1000 }
 }));
 
-// bloqueia acesso direto a ficheiros .html (ex: menu_administrador.html na barra de pesquisa)
-// login.html é a única página pública
-app.use((req, res, next) => {
-    if (req.path.endsWith('.html') && req.path !== '/login.html') {
-        if (!req.session.utilizador) return res.redirect('/login');
-    }
-    next();
-});
 
 app.use(express.static(frontendPath));
 

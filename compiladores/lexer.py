@@ -2,7 +2,6 @@ import ply.lex as lex
 
 reserved = {
     "reservar": "RESERVAR",
-    "tipo": "TIPO",
     "sala": "SALA",
     "laboratorio": "LABORATORIO",
     "data": "DATA",
@@ -18,15 +17,8 @@ reserved = {
     "canceladas": "CANCELADAS",
 
     "consultar": "CONSULTAR",
-    "periodo": "PERIODO",
-    "a": "A",
-    "filtro": "FILTRO",
-    "estado": "ESTADO",
 
     "disponibilidade": "DISPONIBILIDADE",
-    "piso": "PISO",
-
-    "batch": "BATCH"
 }
 
 tokens = [
@@ -34,12 +26,7 @@ tokens = [
     "NUMBER",
     "DATE",
     "TIME",
-    "EQ",
-    "NE",
-    "NEWLINE",
 ] + list(reserved.values())
-
-literals = [ "="]
 
 t_ignore = " \t"
 
@@ -63,8 +50,11 @@ def t_NUMBER(t):
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
-    t.type = reserved.get(t.value, 'ID')
-    return t
+    token_type = reserved.get(t.value)
+    if token_type:
+        t.type = token_type
+        return t
+    t.lexer.skip(len(t.value))
 
 def t_newline(t):
     r'\n+'
