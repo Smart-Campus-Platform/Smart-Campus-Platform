@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function carregarDisponibilidade() {
-    // Get all rooms and their reservations for today
     var agora = new Date().toISOString().slice(0, 16).replace('T', ' ');
     var data = new Date().toISOString().slice(0, 10);
 
@@ -14,7 +13,6 @@ function carregarDisponibilidade() {
         var salas = results[0];
         var reservas = results[1];
 
-        // Mark rooms as occupied if there's an active reservation now
         var agora = new Date();
         var ocupadas = new Set(reservas
             .filter(function (r) {

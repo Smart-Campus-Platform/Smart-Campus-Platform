@@ -15,9 +15,6 @@ function alterarPassword() {
     if (!passwordNova) { alert('Introduza a nova password.'); return; }
     if (passwordNova !== passwordConfirm) { alert('As passwords não coincidem.'); return; }
 
-    // For password change we need the old password too
-    // The form has only 2 fields: nova and confirmar
-    // Let's prompt for old password
     var passwordAtual = prompt('Introduza a sua password atual:');
     if (!passwordAtual) return;
 

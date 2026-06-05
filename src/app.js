@@ -27,7 +27,7 @@ function sendFrontendFile(res, fileName) {
  BackEndFinal
 }
 
-};
+
 
 app.get('/', (req, res) => {
     sendFrontendFile(res, 'login.html');
@@ -536,3 +536,5 @@ app.listen(PORT, () => {
     console.log(`Servidor na porta ${PORT}`);
     sensorSimulator.iniciar();
 });
+
+})

@@ -64,7 +64,7 @@ executarComandoLSS.addEventListener("click", async() => {
     resultadoLSS.textContent = "A enviar comando ...";
 
     try{
-        const resposta = await fetch("/api/lss", {
+        const resposta = await apiFetch("/api/lss", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
