@@ -1,5 +1,6 @@
 const mobilidade = require('../models/mobilidade');
 
+
 const listarMobilidade = async (req, res) => {
     const { tipo } = req.query;
     try {
@@ -50,5 +51,4 @@ const removerVeiculo = async (req, res) => {
         res.status(500).json({ erro: 'Erro ao remover veículo' });
     }
 };
-
 module.exports = { listarMobilidade, listarTodaMobilidade, adicionarVeiculo, atualizarVeiculo, removerVeiculo };
