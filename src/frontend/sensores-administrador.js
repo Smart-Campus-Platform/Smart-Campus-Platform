@@ -238,7 +238,7 @@ function confirmarNovoSensor() {
     var postoId = locTipo === 'posto' ? locId : null;
 
     var tipoId = document.getElementById('novo-tipo').value || null;
-    if (!tipoId) { alert('Selecione o tipo de sensor.'); return; }
+    if (!tipoId && locTipo !== 'lugar') { alert('Selecione o tipo de sensor.'); return; }
 
     var limiteMin, limiteMax;
     if (locTipo === 'lugar') {
