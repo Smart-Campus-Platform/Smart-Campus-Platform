@@ -1,6 +1,6 @@
 const PDFDocument = require('pdfkit');
 const sensor      = require('../models/sensor');
-
+/*comentario*/
 var MARGEM       = 40;
 var ALTURA_LINHA = 18;
 var ALTURA_CAB   = 20;

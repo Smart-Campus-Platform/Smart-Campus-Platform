@@ -68,6 +68,7 @@ const atualizar = async (id, tipoSensorId, salaId, lugarId, postoId, limiteMin, 
     );
 };
 const remover = async (id) => {
+    await db.promise().query('DELETE FROM dados_sensor WHERE s_id_sensor = ?', [id]);
     await db.promise().query('DELETE FROM sensor WHERE id_sensor = ?', [id]);
 };
 const atualizarEstado = async (id, estado) => {
@@ -213,17 +214,23 @@ const obterDadosRelatorios = async () => {
     `);
     const [parques] = await db.promise().query(`
         SELECT le.parque,
-               COUNT(DISTINCT le.id_lugar) AS num_lugares,
+               (SELECT COUNT(*) FROM lugar_estacionamento WHERE parque = le.parque) AS num_lugares,
+               s.limite_max AS capacidade_total,
                MAX(ds.valor) AS pico_ocupacao,
                ROUND(AVG(ds.valor), 1) AS media_ocupacao,
-               DATE_FORMAT(MAX(ds.data_hora), '%H:%i') AS horario_pico
+               DATE_FORMAT(
+                   (SELECT data_hora FROM dados_sensor
+                    WHERE s_id_sensor = s.id_sensor
+                    ORDER BY valor DESC, data_hora DESC LIMIT 1),
+               '%H:%i') AS horario_pico
         FROM dados_sensor ds
         JOIN sensor s ON s.id_sensor = ds.s_id_sensor
         JOIN tipo_sensor ts ON ts.id_tipoSensor = s.ts_id_tipoSensor
         JOIN lugar_estacionamento le ON le.id_lugar = s.le_id_lugar
         WHERE ts.nome LIKE '%Ocupa%'
+          AND s.le_id_lugar IS NOT NULL
           AND ds.data_hora >= DATE_SUB(NOW(), INTERVAL 30 DAY)
-        GROUP BY le.parque
+        GROUP BY le.parque, s.id_sensor, s.limite_max
         ORDER BY pico_ocupacao DESC
     `);
     return { resumoConsumo, topSensoresConsumo, alertas, qualidadeArMedia, qualidadeAr30, mediaSensores, ocupacaoMedia, picosOcupacao, parques };

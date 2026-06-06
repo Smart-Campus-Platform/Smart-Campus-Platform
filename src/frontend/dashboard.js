@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
     carregarDashboard();
     setInterval(carregarDashboard, 60000);
