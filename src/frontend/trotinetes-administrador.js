@@ -16,7 +16,7 @@ function carregarVeiculos() {
 }
 
 function renderizarVeiculos(veiculos) {
-    var ul = document.querySelector('.sensor-lista');
+    var ul = document.querySelector('.recursomob-lista');
     ul.innerHTML = '';
     if (veiculos.length === 0) {
         ul.innerHTML = '<li style="padding:16px;color:#666;">Nenhum veículo registado.</li>';
@@ -30,23 +30,23 @@ function renderizarVeiculos(veiculos) {
     veiculos.forEach(function (v, i) {
         var id = 'detalhe-mob-' + i;
         var li = document.createElement('li');
-        li.className = 'sensor-item';
+        li.className = 'recursomob-item';
         li.dataset.codigo = v.codigo_mobilidade;
         li.innerHTML =
-            '<div class="sensor-row" role="button" tabindex="0" aria-expanded="false"' +
+            '<div class="recursomob-row" role="button" tabindex="0" aria-expanded="false"' +
             '     onclick="toggleItem(this)" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();toggleItem(this);}">' +
-            '    <span class="sensor-nome">' + v.codigo_mobilidade + '</span>' +
-            '    <span class="sensor-local">' + (v.zona || 'Sem zona') + '</span>' +
-            '    <span class="sensor-tipo">' + v.estado + '</span>' +
-            '    <span class="sensor-chevron" aria-hidden="true">▼</span>' +
+            '    <span class="recursomob-nome">' + v.codigo_mobilidade + '</span>' +
+            '    <span class="recursomob-local">' + (v.zona || 'Sem zona') + '</span>' +
+            '    <span class="recursomob-tipo">' + v.estado + '</span>' +
+            '    <span class="recursomob-chevron" aria-hidden="true">▼</span>' +
             '</div>' +
-            '<div class="sensor-detalhe" id="' + id + '" aria-hidden="true">' +
+            '<div class="recursomob-detalhe" id="' + id + '" aria-hidden="true">' +
             '    <div class="edicao-campos" style="display:none">' +
-            '        <div class="sensor-campo"><label>Código</label><input class="input-codigo" type="text" value="' + v.codigo_mobilidade + '" readonly></div>' +
-            '        <div class="sensor-campo"><label>Área/Zona</label><input class="input-local" type="text" value="' + (v.zona || '') + '"></div>' +
-            '        <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>' +
+            '        <div class="recursomob-campo"><label>Código</label><input class="input-codigo" type="text" value="' + v.codigo_mobilidade + '" readonly></div>' +
+            '        <div class="recursomob-campo"><label>Área/Zona</label><input class="input-local" type="text" value="' + (v.zona || '') + '"></div>' +
+            '        <div class="recursomob-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>' +
             '    </div>' +
-            '    <div class="sensor-botoes item-acoes">' +
+            '    <div class="recursomob-botoes item-acoes">' +
             '        <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">Alterar Detalhes</button>' +
             '        <button type="button" class="btn-remover" onclick="removerItem(this)">Remover</button>' +
             '    </div></div>';
@@ -55,19 +55,19 @@ function renderizarVeiculos(veiculos) {
 }
 
 function toggleItem(row) {
-    var item = row.closest('.sensor-item');
+    var item = row.closest('.recursomob-item');
     var wasAberto = item.classList.contains('aberto');
-    document.querySelectorAll('.sensor-item.aberto').forEach(function (o) {
+    document.querySelectorAll('.recursomob-item.aberto').forEach(function (o) {
         o.classList.remove('aberto');
-        o.querySelector('.sensor-row').setAttribute('aria-expanded', 'false');
-        o.querySelector('.sensor-detalhe').setAttribute('aria-hidden', 'true');
+        o.querySelector('.recursomob-row').setAttribute('aria-expanded', 'false');
+        o.querySelector('.recursomob-detalhe').setAttribute('aria-hidden', 'true');
         var ec = o.querySelector('.edicao-campos'); if (ec) ec.style.display = 'none';
         var ia = o.querySelector('.item-acoes'); if (ia) ia.style.display = '';
     });
     if (!wasAberto) {
         item.classList.add('aberto');
         row.setAttribute('aria-expanded', 'true');
-        item.querySelector('.sensor-detalhe').setAttribute('aria-hidden', 'false');
+        item.querySelector('.recursomob-detalhe').setAttribute('aria-hidden', 'false');
     }
 }
 
@@ -78,7 +78,7 @@ function selecionarFiltro(el) {
 }
 
 function removerItem(btn) {
-    var item = btn.closest('.sensor-item');
+    var item = btn.closest('.recursomob-item');
     var codigo = item.dataset.codigo;
     if (!confirm('Remover "' + codigo + '"?')) return;
     apiFetch('/api/mobilidade/' + encodeURIComponent(codigo), { method: 'DELETE' })
@@ -87,14 +87,14 @@ function removerItem(btn) {
 }
 
 function mostrarEdicao(btn) {
-    var detalhe = btn.closest('.sensor-detalhe');
+    var detalhe = btn.closest('.recursomob-detalhe');
     detalhe.querySelector('.edicao-campos').style.display = '';
     detalhe.querySelector('.item-acoes').style.display = 'none';
 }
 
 function guardarAlteracoes(btn) {
-    var item = btn.closest('.sensor-item');
-    var detalhe = btn.closest('.sensor-detalhe');
+    var item = btn.closest('.recursomob-item');
+    var detalhe = btn.closest('.recursomob-detalhe');
     var codigo = item.dataset.codigo;
     var zona = detalhe.querySelector('.input-local').value.trim();
     apiFetch('/api/mobilidade/' + encodeURIComponent(codigo), {

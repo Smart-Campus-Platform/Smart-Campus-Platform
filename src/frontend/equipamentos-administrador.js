@@ -13,7 +13,7 @@ function carregarEquipamentos() {
 }
 
 function renderizarEquipamentos(equips) {
-    var ul = document.querySelector('.sensor-lista');
+    var ul = document.querySelector('.equipamento-lista');
     ul.innerHTML = '';
     if (equips.length === 0) {
         ul.innerHTML = '<li style="padding:16px;color:#666;">Nenhum equipamento registado.</li>';
@@ -25,22 +25,22 @@ function renderizarEquipamentos(equips) {
     equips.forEach(function (e, i) {
         var id = 'detalhe-eq-' + i;
         var li = document.createElement('li');
-        li.className = 'sensor-item';
+        li.className = 'equipamento-item';
         li.dataset.tipo = e.tipo_equipamento;
         li.innerHTML =
-            '<div class="sensor-row" role="button" tabindex="0" aria-expanded="false"' +
+            '<div class="equipamento-row" role="button" tabindex="0" aria-expanded="false"' +
             '     onclick="toggleItem(this)" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();toggleItem(this);}">' +
-            '    <span class="sensor-nome">' + e.tipo_equipamento + '</span>' +
-            '    <span class="sensor-local">Piso ' + e.piso + '</span>' +
-            '    <span class="sensor-chevron" aria-hidden="true">▼</span>' +
+            '    <span class="equipamento-nome">' + e.tipo_equipamento + '</span>' +
+            '    <span class="equipamento-local">Piso ' + e.piso + '</span>' +
+            '    <span class="equipamento-chevron" aria-hidden="true">▼</span>' +
             '</div>' +
-            '<div class="sensor-detalhe" id="' + id + '" aria-hidden="true">' +
+            '<div class="equipamento-detalhe" id="' + id + '" aria-hidden="true">' +
             '    <div class="edicao-campos" style="display:none">' +
-            '        <div class="sensor-campo"><label>Nome</label><input class="input-nome" type="text" value="' + e.tipo_equipamento + '"></div>' +
-            '        <div class="sensor-campo"><label>Piso</label><input class="input-local" type="number" value="' + e.piso + '"></div>' +
-            '        <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>' +
+            '        <div class="equipamento-campo"><label>Nome</label><input class="input-nome" type="text" value="' + e.tipo_equipamento + '"></div>' +
+            '        <div class="equipamento-campo"><label>Piso</label><input class="input-local" type="number" value="' + e.piso + '"></div>' +
+            '        <div class="equipamento-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>' +
             '    </div>' +
-            '    <div class="sensor-botoes item-acoes">' +
+            '    <div class="equipamento-botoes item-acoes">' +
             '        <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">Alterar Detalhes</button>' +
             '        <button type="button" class="btn-remover" onclick="removerItem(this)">Remover</button>' +
             '    </div></div>';
@@ -49,19 +49,19 @@ function renderizarEquipamentos(equips) {
 }
 
 function toggleItem(row) {
-    var item = row.closest('.sensor-item');
+    var item = row.closest('.equipamento-item');
     var wasAberto = item.classList.contains('aberto');
-    document.querySelectorAll('.sensor-item.aberto').forEach(function (o) {
+    document.querySelectorAll('.equipamento-item.aberto').forEach(function (o) {
         o.classList.remove('aberto');
-        o.querySelector('.sensor-row').setAttribute('aria-expanded', 'false');
-        o.querySelector('.sensor-detalhe').setAttribute('aria-hidden', 'true');
+        o.querySelector('.equipamento-row').setAttribute('aria-expanded', 'false');
+        o.querySelector('.equipamento-detalhe').setAttribute('aria-hidden', 'true');
         var ec = o.querySelector('.edicao-campos'); if (ec) ec.style.display = 'none';
         var ia = o.querySelector('.item-acoes'); if (ia) ia.style.display = '';
     });
     if (!wasAberto) {
         item.classList.add('aberto');
         row.setAttribute('aria-expanded', 'true');
-        item.querySelector('.sensor-detalhe').setAttribute('aria-hidden', 'false');
+        item.querySelector('.equipamento-detalhe').setAttribute('aria-hidden', 'false');
     }
 }
 
@@ -77,7 +77,7 @@ function selecionarFiltro(el) {
 }
 
 function removerItem(btn) {
-    var item = btn.closest('.sensor-item');
+    var item = btn.closest('.equipamento-item');
     var tipo = item.dataset.tipo;
     if (!confirm('Remover "' + tipo + '"?')) return;
     apiFetch('/api/equipamentos/' + encodeURIComponent(tipo), { method: 'DELETE' })
@@ -86,14 +86,14 @@ function removerItem(btn) {
 }
 
 function mostrarEdicao(btn) {
-    var detalhe = btn.closest('.sensor-detalhe');
+    var detalhe = btn.closest('.equipamento-detalhe');
     detalhe.querySelector('.edicao-campos').style.display = '';
     detalhe.querySelector('.item-acoes').style.display = 'none';
 }
 
 function guardarAlteracoes(btn) {
-    var item = btn.closest('.sensor-item');
-    var detalhe = btn.closest('.sensor-detalhe');
+    var item = btn.closest('.equipamento-item');
+    var detalhe = btn.closest('.equipamento-detalhe');
     var tipoAtual = item.dataset.tipo;
     var novoNome = detalhe.querySelector('.input-nome').value.trim();
     var novoPiso = detalhe.querySelector('.input-local').value;

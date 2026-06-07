@@ -13,7 +13,7 @@ function carregarLugares() {
 }
 
 function renderizarLugares(lugares) {
-    var ul = document.querySelector('.sensor-lista');
+    var ul = document.querySelector('.parque-lista');
     ul.innerHTML = '';
     if (lugares.length === 0) {
         ul.innerHTML = '<li style="padding:16px;color:#666;">Nenhum lugar registado.</li>';
@@ -28,26 +28,26 @@ function renderizarLugares(lugares) {
         var id = 'detalhe-lu-' + i;
         var disp = l.disponibilidade ? 'Disponível' : 'Ocupado';
         var li = document.createElement('li');
-        li.className = 'sensor-item';
+        li.className = 'parque-item';
         li.dataset.lugar = l.id_lugar;
         li.innerHTML =
-            '<div class="sensor-row" role="button" tabindex="0" aria-expanded="false"' +
+            '<div class="parque-row" role="button" tabindex="0" aria-expanded="false"' +
             '     onclick="toggleItem(this)" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();toggleItem(this);}">' +
-            '    <span class="sensor-nome">' + l.id_lugar + '</span>' +
-            '    <span class="sensor-local">' + (l.parque || 'Geral') + '</span>' +
-            '    <span class="sensor-tipo">' + disp + '</span>' +
-            '    <span class="sensor-chevron" aria-hidden="true">▼</span>' +
+            '    <span class="parque-nome">' + l.id_lugar + '</span>' +
+            '    <span class="parque-local">' + (l.parque || 'Geral') + '</span>' +
+            '    <span class="parque-tipo">' + disp + '</span>' +
+            '    <span class="parque-chevron" aria-hidden="true">▼</span>' +
             '</div>' +
-            '<div class="sensor-detalhe" id="' + id + '" aria-hidden="true">' +
+            '<div class="parque-detalhe" id="' + id + '" aria-hidden="true">' +
             '    <div class="edicao-campos" style="display:none">' +
-            '        <div class="sensor-campo"><label>ID Lugar</label><input class="input-id" type="text" value="' + l.id_lugar + '" readonly></div>' +
-            '        <div class="sensor-campo"><label>Parque</label><input class="input-parque" type="text" value="' + (l.parque || '') + '"></div>' +
-            '        <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>' +
+            '        <div class="parque-campo"><label>ID Lugar</label><input class="input-id" type="text" value="' + l.id_lugar + '" readonly></div>' +
+            '        <div class="parque-campo"><label>Parque</label><input class="input-parque" type="text" value="' + (l.parque || '') + '"></div>' +
+            '        <div class="parque-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>' +
             '    </div>' +
-            '    <div class="sensor-botoes item-acoes">' +
+            '    <div class="parque-botoes item-acoes">' +
             '        <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">Alterar Detalhes</button>' +
             '        <button type="button" class="btn-remover" onclick="removerItem(this)">Remover</button>' +
-            '        <div class="sensor-estado-wrap"><span class="sensor-estado-label">Disponível</span>' +
+            '        <div class="parque-estado-wrap"><span class="parque-estado-label">Disponível</span>' +
             '            <label class="toggle-switch"><input type="checkbox"' + (l.disponibilidade ? ' checked' : '') + ' onchange="toggleDisp(this)">' +
             '            <span class="toggle-track"><span class="toggle-thumb"></span></span></label></div>' +
             '    </div></div>';
@@ -56,19 +56,19 @@ function renderizarLugares(lugares) {
 }
 
 function toggleItem(row) {
-    var item = row.closest('.sensor-item');
+    var item = row.closest('.parque-item');
     var wasAberto = item.classList.contains('aberto');
-    document.querySelectorAll('.sensor-item.aberto').forEach(function (o) {
+    document.querySelectorAll('.parque-item.aberto').forEach(function (o) {
         o.classList.remove('aberto');
-        o.querySelector('.sensor-row').setAttribute('aria-expanded', 'false');
-        o.querySelector('.sensor-detalhe').setAttribute('aria-hidden', 'true');
+        o.querySelector('.parque-row').setAttribute('aria-expanded', 'false');
+        o.querySelector('.parque-detalhe').setAttribute('aria-hidden', 'true');
         var ec = o.querySelector('.edicao-campos'); if (ec) ec.style.display = 'none';
         var ia = o.querySelector('.item-acoes'); if (ia) ia.style.display = '';
     });
     if (!wasAberto) {
         item.classList.add('aberto');
         row.setAttribute('aria-expanded', 'true');
-        item.querySelector('.sensor-detalhe').setAttribute('aria-hidden', 'false');
+        item.querySelector('.parque-detalhe').setAttribute('aria-hidden', 'false');
     }
 }
 
@@ -79,7 +79,7 @@ function selecionarFiltro(el) {
 }
 
 function removerItem(btn) {
-    var item = btn.closest('.sensor-item');
+    var item = btn.closest('.parque-item');
     var id = item.dataset.lugar;
     if (!confirm('Remover lugar "' + id + '"?')) return;
     apiFetch('/api/estacionamentos/' + encodeURIComponent(id), { method: 'DELETE' })
@@ -88,14 +88,14 @@ function removerItem(btn) {
 }
 
 function mostrarEdicao(btn) {
-    var detalhe = btn.closest('.sensor-detalhe');
+    var detalhe = btn.closest('.parque-detalhe');
     detalhe.querySelector('.edicao-campos').style.display = '';
     detalhe.querySelector('.item-acoes').style.display = 'none';
 }
 
 function guardarAlteracoes(btn) {
-    var item = btn.closest('.sensor-item');
-    var detalhe = btn.closest('.sensor-detalhe');
+    var item = btn.closest('.parque-item');
+    var detalhe = btn.closest('.parque-detalhe');
     var id = item.dataset.lugar;
     var parque = detalhe.querySelector('.input-parque').value.trim();
     apiFetch('/api/estacionamentos/' + encodeURIComponent(id), {
@@ -108,7 +108,7 @@ function guardarAlteracoes(btn) {
 }
 
 function toggleDisp(input) {
-    var item = input.closest('.sensor-item');
+    var item = input.closest('.parque-item');
     var id = item.dataset.lugar;
     apiFetch('/api/estacionamentos/' + encodeURIComponent(id) + '/disponibilidade', {
         method: 'PATCH',
