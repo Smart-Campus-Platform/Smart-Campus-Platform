@@ -13,7 +13,7 @@ const adicionarTipo = async (nome, unidade) => {
 const listar = async (tipo) => {
     let query = `
         SELECT sen.id_sensor, sen.estado, ts.nome AS tipo_nome,
-               sal.nome AS sala_nome, sal.piso,
+               sal.nome AS sala_nome, sal.tipo AS sala_tipo, sal.piso,
                le.id_lugar AS lugar_id, le.parque,
                pc.id_posto
         FROM sensor sen

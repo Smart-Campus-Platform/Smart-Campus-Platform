@@ -54,11 +54,28 @@ const atualizarPosto = async (id_atual, novo_id_posto, area) => {
 
 //remover permanentemente um posto
 const removerPosto = async (id_posto) => {
-    await db.promise().query(
-        `DELETE FROM posto_carregamento
-         WHERE id_posto = ?`,
-        [id_posto]
-    );
+    const conn = await db.promise().getConnection();
+    try {
+        await conn.beginTransaction();
+        await conn.query(
+            `DELETE ds FROM dados_sensor ds
+             JOIN sensor s ON s.id_sensor = ds.s_id_sensor
+             WHERE s.p_id_posto = ?`,
+            [id_posto]
+        );
+        await conn.query('DELETE FROM sensor WHERE p_id_posto = ?', [id_posto]);
+        await conn.query(
+            `DELETE FROM posto_carregamento
+             WHERE id_posto = ?`,
+            [id_posto]
+        );
+        await conn.commit();
+    } catch (erro) {
+        await conn.rollback();
+        throw erro;
+    } finally {
+        conn.release();
+    }
 };
 
 //para alterarmos a disponibilidade de um posto de forma manual

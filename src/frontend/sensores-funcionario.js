@@ -20,6 +20,16 @@ function carregarSensores() {
     });
 }
 
+function formatarLocalSala(sensor) {
+    if (!sensor.sala_nome) return null;
+    var tipoSala = sensor.sala_tipo || 'Sala';
+    var nomeSala = String(sensor.sala_nome);
+    if (nomeSala.toLowerCase().indexOf(String(tipoSala).toLowerCase()) === 0) {
+        return nomeSala;
+    }
+    return tipoSala + ' ' + nomeSala;
+}
+
 function renderizarSensores(sensores) {
     var ul = document.querySelector('.sensor-lista');
     ul.innerHTML = '';
@@ -29,7 +39,11 @@ function renderizarSensores(sensores) {
     }
     sensores.forEach(function (s, i) {
         var id = 'detalhe-sf-' + i;
-        var local = s.sala_nome || s.lugar_id || s.id_posto || 'Geral';
+        var local = formatarLocalSala(s)
+            || (s.lugar_id ? ((s.parque ? s.parque + ' - ' : '') + 'Lugar ' + s.lugar_id) : null)
+            || (s.id_posto !== null && s.id_posto !== undefined ? 'Posto ' + s.id_posto : null)
+            || 'Geral';
+        var tipo = s.tipo_nome || (s.lugar_id ? 'Disponibilidade' : 'Sem tipo');
         var li = document.createElement('li');
         li.className = 'sensor-item';
         li.dataset.sensorId = s.id_sensor;
@@ -38,7 +52,7 @@ function renderizarSensores(sensores) {
             '     onclick="toggleSensor(this)" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();toggleSensor(this);}">' +
             '    <span class="sensor-nome">Sensor ' + s.id_sensor + '</span>' +
             '    <span class="sensor-local">' + local + '</span>' +
-            '    <span class="sensor-tipo">' + s.tipo_nome + '</span>' +
+            '    <span class="sensor-tipo">' + tipo + '</span>' +
             '    <span class="sensor-chevron" aria-hidden="true">▼</span>' +
             '</div>' +
             '<div class="sensor-detalhe" id="' + id + '" aria-hidden="true">' +
