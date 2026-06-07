@@ -4,22 +4,42 @@
     align-items: flex-start;
 }
 
-.sensores-container, .postos-container {
+.sensores-container,
+.postos-container,
+.salas-container,
+.equipamentos-container,
+.parques-container,
+.recursosmob-container {
     flex: 1;
 }
 
-.sensores-header, .postos-header {
+.sensores-header,
+.postos-header,
+.salas-header,
+.equipamentos-header,
+.parques-header,
+.recursosmob-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 18px;
 }
 
-.sensores-header h1, .postos-header h1 {
+.sensores-header h1,
+.postos-header h1,
+.salas-header h1,
+.equipamentos-header h1,
+.parques-header h1,
+.recursosmob-header h1 {
     margin-bottom: 0;
 }
 
-.btn-adicionar-sensor, .btn-adicionar-posto {
+.btn-adicionar-sensor,
+.btn-adicionar-posto,
+.btn-adicionar-sala,
+.btn-adicionar-equipamento,
+.btn-adicionar-lugar,
+.btn-adicionar-recursomob {
     background: #33add6 !important;
     color: #fff !important;
     border: none !important;
@@ -33,7 +53,12 @@
     flex-shrink: 0;
 }
 /*comentario*/
-.btn-adicionar-sensor:hover, .btn-adicionar-posto:hover {
+.btn-adicionar-sensor:hover,
+.btn-adicionar-posto:hover,
+.btn-adicionar-sala:hover,
+.btn-adicionar-equipamento:hover,
+.btn-adicionar-lugar:hover,
+.btn-adicionar-recursomob:hover {
     background: #2a92b5 !important;
 }
 
@@ -128,7 +153,12 @@
     background: #2a92b5 !important;
 }
 
-.sensores-container h1, .postos-container h1 {
+.sensores-container h1,
+.postos-container h1,
+.salas-container h1,
+.equipamentos-container h1,
+.parques-container h1,
+.recursosmob-container h1 {
     font-size: 22px;
     font-weight: bold;
     color: #1e4c5c;
@@ -139,7 +169,12 @@
 
 /* ===== Lista de sensores/equipamentos ===== */
 
-.sensor-lista, .posto-lista {
+.sensor-lista,
+.posto-lista,
+.sala-lista,
+.equipamento-lista,
+.parque-lista,
+.recursomob-lista {
     list-style: none;
     padding: 0;
     background: #fff;
@@ -148,15 +183,30 @@
     overflow: hidden;
 }
 
-.sensor-item, .posto-item {
+.sensor-item,
+.posto-item,
+.sala-item,
+.equipamento-item,
+.parque-item,
+.recursomob-item {
     border-bottom: 1px solid #e0e0e0;
 }
 
-.sensor-item:last-child, .posto-item:last-child {
+.sensor-item:last-child,
+.posto-item:last-child,
+.sala-item:last-child,
+.equipamento-item:last-child,
+.parque-item:last-child,
+.recursomob-item:last-child {
     border-bottom: none;
 }
 
-.sensor-row, .posto-row {
+.sensor-row,
+.posto-row,
+.sala-row,
+.equipamento-row,
+.parque-row,
+.recursomob-row {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -167,29 +217,52 @@
     line-height: 1.4;
 }
 
-.sensor-row:hover, .posto-row:hover {
+.sensor-row:hover,
+.posto-row:hover,
+.sala-row:hover,
+.equipamento-row:hover,
+.parque-row:hover,
+.recursomob-row:hover {
     background: #eaf5fa;
 }
 
-.sensor-row:focus, .posto-row:focus {
+.sensor-row:focus,
+.posto-row:focus,
+.sala-row:focus,
+.equipamento-row:focus,
+.parque-row:focus,
+.recursomob-row:focus {
     outline: 2px solid #33add6;
     outline-offset: -2px;
 }
 
-.sensor-nome, .posto-nome {
+.sensor-nome,
+.posto-nome,
+.sala-nome,
+.equipamento-nome,
+.parque-nome,
+.recursomob-nome {
     flex: 1;
     font-size: 14px;
     color: #333;
     font-weight: 600;
 }
 
-.sensor-local, .posto-local {
+.sensor-local,
+.posto-local,
+.sala-local,
+.equipamento-local,
+.parque-local,
+.recursomob-local {
     font-size: 13px;
     color: #555;
     min-width: 60px;
 }
 
-.sensor-tipo {
+.sensor-tipo,
+.sala-tipo,
+.parque-tipo,
+.recursomob-tipo {
     font-size: 12px;
     color: #fff;
     background: #2a92b5;
@@ -198,20 +271,35 @@
     white-space: nowrap;
 }
 
-.sensor-chevron, .posto-chevron {
+.sensor-chevron,
+.posto-chevron,
+.sala-chevron,
+.equipamento-chevron,
+.parque-chevron,
+.recursomob-chevron {
     font-size: 11px;
     color: #777;
     transition: transform 0.2s ease;
     flex-shrink: 0;
 }
 
-.sensor-item.aberto .sensor-chevron, .posto-item.aberto .posto-chevron {
+.sensor-item.aberto .sensor-chevron,
+.posto-item.aberto .posto-chevron,
+.sala-item.aberto .sala-chevron,
+.equipamento-item.aberto .equipamento-chevron,
+.parque-item.aberto .parque-chevron,
+.recursomob-item.aberto .recursomob-chevron {
     transform: rotate(180deg);
 }
 
 /* ===== Painel de detalhe ===== */
 
-.sensor-detalhe, .posto-detalhe {
+.sensor-detalhe,
+.posto-detalhe,
+.sala-detalhe,
+.equipamento-detalhe,
+.parque-detalhe,
+.recursomob-detalhe {
     display: none;
     flex-direction: column;
     gap: 14px;
@@ -220,7 +308,12 @@
     border-top: 1px solid #c0ced2;
 }
 
-.sensor-item.aberto .sensor-detalhe, .posto-item.aberto .posto-detalhe {
+.sensor-item.aberto .sensor-detalhe,
+.posto-item.aberto .posto-detalhe,
+.sala-item.aberto .sala-detalhe,
+.equipamento-item.aberto .equipamento-detalhe,
+.parque-item.aberto .parque-detalhe,
+.recursomob-item.aberto .recursomob-detalhe {
     display: flex;
 }
 
@@ -228,11 +321,21 @@
     width: 100%;
 }
 
-.sensor-campo, .posto-campo {
+.sensor-campo,
+.posto-campo,
+.sala-campo,
+.equipamento-campo,
+.parque-campo,
+.recursomob-campo {
     margin-bottom: 10px;
 }
 
-.sensor-campo label, .posto-campo label {
+.sensor-campo label,
+.posto-campo label,
+.sala-campo label,
+.equipamento-campo label,
+.parque-campo label,
+.recursomob-campo label {
     display: block;
     font-size: 13px;
     font-weight: 600;
@@ -241,8 +344,12 @@
     line-height: 1.4;
 }
 
-.sensor-campo input, .sensor-campo select, .sensor-campo textarea
-.posto-campo input, .posto-campo select {
+.sensor-campo input, .sensor-campo select, .sensor-campo textarea,
+.posto-campo input, .posto-campo select,
+.sala-campo input, .sala-campo select,
+.equipamento-campo input, .equipamento-campo select,
+.parque-campo input, .parque-campo select,
+.recursomob-campo input, .recursomob-campo select {
     width: 100%;
     border: 1px solid #b0c4cc;
     border-radius: 8px;
@@ -260,8 +367,12 @@
     line-height: 1.5;
 }
 
-.sensor-campo input:focus, .sensor-campo select:focus, .sensor-campo textarea:focus 
-.posto-campo input:focus, .posto-campo select:focus {
+.sensor-campo input:focus, .sensor-campo select:focus, .sensor-campo textarea:focus,
+.posto-campo input:focus, .posto-campo select:focus,
+.sala-campo input:focus, .sala-campo select:focus,
+.equipamento-campo input:focus, .equipamento-campo select:focus,
+.parque-campo input:focus, .parque-campo select:focus,
+.recursomob-campo input:focus, .recursomob-campo select:focus {
     outline: none;
     border-color: #33add6;
     box-shadow: 0 0 0 2px rgba(51, 173, 214, 0.2);
@@ -287,13 +398,19 @@ body.tema-rosa .sensor-ocup-valor {
 
 /* ===== Toggle switch ===== */
 
-.sensor-estado-wrap, .posto-estado-wrap {
+.sensor-estado-wrap,
+.posto-estado-wrap,
+.sala-estado-wrap,
+.parque-estado-wrap {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.sensor-estado-label, .posto-estado-label {
+.sensor-estado-label,
+.posto-estado-label,
+.sala-estado-label,
+.parque-estado-label {
     font-size: 13px;
     font-weight: 600;
     color: #1e4c5c;
@@ -376,7 +493,12 @@ body.tema-rosa .sensor-ocup-valor {
     content: "Indisponivel";
 }
 
-.sensor-botoes, .posto-botoes {
+.sensor-botoes,
+.posto-botoes,
+.sala-botoes,
+.equipamento-botoes,
+.parque-botoes,
+.recursomob-botoes {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
@@ -588,51 +710,84 @@ body.tema-rosa .sensor-ocup-valor {
 /* ===== Alto Contraste ===== */
 
 body.contraste-alto .sensor-lista,
-body.contraste-alto .posto-lista {
+body.contraste-alto .posto-lista,
+body.contraste-alto .sala-lista,
+body.contraste-alto .equipamento-lista,
+body.contraste-alto .parque-lista,
+body.contraste-alto .recursomob-lista {
     background: #111 !important;
     border-color: #fff !important;
 }
 
 body.contraste-alto .sensor-item,
-body.contraste-alto .posto-item {
+body.contraste-alto .posto-item,
+body.contraste-alto .sala-item,
+body.contraste-alto .equipamento-item,
+body.contraste-alto .parque-item,
+body.contraste-alto .recursomob-item {
     border-color: #555 !important;
 }
 
 body.contraste-alto .sensor-row:hover,
-body.contraste-alto .posto-row:hover {
+body.contraste-alto .posto-row:hover,
+body.contraste-alto .sala-row:hover,
+body.contraste-alto .equipamento-row:hover,
+body.contraste-alto .parque-row:hover,
+body.contraste-alto .recursomob-row:hover {
     background: #1a1a1a !important;
 }
 
 body.contraste-alto .sensor-nome, body.contraste-alto .sensor-local,
-body.contraste-alto .posto-nome, body.contraste-alto .posto-local {
+body.contraste-alto .posto-nome, body.contraste-alto .posto-local,
+body.contraste-alto .sala-nome, body.contraste-alto .sala-local,
+body.contraste-alto .equipamento-nome, body.contraste-alto .equipamento-local,
+body.contraste-alto .parque-nome, body.contraste-alto .parque-local,
+body.contraste-alto .recursomob-nome, body.contraste-alto .recursomob-local {
     color: #fff !important;
 }
 
-body.contraste-alto .sensor-tipo {
+body.contraste-alto .sensor-tipo,
+body.contraste-alto .sala-tipo,
+body.contraste-alto .parque-tipo,
+body.contraste-alto .recursomob-tipo {
     background: #444 !important;
     color: #fff !important;
 }
 
 body.contraste-alto .sensor-detalhe,
-body.contraste-alto .posto-detalhe {
+body.contraste-alto .posto-detalhe,
+body.contraste-alto .sala-detalhe,
+body.contraste-alto .equipamento-detalhe,
+body.contraste-alto .parque-detalhe,
+body.contraste-alto .recursomob-detalhe {
     background: #222 !important;
     border-color: #fff !important;
 }
 
 body.contraste-alto .sensor-campo label,
-body.contraste-alto .posto-campo label {
+body.contraste-alto .posto-campo label,
+body.contraste-alto .sala-campo label,
+body.contraste-alto .equipamento-campo label,
+body.contraste-alto .parque-campo label,
+body.contraste-alto .recursomob-campo label {
     color: #fff !important;
 }
 
 body.contraste-alto .sensor-campo input, body.contraste-alto .sensor-campo select, body.contraste-alto .sensor-campo textarea,
-body.contraste-alto .posto-campo input, body.contraste-alto .posto-campo select {
+body.contraste-alto .posto-campo input, body.contraste-alto .posto-campo select,
+body.contraste-alto .sala-campo input, body.contraste-alto .sala-campo select,
+body.contraste-alto .equipamento-campo input, body.contraste-alto .equipamento-campo select,
+body.contraste-alto .parque-campo input, body.contraste-alto .parque-campo select,
+body.contraste-alto .recursomob-campo input, body.contraste-alto .recursomob-campo select {
     background: #111 !important;
     color: #fff !important;
     border-color: #fff !important;
 }
 
 body.contraste-alto .sensor-estado-label,
-body.contraste-alto .posto-estado-label {
+body.contraste-alto .posto-estado-label,
+body.contraste-alto .sala-estado-label,
+body.contraste-alto .parque-estado-label {
     color: #fff !important;
 }
 
@@ -654,38 +809,63 @@ body.contraste-alto .filtros-toggle {
 /* ===== Tema Rosa ===== */
 
 body.tema-rosa .sensor-lista,
-body.tema-rosa .posto-lista {
+body.tema-rosa .posto-lista,
+body.tema-rosa .sala-lista,
+body.tema-rosa .equipamento-lista,
+body.tema-rosa .parque-lista,
+body.tema-rosa .recursomob-lista {
     background: #fff0f4 !important;
     border-color: #f48fb1 !important;
 }
 
 body.tema-rosa .sensor-row:hover,
-body.tema-rosa .posto-row:hover {
+body.tema-rosa .posto-row:hover,
+body.tema-rosa .sala-row:hover,
+body.tema-rosa .equipamento-row:hover,
+body.tema-rosa .parque-row:hover,
+body.tema-rosa .recursomob-row:hover {
     background: #fce4ec !important;
 }
 
 body.tema-rosa .sensor-nome, body.tema-rosa .sensor-local,
-body.tema-rosa .posto-nome, body.tema-rosa .posto-local {
+body.tema-rosa .posto-nome, body.tema-rosa .posto-local,
+body.tema-rosa .sala-nome, body.tema-rosa .sala-local,
+body.tema-rosa .equipamento-nome, body.tema-rosa .equipamento-local,
+body.tema-rosa .parque-nome, body.tema-rosa .parque-local,
+body.tema-rosa .recursomob-nome, body.tema-rosa .recursomob-local {
     color: #7b1045 !important;
 }
 
-body.tema-rosa .sensor-tipo {
+body.tema-rosa .sensor-tipo,
+body.tema-rosa .sala-tipo,
+body.tema-rosa .parque-tipo,
+body.tema-rosa .recursomob-tipo {
     background: #c2185b !important;
 }
 
 body.tema-rosa .sensor-detalhe,
-body.tema-rosa .posto-detalhe {
+body.tema-rosa .posto-detalhe,
+body.tema-rosa .sala-detalhe,
+body.tema-rosa .equipamento-detalhe,
+body.tema-rosa .parque-detalhe,
+body.tema-rosa .recursomob-detalhe {
     background: #fce4ec !important;
     border-color: #f48fb1 !important;
 }
 
 body.tema-rosa .sensor-campo label,
-body.tema-rosa .posto-campo label {
+body.tema-rosa .posto-campo label,
+body.tema-rosa .sala-campo label,
+body.tema-rosa .equipamento-campo label,
+body.tema-rosa .parque-campo label,
+body.tema-rosa .recursomob-campo label {
     color: #7b1045 !important;
 }
 
 body.tema-rosa .sensor-estado-label,
-body.tema-rosa .posto-estado-label {
+body.tema-rosa .posto-estado-label,
+body.tema-rosa .sala-estado-label,
+body.tema-rosa .parque-estado-label {
     color: #7b1045 !important;
 }
 

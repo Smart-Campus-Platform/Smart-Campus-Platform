@@ -13,12 +13,12 @@ function carregarSalas() {
     apiFetch('/api/salas/todas').then(function (r) { return r.json(); }).then(function (salas) {
         renderizarSalas(salas);
     }).catch(function () {
-        document.querySelector('.sensor-lista').innerHTML = '<li style="padding:16px;color:#c0392b;">Erro ao carregar salas.</li>';
+        document.querySelector('.sala-lista').innerHTML = '<li style="padding:16px;color:#c0392b;">Erro ao carregar salas.</li>';
     });
 }
 
 function renderizarSalas(salas) {
-    var ul = document.querySelector('.sensor-lista');
+    var ul = document.querySelector('.sala-lista');
     ul.innerHTML = '';
 
     var filtroAtivo = document.querySelector('.filtro-opcao.ativo');
@@ -33,34 +33,34 @@ function renderizarSalas(salas) {
 
         var id = 'detalhe-sala-' + i;
         var li = document.createElement('li');
-        li.className = 'sensor-item';
+        li.className = 'sala-item';
         li.dataset.capacidade = s.capacidade || '';
         li.dataset.salaId = s.id_sala;
         li.innerHTML =
-            '<div class="sensor-row" role="button" tabindex="0" aria-expanded="false" aria-controls="' + id + '"' +
+            '<div class="sala-row" role="button" tabindex="0" aria-expanded="false" aria-controls="' + id + '"' +
             '     onclick="toggleItem(this)" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();toggleItem(this);}">' +
-            '    <span class="sensor-nome">' + s.nome + '</span>' +
-            '    <span class="sensor-local">Piso ' + s.piso + '</span>' +
-            '    <span class="sensor-tipo">' + s.tipo + '</span>' +
-            '    <span class="sensor-chevron" aria-hidden="true">▼</span>' +
+            '    <span class="sala-nome">' + s.nome + '</span>' +
+            '    <span class="sala-local">Piso ' + s.piso + '</span>' +
+            '    <span class="sala-tipo">' + s.tipo + '</span>' +
+            '    <span class="sala-chevron" aria-hidden="true">▼</span>' +
             '</div>' +
-            '<div class="sensor-detalhe" id="' + id + '" aria-hidden="true">' +
+            '<div class="sala-detalhe" id="' + id + '" aria-hidden="true">' +
             '    <div class="edicao-campos" style="display:none">' +
-            '        <div class="sensor-campo"><label>Nome</label><input class="input-nome" type="text" value="' + s.nome + '"></div>' +
-            '        <div class="sensor-campo"><label>Piso</label><input class="input-piso" type="number" value="' + s.piso + '"></div>' +
-            '        <div class="sensor-campo"><label>Tipo</label>' +
+            '        <div class="sala-campo"><label>Nome</label><input class="input-nome" type="text" value="' + s.nome + '"></div>' +
+            '        <div class="sala-campo"><label>Piso</label><input class="input-piso" type="number" value="' + s.piso + '"></div>' +
+            '        <div class="sala-campo"><label>Tipo</label>' +
             '            <select class="input-tipo">' +
             '                <option value="Sala"' + (s.tipo === 'Sala' ? ' selected' : '') + '>Sala</option>' +
             '                <option value="Laboratório"' + (s.tipo === 'Laboratório' ? ' selected' : '') + '>Laboratório</option>' +
             '            </select></div>' +
-            '        <div class="sensor-campo"><label>Capacidade</label><input class="input-capacidade" type="number" min="1" value="' + (s.capacidade || '') + '"></div>' +
-            '        <div class="sensor-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>' +
+            '        <div class="sala-campo"><label>Capacidade</label><input class="input-capacidade" type="number" min="1" value="' + (s.capacidade || '') + '"></div>' +
+            '        <div class="sala-botoes"><button type="button" class="btn-configurar" onclick="guardarAlteracoes(this)">Guardar</button></div>' +
             '    </div>' +
-            '    <div class="sensor-botoes item-acoes">' +
+            '    <div class="sala-botoes item-acoes">' +
             '        <button type="button" class="btn-configurar" onclick="mostrarEdicao(this)">Alterar Detalhes</button>' +
             '        <button type="button" class="btn-remover" onclick="removerItem(this)">Remover</button>' +
-            '        <div class="sensor-estado-wrap">' +
-            '            <span class="sensor-estado-label">Estado</span>' +
+            '        <div class="sala-estado-wrap">' +
+            '            <span class="sala-estado-label">Estado</span>' +
             '            <label class="toggle-switch" aria-label="Ativar ou desativar sala">' +
             '                <input type="checkbox"' + (s.disponibilidade ? ' checked' : '') + ' onchange="toggleDisponibilidade(this)">' +
             '                <span class="toggle-track"><span class="toggle-thumb"></span></span>' +
@@ -74,12 +74,12 @@ function renderizarSalas(salas) {
 }
 
 function toggleItem(row) {
-    var item = row.closest('.sensor-item');
+    var item = row.closest('.sala-item');
     var wasAberto = item.classList.contains('aberto');
-    document.querySelectorAll('.sensor-item.aberto').forEach(function (other) {
+    document.querySelectorAll('.sala-item.aberto').forEach(function (other) {
         other.classList.remove('aberto');
-        other.querySelector('.sensor-row').setAttribute('aria-expanded', 'false');
-        other.querySelector('.sensor-detalhe').setAttribute('aria-hidden', 'true');
+        other.querySelector('.sala-row').setAttribute('aria-expanded', 'false');
+        other.querySelector('.sala-detalhe').setAttribute('aria-hidden', 'true');
         var ec = other.querySelector('.edicao-campos');
         if (ec) ec.style.display = 'none';
         var ia = other.querySelector('.item-acoes');
@@ -88,7 +88,7 @@ function toggleItem(row) {
     if (!wasAberto) {
         item.classList.add('aberto');
         row.setAttribute('aria-expanded', 'true');
-        item.querySelector('.sensor-detalhe').setAttribute('aria-hidden', 'false');
+        item.querySelector('.sala-detalhe').setAttribute('aria-hidden', 'false');
     }
 }
 
@@ -109,7 +109,7 @@ function selecionarFiltro(el) {
 }
 
 function removerItem(btn) {
-    var item = btn.closest('.sensor-item');
+    var item = btn.closest('.sala-item');
     var salaId = item.dataset.salaId;
     if (!confirm('Remover esta sala? Os sensores associados e as respetivas leituras serão removidos.')) return;
     apiFetch('/api/salas/' + salaId, { method: 'DELETE' })
@@ -121,14 +121,14 @@ function removerItem(btn) {
 }
 
 function mostrarEdicao(btn) {
-    var detalhe = btn.closest('.sensor-detalhe');
+    var detalhe = btn.closest('.sala-detalhe');
     detalhe.querySelector('.edicao-campos').style.display = '';
     detalhe.querySelector('.item-acoes').style.display = 'none';
 }
 
 function guardarAlteracoes(btn) {
-    var item = btn.closest('.sensor-item');
-    var detalhe = btn.closest('.sensor-detalhe');
+    var item = btn.closest('.sala-item');
+    var detalhe = btn.closest('.sala-detalhe');
     var salaId = item.dataset.salaId;
     var nome = detalhe.querySelector('.input-nome').value.trim();
     var piso = detalhe.querySelector('.input-piso').value;
@@ -147,7 +147,7 @@ function guardarAlteracoes(btn) {
 }
 
 function toggleDisponibilidade(input) {
-    var item = input.closest('.sensor-item');
+    var item = input.closest('.sala-item');
     var salaId = item.dataset.salaId;
     apiFetch('/api/salas/' + salaId + '/disponibilidade', {
         method: 'PATCH',
