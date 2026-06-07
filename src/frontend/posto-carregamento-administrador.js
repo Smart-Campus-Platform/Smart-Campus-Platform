@@ -86,6 +86,10 @@ async function removerItem(botao) {
     var postoElemento = botao.closest(".sensor-item");
     var idPosto = postoElemento.dataset.idPosto;
 
+    if (!confirm("Remover posto \"" + idPosto + "\"? Os sensores associados e as respetivas leituras serão removidos.")) {
+        return;
+    }
+
     try {
         const resposta = await fetch("/api/postos-carregamento/" + encodeURIComponent(idPosto), {
             method: "DELETE"

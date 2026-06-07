@@ -81,7 +81,7 @@ function selecionarFiltro(el) {
 function removerItem(btn) {
     var item = btn.closest('.sensor-item');
     var id = item.dataset.lugar;
-    if (!confirm('Remover lugar "' + id + '"?')) return;
+    if (!confirm('Remover lugar "' + id + '"? Os sensores associados e as respetivas leituras serão removidos.')) return;
     apiFetch('/api/estacionamentos/' + encodeURIComponent(id), { method: 'DELETE' })
         .then(function (r) { return r.json(); })
         .then(function (d) { if (d.erro) { alert('Erro: ' + d.erro); return; } carregarLugares(); });

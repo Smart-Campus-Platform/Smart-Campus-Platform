@@ -111,7 +111,7 @@ function selecionarFiltro(el) {
 function removerItem(btn) {
     var item = btn.closest('.sensor-item');
     var salaId = item.dataset.salaId;
-    if (!confirm('Remover esta sala?')) return;
+    if (!confirm('Remover esta sala? Os sensores associados e as respetivas leituras serão removidos.')) return;
     apiFetch('/api/salas/' + salaId, { method: 'DELETE' })
         .then(function (r) { return r.json(); })
         .then(function (dados) {

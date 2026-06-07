@@ -39,7 +39,24 @@ const atualizar = async (id, nome, tipo, piso, capacidade) => {
     );
 };
 const remover = async (id) => {
-    await db.promise().query('DELETE FROM sala WHERE id_sala = ?', [id]);
+    const conn = await db.promise().getConnection();
+    try {
+        await conn.beginTransaction();
+        await conn.query(
+            `DELETE ds FROM dados_sensor ds
+             JOIN sensor s ON s.id_sensor = ds.s_id_sensor
+             WHERE s.s_id_sala = ?`,
+            [id]
+        );
+        await conn.query('DELETE FROM sensor WHERE s_id_sala = ?', [id]);
+        await conn.query('DELETE FROM sala WHERE id_sala = ?', [id]);
+        await conn.commit();
+    } catch (err) {
+        await conn.rollback();
+        throw err;
+    } finally {
+        conn.release();
+    }
 };
 const atualizarDisponibilidade = async (id, disponibilidade) => {
     await db.promise().query('UPDATE sala SET disponibilidade = ? WHERE id_sala = ?', [disponibilidade ? 1 : 0, id]);
