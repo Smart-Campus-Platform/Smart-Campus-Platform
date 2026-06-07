@@ -6,7 +6,7 @@ async function carregarPostos() {
         await verificarResposta(resposta, "Erro ao carregar postos.");
         const postos = await resposta.json();
 
-        const listaPostos = document.querySelector(".sensor-lista");
+        const listaPostos = document.querySelector(".posto-lista");
         listaPostos.innerHTML = ""; //limpa a lista
 
         postos.forEach(function(posto) {
@@ -51,7 +51,7 @@ async function confirmarNovo() {
 }
 
 async function guardarAlteracoes(botao) {
-    var postoElemento = botao.closest(".sensor-item");//posto de carregamento a que pertence o botão selecionado
+    var postoElemento = botao.closest(".posto-item");//posto de carregamento a que pertence o botão selecionado
     var idPostoAtual = postoElemento.dataset.idPosto;
 
     var novoIdPosto = postoElemento.querySelector(".input-codigo").value.trim();
@@ -83,7 +83,7 @@ async function guardarAlteracoes(botao) {
 }
 
 async function removerItem(botao) {
-    var postoElemento = botao.closest(".sensor-item");
+    var postoElemento = botao.closest(".posto-item");
     var idPosto = postoElemento.dataset.idPosto;
 
     try {
@@ -99,7 +99,7 @@ async function removerItem(botao) {
 }
 
 async function alterarDisponibilidade(input) {
-    var postoElemento = input.closest(".sensor-item");
+    var postoElemento = input.closest(".posto-item");
     var idPosto = postoElemento.dataset.idPosto;
     var novaDisponibilidade = input.checked;
 
@@ -138,7 +138,7 @@ async function verificarResposta(resposta, mensagemPadrao) {
 //por cada posto recebido vamos criar um <li>
 function criarElementoPosto(posto) {
     var postoElemento = document.createElement("li");
-    postoElemento.className = "sensor-item";
+    postoElemento.className = "posto-item";
     postoElemento.dataset.idPosto = posto.id_posto;//para guardar o id real da base de dados
     postoElemento.dataset.area = posto.area;
 
@@ -148,25 +148,25 @@ function criarElementoPosto(posto) {
     var checkedDisponibilidade = disponivel ? " checked" : "";
 
     postoElemento.innerHTML =
-        "<div class=\"sensor-row\" role=\"button\" tabindex=\"0\"" +
+        "<div class=\"posto-row\" role=\"button\" tabindex=\"0\"" +
         " aria-expanded=\"false\" aria-controls=\"" + idDetalhePosto + "\"" +
         " onclick=\"toggleItem(this)\"" +
         " onkeydown=\"if(event.key===&quot;Enter&quot;||event.key===&quot; &quot;){event.preventDefault();toggleItem(this);}\">" +
-        "    <span class=\"sensor-nome\">" + posto.id_posto + "</span>" +
-        "    <span class=\"sensor-local\">" + posto.area + "</span>" +
-        "    <span class=\"sensor-disponibilidade\">" + textoDisponibilidade + "</span>" +
-        "    <span class=\"sensor-chevron\" aria-hidden=\"true\">▼</span>" +
+        "    <span class=\"posto-nome\">" + posto.id_posto + "</span>" +
+        "    <span class=\"posto-local\">" + posto.area + "</span>" +
+        "    <span class=\"posto-disponibilidade\">" + textoDisponibilidade + "</span>" +
+        "    <span class=\"posto-chevron\" aria-hidden=\"true\">▼</span>" +
         "</div>" +
-        "<div class=\"sensor-detalhe\" id=\"" + idDetalhePosto + "\" aria-hidden=\"true\">" +
+        "<div class=\"posto-detalhe\" id=\"" + idDetalhePosto + "\" aria-hidden=\"true\">" +
         "    <div class=\"edicao-campos\" style=\"display:none\">" +
-        "        <div class=\"sensor-campo\"><label>Código</label><input class=\"input-codigo\" type=\"text\"></div>" +
-        "        <div class=\"sensor-campo\"><label>Área</label><input class=\"input-local\" type=\"text\"></div>" +
-        "        <div class=\"sensor-botoes\"><button type=\"button\" class=\"btn-configurar\" onclick=\"guardarAlteracoes(this)\">Guardar</button></div>" +
+        "        <div class=\"posto-campo\"><label>Código</label><input class=\"input-codigo\" type=\"text\"></div>" +
+        "        <div class=\"posto-campo\"><label>Área</label><input class=\"input-local\" type=\"text\"></div>" +
+        "        <div class=\"posto-botoes\"><button type=\"button\" class=\"btn-configurar\" onclick=\"guardarAlteracoes(this)\">Guardar</button></div>" +
         "    </div>" +
-        "    <div class=\"sensor-botoes item-acoes\">" +
+        "    <div class=\"posto-botoes item-acoes\">" +
         "        <button type=\"button\" class=\"btn-configurar\" onclick=\"mostrarEdicao(this)\">Alterar Detalhes</button>" +
-        "        <div class=\"sensor-estado-wrap\">" +
-        "            <span class=\"sensor-estado-label\">Disponibilidade</span>" +
+        "        <div class=\"posto-estado-wrap\">" +
+        "            <span class=\"posto-estado-label\">Disponibilidade</span>" +
         "            <label class=\"toggle-switch\" aria-label=\"Alterar disponibilidade do posto\">" +
         "                <input type=\"checkbox\" onchange=\"alterarDisponibilidade(this)\"" + checkedDisponibilidade + ">" +
         "                <span class=\"toggle-track\"><span class=\"toggle-thumb\"></span></span>" +
@@ -216,26 +216,26 @@ function carregarFiltros(postos) {
 }
 
 function filtrarPostosPorArea(area) {
-    document.querySelectorAll(".sensor-item").forEach(function(postoElemento) {
+    document.querySelectorAll(".posto-item").forEach(function(postoElemento) {
         var mostrarPosto = !area || postoElemento.dataset.area === area;
         postoElemento.style.display = mostrarPosto ? "" : "none";
     });
 }
 
 function toggleItem(linhaPosto) {
-    var postoElemento = linhaPosto.closest(".sensor-item");
+    var postoElemento = linhaPosto.closest(".posto-item");
     var estavaAberto = postoElemento.classList.contains("aberto");
-    document.querySelectorAll(".sensor-item.aberto").forEach(function(outroPosto) {
+    document.querySelectorAll(".posto-item.aberto").forEach(function(outroPosto) {
         outroPosto.classList.remove("aberto");
-        outroPosto.querySelector(".sensor-row").setAttribute("aria-expanded", "false");
-        outroPosto.querySelector(".sensor-detalhe").setAttribute("aria-hidden", "true");
+        outroPosto.querySelector(".posto-row").setAttribute("aria-expanded", "false");
+        outroPosto.querySelector(".posto-detalhe").setAttribute("aria-hidden", "true");
         outroPosto.querySelector(".edicao-campos").style.display = "none";
         outroPosto.querySelector(".item-acoes").style.display = "";
     });
     if (!estavaAberto) {
         postoElemento.classList.add("aberto");
         linhaPosto.setAttribute("aria-expanded", "true");
-        postoElemento.querySelector(".sensor-detalhe").setAttribute("aria-hidden", "false");
+        postoElemento.querySelector(".posto-detalhe").setAttribute("aria-hidden", "false");
         postoAbertoId = postoElemento.dataset.idPosto;
     } else {
         postoAbertoId = null;
@@ -247,7 +247,7 @@ function restaurarPostoAberto() {
         return;
     }
 
-    var postoElemento = document.querySelector(".sensor-item[data-id-posto=\"" + postoAbertoId + "\"]");
+    var postoElemento = document.querySelector(".posto-item[data-id-posto=\"" + postoAbertoId + "\"]");
 
     if (!postoElemento) {
         postoAbertoId = null;
@@ -255,8 +255,8 @@ function restaurarPostoAberto() {
     }
 
     postoElemento.classList.add("aberto");
-    postoElemento.querySelector(".sensor-row").setAttribute("aria-expanded", "true");
-    postoElemento.querySelector(".sensor-detalhe").setAttribute("aria-hidden", "false");
+    postoElemento.querySelector(".posto-row").setAttribute("aria-expanded", "true");
+    postoElemento.querySelector(".posto-detalhe").setAttribute("aria-hidden", "false");
 }
 
 function toggleFiltros(botao) {
@@ -278,10 +278,10 @@ function selecionarFiltro(filtroSelecionado) {
 }
 
 function mostrarEdicao(botao) {
-    var detalhePosto = botao.closest(".sensor-detalhe");
-    var linhaPosto = botao.closest(".sensor-item").querySelector(".sensor-row");
-    detalhePosto.querySelector(".input-codigo").value = linhaPosto.querySelector(".sensor-nome").textContent.trim();
-    detalhePosto.querySelector(".input-local").value = linhaPosto.querySelector(".sensor-local").textContent.trim();
+    var detalhePosto = botao.closest(".posto-detalhe");
+    var linhaPosto = botao.closest(".posto-item").querySelector(".posto-row");
+    detalhePosto.querySelector(".input-codigo").value = linhaPosto.querySelector(".posto-nome").textContent.trim();
+    detalhePosto.querySelector(".input-local").value = linhaPosto.querySelector(".posto-local").textContent.trim();
     detalhePosto.querySelector(".edicao-campos").style.display = "";
     detalhePosto.querySelector(".item-acoes").style.display = "none";
 }
