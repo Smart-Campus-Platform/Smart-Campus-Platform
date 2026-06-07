@@ -4,22 +4,22 @@
     align-items: flex-start;
 }
 
-.sensores-container {
+.sensores-container, .postos-container {
     flex: 1;
 }
 
-.sensores-header {
+.sensores-header, .postos-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 18px;
 }
 
-.sensores-header h1 {
+.sensores-header h1, .postos-header h1 {
     margin-bottom: 0;
 }
 
-.btn-adicionar-sensor {
+.btn-adicionar-sensor, .btn-adicionar-posto {
     background: #33add6 !important;
     color: #fff !important;
     border: none !important;
@@ -33,7 +33,7 @@
     flex-shrink: 0;
 }
 /*comentario*/
-.btn-adicionar-sensor:hover {
+.btn-adicionar-sensor:hover, .btn-adicionar-posto:hover {
     background: #2a92b5 !important;
 }
 
@@ -128,7 +128,7 @@
     background: #2a92b5 !important;
 }
 
-.sensores-container h1 {
+.sensores-container h1, .postos-container h1 {
     font-size: 22px;
     font-weight: bold;
     color: #1e4c5c;
@@ -139,7 +139,7 @@
 
 /* ===== Lista de sensores/equipamentos ===== */
 
-.sensor-lista {
+.sensor-lista, .posto-lista {
     list-style: none;
     padding: 0;
     background: #fff;
@@ -148,15 +148,15 @@
     overflow: hidden;
 }
 
-.sensor-item {
+.sensor-item, .posto-item {
     border-bottom: 1px solid #e0e0e0;
 }
 
-.sensor-item:last-child {
+.sensor-item:last-child, .posto-item:last-child {
     border-bottom: none;
 }
 
-.sensor-row {
+.sensor-row, .posto-row {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -167,23 +167,23 @@
     line-height: 1.4;
 }
 
-.sensor-row:hover {
+.sensor-row:hover, .posto-row:hover {
     background: #eaf5fa;
 }
 
-.sensor-row:focus {
+.sensor-row:focus, .posto-row:focus {
     outline: 2px solid #33add6;
     outline-offset: -2px;
 }
 
-.sensor-nome {
+.sensor-nome, .posto-nome {
     flex: 1;
     font-size: 14px;
     color: #333;
     font-weight: 600;
 }
 
-.sensor-local {
+.sensor-local, .posto-local {
     font-size: 13px;
     color: #555;
     min-width: 60px;
@@ -198,20 +198,20 @@
     white-space: nowrap;
 }
 
-.sensor-chevron {
+.sensor-chevron, .posto-chevron {
     font-size: 11px;
     color: #777;
     transition: transform 0.2s ease;
     flex-shrink: 0;
 }
 
-.sensor-item.aberto .sensor-chevron {
+.sensor-item.aberto .sensor-chevron, .posto-item.aberto .posto-chevron {
     transform: rotate(180deg);
 }
 
 /* ===== Painel de detalhe ===== */
 
-.sensor-detalhe {
+.sensor-detalhe, .posto-detalhe {
     display: none;
     flex-direction: column;
     gap: 14px;
@@ -220,7 +220,7 @@
     border-top: 1px solid #c0ced2;
 }
 
-.sensor-item.aberto .sensor-detalhe {
+.sensor-item.aberto .sensor-detalhe, .posto-item.aberto .posto-detalhe {
     display: flex;
 }
 
@@ -228,11 +228,11 @@
     width: 100%;
 }
 
-.sensor-campo {
+.sensor-campo, .posto-campo {
     margin-bottom: 10px;
 }
 
-.sensor-campo label {
+.sensor-campo label, .posto-campo label {
     display: block;
     font-size: 13px;
     font-weight: 600;
@@ -241,9 +241,8 @@
     line-height: 1.4;
 }
 
-.sensor-campo input,
-.sensor-campo select,
-.sensor-campo textarea {
+.sensor-campo input, .sensor-campo select, .sensor-campo textarea
+.posto-campo input, .posto-campo select {
     width: 100%;
     border: 1px solid #b0c4cc;
     border-radius: 8px;
@@ -261,9 +260,8 @@
     line-height: 1.5;
 }
 
-.sensor-campo input:focus,
-.sensor-campo select:focus,
-.sensor-campo textarea:focus {
+.sensor-campo input:focus, .sensor-campo select:focus, .sensor-campo textarea:focus 
+.posto-campo input:focus, .posto-campo select:focus {
     outline: none;
     border-color: #33add6;
     box-shadow: 0 0 0 2px rgba(51, 173, 214, 0.2);
@@ -289,13 +287,13 @@ body.tema-rosa .sensor-ocup-valor {
 
 /* ===== Toggle switch ===== */
 
-.sensor-estado-wrap {
+.sensor-estado-wrap, .posto-estado-wrap {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.sensor-estado-label {
+.sensor-estado-label, .posto-estado-label {
     font-size: 13px;
     font-weight: 600;
     color: #1e4c5c;
@@ -378,7 +376,7 @@ body.tema-rosa .sensor-ocup-valor {
     content: "Indisponivel";
 }
 
-.sensor-botoes {
+.sensor-botoes, .posto-botoes {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
@@ -589,21 +587,24 @@ body.tema-rosa .sensor-ocup-valor {
 
 /* ===== Alto Contraste ===== */
 
-body.contraste-alto .sensor-lista {
+body.contraste-alto .sensor-lista,
+body.contraste-alto .posto-lista {
     background: #111 !important;
     border-color: #fff !important;
 }
 
-body.contraste-alto .sensor-item {
+body.contraste-alto .sensor-item,
+body.contraste-alto .posto-item {
     border-color: #555 !important;
 }
 
-body.contraste-alto .sensor-row:hover {
+body.contraste-alto .sensor-row:hover,
+body.contraste-alto .posto-row:hover {
     background: #1a1a1a !important;
 }
 
-body.contraste-alto .sensor-nome,
-body.contraste-alto .sensor-local {
+body.contraste-alto .sensor-nome, body.contraste-alto .sensor-local,
+body.contraste-alto .posto-nome, body.contraste-alto .posto-local {
     color: #fff !important;
 }
 
@@ -612,24 +613,26 @@ body.contraste-alto .sensor-tipo {
     color: #fff !important;
 }
 
-body.contraste-alto .sensor-detalhe {
+body.contraste-alto .sensor-detalhe,
+body.contraste-alto .posto-detalhe {
     background: #222 !important;
     border-color: #fff !important;
 }
 
-body.contraste-alto .sensor-campo label {
+body.contraste-alto .sensor-campo label,
+body.contraste-alto .posto-campo label {
     color: #fff !important;
 }
 
-body.contraste-alto .sensor-campo input,
-body.contraste-alto .sensor-campo select,
-body.contraste-alto .sensor-campo textarea {
+body.contraste-alto .sensor-campo input, body.contraste-alto .sensor-campo select, body.contraste-alto .sensor-campo textarea,
+body.contraste-alto .posto-campo input, body.contraste-alto .posto-campo select {
     background: #111 !important;
     color: #fff !important;
     border-color: #fff !important;
 }
 
-body.contraste-alto .sensor-estado-label {
+body.contraste-alto .sensor-estado-label,
+body.contraste-alto .posto-estado-label {
     color: #fff !important;
 }
 
@@ -650,17 +653,19 @@ body.contraste-alto .filtros-toggle {
 
 /* ===== Tema Rosa ===== */
 
-body.tema-rosa .sensor-lista {
+body.tema-rosa .sensor-lista,
+body.tema-rosa .posto-lista {
     background: #fff0f4 !important;
     border-color: #f48fb1 !important;
 }
 
-body.tema-rosa .sensor-row:hover {
+body.tema-rosa .sensor-row:hover,
+body.tema-rosa .posto-row:hover {
     background: #fce4ec !important;
 }
 
-body.tema-rosa .sensor-nome,
-body.tema-rosa .sensor-local {
+body.tema-rosa .sensor-nome, body.tema-rosa .sensor-local,
+body.tema-rosa .posto-nome, body.tema-rosa .posto-local {
     color: #7b1045 !important;
 }
 
@@ -668,16 +673,19 @@ body.tema-rosa .sensor-tipo {
     background: #c2185b !important;
 }
 
-body.tema-rosa .sensor-detalhe {
+body.tema-rosa .sensor-detalhe,
+body.tema-rosa .posto-detalhe {
     background: #fce4ec !important;
     border-color: #f48fb1 !important;
 }
 
-body.tema-rosa .sensor-campo label {
+body.tema-rosa .sensor-campo label,
+body.tema-rosa .posto-campo label {
     color: #7b1045 !important;
 }
 
-body.tema-rosa .sensor-estado-label {
+body.tema-rosa .sensor-estado-label,
+body.tema-rosa .posto-estado-label {
     color: #7b1045 !important;
 }
 
