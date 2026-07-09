@@ -94,7 +94,7 @@ The project follows a layered architecture separating routes, controllers, model
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -163,8 +163,8 @@ During this project we gained practical experience with:
 
 ## Authors
 
-Sara Canelas
-André Rodrigues
-Guilherme Carneiro
-Francisca Silva
-Carolina Afonso
+* Sara Canelas
+* André Rodrigues
+* Guilherme Carneiro
+* Francisca Silva
+* Carolina Afonso
